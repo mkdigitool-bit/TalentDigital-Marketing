@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-talentdigital.png';
+
 const { pathname } = Astro.url;
 const isCreations = pathname.startsWith('/creations');
 const isAPropos = pathname.startsWith('/a-propos');
@@ -8,7 +11,7 @@ const isAPropos = pathname.startsWith('/a-propos');
   <nav class="nav" id="td-nav" role="navigation" aria-label="Navigation principale">
     <div class="wrap nav__in">
       <a href="/" class="brand" aria-label="TalentDigital — Accueil">
-        <img src="/logo-talentdigital.png" alt="TalentDigital" height="34" />
+        <Image src={logo} alt="TalentDigital" height={34} />
       </a>
 
       <div class="nav__links" id="td-nav-links" aria-label="Liens navigation">

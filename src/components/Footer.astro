@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-talentdigital.png';
+
 const year = new Date().getFullYear();
 ---
 
@@ -7,7 +10,7 @@ const year = new Date().getFullYear();
     <div class="foot__top">
       <div class="foot__brand">
         <a href="/" class="brand" aria-label="TalentDigital — Accueil">
-          <img src="/logo-talentdigital.png" alt="TalentDigital" height="38" />
+          <Image src={logo} alt="TalentDigital" height={38} />
         </a>
         <p class="foot__tag">Infrastructure de conversion pour le web mondial. On construit les systèmes qui transforment votre trafic en chiffre d'affaires.</p>
         <div class="foot__social" aria-label="Réseaux sociaux">
