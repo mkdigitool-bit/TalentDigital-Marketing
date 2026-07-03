@@ -88,7 +88,7 @@ const portfolioItems = [
     <div class="pf-track" id="pf-track">
       {portfolioItems.map((item) => (
         <article class="pf-item reveal">
-          <Image src={item.img} alt={`Site web pour ${item.label}`} width={480} loading="lazy" />
+          <Image src={item.img} alt={`Site web pour ${item.label}`} width={480} loading="eager" />
           <span class="pf-item__label">{item.label}</span>
         </article>
       ))}
