@@ -1,5 +1,36 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+import pfAvocats from '../assets/portfolio/avocats.jpg';
+import pfDentaire from '../assets/portfolio/dentaire.jpg';
+import pfClinique from '../assets/portfolio/clinique.jpg';
+import pfEntreprise from '../assets/portfolio/entreprise.jpg';
+import pfBtp from '../assets/portfolio/btp.jpg';
+import pfArtisan from '../assets/portfolio/artisan.jpg';
+import pfImmobilier from '../assets/portfolio/immobilier.jpg';
+import pfRestaurant from '../assets/portfolio/restaurant.jpg';
+import pfFleuriste from '../assets/portfolio/fleuriste.jpg';
+import pfBeaute from '../assets/portfolio/beaute.jpg';
+import pfPaysagiste from '../assets/portfolio/paysagiste.jpg';
+import pfDecoration from '../assets/portfolio/decoration.jpg';
+import pfEvenementiel from '../assets/portfolio/evenementiel.jpg';
+
+const portfolioItems = [
+  { img: pfAvocats, label: 'Cabinets d\'avocats' },
+  { img: pfDentaire, label: 'Cabinets dentaires' },
+  { img: pfClinique, label: 'Cliniques médicales' },
+  { img: pfEntreprise, label: 'Entreprises & PME' },
+  { img: pfBtp, label: 'BTP & construction' },
+  { img: pfArtisan, label: 'Artisans traditionnels' },
+  { img: pfImmobilier, label: 'Agences immobilières' },
+  { img: pfRestaurant, label: 'Restaurants' },
+  { img: pfFleuriste, label: 'Fleuristes' },
+  { img: pfBeaute, label: 'Centres de beauté' },
+  { img: pfPaysagiste, label: 'Paysagistes' },
+  { img: pfDecoration, label: 'Décoration intérieure' },
+  { img: pfEvenementiel, label: 'Événementiel' },
+];
 ---
 
 <BaseLayout title="TalentDigital — Sites, tunnels de vente &amp; landing pages haute conversion" description="Studio indépendant spécialisé en sites web, tunnels de vente et landing pages haute conversion pour coachs, formateurs, e-commerçants et infopreneurs. Audit gratuit, réponse sous 24 h.">
@@ -132,37 +163,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2>Un site pensé pour votre <em>secteur</em>, pas un template générique.</h2>
     <p class="lede" style="margin-top:1rem">Chaque activité a ses propres leviers de conversion. Voici comment ça se traduit concrètement selon votre métier.</p>
   </div>
-  <div class="pf__grid">
-    <article class="pf-card reveal">
-      <div class="pf-card__ico">◎</div>
-      <h4>Coachs &amp; consultants</h4>
-      <p>Tunnels et pages qui remplissent l'agenda sans prospection à froid.</p>
-    </article>
-    <article class="pf-card reveal">
-      <div class="pf-card__ico">▤</div>
-      <h4>Formateurs &amp; infopreneurs</h4>
-      <p>Pages de vente et séquences qui transforment l'audience en élèves.</p>
-    </article>
-    <article class="pf-card reveal">
-      <div class="pf-card__ico">▦</div>
-      <h4>E-commerce</h4>
-      <p>Boutiques et tunnels d'upsell qui font grimper le panier moyen.</p>
-    </article>
-    <article class="pf-card reveal">
-      <div class="pf-card__ico">✚</div>
-      <h4>Clinique &amp; santé</h4>
-      <p>Sites qui rassurent et remplissent l'agenda de rendez-vous.</p>
-    </article>
-    <article class="pf-card reveal">
-      <div class="pf-card__ico">◈</div>
-      <h4>Restaurant</h4>
-      <p>Vitrines qui donnent envie de réserver en un clic.</p>
-    </article>
-    <article class="pf-card reveal">
-      <div class="pf-card__ico">⌂</div>
-      <h4>Immobilier</h4>
-      <p>Sites qui mettent vos biens en valeur et génèrent des contacts qualifiés.</p>
-    </article>
+  <div class="pf-carousel">
+    <div class="pf-track" id="pf-track">
+      {portfolioItems.map((item) => (
+        <article class="pf-item reveal">
+          <Image src={item.img} alt={`Site web pour ${item.label}`} width={480} loading="lazy" />
+          <span class="pf-item__label">{item.label}</span>
+        </article>
+      ))}
+    </div>
+    <div class="pf-nav">
+      <button class="pf-nav__btn" id="pf-prev" aria-label="Précédent">
+        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 7H1M5 3L1 7l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="pf-nav__btn" id="pf-next" aria-label="Suivant">
+        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -326,14 +343,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   @media (max-width:880px){.svc__grid{grid-template-columns:1fr 1fr}}
   @media (max-width:520px){.svc__grid{grid-template-columns:1fr}}
 
-  .pf__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-  .pf-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.6rem;transition:.3s var(--ease)}
-  .pf-card:hover{border-color:var(--lime);transform:translateY(-4px)}
-  .pf-card__ico{font-family:var(--mono);font-size:1rem;color:var(--lime);font-weight:700;border:1px solid var(--line-2);width:36px;height:36px;display:grid;place-items:center;border-radius:4px}
-  .pf-card h4{font-size:1.08rem;font-weight:700;margin:.9rem 0 .5rem}
-  .pf-card p{font-size:.88rem;color:var(--muted)}
-  @media (max-width:880px){.pf__grid{grid-template-columns:1fr 1fr}}
-  @media (max-width:520px){.pf__grid{grid-template-columns:1fr}}
+  .pf-carousel{position:relative}
+  .pf-track{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:.4rem;-webkit-overflow-scrolling:touch}
+  .pf-track::-webkit-scrollbar{display:none}
+  .pf-item{flex:0 0 clamp(240px,32vw,340px);scroll-snap-align:start;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .3s var(--ease),transform .3s var(--ease)}
+  .pf-item:hover{border-color:var(--lime);transform:translateY(-4px)}
+  .pf-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block}
+  .pf-item__label{display:block;font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;text-transform:uppercase;color:var(--txt);padding:.9rem 1rem}
+  .pf-nav{display:flex;gap:.6rem;justify-content:flex-end;margin-top:1.2rem}
+  .pf-nav__btn{background:none;border:1px solid var(--line-2);color:var(--txt);width:42px;height:42px;border-radius:4px;display:grid;place-items:center;cursor:pointer;transition:.2s}
+  .pf-nav__btn:hover{border-color:var(--lime);color:var(--lime)}
 
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
   .step{border-top:2px solid var(--line-2);padding:1.4rem 1.4rem 1.4rem 0;position:relative;transition:border-color .3s}
@@ -414,6 +433,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if(t){ e.preventDefault(); t.scrollIntoView({behavior: reduce ? "instant" : "smooth"}); }
     });
   });
+
+  /* carrousel portfolio */
+  (function(){
+    var track = document.getElementById("pf-track");
+    var prev = document.getElementById("pf-prev");
+    var next = document.getElementById("pf-next");
+    if(!track || !prev || !next) return;
+    function step(){
+      var item = track.querySelector(".pf-item");
+      return item ? item.getBoundingClientRect().width + 19 : 300;
+    }
+    prev.addEventListener("click", function(){
+      track.scrollBy({left: -step(), behavior: reduce ? "instant" : "smooth"});
+    });
+    next.addEventListener("click", function(){
+      track.scrollBy({left: step(), behavior: reduce ? "instant" : "smooth"});
+    });
+  })();
 
   /* barres de progression — même pattern que résultats.live (a-propos) */
   (function(){
