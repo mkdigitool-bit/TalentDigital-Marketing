@@ -78,9 +78,35 @@ const portfolioItems = [
   </div>
 </section>
 
+<section class="section wrap" id="portfolio">
+  <div class="section__head reveal">
+    <span class="prompt">01 — <b>portfolio</b></span>
+    <h2>Un site pensé pour votre <em>secteur</em>, pas un template générique.</h2>
+    <p class="lede" style="margin-top:1rem">Chaque activité a ses propres leviers de conversion. Voici comment ça se traduit concrètement selon votre métier.</p>
+  </div>
+  <div class="pf-carousel">
+    <div class="pf-track" id="pf-track">
+      {portfolioItems.map((item) => (
+        <article class="pf-item reveal">
+          <Image src={item.img} alt={`Site web pour ${item.label}`} width={480} loading="lazy" />
+          <span class="pf-item__label">{item.label}</span>
+        </article>
+      ))}
+    </div>
+    <div class="pf-nav">
+      <button class="pf-nav__btn" id="pf-prev" aria-label="Précédent">
+        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 7H1M5 3L1 7l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="pf-nav__btn" id="pf-next" aria-label="Suivant">
+        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
 <section class="section wrap" id="resultats">
   <div class="section__head reveal">
-    <span class="prompt">01 — <b>pour qui</b></span>
+    <span class="prompt">02 — <b>pour qui</b></span>
     <h2>Conçu pour ceux qui <em>vendent</em> en ligne.</h2>
   </div>
   <div class="who__grid">
@@ -109,7 +135,7 @@ const portfolioItems = [
 
 <section class="section wrap" id="services">
   <div class="section__head reveal">
-    <span class="prompt">02 — <b>services</b></span>
+    <span class="prompt">03 — <b>services</b></span>
     <h2>Quatre systèmes. Un seul objectif : <em>vendre</em>.</h2>
     <p class="lede" style="margin-top:1rem">On ne livre pas des pages. On livre des systèmes qui transforment un visiteur tiède en client qui passe à la caisse.</p>
   </div>
@@ -154,32 +180,6 @@ const portfolioItems = [
         <li>Maintenance &amp; évolutions incluses</li>
       </ul>
     </article>
-  </div>
-</section>
-
-<section class="section wrap" id="portfolio">
-  <div class="section__head reveal">
-    <span class="prompt">03 — <b>portfolio</b></span>
-    <h2>Un site pensé pour votre <em>secteur</em>, pas un template générique.</h2>
-    <p class="lede" style="margin-top:1rem">Chaque activité a ses propres leviers de conversion. Voici comment ça se traduit concrètement selon votre métier.</p>
-  </div>
-  <div class="pf-carousel">
-    <div class="pf-track" id="pf-track">
-      {portfolioItems.map((item) => (
-        <article class="pf-item reveal">
-          <Image src={item.img} alt={`Site web pour ${item.label}`} width={480} loading="lazy" />
-          <span class="pf-item__label">{item.label}</span>
-        </article>
-      ))}
-    </div>
-    <div class="pf-nav">
-      <button class="pf-nav__btn" id="pf-prev" aria-label="Précédent">
-        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 7H1M5 3L1 7l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="pf-nav__btn" id="pf-next" aria-label="Suivant">
-        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
   </div>
 </section>
 
