@@ -98,10 +98,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </article>
   </div>
   <div class="svc__small">
-    <article class="mini reveal"><div class="mini__ico">@</div><h4>Email marketing</h4><p>Séquences et automatisations qui vendent pendant que vous dormez.</p></article>
-    <article class="mini reveal"><div class="mini__ico">◆</div><h4>Branding digital</h4><p>Une identité claire qui inspire confiance dès la première seconde.</p></article>
-    <article class="mini reveal"><div class="mini__ico">#</div><h4>Content social</h4><p>Formats et calendrier qui ramènent du trafic vers vos pages.</p></article>
-    <article class="mini reveal"><div class="mini__ico">▲</div><h4>Sites web pro</h4><p>Une vitrine rapide, propre et prête pour le référencement.</p></article>
+    <article class="mini reveal"><div class="mini__ico">▲</div><h4>Site web</h4><p>Une vitrine rapide, propre et prête pour le référencement.</p></article>
+    <article class="mini reveal"><div class="mini__ico">▣</div><h4>SaaS sur mesure</h4><p>Votre propre logiciel, conçu et développé pour votre activité.</p></article>
   </div>
 </section>
 
@@ -303,14 +301,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .svc-big__metric b{font-family:var(--display);font-weight:900;font-size:1.8rem;color:var(--lime);line-height:1;letter-spacing:-.02em}
   .svc-big__metric span{font-size:.86rem;color:var(--muted);line-height:1.4}
 
-  .svc__small{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .svc__small{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
   .mini{background:transparent;border:1px solid var(--line);border-radius:6px;padding:1.5rem 1.4rem;transition:.3s var(--ease)}
   .mini:hover{background:var(--panel);border-color:var(--lime);transform:translateY(-4px)}
   .mini__ico{font-family:var(--mono);font-size:.95rem;color:var(--lime);font-weight:700;border:1px solid var(--line-2);width:34px;height:34px;display:grid;place-items:center;border-radius:4px}
   .mini h4{font-size:1.06rem;font-weight:700;margin:.9rem 0 .4rem}
   .mini p{font-size:.88rem;color:var(--muted)}
 
-  @media (max-width:880px){.svc__big{grid-template-columns:1fr}.svc__small{grid-template-columns:1fr 1fr}}
+  @media (max-width:880px){.svc__big{grid-template-columns:1fr}}
   @media (max-width:520px){.svc__small{grid-template-columns:1fr}}
 
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
