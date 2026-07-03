@@ -1,0 +1,67 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <a href="/" class="brand" aria-label="TalentDigital — Accueil">
+          <img src="/logo-talentdigital.png" alt="TalentDigital" height="38" />
+        </a>
+        <p class="foot__tag">Infrastructure de conversion pour le web mondial. On construit les systèmes qui transforment votre trafic en chiffre d'affaires.</p>
+        <div class="foot__social" aria-label="Réseaux sociaux">
+          <a href="https://www.linkedin.com/company/talentdigital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          <a href="https://www.instagram.com/talentdigital.net" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div class="foot">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/creations">Créations</a></li>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot">
+        <h5>Créations</h5>
+        <ul>
+          <li><a href="/creations/landing-page">Landing page</a></li>
+          <li><a href="/creations/tunnel">Tunnel de vente</a></li>
+          <li><a href="/creations/site-web">Site web</a></li>
+          <li><a href="/creations/saas">SaaS</a></li>
+        </ul>
+      </div>
+      <div class="foot">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@talentdigital.net">contact@talentdigital.net</a></li>
+          <li><a href="/contact">Formulaire de contact</a></li>
+          <li><a href="/contact">Audit gratuit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© {year} TalentDigital — Tous droits réservés</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer{border-top:1px solid var(--line);padding-block:clamp(3rem,6vw,4.5rem) 2rem;background:var(--panel)}
+  .foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
+  .foot__brand .brand{font-size:1.7rem}
+  .foot__tag{color:var(--muted);max-width:30ch;margin-top:1rem;font-size:.92rem}
+  .foot h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+  .foot a{font-size:.92rem;color:var(--txt);opacity:.8;transition:.2s;width:fit-content}
+  .foot a:hover{opacity:1;color:var(--lime)}
+  .foot__bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:3rem;padding-top:1.5rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.02em}
+  .foot__social{display:flex;gap:.7rem;margin-top:1.2rem}
+  .foot__social a{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;width:34px;height:34px;border:1px solid var(--line-2);border-radius:4px;display:grid;place-items:center;color:var(--muted);transition:.2s;opacity:1}
+  .foot__social a:hover{border-color:var(--lime);color:var(--lime)}
+
+  @media (max-width:880px){.foot__top{grid-template-columns:1fr 1fr}.foot__brand{grid-column:1/-1}}
+  @media (max-width:520px){.foot__top{grid-template-columns:1fr}}
+</style>
