@@ -17,9 +17,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: result.error });
   }
 
-  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
-  const resend = new Resend(process.env.RESEND_API_KEY);
-
   const prenom = body.prenom.trim();
   const nom = body.nom.trim();
   const email = body.email.trim();
@@ -29,6 +26,9 @@ export default async function handler(req, res) {
   const message = body.message.trim();
 
   try {
+    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const { error: dbError } = await supabase.from('contact_submissions').insert({
       prenom,
       nom,
