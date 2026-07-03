@@ -79,46 +79,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <section class="section wrap" id="services">
   <div class="section__head reveal">
     <span class="prompt">02 — <b>services</b></span>
-    <h2>Deux machines à <em>vendre</em>, plus tout ce qui les nourrit.</h2>
+    <h2>Quatre systèmes. Un seul objectif : <em>vendre</em>.</h2>
     <p class="lede" style="margin-top:1rem">On ne livre pas des pages. On livre des systèmes qui transforment un visiteur tiède en client qui passe à la caisse.</p>
   </div>
-  <div class="svc__big">
+  <div class="svc__grid">
     <article class="card reveal">
-      <span class="svc-big__no">01 / pièce maîtresse</span>
+      <span class="svc__no">01</span>
       <h3>Tunnels de vente</h3>
-      <p class="svc-big__desc">Un parcours guidé, du premier clic au paiement, pensé pour faire monter chaque commande sans effort supplémentaire de votre part.</p>
+      <p class="svc__desc">Un parcours guidé, du premier clic au paiement, pensé pour faire monter chaque commande.</p>
       <ul class="deliver">
         <li>Page de capture optimisée pour l'opt-in</li>
         <li>Page de vente prête pour la vidéo (VSL)</li>
-        <li>Bon de commande + order bumps stratégiques</li>
-        <li>Upsells &amp; downsells post-achat</li>
-        <li>Séquence email de relance &amp; panier abandonné</li>
-        <li>Tracking complet : événements, conversions, sources</li>
+        <li>Order bumps, upsells &amp; downsells</li>
       </ul>
-      <div class="svc-big__metric">
-        <b>×3</b><span>sur le panier moyen via order bumps &amp; upsells bien placés</span>
-      </div>
     </article>
     <article class="card reveal">
-      <span class="svc-big__no">02 / pièce maîtresse</span>
+      <span class="svc__no">02</span>
       <h3>Landing pages haute conversion</h3>
-      <p class="svc-big__desc">Une page, un objectif, zéro distraction. Structurée pour le clic suivant et écrite pour parler à votre client, pas à vous.</p>
+      <p class="svc__desc">Une page, un objectif, zéro distraction. Structurée pour le clic suivant.</p>
       <ul class="deliver">
         <li>Copywriting orienté bénéfice (structure AIDA)</li>
         <li>Design responsive, chargement sous 2 secondes</li>
-        <li>Hiérarchie visuelle pensée pour l'action</li>
-        <li>Intégration formulaire &amp; paiement</li>
-        <li>Variante A/B pour trancher sur les chiffres</li>
-        <li>Suivi des événements clés &amp; heatmap</li>
+        <li>Variante A/B et suivi des événements clés</li>
       </ul>
-      <div class="svc-big__metric">
-        <b>+180%</b><span>de taux de conversion moyen face à une page « vitrine » classique</span>
-      </div>
     </article>
-  </div>
-  <div class="svc__small">
-    <article class="mini reveal"><div class="mini__ico">▲</div><h4>Site web</h4><p>Une vitrine rapide, propre et prête pour le référencement.</p></article>
-    <article class="mini reveal"><div class="mini__ico">▣</div><h4>SaaS sur mesure</h4><p>Votre propre logiciel, conçu et développé pour votre activité.</p></article>
+    <article class="card reveal">
+      <span class="svc__no">03</span>
+      <h3>Site web</h3>
+      <p class="svc__desc">Une vitrine rapide, propre et prête pour le référencement.</p>
+      <ul class="deliver">
+        <li>Design sur mesure, responsive</li>
+        <li>Structure optimisée pour le SEO</li>
+        <li>Mise en ligne &amp; hébergement inclus</li>
+      </ul>
+    </article>
+    <article class="card reveal">
+      <span class="svc__no">04</span>
+      <h3>SaaS sur mesure</h3>
+      <p class="svc__desc">Votre propre logiciel, conçu et développé pour votre activité.</p>
+      <ul class="deliver">
+        <li>Cahier des charges &amp; architecture</li>
+        <li>Développement de bout en bout</li>
+        <li>Maintenance &amp; évolutions incluses</li>
+      </ul>
+    </article>
   </div>
 </section>
 
@@ -311,26 +315,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   @media (max-width:880px){.hero__grid{grid-template-columns:1fr;align-items:start;gap:2.4rem}}
 
-  .svc__big{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem}
-  .svc-big__no{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--lime);text-transform:uppercase}
-  .card h3{font-size:clamp(1.5rem,2.4vw,2rem);font-weight:800;margin:.5rem 0 .7rem;letter-spacing:-.02em}
-  .svc-big__desc{color:var(--muted);max-width:40ch}
-  .deliver{list-style:none;margin:1.5rem 0 1.6rem;border-top:1px solid var(--line)}
-  .deliver li{display:flex;gap:.8rem;align-items:flex-start;padding:.7rem 0;border-bottom:1px solid var(--line);font-size:.94rem}
+  .svc__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .svc__no{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--lime);text-transform:uppercase}
+  .card h3{font-size:1.3rem;font-weight:800;margin:.6rem 0 .6rem;letter-spacing:-.02em}
+  .svc__desc{color:var(--muted);font-size:.92rem}
+  .deliver{list-style:none;margin:1.2rem 0 0;border-top:1px solid var(--line)}
+  .deliver li{display:flex;gap:.6rem;align-items:flex-start;padding:.65rem 0;border-bottom:1px solid var(--line);font-size:.86rem}
   .deliver li::before{content:"+";color:var(--lime);font-family:var(--mono);font-weight:700;flex:none}
-  .svc-big__metric{display:flex;align-items:center;gap:1rem;background:var(--void);border:1px solid var(--line);padding:1rem 1.2rem;border-radius:4px}
-  .svc-big__metric b{font-family:var(--display);font-weight:900;font-size:1.8rem;color:var(--lime);line-height:1;letter-spacing:-.02em}
-  .svc-big__metric span{font-size:.86rem;color:var(--muted);line-height:1.4}
 
-  .svc__small{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
-  .mini{background:transparent;border:1px solid var(--line);border-radius:6px;padding:1.5rem 1.4rem;transition:.3s var(--ease)}
-  .mini:hover{background:var(--panel);border-color:var(--lime);transform:translateY(-4px)}
-  .mini__ico{font-family:var(--mono);font-size:.95rem;color:var(--lime);font-weight:700;border:1px solid var(--line-2);width:34px;height:34px;display:grid;place-items:center;border-radius:4px}
-  .mini h4{font-size:1.06rem;font-weight:700;margin:.9rem 0 .4rem}
-  .mini p{font-size:.88rem;color:var(--muted)}
-
-  @media (max-width:880px){.svc__big{grid-template-columns:1fr}}
-  @media (max-width:520px){.svc__small{grid-template-columns:1fr}}
+  @media (max-width:880px){.svc__grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.svc__grid{grid-template-columns:1fr}}
 
   .pf__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
   .pf-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.6rem;transition:.3s var(--ease)}
