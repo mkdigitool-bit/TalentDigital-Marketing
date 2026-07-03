@@ -9,7 +9,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="hero__grid">
     <div>
       <h1 class="reveal">Des sites et tunnels conçus pour <em>convertir</em>, pas pour décorer.</h1>
-      <p class="hero__sub lede reveal">Sites web, tunnels de vente et landing pages haute conversion pour coachs, formateurs, e-commerçants et infopreneurs. Une infrastructure digitale taillée pour vos chiffres — pas pour votre ego.</p>
+      <p class="hero__sub lede reveal">Sites web, tunnels de vente et landing pages haute conversion pour entrepreneurs, professionnels et commerces qui veulent convertir plus de visiteurs en clients. Une infrastructure digitale taillée pour vos chiffres — pas pour votre ego.</p>
       <div class="hero__cta reveal">
         <a href="#contact" class="btn">Réserver un audit gratuit <span class="arr">→</span></a>
         <span class="hero__micro"><b>Réponse sous 24 h</b> · Sans engagement</span>
@@ -47,19 +47,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </section>
 
-<section class="tools" aria-label="Plateformes compatibles">
-  <p class="tools__lbl wrap">// Compatible avec votre écosystème</p>
-  <div class="marquee">
-    <div class="marquee__track">
-      <span>WordPress</span><span>Shopify</span><span>Webflow</span><span>Notion</span><span>Stripe</span><span>Mailchimp</span><span>Zapier</span><span>Analytics</span><span>Meta&nbsp;Ads</span>
-      <span aria-hidden="true">WordPress</span><span aria-hidden="true">Shopify</span><span aria-hidden="true">Webflow</span><span aria-hidden="true">Notion</span><span aria-hidden="true">Stripe</span><span aria-hidden="true">Mailchimp</span><span aria-hidden="true">Zapier</span><span aria-hidden="true">Analytics</span><span aria-hidden="true">Meta&nbsp;Ads</span>
-    </div>
+<section class="section wrap" id="resultats">
+  <div class="section__head reveal">
+    <span class="prompt">03 — <b>pour qui</b></span>
+    <h2>Conçu pour ceux qui <em>vendent</em> en ligne.</h2>
+  </div>
+  <div class="who__grid">
+    <article class="who-card reveal">
+      <span class="who-card__k">coachs &amp; consultants</span>
+      <h3>Un agenda qui se remplit seul</h3>
+      <p>Un tunnel qui qualifie vos prospects et réserve les appels à votre place. Vous coachez, le système vend.</p>
+    </article>
+    <article class="who-card reveal">
+      <span class="who-card__k">formateurs &amp; infopreneurs</span>
+      <h3>La vente en automatique</h3>
+      <p>Du clic à l'achat de votre formation, sans intervention manuelle. Lancez, mesurez, scalez.</p>
+    </article>
+    <article class="who-card reveal">
+      <span class="who-card__k">e-commerçants</span>
+      <h3>Plus de panier, moins d'abandon</h3>
+      <p>Order bumps, upsells et relances automatiques pour faire monter chaque commande et récupérer les paniers perdus.</p>
+    </article>
+    <article class="who-card reveal">
+      <span class="who-card__k">freelances &amp; studios</span>
+      <h3>La partie technique, déléguée</h3>
+      <p>Livrez des tunnels et des pages à vos propres clients sans embaucher ni vous arracher les cheveux sur le code.</p>
+    </article>
   </div>
 </section>
 
 <section class="section wrap" id="services">
   <div class="section__head reveal">
-    <span class="prompt">01 — <b>services</b></span>
+    <span class="prompt">02 — <b>services</b></span>
     <h2>Deux machines à <em>vendre</em>, plus tout ce qui les nourrit.</h2>
     <p class="lede" style="margin-top:1rem">On ne livre pas des pages. On livre des systèmes qui transforment un visiteur tiède en client qui passe à la caisse.</p>
   </div>
@@ -103,65 +122,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </section>
 
-<section class="section wrap" id="processus">
+<section class="section wrap" id="portfolio">
   <div class="section__head reveal">
-    <span class="prompt">02 — <b>processus</b></span>
-    <h2>Quatre étapes. <em>Aucune</em> zone d'ombre.</h2>
-    <p class="lede" style="margin-top:1rem">Vous savez ce qu'on construit, quand, et pourquoi. Pas de jargon, pas de facture surprise.</p>
+    <span class="prompt">03 — <b>portfolio</b></span>
+    <h2>Un site pensé pour votre <em>secteur</em>, pas un template générique.</h2>
+    <p class="lede" style="margin-top:1rem">Chaque activité a ses propres leviers de conversion. Voici comment ça se traduit concrètement selon votre métier.</p>
   </div>
-  <div class="steps">
-    <article class="step reveal">
-      <span class="step__no">01</span>
-      <h3>Audit stratégique</h3>
-      <p>On analyse votre offre, votre trafic et vos points de fuite. On vous dit ce qui bloque vos conversions, concrètement.</p>
-      <span class="tag tag--free">Gratuit · 30 min</span>
+  <div class="pf__grid">
+    <article class="pf-card reveal">
+      <div class="pf-card__ico">◎</div>
+      <h4>Coachs &amp; consultants</h4>
+      <p>Tunnels et pages qui remplissent l'agenda sans prospection à froid.</p>
     </article>
-    <article class="step reveal">
-      <span class="step__no">02</span>
-      <h3>Plan d'action personnalisé</h3>
-      <p>Une feuille de route claire : quoi construire, dans quel ordre, pour quel résultat chiffré attendu.</p>
-      <span class="tag">Sous 48 h</span>
+    <article class="pf-card reveal">
+      <div class="pf-card__ico">▤</div>
+      <h4>Formateurs &amp; infopreneurs</h4>
+      <p>Pages de vente et séquences qui transforment l'audience en élèves.</p>
     </article>
-    <article class="step reveal">
-      <span class="step__no">03</span>
-      <h3>Implémentation &amp; livraison</h3>
-      <p>On construit, on intègre, on teste. Vous récupérez un système prêt à tourner, avec une prise en main vidéo.</p>
-      <span class="tag">7 jours</span>
+    <article class="pf-card reveal">
+      <div class="pf-card__ico">▦</div>
+      <h4>E-commerce</h4>
+      <p>Boutiques et tunnels d'upsell qui font grimper le panier moyen.</p>
     </article>
-    <article class="step reveal">
-      <span class="step__no">04</span>
-      <h3>Optimisation continue</h3>
-      <p>On suit les chiffres après lancement et on ajuste ce qui fait grimper la conversion, mois après mois.</p>
-      <span class="tag">En option</span>
+    <article class="pf-card reveal">
+      <div class="pf-card__ico">✚</div>
+      <h4>Clinique &amp; santé</h4>
+      <p>Sites qui rassurent et remplissent l'agenda de rendez-vous.</p>
     </article>
-  </div>
-</section>
-
-<section class="section wrap" id="resultats">
-  <div class="section__head reveal">
-    <span class="prompt">03 — <b>pour qui</b></span>
-    <h2>Conçu pour ceux qui <em>vendent</em> en ligne.</h2>
-  </div>
-  <div class="who__grid">
-    <article class="who-card reveal">
-      <span class="who-card__k">coachs &amp; consultants</span>
-      <h3>Un agenda qui se remplit seul</h3>
-      <p>Un tunnel qui qualifie vos prospects et réserve les appels à votre place. Vous coachez, le système vend.</p>
+    <article class="pf-card reveal">
+      <div class="pf-card__ico">◈</div>
+      <h4>Restaurant</h4>
+      <p>Vitrines qui donnent envie de réserver en un clic.</p>
     </article>
-    <article class="who-card reveal">
-      <span class="who-card__k">formateurs &amp; infopreneurs</span>
-      <h3>La vente en automatique</h3>
-      <p>Du clic à l'achat de votre formation, sans intervention manuelle. Lancez, mesurez, scalez.</p>
-    </article>
-    <article class="who-card reveal">
-      <span class="who-card__k">e-commerçants</span>
-      <h3>Plus de panier, moins d'abandon</h3>
-      <p>Order bumps, upsells et relances automatiques pour faire monter chaque commande et récupérer les paniers perdus.</p>
-    </article>
-    <article class="who-card reveal">
-      <span class="who-card__k">freelances &amp; studios</span>
-      <h3>La partie technique, déléguée</h3>
-      <p>Livrez des tunnels et des pages à vos propres clients sans embaucher ni vous arracher les cheveux sur le code.</p>
+    <article class="pf-card reveal">
+      <div class="pf-card__ico">⌂</div>
+      <h4>Immobilier</h4>
+      <p>Sites qui mettent vos biens en valeur et génèrent des contacts qualifiés.</p>
     </article>
   </div>
 </section>
@@ -200,10 +196,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </section></div>
 
+<section class="section wrap" id="processus">
+  <div class="section__head reveal">
+    <span class="prompt">05 — <b>processus</b></span>
+    <h2>Quatre étapes. <em>Aucune</em> zone d'ombre.</h2>
+    <p class="lede" style="margin-top:1rem">Vous savez ce qu'on construit, quand, et pourquoi. Pas de jargon, pas de facture surprise.</p>
+  </div>
+  <div class="steps">
+    <article class="step reveal">
+      <span class="step__no">01</span>
+      <h3>Audit stratégique</h3>
+      <p>On analyse votre offre, votre trafic et vos points de fuite. On vous dit ce qui bloque vos conversions, concrètement.</p>
+      <span class="tag tag--free">Gratuit · 30 min</span>
+    </article>
+    <article class="step reveal">
+      <span class="step__no">02</span>
+      <h3>Plan d'action personnalisé</h3>
+      <p>Une feuille de route claire : quoi construire, dans quel ordre, pour quel résultat chiffré attendu.</p>
+      <span class="tag">Sous 48 h</span>
+    </article>
+    <article class="step reveal">
+      <span class="step__no">03</span>
+      <h3>Implémentation &amp; livraison</h3>
+      <p>On construit, on intègre, on teste. Vous récupérez un système prêt à tourner, avec une prise en main vidéo.</p>
+      <span class="tag">7 jours</span>
+    </article>
+    <article class="step reveal">
+      <span class="step__no">04</span>
+      <h3>Optimisation continue</h3>
+      <p>On suit les chiffres après lancement et on ajuste ce qui fait grimper la conversion, mois après mois.</p>
+      <span class="tag">En option</span>
+    </article>
+  </div>
+</section>
+
 <section class="section wrap" id="faq">
   <div class="faq__grid">
     <div class="reveal">
-      <span class="prompt">05 — <b>faq</b></span>
+      <span class="prompt">06 — <b>faq</b></span>
       <h2>Les questions que vous vous posez déjà.</h2>
       <p class="lede" style="margin-top:1rem">Et si la vôtre n'y est pas, l'audit gratuit est là pour ça.</p>
     </div>
@@ -281,15 +311,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   @media (max-width:880px){.hero__grid{grid-template-columns:1fr;align-items:start;gap:2.4rem}}
 
-  .tools{border-block:1px solid var(--line);background:var(--panel);overflow:hidden}
-  .tools__lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:.9rem var(--pad) 0}
-  .marquee{display:flex;white-space:nowrap;padding:.7rem 0 1rem}
-  .marquee__track{display:flex;align-items:center;gap:2.6rem;padding-right:2.6rem;animation:scroll 30s linear infinite}
-  .marquee:hover .marquee__track{animation-play-state:paused}
-  .marquee__track span{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,2vw,1.5rem);color:var(--txt);display:inline-flex;align-items:center;gap:2.6rem;text-transform:uppercase;letter-spacing:.02em}
-  .marquee__track span::after{content:"//";color:var(--lime);font-family:var(--mono);font-size:.6em;font-weight:700}
-  @keyframes scroll{to{transform:translateX(-50%)}}
-
   .svc__big{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem}
   .svc-big__no{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--lime);text-transform:uppercase}
   .card h3{font-size:clamp(1.5rem,2.4vw,2rem);font-weight:800;margin:.5rem 0 .7rem;letter-spacing:-.02em}
@@ -310,6 +331,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   @media (max-width:880px){.svc__big{grid-template-columns:1fr}}
   @media (max-width:520px){.svc__small{grid-template-columns:1fr}}
+
+  .pf__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .pf-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.6rem;transition:.3s var(--ease)}
+  .pf-card:hover{border-color:var(--lime);transform:translateY(-4px)}
+  .pf-card__ico{font-family:var(--mono);font-size:1rem;color:var(--lime);font-weight:700;border:1px solid var(--line-2);width:36px;height:36px;display:grid;place-items:center;border-radius:4px}
+  .pf-card h4{font-size:1.08rem;font-weight:700;margin:.9rem 0 .5rem}
+  .pf-card p{font-size:.88rem;color:var(--muted)}
+  @media (max-width:880px){.pf__grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.pf__grid{grid-template-columns:1fr}}
 
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
   .step{border-top:2px solid var(--line-2);padding:1.4rem 1.4rem 1.4rem 0;position:relative;transition:border-color .3s}
@@ -376,7 +406,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .final .btn--ghost{--bg:transparent;--fg:var(--void);--bd:rgba(14,14,16,.4)}
   .final .btn--ghost:hover{--bd:var(--void);box-shadow:none}
 
-  #services,#processus,#resultats,#faq,#contact{scroll-margin-top:82px}
+  #services,#processus,#resultados,#faq,#contact,#portfolio{scroll-margin-top:82px}
 </style>
 
 <script>
