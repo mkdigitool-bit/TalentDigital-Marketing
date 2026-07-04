@@ -387,17 +387,47 @@ const portfolioItems = [
     var track = document.getElementById("pf-track");
     var prev = document.getElementById("pf-prev");
     var next = document.getElementById("pf-next");
-    if(!track || !prev || !next) return;
+    var carousel = document.querySelector(".pf-carousel");
+    if(!track || !prev || !next || !carousel) return;
     function step(){
       var item = track.querySelector(".pf-item");
       return item ? item.getBoundingClientRect().width + 19 : 300;
     }
-    prev.addEventListener("click", function(){
+    function atEnd(){
+      return track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    }
+    function scrollNext(){
+      if(atEnd()){
+        track.scrollTo({left: 0, behavior: reduce ? "instant" : "smooth"});
+      } else {
+        track.scrollBy({left: step(), behavior: reduce ? "instant" : "smooth"});
+      }
+    }
+    function scrollPrev(){
       track.scrollBy({left: -step(), behavior: reduce ? "instant" : "smooth"});
-    });
-    next.addEventListener("click", function(){
-      track.scrollBy({left: step(), behavior: reduce ? "instant" : "smooth"});
-    });
+    }
+
+    var autoplayId = null;
+    function stopAutoplay(){
+      if(autoplayId){ clearInterval(autoplayId); autoplayId = null; }
+    }
+    function startAutoplay(){
+      if(reduce) return;
+      stopAutoplay();
+      autoplayId = setInterval(scrollNext, 3500);
+    }
+    function restartAutoplay(){
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    prev.addEventListener("click", function(){ scrollPrev(); restartAutoplay(); });
+    next.addEventListener("click", function(){ scrollNext(); restartAutoplay(); });
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+    carousel.addEventListener("focusin", stopAutoplay);
+    carousel.addEventListener("focusout", startAutoplay);
+    startAutoplay();
   })();
 
   /* barres de progression (engagements) */
