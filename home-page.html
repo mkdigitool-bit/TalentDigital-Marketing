@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Accueil — TalentDigital.net</title>
+<meta name="description" content="Studio indépendant spécialisé en sites web, tunnels de vente et landing pages haute conversion pour entrepreneurs, professionnels et commerces. Audit gratuit, réponse sous 24 h." />
+<meta name="color-scheme" content="dark" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --void:#0E0E10; --panel:#151518; --panel-2:#1B1B1F; --line:#27272D; --line-2:#3A3A42;
+  --txt:#B8B8B2; --muted:#72727A; --lime:#C7F73E; --lime-dim:#9ec22f;
+  --display:"Archivo",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --maxw:1240px; --pad:clamp(1.25rem,5vw,3.5rem); --section:clamp(4.5rem,9vw,8rem); --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--txt);font-family:var(--display);font-weight:400;font-size:clamp(1rem,1.05vw,1.0625rem);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:72px 72px;opacity:.4;-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%)}
+main,header,footer{position:relative;z-index:1}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--lime);color:var(--void)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.prompt{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.prompt::before{content:">";color:var(--lime);font-weight:700}
+.prompt b{color:var(--txt);font-weight:500}
+h1,h2,h3{font-family:var(--display);line-height:1.02;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.4vw,3.3rem);font-weight:800;margin-top:.9rem}
+h2 em{font-style:normal;color:var(--lime)}
+.lede{color:var(--muted);max-width:48ch;font-size:clamp(1.02rem,1.4vw,1.16rem)}
+.btn{--bg:var(--lime);--fg:var(--void);--bd:var(--lime);display:inline-flex;align-items:center;gap:.6rem;background:var(--bg);color:var(--fg);font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;padding:.92rem 1.5rem;border:1px solid var(--bd);border-radius:3px;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 3px rgba(199,247,62,.18),0 14px 30px -14px rgba(199,247,62,.5)}
+.btn--ghost{--bg:transparent;--fg:var(--txt);--bd:var(--line-2)}
+.nav{position:sticky;top:0;z-index:200;background:rgba(14,14,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:var(--display);font-weight:900;font-size:1.45rem;letter-spacing:-.04em}
+.nav__links{display:flex;align-items:center;gap:2rem;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.nav__links a{color:inherit}
+.nav__links a:hover{color:var(--txt)}
+.hero{padding-top:clamp(2.5rem,6vw,4.5rem);padding-bottom:var(--section)}
+.hero__badge{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:.45rem .9rem;background:var(--panel)}
+.hero__badge .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.hero__grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:end;margin-top:2.2rem}
+.hero h1{font-size:clamp(1.9rem,4vw,3.4rem);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1.05;margin-top:.5rem}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero__sub{margin-top:1.6rem;max-width:46ch}
+.hero__cta{margin-top:2.1rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.hero__micro{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.hero__micro b{color:var(--lime);font-weight:700}
+.console{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.console__bar{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-bottom:1px solid var(--line);background:var(--panel-2)}
+.console__dot{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.console__dot.on{background:var(--lime)}
+.console__name{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-left:auto}
+.console__body{padding:1.3rem 1.4rem 1.5rem}
+.metric{padding:.9rem 0;border-bottom:1px dashed var(--line)}
+.metric:last-child{border-bottom:0}
+.metric__top{display:flex;justify-content:space-between;align-items:baseline}
+.metric__label{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.metric__val{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,2.6vw,2.3rem);color:var(--txt)}
+.metric__val .u{font-family:var(--mono);font-size:.55em;color:var(--lime);vertical-align:super}
+.metric__bar{height:5px;background:#202024;border-radius:100px;margin-top:.7rem;overflow:hidden}
+.metric__fill{height:100%;background:var(--lime);border-radius:100px}
+@media (max-width:880px){.hero__grid{grid-template-columns:1fr}}
+.section{padding-block:var(--section)}
+.section__head{max-width:64ch;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+.pf-track{display:flex;gap:1.2rem;overflow-x:auto;padding-bottom:.4rem}
+.pf-item{flex:0 0 260px;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.pf-item img{width:100%;height:180px;object-fit:contain;background:var(--void)}
+.pf-item__label{display:block;font-family:var(--mono);font-size:.78rem;text-transform:uppercase;padding:.9rem 1rem}
+.svc__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:clamp(1.6rem,3vw,2.4rem)}
+.svc__no{font-family:var(--mono);font-size:.74rem;color:var(--lime);text-transform:uppercase}
+.card h3{font-size:1.3rem;font-weight:800;margin:.6rem 0}
+.svc__desc{color:var(--muted);font-size:.92rem}
+.deliver{list-style:none;margin:1.2rem 0 0;border-top:1px solid var(--line)}
+.deliver li{padding:.65rem 0;border-bottom:1px solid var(--line);font-size:.86rem}
+.deliver li::before{content:"+ ";color:var(--lime)}
+@media (max-width:880px){.svc__grid{grid-template-columns:1fr 1fr}}
+.who__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.who-card{border:1px solid var(--line);border-radius:6px;padding:1.5rem}
+.who-card__k{font-family:var(--mono);font-size:.72rem;color:var(--lime);text-transform:uppercase}
+.who-card h3{font-size:1.28rem;margin:.7rem 0 .6rem}
+.who-card p{font-size:.92rem;color:var(--muted)}
+@media (max-width:880px){.who__grid{grid-template-columns:1fr 1fr}}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.step{border-top:2px solid var(--line-2);padding:1.4rem}
+.step__no{font-family:var(--mono);font-size:.8rem;color:var(--lime);font-weight:700}
+.step h3{font-size:1.3rem;margin:.9rem 0 .6rem}
+.step p{font-size:.9rem;color:var(--muted);margin-bottom:1.1rem}
+.tag{display:inline-block;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;border:1px solid var(--line-2);padding:.35rem .65rem;border-radius:100px}
+.tag--free{border-color:var(--lime);color:var(--lime)}
+@media (max-width:880px){.steps{grid-template-columns:1fr 1fr}}
+.faq__grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2rem,5vw,4rem)}
+.acc{border-bottom:1px solid var(--line)}
+.acc__btn{width:100%;background:none;border:0;cursor:pointer;text-align:left;display:flex;justify-content:space-between;padding:1.4rem 0;font-family:var(--display);font-size:1.1rem;font-weight:700;color:var(--txt)}
+.acc__sign{color:var(--lime);font-size:1.3rem}
+.acc__panel p{padding:0 0 1.4rem;color:var(--muted);max-width:60ch}
+@media (max-width:880px){.faq__grid{grid-template-columns:1fr}}
+.final__box{background:var(--lime);color:var(--void);border-radius:8px;padding:clamp(2.4rem,6vw,5rem)}
+.final .eyebrow{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;color:rgba(14,14,16,.65)}
+.final h2{color:var(--void);max-width:18ch}
+.final h2 em{color:var(--void);text-decoration:underline}
+.final__proof{font-family:var(--mono);font-size:.78rem;color:rgba(14,14,16,.8);margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+.final__proof b{color:var(--void)}
+.final__cta{margin-top:2.2rem;display:flex;gap:1rem}
+.final .btn{--bg:var(--void);--fg:var(--lime);--bd:var(--void)}
+.final .btn--ghost{--bg:transparent;--fg:var(--void);--bd:rgba(14,14,16,.4)}
+.site-footer{border-top:1px solid var(--line);padding-block:3rem 2rem;background:var(--panel);font-size:.9rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="wrap nav__in">
+      <a href="/" class="brand">TalentDigital<span style="color:var(--lime)">.net</span></a>
+      <div class="nav__links">
+        <a href="/creations">Créations</a>
+        <a href="/a-propos">À propos</a>
+        <a href="/contact" class="btn btn--ghost" style="padding:.6rem 1.1rem;font-size:.78rem">Audit gratuit</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero wrap">
+  <span class="hero__badge"><span class="live"></span> Système opérationnel — présence mondiale</span>
+  <div class="hero__grid">
+    <div>
+      <h1>Des sites et tunnels conçus pour <em>convertir</em>, pas pour décorer.</h1>
+      <p class="hero__sub lede">Sites web, tunnels de vente et landing pages haute conversion pour entrepreneurs, professionnels et commerces qui veulent convertir plus de visiteurs en clients. Une infrastructure digitale taillée pour vos chiffres — pas pour votre ego.</p>
+      <div class="hero__cta">
+        <a href="/contact" class="btn">Réserver un audit gratuit →</a>
+        <span class="hero__micro"><b>Réponse sous 24 h</b> · Sans engagement</span>
+      </div>
+    </div>
+    <div class="console">
+      <div class="console__bar">
+        <span class="console__dot"></span><span class="console__dot"></span><span class="console__dot on"></span>
+        <span class="console__name">engagements</span>
+      </div>
+      <div class="console__body">
+        <div class="metric"><div class="metric__top"><span class="metric__label">audit_gratuit</span><span class="metric__val">oui</span></div><div class="metric__bar"><div class="metric__fill" style="width:100%"></div></div></div>
+        <div class="metric"><div class="metric__top"><span class="metric__label">réponse_sous</span><span class="metric__val">24<span class="u">h</span></span></div><div class="metric__bar"><div class="metric__fill" style="width:90%"></div></div></div>
+        <div class="metric"><div class="metric__top"><span class="metric__label">délai_livraison</span><span class="metric__val">7<span class="u">j</span></span></div><div class="metric__bar"><div class="metric__fill" style="width:95%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head">
+    <span class="prompt">01 — <b>portfolio</b></span>
+    <h2>Un site pensé pour votre <em>secteur</em>, pas un template générique.</h2>
+    <p class="lede" style="margin-top:1rem">Chaque activité a ses propres leviers de conversion. Voici comment ça se traduit concrètement selon votre métier.</p>
+  </div>
+  <div class="pf-track">
+    <article class="pf-item"><img src="portfolio/cropped/avocats.jpg" alt="Site web pour Cabinets d'avocats"><span class="pf-item__label">Cabinets d'avocats</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/dentaire.jpg" alt="Site web pour Cabinets dentaires"><span class="pf-item__label">Cabinets dentaires</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/clinique.jpg" alt="Site web pour Cliniques médicales"><span class="pf-item__label">Cliniques médicales</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/entreprise.jpg" alt="Site web pour Entreprises & PME"><span class="pf-item__label">Entreprises &amp; PME</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/btp.jpg" alt="Site web pour BTP & construction"><span class="pf-item__label">BTP &amp; construction</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/artisan.jpg" alt="Site web pour Artisans traditionnels"><span class="pf-item__label">Artisans traditionnels</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/immobilier.jpg" alt="Site web pour Agences immobilières"><span class="pf-item__label">Agences immobilières</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/restaurant.jpg" alt="Site web pour Restaurants"><span class="pf-item__label">Restaurants</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/fleuriste.jpg" alt="Site web pour Fleuristes"><span class="pf-item__label">Fleuristes</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/beaute.jpg" alt="Site web pour Centres de beauté"><span class="pf-item__label">Centres de beauté</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/paysagiste.jpg" alt="Site web pour Paysagistes"><span class="pf-item__label">Paysagistes</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/decoration.jpg" alt="Site web pour Décoration intérieure"><span class="pf-item__label">Décoration intérieure</span></article>
+    <article class="pf-item"><img src="portfolio/cropped/evenementiel.jpg" alt="Site web pour Événementiel"><span class="pf-item__label">Événementiel</span></article>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head">
+    <span class="prompt">02 — <b>pour qui</b></span>
+    <h2>Conçu pour ceux qui <em>vendent</em> en ligne.</h2>
+  </div>
+  <div class="who__grid">
+    <article class="who-card"><span class="who-card__k">coachs &amp; consultants</span><h3>Un agenda qui se remplit seul</h3><p>Un tunnel qui qualifie vos prospects et réserve les appels à votre place. Vous coachez, le système vend.</p></article>
+    <article class="who-card"><span class="who-card__k">formateurs &amp; infopreneurs</span><h3>La vente en automatique</h3><p>Du clic à l'achat de votre formation, sans intervention manuelle. Lancez, mesurez, scalez.</p></article>
+    <article class="who-card"><span class="who-card__k">e-commerçants</span><h3>Plus de panier, moins d'abandon</h3><p>Order bumps, upsells et relances automatiques pour faire monter chaque commande et récupérer les paniers perdus.</p></article>
+    <article class="who-card"><span class="who-card__k">freelances &amp; studios</span><h3>La partie technique, déléguée</h3><p>Livrez des tunnels et des pages à vos propres clients sans embaucher ni vous arracher les cheveux sur le code.</p></article>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head">
+    <span class="prompt">03 — <b>services</b></span>
+    <h2>Quatre systèmes. Un seul objectif : <em>vendre</em>.</h2>
+    <p class="lede" style="margin-top:1rem">On ne livre pas des pages. On livre des systèmes qui transforment un visiteur tiède en client qui passe à la caisse.</p>
+  </div>
+  <div class="svc__grid">
+    <article class="card"><span class="svc__no">01</span><h3>Tunnels de vente</h3><p class="svc__desc">Un parcours guidé, du premier clic au paiement, pensé pour faire monter chaque commande.</p><ul class="deliver"><li>Page de capture optimisée pour l'opt-in</li><li>Page de vente prête pour la vidéo (VSL)</li><li>Order bumps, upsells &amp; downsells</li></ul></article>
+    <article class="card"><span class="svc__no">02</span><h3>Landing pages haute conversion</h3><p class="svc__desc">Une page, un objectif, zéro distraction. Structurée pour le clic suivant.</p><ul class="deliver"><li>Copywriting orienté bénéfice (structure AIDA)</li><li>Design responsive, chargement sous 2 secondes</li><li>Variante A/B et suivi des événements clés</li></ul></article>
+    <article class="card"><span class="svc__no">03</span><h3>Site web</h3><p class="svc__desc">Une vitrine rapide, propre et prête pour le référencement.</p><ul class="deliver"><li>Design sur mesure, responsive</li><li>Structure optimisée pour le SEO</li><li>Mise en ligne &amp; hébergement inclus</li></ul></article>
+    <article class="card"><span class="svc__no">04</span><h3>SaaS sur mesure</h3><p class="svc__desc">Votre propre logiciel, conçu et développé pour votre activité.</p><ul class="deliver"><li>Cahier des charges &amp; architecture</li><li>Développement de bout en bout</li><li>Maintenance &amp; évolutions incluses</li></ul></article>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head">
+    <span class="prompt">04 — <b>processus</b></span>
+    <h2>Quatre étapes. <em>Aucune</em> zone d'ombre.</h2>
+    <p class="lede" style="margin-top:1rem">Vous savez ce qu'on construit, quand, et pourquoi. Pas de jargon, pas de facture surprise.</p>
+  </div>
+  <div class="steps">
+    <article class="step"><span class="step__no">01</span><h3>Audit stratégique</h3><p>On analyse votre offre, votre trafic et vos points de fuite. On vous dit ce qui bloque vos conversions, concrètement.</p><span class="tag tag--free">Gratuit · 30 min</span></article>
+    <article class="step"><span class="step__no">02</span><h3>Plan d'action personnalisé</h3><p>Une feuille de route claire : quoi construire, dans quel ordre, pour quel résultat chiffré attendu.</p><span class="tag">Sous 48 h</span></article>
+    <article class="step"><span class="step__no">03</span><h3>Implémentation &amp; livraison</h3><p>On construit, on intègre, on teste. Vous récupérez un système prêt à tourner, avec une prise en main vidéo.</p><span class="tag">7 jours</span></article>
+    <article class="step"><span class="step__no">04</span><h3>Optimisation continue</h3><p>On suit les chiffres après lancement et on ajuste ce qui fait grimper la conversion, mois après mois.</p><span class="tag">En option</span></article>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="faq__grid">
+    <div>
+      <span class="prompt">05 — <b>faq</b></span>
+      <h2>Les questions que vous vous posez déjà.</h2>
+      <p class="lede" style="margin-top:1rem">Et si la vôtre n'y est pas, l'audit gratuit est là pour ça.</p>
+    </div>
+    <div class="faq__list">
+      <div class="acc"><button class="acc__btn"><span>Vous travaillez avec quelles zones ?</span><span class="acc__sign">+</span></button><div class="acc__panel"><p>Partout dans le monde : Maroc, France, Belgique, Suisse, Canada et au-delà. Le travail se fait à 100 % à distance, et les décalages horaires sont gérés en amont dès le plan d'action.</p></div></div>
+      <div class="acc"><button class="acc__btn"><span>Faut-il des compétences techniques de mon côté ?</span><span class="acc__sign">+</span></button><div class="acc__panel"><p>Aucune. Vous récupérez un système clé en main avec une prise en main vidéo. Vous gérez votre contenu et votre offre, on gère toute la technique derrière.</p></div></div>
+      <div class="acc"><button class="acc__btn"><span>En combien de temps c'est livré ?</span><span class="acc__sign">+</span></button><div class="acc__panel"><p>Une landing page en 3 à 5 jours, un tunnel de vente complet en 7 jours ouvrés après validation du plan. Les délais sont fixés noir sur blanc avant de commencer.</p></div></div>
+      <div class="acc"><button class="acc__btn"><span>Et si je n'ai pas encore d'offre claire ?</span><span class="acc__sign">+</span></button><div class="acc__panel"><p>C'est exactement le rôle de l'audit gratuit. On clarifie votre offre, votre promesse et votre prix avant de construire quoi que ce soit. On ne bâtit jamais sur du flou.</p></div></div>
+      <div class="acc"><button class="acc__btn"><span>Vous offrez une garantie ?</span><span class="acc__sign">+</span></button><div class="acc__panel"><p>Les révisions sont incluses jusqu'à validation finale. Si le système livré ne correspond pas au plan validé ensemble, on corrige sans frais. Pas de surprise, pas de petites lignes.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="final__box">
+    <span class="eyebrow">// prochaine étape</span>
+    <h2>Votre prochain client est déjà sur votre site. Il attend juste une raison de <em>cliquer</em>.</h2>
+    <div class="final__proof">
+      <span><b>Audit gratuit</b> · réponse sous 24 h</span>
+      <span>Livraison en <b>7 jours</b> · Sans engagement</span>
+    </div>
+    <div class="final__cta">
+      <a href="/contact" class="btn">Réserver mon audit gratuit →</a>
+      <a href="/creations" class="btn btn--ghost">Voir les services</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 TalentDigital — Tous droits réservés</p>
+  </div>
+</footer>
+
+</body>
+</html>
