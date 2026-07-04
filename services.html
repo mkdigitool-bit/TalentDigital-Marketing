@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Créations — TalentDigital.net</title>
+<meta name="description" content="Tunnels de vente, landing pages haute conversion, sites web pro et SaaS sur mesure. Des systèmes digitaux conçus pour convertir, pas pour décorer." />
+<meta name="color-scheme" content="dark" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --void:#0E0E10; --panel:#151518; --panel-2:#1B1B1F; --line:#27272D; --line-2:#3A3A42;
+  --txt:#B8B8B2; --muted:#72727A; --lime:#C7F73E;
+  --display:"Archivo",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --maxw:1240px; --pad:clamp(1.25rem,5vw,3.5rem); --section:clamp(4.5rem,9vw,8rem); --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--txt);font-family:var(--display);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.prompt{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.prompt::before{content:">";color:var(--lime);font-weight:700}
+h1,h2,h3{font-family:var(--display);line-height:1.02;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.4vw,3.3rem);font-weight:800;margin-top:.9rem}
+h2 em{font-style:normal;color:var(--lime)}
+.lede{color:var(--muted);max-width:48ch}
+.btn{--bg:var(--lime);--fg:var(--void);--bd:var(--lime);display:inline-flex;align-items:center;gap:.6rem;background:var(--bg);color:var(--fg);font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;padding:.92rem 1.5rem;border:1px solid var(--bd);border-radius:3px}
+.btn--sm{padding:.6rem 1.1rem;font-size:.78rem}
+.btn--ghost{--bg:transparent;--fg:var(--txt);--bd:var(--line-2)}
+.nav{position:sticky;top:0;z-index:200;background:rgba(14,14,16,.92);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-weight:900;font-size:1.45rem;letter-spacing:-.04em}
+.nav__links{display:flex;align-items:center;gap:2rem;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;color:var(--muted)}
+.nav__links a{color:inherit}
+.page-hero{padding-top:clamp(3rem,6vw,5rem);padding-bottom:clamp(3rem,6vw,5rem);border-bottom:1px solid var(--line)}
+.page-hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;margin-top:1.8rem}
+.page-hero h1{font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;text-transform:uppercase;letter-spacing:-.03em}
+.page-hero h1 em{font-style:normal;color:var(--lime)}
+.page-hero__sub{color:var(--muted);margin-top:1.2rem}
+.page-hero__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.stat{background:var(--panel);padding:1.4rem 1.2rem}
+.stat__val{font-weight:900;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--lime)}
+.stat__lbl{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;margin-top:.4rem}
+@media (max-width:880px){.page-hero__grid{grid-template-columns:1fr}}
+.section{padding-block:var(--section)}
+.section__head{max-width:64ch;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.svc-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;overflow:hidden}
+.svc-card__top{padding:clamp(1.6rem,2.5vw,2.2rem);flex:1}
+.svc-card__no{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.svc-card__icon{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--lime);border:1px solid var(--line-2);width:42px;height:42px;display:grid;place-items:center;border-radius:6px;margin:1rem 0 .8rem}
+.svc-card h3{font-size:clamp(1.3rem,2vw,1.7rem);font-weight:800;color:var(--txt);margin-bottom:.6rem}
+.svc-card__desc{font-size:.95rem;color:var(--muted);max-width:42ch}
+.svc-card__list{list-style:none;margin-top:1.4rem;border-top:1px solid var(--line)}
+.svc-card__list li{padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.svc-card__list li::before{content:"+ ";color:var(--lime)}
+.svc-card__bottom{padding:1.2rem clamp(1.6rem,2.5vw,2.2rem);border-top:1px solid var(--line);background:var(--panel-2);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.svc-card__time{font-family:var(--mono);font-size:.72rem;color:var(--lime);text-transform:uppercase;display:block}
+.svc-card__result{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+@media (max-width:880px){.svc-grid{grid-template-columns:1fr}}
+.process-strip{background:#141018;border-block:1px solid rgba(199,247,62,.1);padding:clamp(2.5rem,5vw,4rem) 0}
+.process-strip__inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.process-strip__txt p{color:var(--muted);max-width:40ch;margin-top:.6rem}
+.process-steps{display:flex;gap:0;flex:1;min-width:300px}
+.pstrip{flex:1;border-left:2px solid var(--line-2);padding:.8rem 1.2rem}
+.pstrip__no{font-family:var(--mono);font-size:.68rem;color:var(--lime);font-weight:700}
+.pstrip h4{font-size:.95rem;font-weight:700;margin:.4rem 0 .2rem}
+.pstrip p{font-size:.8rem;color:var(--muted)}
+@media (max-width:768px){.process-strip__inner{flex-direction:column}}
+.final__box{background:var(--lime);color:var(--void);border-radius:8px;padding:clamp(2.4rem,6vw,5rem)}
+.final .eyebrow{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;color:rgba(14,14,16,.65)}
+.final h2{color:var(--void);max-width:18ch}
+.final h2 em{color:var(--void);text-decoration:underline}
+.final__proof{font-family:var(--mono);font-size:.78rem;color:rgba(14,14,16,.8);margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+.final__proof b{color:var(--void)}
+.final__cta{margin-top:2.2rem;display:flex;gap:1rem}
+.final .btn{--bg:var(--void);--fg:var(--lime);--bd:var(--void)}
+.final .btn--ghost{--bg:transparent;--fg:var(--void);--bd:rgba(14,14,16,.4)}
+.site-footer{border-top:1px solid var(--line);padding-block:3rem 2rem;background:var(--panel);font-size:.9rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="wrap nav__in">
+      <a href="/" class="brand">TalentDigital<span style="color:var(--lime)">.net</span></a>
+      <div class="nav__links">
+        <a href="/creations">Créations</a>
+        <a href="/a-propos">À propos</a>
+        <a href="/contact" class="btn btn--ghost btn--sm">Audit gratuit</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="page-hero wrap">
+  <span class="prompt">Créations — <b>TalentDigital.net</b></span>
+  <div class="page-hero__grid">
+    <div>
+      <h1>Quatre systèmes.<br>Une obsession : <em>convertir</em>.</h1>
+      <p class="page-hero__sub">On ne vend pas des pages web. On construit des systèmes qui transforment votre trafic en chiffre d'affaires — du premier clic au paiement.</p>
+    </div>
+    <div class="page-hero__stats">
+      <div class="stat"><div class="stat__val">Gratuit</div><div class="stat__lbl">Audit initial</div></div>
+      <div class="stat"><div class="stat__val">7j</div><div class="stat__lbl">Délai moyen</div></div>
+      <div class="stat"><div class="stat__val">Oui</div><div class="stat__lbl">Sans engagement</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head">
+    <span class="prompt">01 — <b>nos créations</b></span>
+    <h2>Choisissez votre <em>infrastructure</em>.</h2>
+    <p class="lede" style="margin-top:1rem">Chaque création est pensée pour s'intégrer aux autres. Combinées, elles forment un système complet de croissance digitale.</p>
+  </div>
+  <div class="svc-grid">
+    <article class="svc-card">
+      <div class="svc-card__top">
+        <span class="svc-card__no">01 / création</span>
+        <div class="svc-card__icon">◎</div>
+        <h3>Tunnels de vente</h3>
+        <p class="svc-card__desc">Un parcours guidé du premier clic au paiement. Conçu pour faire monter chaque commande sans effort de votre part.</p>
+        <ul class="svc-card__list">
+          <li>Page de capture optimisée pour l'opt-in</li>
+          <li>Page de vente prête pour la vidéo (VSL)</li>
+          <li>Bon de commande + order bumps stratégiques</li>
+          <li>Upsells &amp; downsells post-achat</li>
+        </ul>
+      </div>
+      <div class="svc-card__bottom">
+        <div><span class="svc-card__time">Livraison · 7 jours</span><span class="svc-card__result">Order bumps &amp; upsells inclus</span></div>
+        <a href="/creations/tunnel" class="btn btn--sm">Découvrir →</a>
+      </div>
+    </article>
+    <article class="svc-card">
+      <div class="svc-card__top">
+        <span class="svc-card__no">02 / création</span>
+        <div class="svc-card__icon">▣</div>
+        <h3>Landing pages haute conversion</h3>
+        <p class="svc-card__desc">Une page, un objectif, zéro distraction. Structurée pour le clic suivant, écrite pour parler à votre client.</p>
+        <ul class="svc-card__list">
+          <li>Copywriting orienté bénéfice (structure AIDA)</li>
+          <li>Design responsive, chargement sous 2 secondes</li>
+          <li>Intégration formulaire &amp; paiement</li>
+          <li>Variante A/B pour trancher sur les chiffres</li>
+        </ul>
+      </div>
+      <div class="svc-card__bottom">
+        <div><span class="svc-card__time">Livraison · 3 à 5 jours</span><span class="svc-card__result">Structure AIDA &amp; A/B testing</span></div>
+        <a href="/creations/landing-page" class="btn btn--sm">Découvrir →</a>
+      </div>
+    </article>
+    <article class="svc-card">
+      <div class="svc-card__top">
+        <span class="svc-card__no">03 / création</span>
+        <div class="svc-card__icon">⬡</div>
+        <h3>Sites web pro</h3>
+        <p class="svc-card__desc">Une vitrine rapide, propre et prête pour le référencement. Construite pour convertir le visiteur en prospect dès la page d'accueil.</p>
+        <ul class="svc-card__list">
+          <li>Design sur mesure responsive (mobile-first)</li>
+          <li>Optimisation SEO technique (Core Web Vitals)</li>
+          <li>Chargement sous 2 secondes garanti</li>
+          <li>Formation à la gestion du contenu</li>
+        </ul>
+      </div>
+      <div class="svc-card__bottom">
+        <div><span class="svc-card__time">Livraison · 10 à 14 jours</span><span class="svc-card__result">Score PageSpeed 90+ garanti</span></div>
+        <a href="/creations/site-web" class="btn btn--sm">Découvrir →</a>
+      </div>
+    </article>
+    <article class="svc-card">
+      <div class="svc-card__top">
+        <span class="svc-card__no">04 / création</span>
+        <div class="svc-card__icon">▣</div>
+        <h3>SaaS sur mesure</h3>
+        <p class="svc-card__desc">Un logiciel métier pensé pour votre process, pas pour un template générique. Cahier des charges, développement, tests et formation inclus.</p>
+        <ul class="svc-card__list">
+          <li>Cahier des charges &amp; architecture</li>
+          <li>Développement backend &amp; base de données</li>
+          <li>Interface utilisateur responsive</li>
+          <li>Documentation &amp; formation incluses</li>
+        </ul>
+      </div>
+      <div class="svc-card__bottom">
+        <div><span class="svc-card__time">Devis · sous 48 h</span><span class="svc-card__result">Code source livré à 100%</span></div>
+        <a href="/creations/saas" class="btn btn--sm">Découvrir →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="process-strip">
+  <div class="wrap">
+    <div class="process-strip__inner">
+      <div class="process-strip__txt">
+        <span class="prompt" style="margin-bottom:.8rem">Comment ça marche</span>
+        <h2>De l'audit à la <em>livraison</em></h2>
+        <p>Chaque projet démarre par un audit gratuit. On construit ensuite sur des bases solides, dans un délai fixé noir sur blanc.</p>
+        <a href="/contact" class="btn" style="margin-top:1.6rem">Démarrer l'audit gratuit →</a>
+      </div>
+      <div class="process-steps">
+        <div class="pstrip"><span class="pstrip__no">01</span><h4>Audit</h4><p>Gratuit · 30 min</p></div>
+        <div class="pstrip"><span class="pstrip__no">02</span><h4>Plan d'action</h4><p>Sous 48 h</p></div>
+        <div class="pstrip"><span class="pstrip__no">03</span><h4>Livraison</h4><p>7 jours</p></div>
+        <div class="pstrip"><span class="pstrip__no">04</span><h4>Optimisation</h4><p>En option</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section wrap">
+  <div class="final__box">
+    <span class="eyebrow">// prochaine étape</span>
+    <h2>Pas sûr de quelle création vous avez besoin ? L'audit <em>clarifie tout</em>.</h2>
+    <div class="final__proof">
+      <span><b>Audit gratuit</b> · réponse sous 24 h</span>
+      <span>Plan d'action personnalisé sous <b>48 h</b></span>
+    </div>
+    <div class="final__cta">
+      <a href="/contact" class="btn">Demander mon audit gratuit →</a>
+      <a href="/a-propos" class="btn btn--ghost">Découvrir le studio</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 TalentDigital — Tous droits réservés</p>
+  </div>
+</footer>
+
+</body>
+</html>
