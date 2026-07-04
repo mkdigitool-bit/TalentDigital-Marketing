@@ -4,10 +4,10 @@ import logo from '../assets/logo-talentdigital.png';
 
 const { pathname } = Astro.url;
 const isAccueil = pathname === '/';
-const isLandingPage = pathname.startsWith('/creations/landing-page');
-const isTunnel = pathname.startsWith('/creations/tunnel');
-const isSiteWeb = pathname.startsWith('/creations/site-web');
-const isSaas = pathname.startsWith('/creations/saas');
+const isLandingPage = pathname.startsWith('/landing-page');
+const isTunnel = pathname.startsWith('/tunnel');
+const isSiteWeb = pathname.startsWith('/site-web');
+const isSaas = pathname.startsWith('/saas');
 const isAPropos = pathname.startsWith('/a-propos');
 const isContact = pathname.startsWith('/contact');
 ---
@@ -21,10 +21,10 @@ const isContact = pathname.startsWith('/contact');
 
       <div class="nav__links" id="td-nav-links" aria-label="Liens navigation">
         <a href="/" class:list={[{ 'is-active': isAccueil }]} aria-current={isAccueil ? 'page' : undefined}>Accueil</a>
-        <a href="/creations/landing-page" class:list={[{ 'is-active': isLandingPage }]} aria-current={isLandingPage ? 'page' : undefined}>Landing page</a>
-        <a href="/creations/tunnel" class:list={[{ 'is-active': isTunnel }]} aria-current={isTunnel ? 'page' : undefined}>Tunnel de vente</a>
-        <a href="/creations/site-web" class:list={[{ 'is-active': isSiteWeb }]} aria-current={isSiteWeb ? 'page' : undefined}>Site web</a>
-        <a href="/creations/saas" class:list={[{ 'is-active': isSaas }]} aria-current={isSaas ? 'page' : undefined}>SaaS</a>
+        <a href="/landing-page" class:list={[{ 'is-active': isLandingPage }]} aria-current={isLandingPage ? 'page' : undefined}>Landing page</a>
+        <a href="/tunnel" class:list={[{ 'is-active': isTunnel }]} aria-current={isTunnel ? 'page' : undefined}>Tunnel de vente</a>
+        <a href="/site-web" class:list={[{ 'is-active': isSiteWeb }]} aria-current={isSiteWeb ? 'page' : undefined}>Site web</a>
+        <a href="/saas" class:list={[{ 'is-active': isSaas }]} aria-current={isSaas ? 'page' : undefined}>SaaS</a>
         <a href="/a-propos" class:list={[{ 'is-active': isAPropos }]} aria-current={isAPropos ? 'page' : undefined}>À propos</a>
         <a href="/contact" class:list={[{ 'is-active': isContact }]} aria-current={isContact ? 'page' : undefined}>Contact</a>
         <a href="/contact" class="btn btn--ghost btn--sm">

@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/creations/landing-page", "destination": "/landing-page", "permanent": true },
+    { "source": "/creations/tunnel", "destination": "/tunnel", "permanent": true },
+    { "source": "/creations/site-web", "destination": "/site-web", "permanent": true },
+    { "source": "/creations/saas", "destination": "/saas", "permanent": true },
+    { "source": "/creations", "destination": "/", "permanent": true }
+  ]
+}
