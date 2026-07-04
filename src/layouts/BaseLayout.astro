@@ -9,6 +9,9 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL('/og-default.png', Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -20,6 +23,19 @@ const { title, description } = Astro.props;
   <meta name="description" content={description} />
   <meta name="color-scheme" content="dark" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href={canonicalURL} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="TalentDigital" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={ogImageURL} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageURL} />
 </head>
 <body>
   <a href="#main" class="skip">Aller au contenu</a>
