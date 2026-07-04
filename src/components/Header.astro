@@ -5,6 +5,7 @@ import logo from '../assets/logo-talentdigital.png';
 const { pathname } = Astro.url;
 const isCreations = pathname.startsWith('/creations');
 const isAPropos = pathname.startsWith('/a-propos');
+const isContact = pathname.startsWith('/contact');
 ---
 
 <header>
@@ -28,6 +29,7 @@ const isAPropos = pathname.startsWith('/a-propos');
           </div>
         </div>
         <a href="/a-propos" class:list={[{ 'is-active': isAPropos }]} aria-current={isAPropos ? 'page' : undefined}>À propos</a>
+        <a href="/contact" class:list={[{ 'is-active': isContact }]} aria-current={isContact ? 'page' : undefined}>Contact</a>
         <a href="/contact" class="btn btn--ghost btn--sm">
           Audit gratuit
           <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
