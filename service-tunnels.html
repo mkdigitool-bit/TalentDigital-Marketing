@@ -1,0 +1,357 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{--void:#0E0E10;--panel:#151518;--panel-2:#1B1B1F;--line:#27272D;--line-2:#3A3A42;--txt:#B8B8B2;--muted:#72727A;--lime:#C7F73E;--lime-dim:#9ec22f;--display:"Archivo",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;--maxw:1240px;--pad:clamp(1.25rem,5vw,3.5rem);--section:clamp(4.5rem,9vw,8rem);--ease:cubic-bezier(.2,.7,.2,1);}
+*{box-sizing:border-box;margin:0;padding:0}
+.td-root{background:var(--void);color:var(--txt);font-family:var(--display);font-weight:400;font-size:clamp(1rem,1.05vw,1.0625rem);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;min-height:100vh;position:relative;margin-left:calc(50% - 50vw);width:100vw;max-width:100vw;}
+.td-root::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:72px 72px;opacity:.4;-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%);}
+main,header,footer{position:relative;z-index:1}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.td-root ::selection{background:var(--lime);color:var(--void)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.prompt{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.prompt::before{content:">";color:var(--lime);font-weight:700}
+.prompt b{color:var(--txt);font-weight:500}
+h1,h2,h3{font-family:var(--display);line-height:1.02;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.4vw,3.3rem);font-weight:800;margin-top:.9rem}
+h2 em{font-style:normal;color:var(--lime)}
+.lede{color:var(--muted);max-width:48ch;font-size:clamp(1.02rem,1.4vw,1.16rem)}
+.btn{--bg:var(--lime);--fg:var(--void);--bd:var(--lime);display:inline-flex;align-items:center;gap:.6rem;background:var(--bg);color:var(--fg);font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;padding:.92rem 1.5rem;border:1px solid var(--bd);border-radius:3px;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s,background .2s,color .2s;}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 3px rgba(199,247,62,.18),0 14px 30px -14px rgba(199,247,62,.5)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn--ghost{--bg:transparent;--fg:var(--txt);--bd:var(--line-2)}
+.btn--ghost:hover{--fg:var(--lime);--bd:var(--lime);box-shadow:0 0 0 3px rgba(199,247,62,.1)}
+.btn--sm{padding:.6rem 1.1rem;font-size:.78rem}
+.nav{position:sticky;top:0;z-index:200;background:rgba(14,14,16,.7);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.nav.is-stuck{border-color:var(--line);background:rgba(14,14,16,.92)}
+.nav__in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:74px}
+.brand{font-family:var(--display);font-weight:900;font-size:1.45rem;letter-spacing:-.04em;display:inline-flex;align-items:center}
+.nav__links{display:flex;align-items:center;gap:2rem}
+.nav__links a:not(.btn){font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);position:relative;padding:.2rem 0;transition:color .2s}
+.nav__links a:not(.btn):hover{color:var(--txt)}
+.nav__links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-3px;height:2px;width:100%;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav__links a:not(.btn):hover::after,.nav__links a.is-active::after{transform:scaleX(1)}
+.nav__links a.is-active{color:var(--txt)}
+.nav__toggle{display:none;background:none;border:1px solid var(--line-2);border-radius:3px;width:46px;height:40px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.nav__toggle span{width:20px;height:2px;background:var(--txt);transition:.3s}
+.nav__end{display:flex;align-items:center;gap:.75rem;justify-self:end}
+.nav__links .btn{display:none}
+@media(max-width:880px){
+  .nav__toggle{display:flex}
+  .nav__end .btn{display:none}
+  .nav__links .btn{display:inline-flex}
+  .nav__links{position:fixed;inset:74px 0 auto 0;background:var(--panel);flex-direction:column;align-items:flex-start;gap:.2rem;padding:1rem var(--pad) 2rem;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .4s var(--ease)}
+  .nav__links.is-open{transform:translateY(0)}
+  .nav__links a:not(.btn){font-size:1rem;padding:.8rem 0;width:100%;border-bottom:1px solid var(--line)}
+  .nav__links a:not(.btn)::after{display:none}
+  .nav__links .btn{margin-top:1rem;width:100%;justify-content:center}
+  .nav.is-open .nav__toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav.is-open .nav__toggle span:nth-child(2){opacity:0}
+  .nav.is-open .nav__toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+.svc-hero{padding-top:clamp(3rem,7vw,5rem);padding-bottom:var(--section)}
+.svc-hero__back{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.06em;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.6rem;transition:color .2s}
+.svc-hero__back:hover{color:var(--lime)}
+.svc-hero__back::before{content:"←";color:var(--lime)}
+.svc-hero__grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start;margin-top:2rem}
+.svc-hero__icon{font-family:var(--mono);font-size:2.4rem;color:var(--lime);border:1px solid var(--line-2);width:64px;height:64px;display:grid;place-items:center;border-radius:8px;margin-bottom:1.2rem}
+.svc-hero h1{font-size:clamp(2.2rem,5vw,4.2rem);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1.0;margin-top:.5rem}
+.svc-hero h1 em{font-style:normal;color:var(--lime)}
+.svc-hero__sub{margin-top:1.4rem;color:var(--muted);font-size:clamp(1rem,1.4vw,1.12rem);max-width:44ch;line-height:1.65}
+.svc-hero__cta{margin-top:2rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.svc-hero__micro{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.svc-hero__micro b{color:var(--lime)}
+.stats-panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.stat-row{padding:1.2rem 1.4rem;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.stat-row:last-child{border-bottom:0}
+.stat-row__lbl{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.02em}
+.stat-row__val{font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,2.5vw,2rem);color:var(--txt);line-height:1}
+.stat-row__val .u{font-family:var(--mono);font-size:.5em;color:var(--lime);font-weight:700;vertical-align:super}
+.section{padding-block:var(--section)}
+.section__head{max-width:64ch;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+.deliver-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.deliver-item{background:var(--panel);padding:1.6rem 1.8rem;transition:.3s var(--ease)}
+.deliver-item:hover{background:var(--panel-2)}
+.deliver-item__no{font-family:var(--mono);font-size:.68rem;color:var(--lime);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.7rem}
+.deliver-item h4{font-size:1.1rem;font-weight:800;letter-spacing:-.015em;margin-bottom:.5rem;color:var(--txt)}
+.deliver-item p{font-size:.9rem;color:var(--muted);line-height:1.55}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.who-card{border:1px solid var(--line);border-radius:6px;padding:1.5rem;transition:.3s var(--ease)}
+.who-card:hover{border-color:var(--lime);background:var(--panel)}
+.who-card__tag{font-family:var(--mono);font-size:.7rem;color:var(--lime);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.7rem}
+.who-card h3{font-size:1.15rem;font-weight:800;letter-spacing:-.015em;margin-bottom:.5rem}
+.who-card p{font-size:.9rem;color:var(--muted);line-height:1.55}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.ps{border-top:2px solid var(--line-2);padding:1.4rem 1.4rem 1.4rem 0;position:relative;transition:border-color .3s}
+.process-grid .ps{border-right:1px solid var(--line);padding-inline:1.4rem}
+.process-grid .ps:first-child{padding-left:0}
+.process-grid .ps:last-child{border-right:0}
+.ps:hover{border-top-color:var(--lime)}
+.ps__no{font-family:var(--mono);font-size:.8rem;color:var(--lime);letter-spacing:.06em;font-weight:700}
+.ps h4{font-size:1.2rem;margin:.7rem 0 .4rem;font-weight:800;letter-spacing:-.015em}
+.ps p{font-size:.88rem;color:var(--muted)}
+.ps__tag{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--txt);padding:.3rem .6rem;border-radius:100px;margin-top:.8rem}
+.ps__tag--free{border-color:var(--lime);color:var(--lime)}
+.result-box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(2rem,4vw,3rem);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.result-box__quote{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600;line-height:1.5;border-left:2px solid var(--lime);padding-left:1.2rem}
+.result-box__delta{font-family:var(--display);font-weight:900;font-size:clamp(3rem,6vw,5rem);color:var(--lime);line-height:1;letter-spacing:-.04em}
+.result-box__lbl{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:.4rem;letter-spacing:.02em}
+.result-box__by{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:1rem}
+.result-box__by b{color:var(--txt)}
+.final{padding-block:var(--section)}
+.final__box{background:var(--lime);color:var(--void);border-radius:8px;padding:clamp(2.4rem,6vw,5rem);position:relative;overflow:hidden}
+.final__box::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(14,14,16,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(14,14,16,.07) 1px,transparent 1px);background-size:40px 40px}
+.final__box>*{position:relative;z-index:1}
+.final .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(14,14,16,.65)}
+.final h2{color:var(--void);max-width:20ch;margin-top:.6rem}
+.final h2 em{font-style:normal;color:var(--void);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:5px}
+.final__proof{font-family:var(--mono);font-size:.78rem;letter-spacing:.02em;color:rgba(14,14,16,.8);margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+.final__proof b{color:var(--void);font-weight:700}
+.final__cta{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:1rem}
+.final .btn{--bg:var(--void);--fg:var(--lime);--bd:var(--void)}
+.final .btn--ghost{--bg:transparent;--fg:var(--void);--bd:rgba(14,14,16,.4)}
+.final .btn--ghost:hover{--bd:var(--void);box-shadow:none}
+.site-footer{border-top:1px solid var(--line);padding-block:clamp(3rem,6vw,4.5rem) 2rem;background:var(--panel)}
+.foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
+.foot__brand .brand{font-size:1.7rem}
+.foot__tag{color:var(--muted);max-width:30ch;margin-top:1rem;font-size:.92rem}
+.foot h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.foot a{font-size:.92rem;color:var(--txt);opacity:.8;transition:.2s;width:fit-content}
+.foot a:hover{opacity:1;color:var(--lime)}
+.foot__bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:3rem;padding-top:1.5rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.02em}
+.foot__social{display:flex;gap:.7rem;margin-top:1.2rem}
+.foot__social a{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;width:34px;height:34px;border:1px solid var(--line-2);border-radius:4px;display:grid;place-items:center;color:var(--muted);transition:.2s}
+.foot__social a:hover{border-color:var(--lime);color:var(--lime)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:880px){.svc-hero__grid{grid-template-columns:1fr}.deliver-grid{grid-template-columns:1fr}.who-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr 1fr}.result-box{grid-template-columns:1fr}.foot__top{grid-template-columns:1fr 1fr}.foot__brand{grid-column:1/-1}}
+@media(max-width:520px){.process-grid{grid-template-columns:1fr}.foot__top{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="td-root">
+
+<header>
+  <nav class="nav" id="td-nav" role="navigation" aria-label="Navigation principale">
+    <div class="wrap nav__in">
+      <a href="https://www.talentdigital.net/" class="brand" aria-label="TalentDigital — Accueil">
+        <img src="https://d1yei2z3i6k35z.cloudfront.net/6047860/6a2cb7c4e65cb3.98775739_logo-talentdigital.png" alt="TalentDigital" height="34" style="display:block">
+      </a>
+      <nav class="nav__links" id="td-nav-links" aria-label="Liens navigation">
+        <a href="https://www.talentdigital.net/">Accueil</a>
+        <a href="https://www.talentdigital.net/services" class="is-active" aria-current="page">Services</a>
+        <a href="https://www.talentdigital.net/a-propos">À propos</a>
+        <a href="https://www.talentdigital.net/contact">Contact</a>
+        <a href="https://www.talentdigital.net/contact" class="btn btn--ghost btn--sm">Audit gratuit <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </nav>
+      <div class="nav__end">
+        <a href="https://www.talentdigital.net/contact" class="btn btn--ghost btn--sm">Audit gratuit <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <button class="nav__toggle" id="td-nav-toggle" aria-expanded="false" aria-controls="td-nav-links" aria-label="Menu mobile"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="svc-hero wrap">
+  <a href="https://www.talentdigital.net/services" class="svc-hero__back">Retour aux services</a>
+  <span class="prompt">01 / prestation — <b>Tunnels de vente</b></span>
+  <div class="svc-hero__grid">
+    <div>
+      <div class="svc-hero__icon" aria-hidden="true">◎</div>
+      <h1 class="reveal">Tunnels de <em>vente</em></h1>
+      <p class="svc-hero__sub reveal">Du premier clic au paiement — un parcours automatisé, structuré pour faire monter chaque commande et vendre à votre place, 24h/24.</p>
+      <div class="svc-hero__cta reveal">
+        <a href="https://www.talentdigital.net/contact" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="svc-hero__micro"><b>Livraison 7 jours</b> · Audit gratuit inclus</span>
+      </div>
+    </div>
+    <div class="stats-panel reveal" aria-label="Indicateurs clés">
+      <div class="stat-row">
+        <span class="stat-row__lbl">audit_gratuit</span>
+        <span class="stat-row__val">oui</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row__lbl">délai_livraison</span>
+        <span class="stat-row__val">7<span class="u">j</span></span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row__lbl">sans_engagement</span>
+        <span class="stat-row__val">oui</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head reveal">
+    <span class="prompt">01 — <b>livrables</b></span>
+    <h2>Ce que vous <em>recevez</em></h2>
+    <p class="lede" style="margin-top:1rem">Chaque tunnel est livré clé en main, testé et prêt à recevoir du trafic. Voici précisément ce qui est inclus.</p>
+  </div>
+  <div class="deliver-grid">
+    <div class="deliver-item reveal">
+      <div class="deliver-item__no">01 / livrable</div>
+      <h4>Page de capture opt-in</h4>
+      <p>Une page d'entrée optimisée pour collecter les emails de vos prospects. Headline percutante, formulaire épuré, preuve sociale intégrée. Taux de conversion cible : 30 à 50 %.</p>
+    </div>
+    <div class="deliver-item reveal">
+      <div class="deliver-item__no">02 / livrable</div>
+      <h4>Page de vente VSL</h4>
+      <p>Une page de vente longue conçue pour accueillir votre vidéo de vente (VSL). Structure AIDA, blocs de bénéfices, objections traitées, boutons CTA stratégiquement placés.</p>
+    </div>
+    <div class="deliver-item reveal">
+      <div class="deliver-item__no">03 / livrable</div>
+      <h4>Bon de commande + order bumps</h4>
+      <p>Un bon de commande friction-less avec intégration paiement (Stripe, PayPal) et au moins un order bump configuré pour augmenter la valeur moyenne de commande de 15 à 30 %.</p>
+    </div>
+    <div class="deliver-item reveal">
+      <div class="deliver-item__no">04 / livrable</div>
+      <h4>Upsells &amp; downsells post-achat</h4>
+      <p>Deux à trois offres complémentaires présentées immédiatement après l'achat, quand le client est en mode « achat ». Chaque page est optimisée pour maximiser la valeur vie client.</p>
+    </div>
+    <div class="deliver-item reveal">
+      <div class="deliver-item__no">05 / livrable</div>
+      <h4>Séquence email relance</h4>
+      <p>3 emails de relance panier abandonné + 5 emails de nurturing post-opt-in. Chaque email a un objectif précis : récupérer les prospects froids et les convertir en acheteurs.</p>
+    </div>
+    <div class="deliver-item reveal">
+      <div class="deliver-item__no">06 / livrable</div>
+      <h4>Tracking complet</h4>
+      <p>Configuration de tous les événements de conversion (Meta Pixel, Google Analytics). Vous voyez exactement d'où viennent vos clients et quel levier génère le plus de revenus.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head reveal">
+    <span class="prompt">02 — <b>pour qui</b></span>
+    <h2>Conçu pour ceux qui ont une <em>offre à vendre</em></h2>
+  </div>
+  <div class="who-grid">
+    <div class="who-card reveal">
+      <div class="who-card__tag">formateurs &amp; infopreneurs</div>
+      <h3>Vous avez une formation à vendre</h3>
+      <p>Vous avez créé votre formation mais vos ventes stagnent. Un tunnel bien construit automatise la vente et vous libère du démarchage manuel. Résultat : des ventes pendant que vous dormez.</p>
+    </div>
+    <div class="who-card reveal">
+      <div class="who-card__tag">coachs &amp; consultants</div>
+      <h3>Votre offre premium mérite un système</h3>
+      <p>Votre accompagnement à 1 000 € ou plus ne peut pas reposer sur le bouche-à-oreille. Un tunnel de qualification filtre vos prospects et remplit votre agenda d'appels stratégiques.</p>
+    </div>
+    <div class="who-card reveal">
+      <div class="who-card__tag">e-commerçants</div>
+      <h3>Vous voulez multiplier votre panier</h3>
+      <p>Order bumps, upsells et séquences de relance transforment chaque commande simple en panier renforcé, sans effort supplémentaire de votre part.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head reveal">
+    <span class="prompt">03 — <b>processus</b></span>
+    <h2>De l'audit à la <em>mise en ligne</em></h2>
+  </div>
+  <div class="process-grid">
+    <div class="ps reveal">
+      <span class="ps__no">01</span>
+      <h4>Audit stratégique</h4>
+      <p>On analyse votre offre, votre cible et vos frictions actuelles. On identifie les opportunités de revenus manquées dans votre parcours client.</p>
+      <span class="ps__tag ps__tag--free">Gratuit · 30 min</span>
+    </div>
+    <div class="ps reveal">
+      <span class="ps__no">02</span>
+      <h4>Architecture du tunnel</h4>
+      <p>On conçoit le plan complet : pages, séquences email, order bumps, upsells. Chaque élément est justifié par des données, pas par l'intuition.</p>
+      <span class="ps__tag">Sous 48 h</span>
+    </div>
+    <div class="ps reveal">
+      <span class="ps__no">03</span>
+      <h4>Build &amp; intégration</h4>
+      <p>On construit, on connecte les outils (Stripe, email) et on teste chaque étape du parcours avant livraison. Zéro bug au lancement.</p>
+      <span class="ps__tag">7 jours ouvrés</span>
+    </div>
+    <div class="ps reveal">
+      <span class="ps__no">04</span>
+      <h4>Optimisation continue</h4>
+      <p>Après lancement, on suit les chiffres et on ajuste les pages, les emails et les offres pour améliorer le taux de conversion mois après mois.</p>
+      <span class="ps__tag">En option</span>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head reveal">
+    <span class="prompt">04 — <b>résultats</b></span>
+    <h2>Des chiffres, pas des <em>promesses</em></h2>
+  </div>
+  <div class="result-box reveal">
+    <div>
+      <blockquote class="result-box__quote">« Un tunnel bien construit vend pendant que vous dormez. Les order bumps et upsells sont configurés une fois, puis tournent en autonomie sur chaque commande. »</blockquote>
+      <p class="result-box__by">— <b>L'équipe TalentDigital</b></p>
+    </div>
+    <div>
+      <div class="result-box__delta">7j</div>
+      <div class="result-box__lbl">de la validation du plan à la mise en ligne</div>
+    </div>
+  </div>
+</section>
+
+<section class="final wrap">
+  <div class="final__box reveal">
+    <span class="eyebrow">// prochaine étape</span>
+    <h2>Votre tunnel est à <em>7 jours</em> d'ici.</h2>
+    <div class="final__proof">
+      <span><b>Audit gratuit</b> · plan d'action sous 48 h</span>
+      <span><b>Audit gratuit</b> · réponse sous 24 h</span>
+      <span>Livraison garantie en <b>7 jours ouvrés</b></span>
+    </div>
+    <div class="final__cta">
+      <a href="https://www.talentdigital.net/contact" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://www.talentdigital.net/services" class="btn btn--ghost">Voir tous les services</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <a href="https://www.talentdigital.net/" class="brand"><img src="https://d1yei2z3i6k35z.cloudfront.net/6047860/6a2cb7c4e65cb3.98775739_logo-talentdigital.png" alt="TalentDigital" height="38" style="display:block"></a>
+        <p class="foot__tag">Infrastructure de conversion pour le web mondial. On construit les systèmes qui transforment votre trafic en chiffre d'affaires.</p>
+        <div class="foot__social"><a href="https://www.linkedin.com/company/talentdigital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="https://www.instagram.com/talentdigital.net" target="_blank" rel="noopener" aria-label="Instagram">ig</a></div>
+      </div>
+      <div class="foot"><h5>Navigation</h5><ul><li><a href="https://www.talentdigital.net/">Accueil</a></li><li><a href="https://www.talentdigital.net/services">Services</a></li><li><a href="https://www.talentdigital.net/a-propos">À propos</a></li><li><a href="https://www.talentdigital.net/contact">Contact</a></li></ul></div>
+      <div class="foot"><h5>Services</h5><ul><li><a href="https://www.talentdigital.net/service-tunnels">Tunnels de vente</a></li><li><a href="https://www.talentdigital.net/service-landing-pages">Landing pages</a></li><li><a href="https://www.talentdigital.net/service-email-marketing">Email marketing</a></li><li><a href="https://www.talentdigital.net/service-sites-web">Sites web pro</a></li><li><a href="https://www.talentdigital.net/service-branding">Branding digital</a></li><li><a href="https://www.talentdigital.net/service-content-social">Content social</a></li></ul></div>
+      <div class="foot"><h5>Contact</h5><ul><li><a href="mailto:contact@talentdigital.net">contact@talentdigital.net</a></li><li><a href="https://www.talentdigital.net/contact">Formulaire de contact</a></li><li><a href="https://www.talentdigital.net/contact">Audit gratuit</a></li></ul></div>
+    </div>
+    <div class="foot__bottom"><span>© 2026 TalentDigital — Tous droits réservés</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var nav=document.getElementById("td-nav");
+  var toggle=document.getElementById("td-nav-toggle");
+  var menu=document.getElementById("td-nav-links");
+  var sentinel=document.createElement("div");
+  sentinel.style.cssText="position:absolute;top:0;height:1px;pointer-events:none";
+  var root=document.querySelector(".td-root");
+  if(root)root.prepend(sentinel);
+  if("IntersectionObserver" in window){new IntersectionObserver(function(e){nav.classList.toggle("is-stuck",!e[0].isIntersecting);}).observe(sentinel);}
+  toggle.addEventListener("click",function(){var open=menu.classList.toggle("is-open");nav.classList.toggle("is-open",open);toggle.setAttribute("aria-expanded",open?"true":"false");});
+  menu.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){menu.classList.remove("is-open");nav.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");});});
+  var reveals=document.querySelectorAll(".reveal");
+  if(reduce||!("IntersectionObserver" in window)){reveals.forEach(function(el){el.classList.add("in");});}
+  else{var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var sibs=Array.prototype.slice.call(e.target.parentNode.querySelectorAll(":scope > .reveal"));var i=sibs.indexOf(e.target);e.target.style.transitionDelay=(Math.min(i,5)*70)+"ms";e.target.classList.add("in");io.unobserve(e.target);(function(el,d){setTimeout(function(){el.style.transitionDelay="";},d+750);})(e.target,Math.min(i,5)*70);}});},{threshold:.16,rootMargin:"0px 0px -8% 0px"});reveals.forEach(function(el){io.observe(el);});}
+})();
+</script>
+
+</div>
