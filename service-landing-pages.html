@@ -108,20 +108,9 @@ h2 em{font-style:normal;color:var(--lime)}
 .final .btn{--bg:var(--void);--fg:var(--lime);--bd:var(--void)}
 .final .btn--ghost{--bg:transparent;--fg:var(--void);--bd:rgba(14,14,16,.4)}
 .final .btn--ghost:hover{--bd:var(--void);box-shadow:none}
-.site-footer{border-top:1px solid var(--line);padding-block:clamp(3rem,6vw,4.5rem) 2rem;background:var(--panel)}
-.foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
-.foot__brand .brand{font-size:1.7rem}
-.foot__tag{color:var(--muted);max-width:30ch;margin-top:1rem;font-size:.92rem}
-.foot h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
-.foot ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-.foot a{font-size:.92rem;color:var(--txt);opacity:.8;transition:.2s;width:fit-content}
-.foot a:hover{opacity:1;color:var(--lime)}
-.foot__bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:3rem;padding-top:1.5rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.02em}
-.foot__social{display:flex;gap:.7rem;margin-top:1.2rem}
-.foot__social a{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;width:34px;height:34px;border:1px solid var(--line-2);border-radius:4px;display:grid;place-items:center;color:var(--muted);transition:.2s}
-.foot__social a:hover{border-color:var(--lime);color:var(--lime)}
-@media(max-width:880px){.svc-hero__grid{grid-template-columns:1fr}.deliver-grid{grid-template-columns:1fr}.who-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr 1fr}.result-box{grid-template-columns:1fr}.foot__top{grid-template-columns:1fr 1fr}.foot__brand{grid-column:1/-1}}
-@media(max-width:520px){.process-grid{grid-template-columns:1fr}.foot__top{grid-template-columns:1fr}}
+.site-footer{border-top:1px solid var(--line);padding-block:3rem 2rem;background:var(--panel);font-size:.9rem;color:var(--muted)}
+@media(max-width:880px){.svc-hero__grid{grid-template-columns:1fr}.deliver-grid{grid-template-columns:1fr}.who-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr 1fr}.result-box{grid-template-columns:1fr}}
+@media(max-width:520px){.process-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -133,14 +122,14 @@ h2 em{font-style:normal;color:var(--lime)}
     <div class="wrap nav__in">
       <a href="/" class="brand">TalentDigital<span style="color:var(--lime)">.net</span></a>
       <nav class="nav__links" aria-label="Liens navigation">
-        <a href="https://www.talentdigital.net/">Accueil</a>
-        <a href="https://www.talentdigital.net/services" class="is-active" aria-current="page">Services</a>
-        <a href="https://www.talentdigital.net/a-propos">À propos</a>
-        <a href="https://www.talentdigital.net/contact">Contact</a>
-        <a href="https://www.talentdigital.net/contact" class="btn btn--ghost btn--sm">Audit gratuit <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/">Accueil</a>
+        <a href="/creations" class="is-active" aria-current="page">Créations</a>
+        <a href="/a-propos">À propos</a>
+        <a href="/contact">Contact</a>
+        <a href="/contact" class="btn btn--ghost btn--sm">Audit gratuit <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </nav>
       <div class="nav__end">
-        <a href="https://www.talentdigital.net/contact" class="btn btn--ghost btn--sm">Audit gratuit <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/contact" class="btn btn--ghost btn--sm">Audit gratuit <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </nav>
@@ -149,7 +138,7 @@ h2 em{font-style:normal;color:var(--lime)}
 <main id="main">
 
 <section class="svc-hero wrap">
-  <a href="https://www.talentdigital.net/services" class="svc-hero__back">Retour aux services</a>
+  <a href="/creations" class="svc-hero__back">Retour aux créations</a>
   <span class="prompt">02 / prestation — <b>Landing pages</b></span>
   <div class="svc-hero__grid">
     <div>
@@ -157,7 +146,7 @@ h2 em{font-style:normal;color:var(--lime)}
       <h1>Landing <em>pages</em></h1>
       <p class="svc-hero__sub">Une page. Un objectif. Un résultat. On conçoit des pages d'atterrissage qui convertissent le trafic en leads, abonnés et clients — avec un taux d'efficacité mesuré, pas supposé.</p>
       <div class="svc-hero__cta">
-        <a href="https://www.talentdigital.net/contact" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/contact" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <span class="svc-hero__micro"><b>Livraison 3-5 jours</b> · Audit gratuit inclus</span>
       </div>
     </div>
@@ -302,27 +291,17 @@ h2 em{font-style:normal;color:var(--lime)}
       <span>Livraison garantie en <b>3-5 jours ouvrés</b></span>
     </div>
     <div class="final__cta">
-      <a href="https://www.talentdigital.net/contact" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="https://www.talentdigital.net/services" class="btn btn--ghost">Voir tous les services</a>
+      <a href="/contact" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="/creations" class="btn btn--ghost">Voir toutes les créations</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer">
   <div class="wrap">
-    <div class="foot__top">
-      <div class="foot__brand">
-        <a href="/" class="brand">TalentDigital<span style="color:var(--lime)">.net</span></a>
-        <p class="foot__tag">Infrastructure de conversion pour le web mondial. On construit les systèmes qui transforment votre trafic en chiffre d'affaires.</p>
-        <div class="foot__social"><a href="https://www.linkedin.com/company/talentdigital" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="https://www.instagram.com/talentdigital.net" target="_blank" rel="noopener" aria-label="Instagram">ig</a></div>
-      </div>
-      <div class="foot"><h5>Navigation</h5><ul><li><a href="https://www.talentdigital.net/">Accueil</a></li><li><a href="https://www.talentdigital.net/services">Services</a></li><li><a href="https://www.talentdigital.net/a-propos">À propos</a></li><li><a href="https://www.talentdigital.net/contact">Contact</a></li></ul></div>
-      <div class="foot"><h5>Services</h5><ul><li><a href="https://www.talentdigital.net/service-tunnels">Tunnels de vente</a></li><li><a href="https://www.talentdigital.net/service-landing-pages">Landing pages</a></li><li><a href="https://www.talentdigital.net/service-email-marketing">Email marketing</a></li><li><a href="https://www.talentdigital.net/service-sites-web">Sites web pro</a></li><li><a href="https://www.talentdigital.net/service-branding">Branding digital</a></li><li><a href="https://www.talentdigital.net/service-content-social">Content social</a></li></ul></div>
-      <div class="foot"><h5>Contact</h5><ul><li><a href="mailto:contact@talentdigital.net">contact@talentdigital.net</a></li><li><a href="https://www.talentdigital.net/contact">Formulaire de contact</a></li><li><a href="https://www.talentdigital.net/contact">Audit gratuit</a></li></ul></div>
-    </div>
-    <div class="foot__bottom"><span>© 2026 TalentDigital — Tous droits réservés</span></div>
+    <p>© 2026 TalentDigital — Tous droits réservés</p>
   </div>
 </footer>
 
