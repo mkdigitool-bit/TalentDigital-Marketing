@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       throw new Error(`Supabase insert failed: ${dbError.message}`);
     }
 
-    await resend.emails.send({
+    const { error: emailError } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
       to: process.env.CONTACT_TO_EMAIL || 'info@talentdigital.net',
       replyTo: email,
@@ -60,6 +60,10 @@ export default async function handler(req, res) {
         message,
       ].join('\n'),
     });
+
+    if (emailError) {
+      throw new Error(`Resend send failed: ${emailError.message}`);
+    }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
