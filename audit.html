@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Audit gratuit — TalentDigital.net</title>
+<meta name="description" content="Audit gratuit de 30 min, sans engagement. Décrivez votre projet, on vous répond sous 24 h avec un plan d'action concret." />
+<meta name="color-scheme" content="dark" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --void:#0E0E10; --panel:#151518; --panel-2:#1B1B1F; --line:#27272D; --line-2:#3A3A42;
+  --txt:#B8B8B2; --muted:#72727A; --lime:#C7F73E;
+  --display:"Archivo",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --maxw:1240px; --pad:clamp(1.25rem,5vw,3.5rem); --section:clamp(4.5rem,9vw,8rem); --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--txt);font-family:var(--display);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.prompt{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.prompt::before{content:">";color:var(--lime);font-weight:700}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.02;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.4vw,3.3rem);font-weight:800;margin-top:.9rem}
+h2 em{font-style:normal;color:var(--lime)}
+.lede{color:var(--muted);max-width:48ch}
+.btn{--bg:var(--lime);--fg:var(--void);--bd:var(--lime);display:inline-flex;align-items:center;gap:.6rem;background:var(--bg);color:var(--fg);font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;padding:.92rem 1.5rem;border:1px solid var(--bd);border-radius:3px}
+.btn--ghost{--bg:transparent;--fg:var(--txt);--bd:var(--line-2)}
+.nav{position:sticky;top:0;z-index:200;background:rgba(14,14,16,.92);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-weight:900;font-size:1.45rem;letter-spacing:-.04em}
+.nav__links{display:flex;align-items:center;gap:2rem;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;color:var(--muted)}
+.nav__links a{color:inherit}
+.site-footer{border-top:1px solid var(--line);padding-block:3rem 2rem;background:var(--panel);font-size:.9rem;color:var(--muted)}
+
+.hero-contact{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:1px solid rgba(199,247,62,.1);position:relative;overflow:hidden;background:linear-gradient(rgba(14,14,16,.86),rgba(14,14,16,.86)),url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80&fit=crop') center/cover no-repeat}
+.hero-contact__glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(ellipse 60% 60% at 60% 40%,rgba(199,247,62,.05) 0%,transparent 65%);pointer-events:none}
+.hero-contact>*:not(.hero-contact__glow){position:relative;z-index:1}
+.hero-contact__inner{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:end}
+.hero-contact h1{font-size:clamp(2rem,4vw,3.6rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-top:.7rem}
+.hero-contact h1 em{font-style:normal;color:var(--lime)}
+.hero-contact__meta{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+.meta-badge{display:inline-flex;align-items:center;gap:.75rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:.8rem 1.1rem;color:var(--txt)}
+.meta-badge svg{color:var(--lime);flex-none}
+@media(max-width:768px){.hero-contact__inner{grid-template-columns:1fr;gap:2rem}}
+
+.contact-section{padding-block:var(--section)}
+.contact-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+
+.hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
+
+.contact-form{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(1.8rem,4vw,2.8rem)}
+.form-title{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1.8rem;display:flex;align-items:center;gap:.7rem}
+.form-title span{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--void);background:var(--lime);padding:.25rem .55rem;border-radius:3px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.1rem}
+.field label{font-family:var(--mono);font-size:.73rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.field label .req{color:var(--lime);margin-left:.15rem}
+.field input,.field select,.field textarea{
+  background:var(--panel-2);
+  border:1px solid var(--line-2);
+  border-radius:4px;
+  color:var(--txt);
+  font-family:var(--display);
+  font-size:.95rem;
+  padding:.85rem 1rem;
+  width:100%;
+  transition:border-color .2s,box-shadow .2s;
+  outline:none;
+  -webkit-appearance:none;
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.7}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(199,247,62,.1)}
+.field select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M3 5l4 4 4-4' stroke='%2372727A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+.field select option{background:var(--panel-2);color:var(--txt)}
+.field textarea{resize:vertical;min-height:110px;line-height:1.6}
+.field--radio{gap:.7rem}
+.radio-group{display:flex;flex-wrap:wrap;gap:.5rem}
+.radio-opt{display:flex;align-items:center;gap:.5rem;cursor:pointer}
+.radio-opt input[type=radio]{display:none}
+.radio-opt span{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--muted);padding:.42rem .85rem;border-radius:100px;cursor:pointer;transition:.2s;user-select:none}
+.radio-opt input[type=radio]:checked+span{border-color:var(--lime);color:var(--lime);background:rgba(199,247,62,.08)}
+.radio-opt span:hover{border-color:var(--line);color:var(--txt)}
+.form-agree{display:flex;align-items:flex-start;gap:.75rem;margin-top:.5rem;margin-bottom:1.4rem}
+.form-agree input[type=checkbox]{width:18px;height:18px;min-width:18px;border:1px solid var(--line-2);border-radius:3px;background:var(--panel-2);cursor:pointer;accent-color:var(--lime);margin-top:.1rem}
+.form-agree p{font-size:.82rem;color:var(--muted);line-height:1.55}
+.form-agree a{color:var(--txt);text-decoration:underline;text-underline-offset:3px;opacity:.7}
+.form-agree a:hover{opacity:1;color:var(--lime)}
+.form-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:1rem;text-align:center}
+.form-note b{color:var(--lime)}
+.btn--full{width:100%;justify-content:center}
+
+.contact-side{display:flex;flex-direction:column;gap:1.6rem}
+.side-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.6rem}
+.side-card h3{font-size:1rem;font-weight:800;letter-spacing:-.01em;margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
+.side-card h3 svg{color:var(--lime)}
+
+.next-steps{display:flex;flex-direction:column;gap:0}
+.ns-item{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px dashed var(--line)}
+.ns-item:last-child{border-bottom:0;padding-bottom:0}
+.ns-num{width:28px;height:28px;min-width:28px;border-radius:50%;background:rgba(199,247,62,.1);border:1px solid rgba(199,247,62,.3);color:var(--lime);font-family:var(--mono);font-size:.7rem;font-weight:700;display:grid;place-items:center}
+.ns-title{font-weight:700;font-size:.92rem;margin-bottom:.2rem}
+.ns-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
+
+
+.direct-links{display:flex;flex-direction:column;gap:.6rem;margin-top:.2rem}
+.direct-link{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border:1px solid var(--line);border-radius:4px;font-size:.9rem;transition:.2s}
+.direct-link:hover{border-color:var(--lime);background:rgba(199,247,62,.04);color:var(--lime)}
+.direct-link svg{color:var(--lime);flex-none}
+.direct-link__lbl{font-size:.72rem;font-family:var(--mono);color:var(--muted);display:block;margin-top:.1rem}
+
+.faq-section{padding-block:var(--section);border-top:1px solid var(--line)}
+.faq-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+@media(max-width:768px){.faq-grid{grid-template-columns:1fr}}
+.faq-list{display:flex;flex-direction:column;gap:0;margin-top:2rem}
+.faq-item{border-bottom:1px solid var(--line);overflow:hidden}
+.faq-item:first-child{border-top:1px solid var(--line)}
+.faq-item summary{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.15rem 0;background:none;border:none;color:var(--txt);font-family:var(--display);font-size:.97rem;font-weight:700;cursor:pointer;gap:1rem;transition:color .2s;list-style:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--lime)}
+.faq-icon{width:24px;height:24px;min-width:24px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;transition:transform .3s var(--ease),border-color .2s,background .2s;flex-none}
+.faq-item[open] .faq-icon{transform:rotate(45deg);border-color:var(--lime);background:rgba(199,247,62,.1)}
+.faq-item summary:hover .faq-icon{border-color:var(--line)}
+.faq-body p{padding:.1rem 0 1.3rem;color:var(--muted);font-size:.92rem;line-height:1.65;max-width:58ch}
+.faq-body a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+
+.contact-strip{padding-block:clamp(3rem,5vw,4.5rem);background:var(--panel);border-top:1px solid var(--line)}
+.strip-inner{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
+.strip-text h3{font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:800;letter-spacing:-.02em}
+.strip-text h3 em{font-style:normal;color:var(--lime)}
+.strip-text p{color:var(--muted);font-size:.92rem;margin-top:.4rem}
+.strip-actions{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+@media (max-width:880px){.hero-contact__inner{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="wrap nav__in">
+      <a href="/" class="brand">TalentDigital<span style="color:var(--lime)">.net</span></a>
+      <div class="nav__links">
+        <a href="/">Accueil</a>
+        <a href="/landing-page">Landing page</a>
+        <a href="/tunnel">Tunnel de vente</a>
+        <a href="/site-web">Site web</a>
+        <a href="/saas">SaaS</a>
+        <a href="/a-propos">À propos</a>
+        <a href="/contact">Contact</a>
+        <a href="/audit" class="btn btn--ghost" style="padding:.6rem 1.1rem;font-size:.78rem">Audit gratuit</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero-contact">
+  <div class="hero-contact__glow"></div>
+  <div class="wrap">
+    <div class="hero-contact__inner">
+      <div>
+        <div class="prompt"><b>Contact</b></div>
+        <h1>Parlons de<br>votre <em>projet.</em></h1>
+        <p class="lede" style="margin-top:1.2rem">
+          Audit gratuit de 30 min, sans engagement. On analyse votre situation, on identifie vos frictions de conversion, et on vous propose un plan d'action concret.
+        </p>
+      </div>
+      <div class="hero-contact__meta">
+        <div class="meta-badge">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v4l2.5 2.5"/></svg>
+          Réponse garantie sous <strong style="color:var(--lime);margin-left:.25rem">24 heures</strong>
+        </div>
+        <div class="meta-badge">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 9l4 4 8-8"/></svg>
+          Audit stratégique <strong style="color:var(--lime);margin-left:.25rem">100% gratuit</strong>
+        </div>
+        <div class="meta-badge">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="2" y="5" width="14" height="10" rx="1.5"/><path d="M2 8h14"/><path d="M6 2v3M12 2v3"/></svg>
+          Livraison projet en <strong style="color:var(--lime);margin-left:.25rem">7 jours</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" aria-label="Formulaire de contact">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <div>
+        <div class="contact-form" id="td-contact-form">
+          <div class="form-fields">
+            <div class="form-title">
+              Demande d'audit gratuit
+              <span>Gratuit</span>
+            </div>
+            <form id="td-form" novalidate>
+              <div class="hp-field" aria-hidden="true">
+                <label for="td-website">Laissez ce champ vide</label>
+                <input type="text" id="td-website" name="website" tabindex="-1" autocomplete="off">
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="td-prenom">Prénom <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="td-prenom" name="prenom" placeholder="Yassine" autocomplete="given-name" required>
+                </div>
+                <div class="field">
+                  <label for="td-nom">Nom <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="td-nom" name="nom" placeholder="Benali" autocomplete="family-name" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="td-email">Email <span class="req" aria-hidden="true">*</span></label>
+                  <input type="email" id="td-email" name="email" placeholder="vous@example.com" autocomplete="email" required>
+                </div>
+                <div class="field">
+                  <label for="td-tel">Téléphone / WhatsApp</label>
+                  <input type="tel" id="td-tel" name="tel" placeholder="+212 6XX XXX XXX" autocomplete="tel">
+                </div>
+              </div>
+              <div class="field">
+                <label for="td-service">Service recherché <span class="req" aria-hidden="true">*</span></label>
+                <select id="td-service" name="service" required>
+                  <option value="" disabled selected>Choisissez un service</option>
+                  <option value="tunnel">Tunnel de vente complet</option>
+                  <option value="landing">Landing page haute conversion</option>
+                  <option value="site-web">Site web pro</option>
+                  <option value="saas">SaaS sur mesure</option>
+                  <option value="audit">Audit CRO de l'existant</option>
+                  <option value="autre">Autre / Je ne sais pas encore</option>
+                </select>
+              </div>
+              <div class="field field--radio">
+                <label>Budget estimé</label>
+                <div class="radio-group" role="radiogroup" aria-label="Budget estimé">
+                  <label class="radio-opt">
+                    <input type="radio" name="budget" value="<500">
+                    <span>&lt; 500 €</span>
+                  </label>
+                  <label class="radio-opt">
+                    <input type="radio" name="budget" value="500-1500">
+                    <span>500 – 1 500 €</span>
+                  </label>
+                  <label class="radio-opt">
+                    <input type="radio" name="budget" value="1500-3000">
+                    <span>1 500 – 3 000 €</span>
+                  </label>
+                  <label class="radio-opt">
+                    <input type="radio" name="budget" value=">3000">
+                    <span>&gt; 3 000 €</span>
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <label for="td-message">Décrivez votre situation <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="td-message" name="message" placeholder="Ex : J'ai une formation en ligne, je génère du trafic mais très peu de ventes. Je veux un tunnel qui convertit..." required></textarea>
+              </div>
+              <div class="form-agree">
+                <input type="checkbox" id="td-agree" name="agree" required>
+                <p>J'accepte que mes données soient utilisées pour traiter ma demande et me contacter. <a href="#">Politique de confidentialité</a></p>
+              </div>
+              <button type="submit" class="btn btn--full" id="td-submit">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Demander mon audit gratuit
+              </button>
+              <p class="form-note">
+                <b>Aucune carte bancaire</b> requise · Réponse sous 24 h
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-side">
+
+        <div class="side-card">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v5l3 3"/><circle cx="9" cy="9" r="7.5"/></svg>
+            Ce qui se passe ensuite
+          </h3>
+          <div class="next-steps">
+            <div class="ns-item">
+              <div class="ns-num">1</div>
+              <div>
+                <div class="ns-title">Réception &amp; analyse</div>
+                <div class="ns-desc">On lit votre message et on analyse votre situation sous 24 h.</div>
+              </div>
+            </div>
+            <div class="ns-item">
+              <div class="ns-num">2</div>
+              <div>
+                <div class="ns-title">Appel de découverte</div>
+                <div class="ns-desc">30 min ensemble pour cerner votre offre, votre cible et vos frictions.</div>
+              </div>
+            </div>
+            <div class="ns-item">
+              <div class="ns-num">3</div>
+              <div>
+                <div class="ns-title">Plan d'action personnalisé</div>
+                <div class="ns-desc">Livraison d'un plan concret sous 48 h : structure, copy, outils.</div>
+              </div>
+            </div>
+            <div class="ns-item">
+              <div class="ns-num">4</div>
+              <div>
+                <div class="ns-title">Implémentation en 7 jours</div>
+                <div class="ns-desc">Si vous choisissez de travailler avec nous, on démarre immédiatement.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M2 5l7 5.5L16 5"/></svg>
+            Contact direct
+          </h3>
+          <div class="direct-links">
+            <a href="mailto:info@talentdigital.net" class="direct-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 4h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M2 5l7 5.5L16 5"/></svg>
+              <div>
+                info@talentdigital.net
+                <span class="direct-link__lbl">Email professionnel</span>
+              </div>
+            </a>
+            <a href="https://wa.me/212663206266" class="direct-link" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 1.38.37 2.68 1.01 3.8L1.5 16.5l3.78-1.02A7.5 7.5 0 109 1.5z"/><path d="M6.5 6.5s.5 1 1.5 2 2 1.5 2 1.5l1-1 1.5 1.5s-.5 1.5-2 1.5C8 12 6 10 6 10S4 8 4 5.5l1.5-1L7 6l-.5.5z"/></svg>
+              <div>
+                WhatsApp
+                <span class="direct-link__lbl">Réponse rapide</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" aria-labelledby="td-faq-heading">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div>
+        <div class="prompt"><b>FAQ</b></div>
+        <h2 id="td-faq-heading">Questions <em>fréquentes.</em></h2>
+        <p class="lede" style="margin-top:1rem">Tout ce que vous voulez savoir avant de nous contacter.</p>
+      </div>
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>
+            L'audit est vraiment gratuit ?
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-body">
+            <p>Oui, sans condition. L'appel de découverte de 30 minutes est entièrement gratuit. On analyse votre situation, on identifie vos points de blocage et on vous remet un plan d'action — que vous travailliez avec nous ou non.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Quel délai pour recevoir une réponse ?
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-body">
+            <p>Nous répondons à tous les messages sous 24 heures ouvrées. En général, vous recevez un premier retour dans la journée avec une proposition de créneau pour l'appel de découverte.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Travaillez-vous avec des clients à l'étranger ?
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-body">
+            <p>Absolument. 60 % de nos clients sont basés hors du Maroc — France, Belgique, Suisse, Canada, Afrique de l'Ouest. Tout se passe à distance : appels en visio, livrables partagés en ligne, paiements internationaux acceptés.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Je ne sais pas encore quel service me convient.
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-body">
+            <p>C'est exactement pour ça que l'audit existe. Décrivez simplement votre situation dans le formulaire. Après l'appel, on vous recommande la solution la plus adaptée à vos objectifs et à votre budget.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Comment se déroule la livraison en 7 jours ?
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-body">
+            <p>Dès validation du devis et réception de vos éléments (offre, cible, ressources), on démarre immédiatement. Jour 1–2 : stratégie et wireframes. Jour 3–5 : design et développement. Jour 6–7 : tests, ajustements et mise en ligne. Vous êtes informé à chaque étape.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Quel budget prévoir pour un projet ?
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="faq-body">
+            <p>Nos projets démarrent à partir de 500 € pour une landing page simple. Un tunnel de vente complet avec séquence email se situe entre 1 500 et 3 500 €. Chaque devis est personnalisé selon vos besoins réels — pas de tarif forfaitaire opaque.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip">
+  <div class="wrap">
+    <div class="strip-inner">
+      <div class="strip-text">
+        <h3>Vous préférez discuter <em>directement ?</em></h3>
+        <p>Envoyez-nous un email ou contactez-nous sur WhatsApp.</p>
+      </div>
+      <div class="strip-actions">
+        <a href="mailto:info@talentdigital.net" class="btn btn--ghost">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2.5 3.5h10a.5.5 0 01.5.5v7a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5V4a.5.5 0 01.5-.5z"/><path d="M2 4l5.5 4.5L13 4"/></svg>
+          info@talentdigital.net
+        </a>
+        <a href="https://wa.me/212663206266" class="btn" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 1C3.91 1 1 3.91 1 7.5c0 1.15.31 2.23.85 3.17L1 14l3.4-.86A6.5 6.5 0 107.5 1z"/><path d="M5.5 5.5s.4.8 1.2 1.6 1.6 1.2 1.6 1.2l.8-.8 1.2 1.2s-.4 1.2-1.6 1.2C6.5 10 5 8.5 5 8.5S3.5 7 3.5 5c0 0 0 0 1.2-1.2L6 5l-.5.5z"/></svg>
+          WhatsApp
+          <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 TalentDigital — Tous droits réservés</p>
+  </div>
+</footer>
+
+</body>
+</html>
