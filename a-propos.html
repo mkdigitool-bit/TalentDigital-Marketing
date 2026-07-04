@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>À propos — TalentDigital.net</title>
+<meta name="description" content="TalentDigital est un studio indépendant spécialisé en infrastructure de conversion numérique : tunnels de vente, landing pages et sites web pour entrepreneurs, professionnels et commerces." />
+<meta name="color-scheme" content="dark" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{
+  --void:#0E0E10; --panel:#151518; --panel-2:#1B1B1F; --line:#27272D; --line-2:#3A3A42;
+  --txt:#B8B8B2; --muted:#72727A; --lime:#C7F73E;
+  --display:"Archivo",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --maxw:1240px; --pad:clamp(1.25rem,5vw,3.5rem); --section:clamp(4.5rem,9vw,8rem); --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--txt);font-family:var(--display);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.prompt{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.prompt::before{content:">";color:var(--lime);font-weight:700}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.02;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.4vw,3.3rem);font-weight:800;margin-top:.9rem}
+h2 em{font-style:normal;color:var(--lime)}
+.lede{color:var(--muted);max-width:48ch}
+.btn{--bg:var(--lime);--fg:var(--void);--bd:var(--lime);display:inline-flex;align-items:center;gap:.6rem;background:var(--bg);color:var(--fg);font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.02em;text-transform:uppercase;padding:.92rem 1.5rem;border:1px solid var(--bd);border-radius:3px}
+.btn--ghost{--bg:transparent;--fg:var(--txt);--bd:var(--line-2)}
+.nav{position:sticky;top:0;z-index:200;background:rgba(14,14,16,.92);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-weight:900;font-size:1.45rem;letter-spacing:-.04em}
+.nav__links{display:flex;align-items:center;gap:2rem;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;color:var(--muted)}
+.nav__links a{color:inherit}
+.section{padding-block:var(--section)}
+.section__head{max-width:64ch;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.ps{border-top:2px solid var(--line-2);padding:1.4rem 1.4rem 1.4rem 0}
+.ps__no{font-family:var(--mono);font-size:.8rem;color:var(--lime);font-weight:700}
+.ps h4{font-size:1.2rem;margin:.7rem 0 .4rem;font-weight:800}
+.ps p{font-size:.88rem;color:var(--muted)}
+.ps__tag{display:inline-block;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;border:1px solid var(--line-2);color:var(--txt);padding:.3rem .6rem;border-radius:100px;margin-top:.8rem}
+.ps__tag--free{border-color:var(--lime);color:var(--lime)}
+.final__box{background:var(--lime);color:var(--void);border-radius:8px;padding:clamp(2.4rem,6vw,5rem)}
+.final .eyebrow{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;color:rgba(14,14,16,.65)}
+.final h2{color:var(--void);max-width:20ch;margin-top:.6rem}
+.final h2 em{color:var(--void);text-decoration:underline}
+.final__proof{font-family:var(--mono);font-size:.78rem;color:rgba(14,14,16,.8);margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+.final__proof b{color:var(--void)}
+.final__cta{margin-top:2.2rem;display:flex;gap:1rem}
+.final .btn{--bg:var(--void);--fg:var(--lime);--bd:var(--void)}
+.final .btn--ghost{--bg:transparent;--fg:var(--void);--bd:rgba(14,14,16,.4)}
+.site-footer{border-top:1px solid var(--line);padding-block:3rem 2rem;background:var(--panel);font-size:.9rem;color:var(--muted)}
+
+.page-hero{padding-block:clamp(3.5rem,8vw,6rem) var(--section)}
+.page-hero h1{font-size:clamp(2.4rem,5.6vw,4.6rem);font-weight:900;letter-spacing:-.03em;margin-top:1rem}
+.page-hero h1 em{font-style:normal;color:var(--lime)}
+.page-hero__sub{margin-top:1.4rem;color:var(--muted);max-width:56ch;font-size:clamp(1rem,1.3vw,1.15rem);line-height:1.65}
+.apropos-cta{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:1rem}
+
+.tools{border-block:1px solid var(--line);background:var(--panel);overflow:hidden}
+.tools__lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:.9rem var(--pad) 0}
+.marquee{display:flex;white-space:nowrap;padding:.7rem 0 1rem;overflow:hidden}
+.marquee__track{display:flex;align-items:center;gap:2.6rem;padding-right:2.6rem;animation:apropos-scroll 30s linear infinite}
+.marquee:hover .marquee__track{animation-play-state:paused}
+.marquee__track span{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,2vw,1.5rem);color:var(--txt);display:inline-flex;align-items:center;gap:2.6rem;text-transform:uppercase;letter-spacing:.02em}
+.marquee__track span::after{content:"//";color:var(--lime);font-family:var(--mono);font-size:.6em;font-weight:700}
+@keyframes apropos-scroll{to{transform:translateX(-50%)}}
+
+.manifesto{padding-block:var(--section);border-bottom:1px solid var(--line)}
+.manifesto__quote{font-size:clamp(1.5rem,3.5vw,2.7rem);font-weight:800;line-height:1.18;letter-spacing:-.025em;max-width:22ch}
+.manifesto__quote em{font-style:normal;color:var(--lime)}
+.manifesto__body{max-width:44ch;color:var(--muted);font-size:clamp(1rem,1.3vw,1.1rem);line-height:1.7;border-left:2px solid var(--lime);padding-left:1.4rem}
+.manifesto__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:start}
+@media(max-width:768px){.manifesto__grid{grid-template-columns:1fr;gap:2.4rem}}
+
+.values__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:clamp(2rem,4vw,3rem)}
+.value-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.8rem 1.5rem;transition:.3s var(--ease)}
+.value-card:hover{border-color:var(--lime);transform:translateY(-4px);box-shadow:0 0 0 1px rgba(199,247,62,.2),0 26px 50px -30px rgba(0,0,0,.8)}
+.value-card__no{font-family:var(--mono);font-size:.7rem;color:var(--lime);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.value-card h3{font-size:1.2rem;font-weight:800;letter-spacing:-.015em;margin-bottom:.6rem}
+.value-card p{font-size:.88rem;color:var(--muted);line-height:1.55}
+@media(max-width:880px){.values__grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.values__grid{grid-template-columns:1fr}}
+
+@media (max-width:880px){.process-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.process-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="wrap nav__in">
+      <a href="/" class="brand">TalentDigital<span style="color:var(--lime)">.net</span></a>
+      <div class="nav__links">
+        <a href="/creations">Créations</a>
+        <a href="/a-propos">À propos</a>
+        <a href="/contact" class="btn btn--ghost" style="padding:.6rem 1.1rem;font-size:.78rem">Audit gratuit</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="page-hero wrap">
+  <span class="prompt">À propos — <b>TalentDigital.net</b></span>
+  <h1>Pas un prestataire.<br>Un <em>partenaire</em> de croissance.</h1>
+  <p class="page-hero__sub">TalentDigital est un studio spécialisé en infrastructure de conversion numérique. Nous construisons des systèmes — tunnels de vente, landing pages, sites web — qui transforment le trafic en chiffre d'affaires réel, mesurable, scalable.</p>
+  <div class="apropos-cta">
+    <a href="/contact" class="btn">Démarrer un projet →</a>
+    <a href="/creations" class="btn btn--ghost">Voir nos créations</a>
+  </div>
+</section>
+
+<div class="tools" role="marquee" aria-label="Domaines d'expertise">
+  <p class="tools__lbl">Expertises</p>
+  <div class="marquee">
+    <div class="marquee__track" aria-hidden="true">
+      <span>Tunnels de vente</span>
+      <span>Landing Pages</span>
+      <span>Email Marketing</span>
+      <span>Branding Digital</span>
+      <span>Automatisation</span>
+      <span>Copywriting</span>
+      <span>Optimisation CRO</span>
+      <span>Tunnels de vente</span>
+      <span>Landing Pages</span>
+      <span>Email Marketing</span>
+      <span>Branding Digital</span>
+      <span>Automatisation</span>
+      <span>Copywriting</span>
+      <span>Optimisation CRO</span>
+    </div>
+  </div>
+</div>
+
+<section class="manifesto section wrap">
+  <div class="manifesto__grid">
+    <div>
+      <span class="prompt"><b>Notre philosophie</b></span>
+      <blockquote class="manifesto__quote">« Nous ne fabriquons pas de <em>beaux sites.</em> Nous construisons des machines à convertir. »</blockquote>
+    </div>
+    <div>
+      <p class="manifesto__body">La plupart des agences web vendent de l'esthétique. Nous, on vend de la performance. Chaque pixel, chaque ligne de copy, chaque séquence email a un objectif unique : transformer votre visiteur en client payant.</p>
+      <p class="manifesto__body" style="margin-top:1.2rem">C'est pourquoi chaque projet commence par un audit stratégique, pas par une maquette. On comprend votre cible, votre offre et vos frictions de conversion — avant de toucher à quoi que ce soit.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head">
+    <span class="prompt">01 — <b>nos valeurs</b></span>
+    <h2>Ce qui guide <em>chaque décision.</em></h2>
+  </div>
+  <div class="values__grid">
+    <article class="value-card">
+      <div class="value-card__no">01</div>
+      <h3>Résultats avant tout</h3>
+      <p>Aucun livrable ne quitte notre studio sans objectif de conversion clairement défini. Joli sans performant, ce n'est pas notre produit.</p>
+    </article>
+    <article class="value-card">
+      <div class="value-card__no">02</div>
+      <h3>Livraison express</h3>
+      <p>7 jours, pas 7 semaines. La vitesse est une fonctionnalité. Un tunnel en ligne ce mois-ci génère des revenus ce mois-ci.</p>
+    </article>
+    <article class="value-card">
+      <div class="value-card__no">03</div>
+      <h3>Transparence totale</h3>
+      <p>Devis clair, délais tenus, reporting honnête. Vous savez exactement ce qui se passe, pourquoi, et ce que ça rapporte.</p>
+    </article>
+    <article class="value-card">
+      <div class="value-card__no">04</div>
+      <h3>Optimisation continue</h3>
+      <p>Un lancement n'est pas une fin. Chaque projet inclut un plan d'optimisation post-live basé sur les données réelles de comportement.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section__head">
+    <span class="prompt">02 — <b>notre processus</b></span>
+    <h2>De zéro à live en <em>7 jours.</em></h2>
+    <p class="lede" style="margin-top:1rem">Un processus clair, sans surprise ni délai flottant.</p>
+  </div>
+  <div class="process-grid">
+    <div class="ps">
+      <span class="ps__no">01</span>
+      <h4>Audit stratégique</h4>
+      <p>30 minutes ensemble pour comprendre votre offre, votre cible et vos frictions de conversion actuelles.</p>
+      <span class="ps__tag ps__tag--free">Gratuit</span>
+    </div>
+    <div class="ps">
+      <span class="ps__no">02</span>
+      <h4>Plan d'action</h4>
+      <p>Livraison d'un plan personnalisé sous 48 h : structure du tunnel, angles de copy, séquences, outils recommandés.</p>
+      <span class="ps__tag">48 h</span>
+    </div>
+    <div class="ps">
+      <span class="ps__no">03</span>
+      <h4>Implémentation</h4>
+      <p>Conception, développement, intégration et tests. Vous êtes informé à chaque étape. Livraison en 7 jours.</p>
+      <span class="ps__tag">7 jours</span>
+    </div>
+    <div class="ps">
+      <span class="ps__no">04</span>
+      <h4>Optimisation continue</h4>
+      <p>Analyse des données post-lancement, ajustements basés sur le comportement réel, amélioration du taux de conversion.</p>
+      <span class="ps__tag">Optionnel</span>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="final__box">
+    <span class="eyebrow">// prochaine étape</span>
+    <h2>Construisons votre <em>infrastructure de conversion.</em></h2>
+    <div class="final__proof">
+      <span><b>Audit gratuit</b> · 30 min</span>
+      <span><b>Plan d'action</b> sous 48 h</span>
+      <span><b>Livraison</b> en 7 jours</span>
+      <span>Sans engagement</span>
+    </div>
+    <div class="final__cta">
+      <a href="/contact" class="btn">Demander mon audit gratuit →</a>
+      <a href="/creations" class="btn btn--ghost">Voir les créations</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 TalentDigital — Tous droits réservés</p>
+  </div>
+</footer>
+
+</body>
+</html>
