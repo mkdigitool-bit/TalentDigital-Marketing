@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { default as SpeedInsights } from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -62,5 +63,6 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <slot />
   </main>
   <Footer />
+  <SpeedInsights />
 </body>
 </html>
