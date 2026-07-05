@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Mentions légales — TalentDigital" description="Mentions légales et politique de confidentialité de TalentDigital : informations sur l'éditeur du site, l'hébergement, et le traitement de vos données personnelles.">
+
+<section class="page-hero wrap">
+  <span class="prompt">Informations légales — <b>TalentDigital.net</b></span>
+  <h1>Mentions légales<br>&amp; <em>confidentialité.</em></h1>
+  <p class="page-hero__sub">Les informations légales sur l'éditeur du site et la manière dont vos données sont utilisées lorsque vous nous contactez.</p>
+</section>
+
+<section id="mentions" class="section wrap legal">
+  <div class="section__head">
+    <span class="prompt">01 — <b>mentions légales</b></span>
+    <h2>Éditeur du <em>site.</em></h2>
+  </div>
+  <div class="legal__body">
+    <p>Ce site est édité par <b>TalentDigital</b>, activité exercée à titre indépendant. TalentDigital n'est, à ce jour, pas immatriculé en tant que société ; cette page sera mise à jour dès qu'une structure juridique sera enregistrée.</p>
+    <ul class="legal__list">
+      <li><b>Nom commercial :</b> TalentDigital</li>
+      <li><b>Site :</b> talentdigital.net</li>
+      <li><b>Contact :</b> <a href="mailto:info@talentdigital.net">info@talentdigital.net</a></li>
+      <li><b>WhatsApp :</b> <a href="https://wa.me/212663206266">+212 6 63 20 62 66</a></li>
+    </ul>
+    <h3>Hébergement</h3>
+    <p>Ce site est hébergé par <b>Vercel Inc.</b> (<a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>).</p>
+  </div>
+</section>
+
+<section id="confidentialite" class="section wrap legal">
+  <div class="section__head">
+    <span class="prompt">02 — <b>confidentialité</b></span>
+    <h2>Vos <em>données.</em></h2>
+  </div>
+  <div class="legal__body">
+    <h3>Responsable du traitement</h3>
+    <p>TalentDigital est responsable du traitement des données collectées via ce site. Pour toute question, contactez <a href="mailto:info@talentdigital.net">info@talentdigital.net</a>.</p>
+
+    <h3>Données collectées</h3>
+    <p>Deux formulaires sur ce site collectent des informations, uniquement lorsque vous les soumettez volontairement :</p>
+    <ul class="legal__list">
+      <li><b>Demande d'audit</b> (page /audit) : prénom, nom, email, téléphone (facultatif), service recherché, budget estimé, message.</li>
+      <li><b>Formulaire de contact</b> (page /contact) : prénom, email, téléphone (facultatif), message.</li>
+    </ul>
+
+    <h3>Finalité</h3>
+    <p>Ces informations servent uniquement à traiter votre demande et à vous répondre. Chaque soumission déclenche également un email de notification interne à TalentDigital.</p>
+
+    <h3>Destinataires</h3>
+    <p>Vos données ne sont ni vendues ni partagées avec des tiers. Elles sont accessibles uniquement à TalentDigital.</p>
+
+    <h3>Vos droits</h3>
+    <p>Vous pouvez demander l'accès, la rectification ou la suppression de vos données à tout moment en écrivant à <a href="mailto:info@talentdigital.net">info@talentdigital.net</a>.</p>
+
+    <h3>Mesure d'audience</h3>
+    <p>Ce site utilise Google Analytics pour mesurer la fréquentation et comprendre l'usage des pages. Ce service peut déposer des cookies dans votre navigateur. Vous pouvez bloquer ces cookies via les réglages de votre navigateur ou une extension de blocage.</p>
+  </div>
+</section>
+
+</BaseLayout>
+
+<style>
+  .legal{border-top:1px solid var(--line)}
+  .legal:first-of-type{border-top:0}
+  .legal__body{max-width:68ch}
+  .legal__body p{color:var(--muted);line-height:1.7;margin-bottom:1rem}
+  .legal__body h3{font-size:1.1rem;font-weight:800;margin:1.6rem 0 .6rem;letter-spacing:-.01em}
+  .legal__body a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+  .legal__list{list-style:none;display:flex;flex-direction:column;gap:.5rem;color:var(--muted);margin-bottom:1rem}
+  .legal__list b{color:var(--txt)}
+
+  #mentions,#confidentialite{scroll-margin-top:90px}
+</style>
