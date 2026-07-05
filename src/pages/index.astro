@@ -88,7 +88,7 @@ const portfolioItems = [
     <div class="pf-track" id="pf-track">
       {portfolioItems.map((item) => (
         <article class="pf-item reveal">
-          <Image src={item.img} alt={`Site web pour ${item.label}`} width={480} loading="eager" />
+          <Image src={item.img} alt={`Site web pour ${item.label}`} width={480} loading={portfolioItems.indexOf(item) < 3 ? 'eager' : 'lazy'} />
           <span class="pf-item__label">{item.label}</span>
         </article>
       ))}
@@ -226,24 +226,36 @@ const portfolioItems = [
     </div>
     <div class="faq__list reveal">
       <div class="acc">
-        <button class="acc__btn" aria-expanded="false"><span>Vous travaillez avec quelles zones ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
-        <div class="acc__panel"><p>Partout dans le monde : Maroc, France, Belgique, Suisse, Canada et au-delà. Le travail se fait à 100 % à distance, et les décalages horaires sont gérés en amont dès le plan d'action.</p></div>
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-1"><span>C'est quoi, exactement, un tunnel de vente ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-1"><p>Un tunnel de vente est une séquence de pages qui guide un visiteur pas à pas jusqu'à l'achat : page de capture, page de vente, bon de commande, upsells, puis emails de relance automatiques. Contrairement à un site vitrine, chaque étape a un seul objectif mesurable — c'est ce qui le rend redoutable pour vendre en ligne.</p></div>
       </div>
       <div class="acc">
-        <button class="acc__btn" aria-expanded="false"><span>Faut-il des compétences techniques de mon côté ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
-        <div class="acc__panel"><p>Aucune. Vous récupérez un système clé en main avec une prise en main vidéo. Vous gérez votre contenu et votre offre, on gère toute la technique derrière.</p></div>
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-2"><span>Landing page ou site web : de quoi ai-je besoin ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-2"><p>Une landing page est une page unique dédiée à une seule offre — idéale pour les campagnes publicitaires et la génération de leads. Un site web complet présente toute votre activité et travaille votre visibilité long terme sur Google. Les deux se combinent souvent : le site pour la crédibilité et le SEO, les landing pages pour convertir le trafic payant.</p></div>
       </div>
       <div class="acc">
-        <button class="acc__btn" aria-expanded="false"><span>En combien de temps c'est livré ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
-        <div class="acc__panel"><p>Une landing page en 3 à 5 jours, un tunnel de vente complet en 7 jours ouvrés après validation du plan. Les délais sont fixés noir sur blanc avant de commencer.</p></div>
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-3"><span>Combien ça coûte ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-3"><p>Nos projets démarrent à partir de 500 € pour une landing page simple. Un tunnel de vente complet avec séquence email se situe entre 1 500 et 3 500 €. Chaque devis est personnalisé après l'audit gratuit — pas de tarif forfaitaire opaque.</p></div>
       </div>
       <div class="acc">
-        <button class="acc__btn" aria-expanded="false"><span>Et si je n'ai pas encore d'offre claire ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
-        <div class="acc__panel"><p>C'est exactement le rôle de l'audit gratuit. On clarifie votre offre, votre promesse et votre prix avant de construire quoi que ce soit. On ne bâtit jamais sur du flou.</p></div>
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-4"><span>Vous travaillez avec quelles zones ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-4"><p>Partout dans le monde : Maroc, France, Belgique, Suisse, Canada et au-delà. Le travail se fait à 100 % à distance, et les décalages horaires sont gérés en amont dès le plan d'action.</p></div>
       </div>
       <div class="acc">
-        <button class="acc__btn" aria-expanded="false"><span>Vous offrez une garantie ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
-        <div class="acc__panel"><p>Les révisions sont incluses jusqu'à validation finale. Si le système livré ne correspond pas au plan validé ensemble, on corrige sans frais. Pas de surprise, pas de petites lignes.</p></div>
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-5"><span>Faut-il des compétences techniques de mon côté ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-5"><p>Aucune. Vous récupérez un système clé en main avec une prise en main vidéo. Vous gérez votre contenu et votre offre, on gère toute la technique derrière.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-6"><span>En combien de temps c'est livré ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-6"><p>Une landing page en 3 à 5 jours, un tunnel de vente complet en 7 jours ouvrés après validation du plan. Les délais sont fixés noir sur blanc avant de commencer.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-7"><span>Et si je n'ai pas encore d'offre claire ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-7"><p>C'est exactement le rôle de l'audit gratuit. On clarifie votre offre, votre promesse et votre prix avant de construire quoi que ce soit. On ne bâtit jamais sur du flou.</p></div>
+      </div>
+      <div class="acc">
+        <button class="acc__btn" aria-expanded="false" aria-controls="td-acc-8"><span>Vous offrez une garantie ?</span><span class="acc__sign" aria-hidden="true">+</span></button>
+        <div class="acc__panel" id="td-acc-8"><p>Les révisions sont incluses jusqu'à validation finale. Si le système livré ne correspond pas au plan validé ensemble, on corrige sans frais. Pas de surprise, pas de petites lignes.</p></div>
       </div>
     </div>
   </div>
@@ -263,6 +275,10 @@ const portfolioItems = [
     </div>
   </div>
 </section>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"TalentDigital","url":"https://talentdigital.net","description":"Studio indépendant spécialisé en sites web, tunnels de vente et landing pages haute conversion pour entrepreneurs, professionnels et commerces.","email":"info@talentdigital.net","telephone":"+212663206266","sameAs":["https://web.facebook.com/profile.php?id=61591458964277","https://www.instagram.com/talentdigital_marketing/","https://www.youtube.com/channel/UC6Go6dqDfIq-xLnOyx5goTA","https://fr.pinterest.com/TalentDigitalMarketing/"],"areaServed":["MA","FR","BE","CH","CA"],"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Tunnel de vente","url":"https://talentdigital.net/tunnel"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Landing page haute conversion","url":"https://talentdigital.net/landing-page"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Site web professionnel","url":"https://talentdigital.net/site-web"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"SaaS sur mesure","url":"https://talentdigital.net/saas"}}]}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"C'est quoi, exactement, un tunnel de vente ?","acceptedAnswer":{"@type":"Answer","text":"Un tunnel de vente est une séquence de pages qui guide un visiteur pas à pas jusqu'à l'achat : page de capture, page de vente, bon de commande, upsells, puis emails de relance automatiques. Contrairement à un site vitrine, chaque étape a un seul objectif mesurable — c'est ce qui le rend redoutable pour vendre en ligne."}},{"@type":"Question","name":"Landing page ou site web : de quoi ai-je besoin ?","acceptedAnswer":{"@type":"Answer","text":"Une landing page est une page unique dédiée à une seule offre — idéale pour les campagnes publicitaires et la génération de leads. Un site web complet présente toute votre activité et travaille votre visibilité long terme sur Google. Les deux se combinent souvent : le site pour la crédibilité et le SEO, les landing pages pour convertir le trafic payant."}},{"@type":"Question","name":"Combien ça coûte ?","acceptedAnswer":{"@type":"Answer","text":"Nos projets démarrent à partir de 500 € pour une landing page simple. Un tunnel de vente complet avec séquence email se situe entre 1 500 et 3 500 €. Chaque devis est personnalisé après l'audit gratuit — pas de tarif forfaitaire opaque."}},{"@type":"Question","name":"Vous travaillez avec quelles zones ?","acceptedAnswer":{"@type":"Answer","text":"Partout dans le monde : Maroc, France, Belgique, Suisse, Canada et au-delà. Le travail se fait à 100 % à distance, et les décalages horaires sont gérés en amont dès le plan d'action."}},{"@type":"Question","name":"Faut-il des compétences techniques de mon côté ?","acceptedAnswer":{"@type":"Answer","text":"Aucune. Vous récupérez un système clé en main avec une prise en main vidéo. Vous gérez votre contenu et votre offre, on gère toute la technique derrière."}},{"@type":"Question","name":"En combien de temps c'est livré ?","acceptedAnswer":{"@type":"Answer","text":"Une landing page en 3 à 5 jours, un tunnel de vente complet en 7 jours ouvrés après validation du plan. Les délais sont fixés noir sur blanc avant de commencer."}},{"@type":"Question","name":"Et si je n'ai pas encore d'offre claire ?","acceptedAnswer":{"@type":"Answer","text":"C'est exactement le rôle de l'audit gratuit. On clarifie votre offre, votre promesse et votre prix avant de construire quoi que ce soit. On ne bâtit jamais sur du flou."}},{"@type":"Question","name":"Vous offrez une garantie ?","acceptedAnswer":{"@type":"Answer","text":"Les révisions sont incluses jusqu'à validation finale. Si le système livré ne correspond pas au plan validé ensemble, on corrige sans frais. Pas de surprise, pas de petites lignes."}}]}</script>
 
 </BaseLayout>
 

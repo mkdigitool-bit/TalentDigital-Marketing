@@ -120,3 +120,15 @@ Les 5 questions actuelles sont bonnes mais courtes face aux requêtes réelles p
 **Priorité 3 (contenu, après validation) :** I5 OG par page · M6 FAQ enrichie
 **Priorité 4 (mineur) :** M1 aria-controls · M2 sémantique footer
 **Non corrigés (justifiés) :** C4 preuve sociale (aucune donnée réelle — fabrication interdite) · I9 consentement cookies (reporté par décision utilisateur) · M5 hreflang (mono-langue)
+
+---
+
+## Résultat final (Phase 3 — validation du 2026-07-05)
+
+- **19 problèmes trouvés · 16 corrigés · 3 volontairement écartés** (C4, I9, M5 — justifications ci-dessus).
+- Build Astro : **9 pages sans erreur**, sitemap-index.xml généré, robots.txt et llms.txt présents dans `dist/`.
+- Tests : **14/14 passent**.
+- JSON-LD : **11 blocs validés** (parse JSON strict, 0 erreur) — ProfessionalService + FAQPage (accueil), ContactPage + FAQPage (audit), ContactPage (contact), Service + BreadcrumbList (4 pages prestation).
+- Performance : portfolio homepage 3 images eager / 10 lazy ; 3 fonds Unsplash distants remplacés par des WebP locaux (~193 Ko).
+- Vérification navigateur : FAQ 8 questions fonctionnelle avec aria-controls, hero /contact sur fond local, footer sans h5, OG par page servie avec dimensions. **Charte graphique strictement inchangée.**
+- Détail complet des changements : voir `changelog.md`.

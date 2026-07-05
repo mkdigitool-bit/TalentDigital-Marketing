@@ -179,7 +179,7 @@ h2 em{font-style:normal;color:var(--lime)}
 .svc-card__time{font-family:var(--mono);font-size:.72rem;color:var(--lime);letter-spacing:.04em;text-transform:uppercase}
 .svc-card__result{font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.02em}
 
-.process-strip{background:linear-gradient(rgba(14,14,16,.91),rgba(14,14,16,.91)),url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1920&q=80&fit=crop') center/cover no-repeat;border-block:1px solid rgba(199,247,62,.1);padding:clamp(2.5rem,5vw,4rem) 0}
+.process-strip{background:linear-gradient(rgba(14,14,16,.91),rgba(14,14,16,.91)),url('/bg-process.webp') center/cover no-repeat;border-block:1px solid rgba(199,247,62,.1);padding:clamp(2.5rem,5vw,4rem) 0}
 .process-strip__inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
 .process-strip__txt h2{font-size:clamp(1.5rem,2.8vw,2.2rem)}
 .process-strip__txt p{color:var(--muted);font-size:.95rem;max-width:40ch;margin-top:.6rem}

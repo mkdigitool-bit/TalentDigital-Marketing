@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Contact — TalentDigital" description="Une question, un projet, une simple prise de contact ? Écrivez-nous à TalentDigital, réponse sous 24 h.">
+<BaseLayout title="Contact — TalentDigital" description="Une question, un projet, une simple prise de contact ? Écrivez-nous à TalentDigital, réponse sous 24 h." ogImage="/og-contact.png">
 
 <section class="hero-contact" aria-labelledby="td-contact-heading">
   <div class="hero-contact__glow" aria-hidden="true"></div>
@@ -97,12 +97,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contactez TalentDigital","url":"https://www.talentdigital.net/contact","description":"Une question, un projet ? Écrivez-nous à TalentDigital, réponse sous 24 h.","publisher":{"@type":"Organization","name":"TalentDigital","url":"https://www.talentdigital.net","email":"info@talentdigital.net","telephone":"+212663206266"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contactez TalentDigital","url":"https://talentdigital.net/contact","description":"Une question, un projet ? Écrivez-nous à TalentDigital, réponse sous 24 h.","publisher":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net","email":"info@talentdigital.net","telephone":"+212663206266"}}</script>
 
 </BaseLayout>
 
 <style>
-  .hero-contact{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:1px solid rgba(199,247,62,.1);position:relative;overflow:hidden;background:linear-gradient(rgba(14,14,16,.86),rgba(14,14,16,.86)),url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80&fit=crop') center/cover no-repeat}
+  .hero-contact{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:1px solid rgba(199,247,62,.1);position:relative;overflow:hidden;background:linear-gradient(rgba(14,14,16,.86),rgba(14,14,16,.86)),url('/bg-contact-hero.webp') center/cover no-repeat}
   .hero-contact__glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(ellipse 60% 60% at 60% 40%,rgba(199,247,62,.05) 0%,transparent 65%);pointer-events:none}
   .hero-contact>*:not(.hero-contact__glow){position:relative;z-index:1}
   .hero-contact h1{font-size:clamp(2rem,4vw,3.6rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-top:.7rem}

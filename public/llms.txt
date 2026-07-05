@@ -1,0 +1,38 @@
+# TalentDigital
+
+> Studio indépendant spécialisé en infrastructure de conversion numérique : sites web, tunnels de vente et landing pages haute conversion pour coachs, formateurs, e-commerçants, infopreneurs et professions locales (avocats, dentistes, cliniques, BTP, artisans, immobilier, restaurants, beauté, paysagistes, décoration, événementiel). Travail 100 % à distance. Zones desservies : Maroc, France, Belgique, Suisse, Canada, Afrique francophone.
+
+Langue du site : français.
+
+## Services
+
+- [Tunnels de vente](https://talentdigital.net/tunnel) : page de capture, page de vente VSL, bon de commande, upsells, séquence email. Livraison en 7 jours ouvrés.
+- [Landing pages haute conversion](https://talentdigital.net/landing-page) : copywriting AIDA, design mobile-first, tracking, A/B testing. Livraison en 3 à 5 jours.
+- [Sites web professionnels](https://talentdigital.net/site-web) : design sur mesure, SEO technique, PageSpeed 90+. Livraison en 10 à 14 jours.
+- [SaaS sur mesure](https://talentdigital.net/saas) : cahier des charges, architecture, développement complet, code source livré au client.
+
+## Tarifs indicatifs
+
+- Landing page simple : à partir de 500 €.
+- Tunnel de vente complet avec séquence email : entre 1 500 et 3 500 €.
+- Chaque devis est personnalisé après un audit gratuit de 30 minutes, sans engagement.
+
+## Processus
+
+1. Audit stratégique gratuit (30 min).
+2. Plan d'action personnalisé sous 48 h.
+3. Implémentation et livraison (3 à 14 jours selon le service).
+4. Optimisation continue en option.
+
+## Pages
+
+- [Accueil](https://talentdigital.net/) : présentation, portfolio sectoriel, services, FAQ.
+- [Audit gratuit](https://talentdigital.net/audit) : formulaire de demande d'audit de conversion.
+- [Contact](https://talentdigital.net/contact) : formulaire de contact général. Réponse sous 24 h.
+- [À propos](https://talentdigital.net/a-propos) : philosophie, valeurs, processus du studio.
+- [Mentions légales](https://talentdigital.net/mentions-legales) : informations légales et politique de confidentialité.
+
+## Contact
+
+- Email : info@talentdigital.net
+- Réseaux : Facebook, Instagram, YouTube, Pinterest (TalentDigital Marketing)

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Audit gratuit — TalentDigital" description="Audit gratuit de 30 min, sans engagement. Décrivez votre projet, on vous répond sous 24 h avec un plan d'action concret.">
+<BaseLayout title="Audit gratuit — TalentDigital" description="Audit gratuit de 30 min, sans engagement. Décrivez votre projet, on vous répond sous 24 h avec un plan d'action concret." ogImage="/og-audit.png">
 
 <section class="hero-contact" aria-labelledby="td-contact-heading">
   <div class="hero-contact__glow" aria-hidden="true"></div>
@@ -306,12 +306,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </div>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contactez TalentDigital — Audit gratuit en 30 min","url":"https://www.talentdigital.net/audit","description":"Demandez votre audit de conversion gratuit. Réponse sous 24h, plan d'action personnalisé sous 48h, livraison en 7 jours. Sans engagement.","publisher":{"@type":"Organization","name":"TalentDigital","url":"https://www.talentdigital.net","email":"info@talentdigital.net","telephone":"+212663206266"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Audit gratuit — TalentDigital","url":"https://talentdigital.net/audit","description":"Demandez votre audit de conversion gratuit. Réponse sous 24h, plan d'action personnalisé sous 48h, livraison en 7 jours. Sans engagement.","publisher":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net","email":"info@talentdigital.net","telephone":"+212663206266"}}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"L'audit est vraiment gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui, sans condition. L'appel de découverte de 30 minutes est entièrement gratuit. On analyse votre situation, on identifie vos points de blocage et on vous remet un plan d'action — que vous travailliez avec nous ou non."}},{"@type":"Question","name":"Quel délai pour recevoir une réponse ?","acceptedAnswer":{"@type":"Answer","text":"Nous répondons à tous les messages sous 24 heures ouvrées. En général, vous recevez un premier retour dans la journée avec une proposition de créneau pour l'appel de découverte."}},{"@type":"Question","name":"Travaillez-vous avec des clients à l'étranger ?","acceptedAnswer":{"@type":"Answer","text":"Absolument. Nous travaillons avec des clients au Maroc comme à l'étranger — France, Belgique, Suisse, Canada, Afrique de l'Ouest. Tout se passe à distance : appels en visio, livrables partagés en ligne, paiements internationaux acceptés."}},{"@type":"Question","name":"Je ne sais pas encore quel service me convient.","acceptedAnswer":{"@type":"Answer","text":"C'est exactement pour ça que l'audit existe. Décrivez simplement votre situation dans le formulaire. Après l'appel, on vous recommande la solution la plus adaptée à vos objectifs et à votre budget."}},{"@type":"Question","name":"Comment se déroule la livraison en 7 jours ?","acceptedAnswer":{"@type":"Answer","text":"Dès validation du devis et réception de vos éléments (offre, cible, ressources), on démarre immédiatement. Jour 1–2 : stratégie et wireframes. Jour 3–5 : design et développement. Jour 6–7 : tests, ajustements et mise en ligne. Vous êtes informé à chaque étape."}},{"@type":"Question","name":"Quel budget prévoir pour un projet ?","acceptedAnswer":{"@type":"Answer","text":"Nos projets démarrent à partir de 500 € pour une landing page simple. Un tunnel de vente complet avec séquence email se situe entre 1 500 et 3 500 €. Chaque devis est personnalisé selon vos besoins réels — pas de tarif forfaitaire opaque."}}]}</script>
 
 </BaseLayout>
 
 <style>
-  .hero-contact{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:1px solid rgba(199,247,62,.1);position:relative;overflow:hidden;background:linear-gradient(rgba(14,14,16,.86),rgba(14,14,16,.86)),url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80&fit=crop') center/cover no-repeat}
+  .hero-contact{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:1px solid rgba(199,247,62,.1);position:relative;overflow:hidden;background:linear-gradient(rgba(14,14,16,.86),rgba(14,14,16,.86)),url('/bg-contact-hero.webp') center/cover no-repeat}
   .hero-contact__glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(ellipse 60% 60% at 60% 40%,rgba(199,247,62,.05) 0%,transparent 65%);pointer-events:none}
   .hero-contact>*:not(.hero-contact__glow){position:relative;z-index:1}
   .hero-contact__inner{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:end}
