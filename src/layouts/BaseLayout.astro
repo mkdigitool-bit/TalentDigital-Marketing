@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -54,6 +55,8 @@ const ogImageURL = new URL(ogImage, Astro.site);
 
     gtag('config', 'G-62J5D8NLMW');
   </script>
+
+  <SpeedInsights />
 </head>
 <body>
   <a href="#main" class="skip">Aller au contenu</a>
