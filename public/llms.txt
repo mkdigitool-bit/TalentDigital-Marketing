@@ -14,8 +14,12 @@ Langue du site : français.
 ## Tarifs indicatifs
 
 - Landing page simple : à partir de 500 €.
-- Tunnel de vente complet avec séquence email : entre 1 500 et 3 500 €.
+- Tunnel de vente complet avec séquence email : entre 1 500 et 3 500 € (3 paliers : Essentiel 1 500 €, Croissance 2 500 €, Scale 3 500 €).
 - Chaque devis est personnalisé après un audit gratuit de 30 minutes, sans engagement.
+
+## Outils gratuits
+
+- [Auditez votre tunnel en 15 minutes](https://talentdigital.net/audit-tunnel) : auto-diagnostic gratuit en 15 points de contrôle (capture, vente, commande, post-achat, emails, tracking), score immédiat, sans inscription. Version PDF téléchargeable : https://talentdigital.net/checklist-tunnel.pdf
 
 ## Processus
 

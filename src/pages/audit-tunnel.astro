@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const zones = [
+  {
+    key: 'capture',
+    label: 'Capture',
+    name: '01 — Page de capture',
+    questions: [
+      'Vous avez une page de capture dédiée (pas juste un site vitrine) pour collecter des emails ?',
+      'Cette page convertit au moins 30 % de ses visiteurs en inscrits ?',
+      'Vous offrez une contrepartie claire (guide, checklist, diagnostic) en échange de l’email ?',
+    ],
+  },
+  {
+    key: 'vente',
+    label: 'Vente',
+    name: '02 — Page de vente',
+    questions: [
+      'Votre page de vente suit une structure éprouvée (AIDA : attention, intérêt, désir, action) ?',
+      'Les objections principales (prix, confiance, timing) sont traitées noir sur blanc ?',
+      'Un appel à l’action est visible sans scroller, puis répété le long de la page ?',
+    ],
+  },
+  {
+    key: 'commande',
+    label: 'Commande',
+    name: '03 — Bon de commande',
+    questions: [
+      'Le paiement se fait en ligne, sans friction (Stripe, PayPal…) ?',
+      'Un order bump est proposé au moment du paiement ?',
+    ],
+  },
+  {
+    key: 'postachat',
+    label: 'Post-achat',
+    name: '04 — Post-achat',
+    questions: [
+      'Une offre complémentaire (upsell) est présentée juste après l’achat ?',
+      'Votre page de remerciement prépare la prochaine vente (au lieu d’un simple « merci ») ?',
+    ],
+  },
+  {
+    key: 'emails',
+    label: 'Emails',
+    name: '05 — Séquences email',
+    questions: [
+      'Une séquence automatique nurture les inscrits qui n’achètent pas tout de suite ?',
+      'Les paniers abandonnés reçoivent une relance automatique ?',
+      'Vos acheteurs reçoivent des emails post-achat (prise en main, offre suivante) ?',
+    ],
+  },
+  {
+    key: 'tracking',
+    label: 'Tracking',
+    name: '06 — Tracking',
+    questions: [
+      'Vos événements de conversion sont configurés (Meta Pixel, Google Analytics) ?',
+      'Vous connaissez votre coût d’acquisition par client, chiffres à l’appui ?',
+    ],
+  },
+];
+let qIndex = 0;
+---
+
+<BaseLayout title="Auditez votre tunnel en 15 minutes — TalentDigital" description="15 points de contrôle pour diagnostiquer votre tunnel de vente : capture, page de vente, commande, post-achat, emails, tracking. Score immédiat et gratuit." ogImage="/og-tunnel.png">
+
+<section class="svc-hero wrap">
+  <a href="/tunnel" class="svc-hero__back">Retour au service Tunnels</a>
+  <span class="prompt">outil gratuit — <b>auto-diagnostic</b></span>
+  <div class="svc-hero__grid">
+    <div>
+      <div class="svc-hero__icon" aria-hidden="true">✓</div>
+      <h1 class="reveal">Auditez votre <em>tunnel</em></h1>
+      <p class="svc-hero__sub reveal">15 points de contrôle, résultat immédiat. Répondez honnêtement : chaque « non » est un endroit précis où votre tunnel laisse partir du chiffre d’affaires.</p>
+      <div class="svc-hero__cta reveal">
+        <a href="#quiz" class="btn">Commencer le test <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/checklist-tunnel.pdf" class="btn btn--ghost" download>Checklist PDF</a>
+      </div>
+    </div>
+    <div class="stats-panel reveal" aria-label="Détails du test">
+      <div class="stat-row">
+        <span class="stat-row__lbl">points_de_contrôle</span>
+        <span class="stat-row__val">15</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row__lbl">durée</span>
+        <span class="stat-row__val">3<span class="u">min</span></span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row__lbl">prix</span>
+        <span class="stat-row__val">0<span class="u">€</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="quiz">
+  <div class="section__head reveal">
+    <span class="prompt">le test — <b>6 zones du tunnel</b></span>
+    <h2>Cochez ce qui est <em>vrai</em> chez vous</h2>
+    <p class="lede" style="margin-top:1rem">Oui = c’est en place et ça fonctionne. Non = absent, ou vous n’en êtes pas sûr (dans le doute, c’est non).</p>
+  </div>
+
+  <form id="td-quiz">
+    {zones.map((zone) => (
+      <fieldset class="qz-zone reveal" data-zone={zone.key}>
+        <legend class="qz-zone__name">{zone.name}</legend>
+        {zone.questions.map((q) => {
+          qIndex += 1;
+          const name = `q${qIndex}`;
+          return (
+            <div class="qz-row">
+              <span class="qz-row__no">{String(qIndex).padStart(2, '0')}</span>
+              <p class="qz-row__q">{q}</p>
+              <div class="qz-row__opts" role="radiogroup" aria-label={`Question ${qIndex}`}>
+                <label class="qz-opt"><input type="radio" name={name} value="1" /><span>Oui</span></label>
+                <label class="qz-opt"><input type="radio" name={name} value="0" /><span>Non</span></label>
+              </div>
+            </div>
+          );
+        })}
+      </fieldset>
+    ))}
+
+    <div class="qz-submit reveal">
+      <button type="submit" class="btn" id="qz-btn">Calculer mon score <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <span class="qz-hint" id="qz-hint" hidden>Répondez à toutes les questions pour voir votre score.</span>
+    </div>
+  </form>
+
+  <div class="qz-result" id="qz-result" hidden aria-live="polite">
+    <div class="qz-result__score">
+      <span class="qz-result__num" id="qz-score">0</span>
+      <span class="qz-result__max">/ 15</span>
+    </div>
+    <h3 class="qz-result__verdict" id="qz-verdict"></h3>
+    <p class="qz-result__msg" id="qz-msg"></p>
+    <div class="qz-result__zones" id="qz-zones"></div>
+    <div class="qz-result__cta">
+      <a href="/audit" class="btn">Obtenir mon plan d’action gratuit <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="/checklist-tunnel.pdf" class="btn btn--ghost" download>Garder la checklist PDF</a>
+    </div>
+    <p class="qz-result__note">L’audit gratuit reprend vos réponses zone par zone et vous donne les corrections prioritaires. Réponse sous 24 h, sans engagement.</p>
+  </div>
+</section>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Auditez votre tunnel en 15 minutes","url":"https://talentdigital.net/audit-tunnel","description":"Auto-diagnostic gratuit en 15 points de contrôle pour tunnel de vente : capture, page de vente, commande, post-achat, emails, tracking.","publisher":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://talentdigital.net/"},{"@type":"ListItem","position":2,"name":"Tunnel de vente","item":"https://talentdigital.net/tunnel"},{"@type":"ListItem","position":3,"name":"Auditez votre tunnel","item":"https://talentdigital.net/audit-tunnel"}]}]}</script>
+
+</BaseLayout>
+
+<style>
+  .qz-zone{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:0;margin-bottom:1.2rem;overflow:hidden}
+  .qz-zone__name{font-family:var(--mono);font-size:.72rem;color:var(--lime);letter-spacing:.08em;text-transform:uppercase;padding:1rem 1.4rem;width:100%;border-bottom:1px dashed var(--line)}
+  .qz-row{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1rem 1.4rem;border-bottom:1px solid var(--line)}
+  .qz-row:last-child{border-bottom:0}
+  .qz-row__no{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  .qz-row__q{font-size:.95rem;color:var(--txt);line-height:1.5;margin:0}
+  .qz-row__opts{display:flex;gap:.5rem}
+  .qz-opt{position:relative;cursor:pointer}
+  .qz-opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .qz-opt span{display:inline-block;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--muted);padding:.45rem .9rem;border-radius:3px;transition:.2s}
+  .qz-opt:hover span{border-color:var(--lime);color:var(--txt)}
+  .qz-opt input:checked + span{background:var(--lime);border-color:var(--lime);color:var(--void)}
+  .qz-opt input:focus-visible + span{outline:2px solid var(--lime);outline-offset:2px}
+  .qz-submit{margin-top:1.8rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+  .qz-hint{font-family:var(--mono);font-size:.76rem;color:#f87171}
+  .qz-result{margin-top:2.4rem;border:1px solid var(--lime);border-radius:8px;background:var(--panel-2);padding:clamp(1.8rem,4vw,3rem)}
+  .qz-result__score{display:flex;align-items:baseline;gap:.4rem}
+  .qz-result__num{font-family:var(--display);font-weight:900;font-size:clamp(3rem,7vw,5rem);color:var(--lime);line-height:1;letter-spacing:-.04em}
+  .qz-result__max{font-family:var(--mono);font-size:1rem;color:var(--muted)}
+  .qz-result__verdict{font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:800;letter-spacing:-.02em;margin-top:.8rem}
+  .qz-result__msg{color:var(--muted);max-width:60ch;margin-top:.6rem;line-height:1.6}
+  .qz-result__zones{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem}
+  .qz-result__zones .zone-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--txt);padding:.35rem .7rem;border-radius:100px}
+  .qz-result__zones .zone-tag--weak{border-color:#f87171;color:#f87171}
+  .qz-result__zones .zone-tag--ok{border-color:var(--lime);color:var(--lime)}
+  .qz-result__cta{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:1rem}
+  .qz-result__note{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:1.2rem}
+  @media (max-width:640px){
+    .qz-row{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+    .qz-row__opts{grid-column:2}
+  }
+</style>
+
+<script>
+  (function () {
+    'use strict';
+    var form = document.getElementById('td-quiz') as HTMLFormElement;
+    var result = document.getElementById('qz-result') as HTMLElement;
+    var hint = document.getElementById('qz-hint') as HTMLElement;
+    if (!form) return;
+
+    var ZONE_LABELS: Record<string, string> = {
+      capture: 'Capture', vente: 'Page de vente', commande: 'Commande',
+      postachat: 'Post-achat', emails: 'Emails', tracking: 'Tracking',
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var total = 0, answered = 0, totalQuestions = 0;
+      var zoneScores: Record<string, { got: number; max: number }> = {};
+
+      form.querySelectorAll('.qz-zone').forEach(function (zone) {
+        var key = (zone as HTMLElement).dataset.zone || '';
+        zoneScores[key] = zoneScores[key] || { got: 0, max: 0 };
+        zone.querySelectorAll('.qz-row').forEach(function (row) {
+          totalQuestions += 1;
+          zoneScores[key].max += 1;
+          var checked = row.querySelector('input:checked') as HTMLInputElement | null;
+          if (checked) {
+            answered += 1;
+            var v = parseInt(checked.value, 10);
+            total += v;
+            zoneScores[key].got += v;
+          }
+        });
+      });
+
+      if (answered < totalQuestions) {
+        hint.hidden = false;
+        return;
+      }
+      hint.hidden = true;
+
+      var verdict = '', msg = '';
+      if (total <= 5) {
+        verdict = 'Zone rouge — votre tunnel fuit de partout.';
+        msg = 'Chaque jour de trafic envoyé vers ce parcours coûte des ventes. La bonne nouvelle : partir de zéro sur de bonnes fondations est souvent plus rapide que rafistoler.';
+      } else if (total <= 9) {
+        verdict = 'Des fuites coûteuses à colmater.';
+        msg = 'La base existe, mais plusieurs étapes clés manquent ou sous-performent. Ce sont précisément ces trous qui séparent un tunnel qui rembourse la pub d’un tunnel rentable.';
+      } else if (total <= 12) {
+        verdict = 'Base solide — du chiffre reste sur la table.';
+        msg = 'Votre tunnel fonctionne, mais les zones faibles ci-dessous représentent du revenu récupérable rapidement : c’est le terrain d’optimisation idéal.';
+      } else {
+        verdict = 'Tunnel affûté — bravo.';
+        msg = 'Peu de choses à redire. À ce niveau, les gains viennent du test A/B systématique et de l’augmentation de la valeur par client.';
+      }
+
+      (document.getElementById('qz-score') as HTMLElement).textContent = String(total);
+      (document.getElementById('qz-verdict') as HTMLElement).textContent = verdict;
+      (document.getElementById('qz-msg') as HTMLElement).textContent = msg;
+
+      var zonesEl = document.getElementById('qz-zones') as HTMLElement;
+      zonesEl.innerHTML = '';
+      Object.keys(zoneScores).forEach(function (key) {
+        var z = zoneScores[key];
+        var tag = document.createElement('span');
+        var weak = z.got < z.max;
+        tag.className = 'zone-tag ' + (weak ? 'zone-tag--weak' : 'zone-tag--ok');
+        tag.textContent = ZONE_LABELS[key] + ' ' + z.got + '/' + z.max;
+        zonesEl.appendChild(tag);
+      });
+
+      result.hidden = false;
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+</script>
