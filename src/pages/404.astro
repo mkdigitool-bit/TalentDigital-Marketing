@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page introuvable — TalentDigital" description="Cette page n'existe pas ou a été déplacée. Retrouvez nos services : landing pages, tunnels de vente, sites web et SaaS sur mesure.">
+
+<section class="svc-hero wrap">
+  <span class="prompt">erreur — <b>404</b></span>
+  <div class="svc-hero__grid">
+    <div>
+      <div class="svc-hero__icon" aria-hidden="true">?</div>
+      <h1>Page <em>introuvable</em></h1>
+      <p class="svc-hero__sub">Cette page n'existe pas ou a été déplacée. Le reste du site fonctionne parfaitement — reprenez depuis l'accueil ou profitez-en pour demander votre audit gratuit.</p>
+      <div class="svc-hero__cta">
+        <a href="/" class="btn">Retour à l'accueil <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="/audit" class="btn btn--ghost">Audit gratuit</a>
+      </div>
+    </div>
+    <div class="stats-panel" aria-label="Pages principales">
+      <div class="stat-row">
+        <span class="stat-row__lbl">landing_page</span>
+        <a href="/landing-page" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row__lbl">tunnel_de_vente</span>
+        <a href="/tunnel" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row__lbl">site_web</span>
+        <a href="/site-web" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row__lbl">saas</span>
+        <a href="/saas" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>

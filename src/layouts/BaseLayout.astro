@@ -54,6 +54,12 @@ const ogImageURL = new URL(ogImage, Astro.site);
 
     gtag('config', 'G-62J5D8NLMW');
   </script>
+
+  <!-- Vercel Analytics -->
+  <script is:inline>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script is:inline defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <a href="#main" class="skip">Aller au contenu</a>
