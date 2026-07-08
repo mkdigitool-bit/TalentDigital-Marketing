@@ -153,6 +153,27 @@ h2 em{font-style:normal;color:var(--lime)}
 .result-box__by{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:1rem}
 .result-box__by b{color:var(--txt)}
 
+/* ── pricing tiers (service pages) ── */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;align-items:stretch}
+.price-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.8rem 1.6rem;display:flex;flex-direction:column;position:relative;transition:.3s var(--ease)}
+.price-card:hover{border-color:var(--line-2);background:var(--panel-2)}
+.price-card--hot{border-color:var(--lime);background:var(--panel-2)}
+.price-card--hot:hover{border-color:var(--lime)}
+.price-card__badge{position:absolute;top:-13px;left:1.6rem;background:var(--lime);color:var(--void);font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.32rem .7rem;border-radius:100px}
+.price-card__tag{font-family:var(--mono);font-size:.7rem;color:var(--lime);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.9rem}
+.price-card__amount{font-family:var(--display);font-weight:900;font-size:clamp(1.9rem,2.6vw,2.3rem);color:var(--txt);letter-spacing:-.03em;line-height:1}
+.price-card__amount .u{font-family:var(--mono);font-size:.42em;color:var(--lime);font-weight:700;margin-left:.3rem}
+.price-card__mad{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.02em;margin-top:.4rem}
+.price-card__for{font-size:.88rem;color:var(--muted);line-height:1.5;margin-top:.7rem;padding-bottom:1.2rem;border-bottom:1px dashed var(--line)}
+.price-card__list{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin:1.2rem 0 1.6rem;flex-grow:1}
+.price-card__list li{font-size:.88rem;color:var(--txt);line-height:1.5;padding-left:1.2rem;position:relative}
+.price-card__list li::before{content:"+";position:absolute;left:0;color:var(--lime);font-family:var(--mono);font-weight:700}
+.price-card__list li.is-base{color:var(--muted)}
+.price-card__list li.is-base::before{content:"→"}
+.price-card .btn{justify-content:center}
+.price-note{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.02em;margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
+.price-note b{color:var(--txt);font-weight:500}
+
 .page-hero{padding-top:clamp(3rem,6vw,5rem);padding-bottom:clamp(3rem,6vw,5rem);border-bottom:1px solid var(--line)}
 .page-hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;margin-top:1.8rem}
 .page-hero h1{font-size:clamp(2rem,4.5vw,3.8rem);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1.0}
@@ -196,6 +217,7 @@ h2 em{font-style:normal;color:var(--lime)}
   .who-grid{grid-template-columns:1fr}
   .process-grid{grid-template-columns:1fr 1fr}
   .result-box{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr;gap:1.6rem}
   .page-hero__grid{grid-template-columns:1fr}
   .page-hero__stats{grid-template-columns:repeat(3,1fr)}
   .svc-grid{grid-template-columns:1fr}

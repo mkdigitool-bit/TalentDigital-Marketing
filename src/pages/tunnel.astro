@@ -148,6 +148,68 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </section>
 
+<section class="section wrap">
+  <div class="section__head reveal">
+    <span class="prompt">05 — <b>tarifs</b></span>
+    <h2>Trois paliers, un seul <em>objectif</em> : vendre</h2>
+    <p class="lede" style="margin-top:1rem">Périmètre fixé à l'avance, livrables contractuels, zéro dépassement. Choisissez le niveau qui correspond à votre stade.</p>
+  </div>
+  <div class="price-grid">
+    <div class="price-card reveal">
+      <div class="price-card__tag">essentiel</div>
+      <div class="price-card__amount">1 500<span class="u">€</span></div>
+      <div class="price-card__mad">≈ 16 000 MAD</div>
+      <p class="price-card__for">Le tunnel qui vend, sans superflu. Pour lancer votre première offre en système.</p>
+      <ul class="price-card__list">
+        <li>Page de capture + page de vente + bon de commande</li>
+        <li>1 order bump configuré (Stripe / PayPal)</li>
+        <li>5 emails de nurturing post-opt-in</li>
+        <li>Tracking de base : Meta Pixel + Google Analytics</li>
+        <li>Rapport de lancement + 3 recommandations prioritaires</li>
+        <li>Livraison 7 jours ouvrés · 1 aller-retour de révisions</li>
+      </ul>
+      <a href="/audit" class="btn btn--ghost">Démarrer <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="price-card price-card--hot reveal">
+      <div class="price-card__badge">Recommandé</div>
+      <div class="price-card__tag">croissance</div>
+      <div class="price-card__amount">2 500<span class="u">€</span></div>
+      <div class="price-card__mad">≈ 27 000 MAD</div>
+      <p class="price-card__for">Le système complet : tunnel + monétisation post-achat + copywriting.</p>
+      <ul class="price-card__list">
+        <li class="is-base">Tout Essentiel, plus :</li>
+        <li>Pages upsell + downsell post-achat</li>
+        <li>10 emails : nurturing, relance panier, post-achat</li>
+        <li>Script VSL complet rédigé</li>
+        <li>Tracking avancé + A/B test sur la headline</li>
+        <li>Rapport Stratégique Tunnel complet (15–25 pages)</li>
+        <li>30 jours d'optimisation post-lancement</li>
+      </ul>
+      <a href="/audit" class="btn">Démarrer <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="price-card reveal">
+      <div class="price-card__tag">scale</div>
+      <div class="price-card__amount">3 500<span class="u">€</span></div>
+      <div class="price-card__mad">≈ 38 000 MAD</div>
+      <p class="price-card__for">Pour dominer votre marché, pas juste y entrer.</p>
+      <ul class="price-card__list">
+        <li class="is-base">Tout Croissance, plus :</li>
+        <li>2ᵉ tunnel ou version bilingue FR / AR</li>
+        <li>15+ emails segmentés par persona</li>
+        <li>3 angles publicitaires prêts pour Meta Ads</li>
+        <li>Dashboard de reporting mensuel</li>
+        <li>90 jours d'optimisation + 1 call stratégique / mois</li>
+      </ul>
+      <a href="/audit" class="btn btn--ghost">Démarrer <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+  <div class="price-note reveal">
+    <span><b>50 %</b> à la commande · 50 % à la livraison</span>
+    <span>Paiement <b>3× sans frais</b> sur Croissance et Scale</span>
+    <span>Garantie <b>zéro bug</b> · corrections sous 48 h pendant 30 jours</span>
+  </div>
+</section>
+
 <section class="final wrap">
   <div class="final__box reveal">
     <span class="eyebrow">// prochaine étape</span>
@@ -164,7 +226,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"Tunnel de vente complet","serviceType":"Création de tunnel de vente","description":"Tunnel de vente complet : page de capture, VSL, bon de commande, upsells et séquence email. Livraison en 7 jours.","url":"https://talentdigital.net/tunnel","provider":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net"},"areaServed":["MA","FR","BE","CH","CA"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://talentdigital.net/"},{"@type":"ListItem","position":2,"name":"Tunnel de vente","item":"https://talentdigital.net/tunnel"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"Tunnel de vente complet","serviceType":"Création de tunnel de vente","description":"Tunnel de vente complet : page de capture, VSL, bon de commande, upsells et séquence email. Livraison en 7 jours.","url":"https://talentdigital.net/tunnel","provider":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net"},"areaServed":["MA","FR","BE","CH","CA"],"offers":{"@type":"AggregateOffer","priceCurrency":"EUR","lowPrice":"1500","highPrice":"3500","offerCount":"3"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://talentdigital.net/"},{"@type":"ListItem","position":2,"name":"Tunnel de vente","item":"https://talentdigital.net/tunnel"}]}]}</script>
 
 </BaseLayout>
 
