@@ -258,3 +258,29 @@ let qIndex = 0;
     });
   })();
 </script>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal");
+  if(reduce || !("IntersectionObserver" in window)){
+    reveals.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var sibs = Array.prototype.slice.call(e.target.parentNode.querySelectorAll(":scope > .reveal"));
+          var i = sibs.indexOf(e.target);
+          var delay = Math.min(i,5)*70;
+          e.target.style.transitionDelay = delay + "ms";
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+          (function(el,d){ setTimeout(function(){ el.style.transitionDelay = ""; }, d + 750); })(e.target, delay);
+        }
+      });
+    }, {threshold:.16, rootMargin:"0px 0px -8% 0px"});
+    reveals.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
