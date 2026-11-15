@@ -1,557 +1,602 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { site } from '../data/site';
+
+const axes = [
+  {
+    n: '01',
+    t: 'Offre et message',
+    d: 'Ce que vous vendez exactement, à qui, à quel prix, et si un visiteur comprend la promesse en quelques secondes. C’est le point de départ : sans offre claire, aucun canal ne rattrape le problème.',
+  },
+  {
+    n: '02',
+    t: 'Canaux et acquisition',
+    d: 'D’où viennent les demandes aujourd’hui : bouche-à-oreille, recherche, publicité, réseaux. Ce qui est payé, ce qui est organique, et ce qui n’est mesuré par personne.',
+  },
+  {
+    n: '03',
+    t: 'Parcours et conversion',
+    d: 'De l’arrivée au formulaire ou à la commande. Où les visiteurs s’arrêtent, quelle page ils quittent, et ce qui les fait partir — sur mobile d’abord.',
+  },
+  {
+    n: '04',
+    t: 'Mesure et données',
+    d: 'Ce qui est suivi, avec quel outil, avec quel consentement, et ce qui manque pour décider. Un dispositif sans mesure ne se pilote pas.',
+  },
+  {
+    n: '05',
+    t: 'Concurrence et marché',
+    d: 'À qui vous êtes comparé, sur quels arguments, à quel niveau de prix. La lecture sert à situer votre discours, pas à copier celui des autres.',
+  },
+  {
+    n: '06',
+    t: 'Capacité d’exécution',
+    d: 'Ce que vous pouvez produire en interne, à quel rythme, et ce qui dépend d’un prestataire. Un plan que vous ne pouvez pas exécuter ne sert à rien.',
+  },
+];
+
+const deliverables = [
+  {
+    n: '01',
+    t: 'Document d’audit écrit',
+    d: 'Constats reliés à une preuve : donnée, capture, citation d’entretien, document. Aucun constat invérifiable.',
+  },
+  {
+    n: '02',
+    t: 'Cartographie du parcours',
+    d: 'Chaque étape, son rôle, son point d’abandon probable et la correction correspondante.',
+  },
+  {
+    n: '03',
+    t: 'Tableau des canaux',
+    d: 'Canal, rôle, coût actuel, indicateur à suivre, et critère d’arrêt si le canal ne produit pas.',
+  },
+  {
+    n: '04',
+    t: 'Plan d’action priorisé',
+    d: 'Chaque chantier classé par impact attendu et effort nécessaire, avec un responsable et un budget indicatif.',
+  },
+  {
+    n: '05',
+    t: 'Restitution commentée',
+    d: 'Une réunion pour parcourir le document, discuter les points contestés et corriger ce qui doit l’être.',
+  },
+  {
+    n: '06',
+    t: 'Le document vous appartient',
+    d: 'Il est écrit pour être exécuté sans nous si vous le souhaitez. Aucune partie n’est retenue en otage.',
+  },
+];
+
+const steps = [
+  {
+    n: '01',
+    t: 'Premier échange — 30 minutes',
+    d: 'Vous décrivez votre activité et ce qui bloque. Nous posons les questions qui permettent de dire si un audit est utile — ou si la réponse est ailleurs.',
+  },
+  {
+    n: '02',
+    t: 'Cadrage et accès',
+    d: 'Le périmètre est écrit : ce qui est analysé, ce qui ne l’est pas, la décision que l’audit doit permettre de prendre. Accès en lecture aux données disponibles.',
+  },
+  {
+    n: '03',
+    t: 'Analyse',
+    d: 'Revue des canaux, du parcours et de la concurrence, complétée par un entretien. Chaque constat est documenté au moment où il est fait.',
+  },
+  {
+    n: '04',
+    t: 'Restitution et décision',
+    d: 'Le document est présenté, discuté, ajusté. Vous repartez avec un plan classé par priorité — et une décision prise, pas une liste de recommandations.',
+  },
+];
+
+const limits = [
+  'Un rapport de soixante pages que personne ne lit',
+  'Un prétexte pour vendre une refonte de site',
+  'Une promesse de nombre de leads ou de position Google',
+  'Un avis général sur votre marché, sans preuve',
+  'Une recommandation que nous ne pourrions pas expliquer',
+];
+
+const services = [
+  { value: 'audit', label: 'Audit marketing et digital' },
+  { value: 'consulting', label: 'Consulting marketing ou positionnement' },
+  { value: 'marketing', label: 'Marketing digital — SEO, publicité, contenu' },
+  { value: 'site-web', label: 'Site web ou e-commerce' },
+  { value: 'landing', label: 'Landing page ou page de vente' },
+  { value: 'tunnel', label: 'Tunnel de vente' },
+  { value: 'saas', label: 'SaaS ou outil sur mesure' },
+  { value: 'autre', label: 'Je ne sais pas encore' },
+];
+
+const budgets = [
+  { value: 'non-defini', label: 'Pas encore défini' },
+  { value: '<500', label: 'Moins de 500 €' },
+  { value: '500-1500', label: '500 – 1 500 €' },
+  { value: '1500-3000', label: '1 500 – 3 000 €' },
+  { value: '>3000', label: 'Plus de 3 000 €' },
+];
+
+const faq = [
+  {
+    q: 'L’audit est-il payant ?',
+    a: 'L’audit est une mission facturée au forfait : c’est un travail d’analyse et de rédaction, pas un appel commercial déguisé. Le premier échange de trente minutes, lui, est gratuit et sans document à produire. Le montant de l’audit est annoncé avant le démarrage.',
+  },
+  {
+    q: 'Pourquoi ne pas donner un devis dès le premier message ?',
+    a: 'Parce qu’un devis sans périmètre est un chiffre inventé. Le prix d’un site, d’un tunnel ou d’une mission de conseil dépend du nombre de pages, du niveau de rédaction, des intégrations et du calendrier. Ces éléments se décident après avoir compris la situation.',
+  },
+  {
+    q: 'Que se passe-t-il si l’audit conclut qu’il ne faut rien changer ?',
+    a: 'Nous l’écrivons. Un audit qui conclut « le dispositif actuel est cohérent, corrigez trois points » est un résultat valable. Il coûte toujours moins cher qu’un projet lancé pour occuper un budget.',
+  },
+  {
+    q: 'Combien de temps prend un audit ?',
+    a: 'Un audit standard prend généralement deux à trois semaines à partir du moment où les accès et les documents sont disponibles. C’est un ordre de grandeur, pas un engagement : le calendrier dépend du périmètre et de la réactivité des échanges.',
+  },
+  {
+    q: 'Faut-il nous engager à exécuter ensuite ?',
+    a: 'Non. L’audit est une mission complète, et le plan est écrit pour être exécuté en interne. Si vous souhaitez ensuite une exécution, elle fait l’objet d’un devis séparé, sur un périmètre distinct.',
+  },
+  {
+    q: 'Que faites-vous des données que vous consultez ?',
+    a: 'Elles servent uniquement à l’analyse, ne sont ni revendues ni réutilisées pour un autre client, et les accès sont révoqués à la fin de la mission. Le détail figure dans la politique de confidentialité.',
+  },
+  {
+    q: 'Travaillez-vous en dehors du Maroc ?',
+    a: 'Oui. Le Maroc est le marché d’ancrage ; nous accompagnons aussi des clients en France, en Belgique, en Suisse et au Canada. Tout se fait à distance, avec des points de suivi fixés à l’avance.',
+  },
+  {
+    q: 'Garantissez-vous un résultat ?',
+    a: 'Non. Ce qui est garanti, c’est la méthode, le périmètre écrit, les livrables nommés et le fait que le document vous appartient. Un nombre de leads, une position Google ou un chiffre d’affaires ne dépendent pas entièrement de nous.',
+  },
+];
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Audit marketing et digital',
+  serviceType: 'Audit marketing',
+  description:
+    'Audit marketing et digital : diagnostic écrit des canaux, du parcours, de la mesure et de la concurrence, suivi d’un plan d’action priorisé et d’une restitution commentée.',
+  url: `${site.domain}/audit`,
+  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  areaServed: site.areas,
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    description: 'Forfait défini après un premier échange, annoncé avant le démarrage de la mission.',
+  },
+};
 ---
 
-<BaseLayout title="Audit gratuit — TalentDigital" description="Audit gratuit de 30 min, sans engagement. Décrivez votre projet, on vous répond sous 24 h avec un plan d'action concret." ogImage="/og-audit.png">
-
-<section class="hero-contact" aria-labelledby="td-contact-heading">
-  <div class="hero-contact__glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="hero-contact__inner">
+<BaseLayout
+  title="Audit marketing et digital — savoir ce qui produit, ce qui coûte"
+  description="Un audit marketing qui sert à décider : constats sourcés, causes identifiées, canaux classés, plan d’action priorisé et restitution commentée. Le document vous appartient."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Audit marketing' }]} />
+    <div class="split page-hero__grid">
       <div>
-        <div class="prompt"><b>Contact</b></div>
-        <h1 id="td-contact-heading">Parlons de<br>votre <em>projet.</em></h1>
-        <p class="lede" style="margin-top:1.2rem">
-          Audit gratuit de 30 min, sans engagement. On analyse votre situation, on identifie vos frictions de conversion, et on vous propose un plan d'action concret.
+        <span class="eyebrow">Point d’entrée</span>
+        <h1 class="display-1 reveal" style="margin-top:1rem">Avant de dépenser plus, savoir ce qui <em>produit déjà</em>.</h1>
+        <p class="lede reveal" style="margin-top:1.5rem;max-width:52ch">
+          Un audit marketing et digital répond à trois questions : ce qui amène des clients
+          aujourd’hui, ce qui coûte sans servir, et ce qu’il faut faire ensuite — dans quel ordre.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="#demande" class="btn">Demander un audit
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/methode" class="btn btn--ghost">Voir la méthode</a>
+        </div>
+        <p class="note reveal" style="margin-top:1.2rem">
+          Premier échange de 30 min gratuit · Document écrit et restitué · Aucun engagement d’exécution
         </p>
       </div>
-      <div class="hero-contact__meta reveal">
-        <div class="meta-badge">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="7.5"/><path d="M9 5v4l2.5 2.5"/></svg>
-          Réponse garantie sous <strong style="color:var(--lime);margin-left:.25rem">24 heures</strong>
-        </div>
-        <div class="meta-badge">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 9l4 4 8-8"/></svg>
-          Audit stratégique <strong style="color:var(--lime);margin-left:.25rem">100% gratuit</strong>
-        </div>
-        <div class="meta-badge">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="2" y="5" width="14" height="10" rx="1.5"/><path d="M2 8h14"/><path d="M6 2v3M12 2v3"/></svg>
-          Livraison projet en <strong style="color:var(--lime);margin-left:.25rem">7 jours</strong>
-        </div>
+
+      <aside class="side-note reveal">
+        <p class="side-note__h">Ce que l’audit n’est pas</p>
+        <ul class="side-note__list">
+          {limits.map((l) => <li>{l}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Périmètre</p>
+      <h2>Six angles, une seule <em>question</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Chacun de ces angles est ouvert dans l’audit. Tous ne sont pas traités à la même profondeur :
+        le périmètre écrit précise lesquels sont prioritaires pour votre situation.
+      </p>
+    </div>
+    <div class="three-grid">
+      {axes.map((a) => (
+        <article class="mini-card reveal">
+          <span class="mini-card__no">{a.n}</span>
+          <h3>{a.t}</h3>
+          <p>{a.d}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Livrables</p>
+      <h2>Six choses concrètes que vous <em>gardez</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Un audit se juge à ce qu’il laisse derrière lui. Voici ce qui est remis, dans quel format,
+        et à quoi cela sert.
+      </p>
+    </div>
+    <div class="deliver-grid reveal">
+      {deliverables.map((d) => (
+        <article class="deliver-item">
+          <p class="deliver-item__no">{d.n} — livrable</p>
+          <h4>{d.t}</h4>
+          <p>{d.d}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Déroulé</p>
+        <h2>Quatre étapes, du premier échange à la <em>décision</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Le calendrier dépend du périmètre et de la disponibilité des informations. Il est inscrit
+          au devis, et il court à partir du moment où les accès sont réunis.
+        </p>
+      </div>
+      <div class="steps-list">
+        {steps.map((s) => (
+          <div class="step-row reveal">
+            <span class="step-row__n">{s.n}</span>
+            <div>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="contact-section" aria-label="Formulaire de contact">
-  <div class="wrap">
-    <div class="contact-grid">
-
+  <section class="section wrap">
+    <div class="split">
       <div class="reveal">
-        <div class="contact-form" id="td-contact-form">
-          <div class="form-success" role="status" aria-live="polite">
-            <div class="form-success__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--lime)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l6 6 12-12"/></svg>
-            </div>
-            <h3>Message bien reçu !</h3>
-            <p>Notre équipe revient vers vous sous 24 heures avec votre plan d'action personnalisé.</p>
-            <span class="form-success__timer">Réponse sous 24 h</span>
+        <p class="section-label">Prix et cadre</p>
+        <h2>Le prix est annoncé avant, jamais <em>après</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          L’audit est facturé au forfait. Le montant est communiqué après le premier échange,
+          une fois le périmètre écrit — parce qu’un prix sans périmètre est un chiffre inventé.
+        </p>
+        <p class="lede" style="margin-top:1rem">
+          Les missions d’exécution qui suivent sont chiffrées à partir du périmètre validé, dans un
+          devis distinct. Aucune rallonge n’est décidée en cours de route sans accord écrit.
+        </p>
+      </div>
+      <div class="info-card reveal">
+        <p class="info-card__h">Les règles</p>
+        <ul>
+          <li><b>Forfait</b> — pas de facturation à l’heure flottante.</li>
+          <li><b>Montant connu avant le démarrage</b>, pas à la fin.</li>
+          <li><b>Aucun pourcentage</b> sur votre budget publicitaire.</li>
+          <li><b>Exécution séparée</b> — l’audit n’oblige à rien.</li>
+          <li><b>Accès révoqués</b> à la fin de la mission.</li>
+        </ul>
+        <p class="info-card__note">
+          Aucun tarif n’est affiché sans périmètre défini. Une fourchette est donnée dès le premier
+          échange, avant tout engagement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="demande">
+    <div class="section__head reveal">
+      <p class="section-label">Demande</p>
+      <h2>Décrivez votre situation, pas votre <em>cahier des charges</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Deux phrases suffisent : ce que vous faites, ce qui bloque, ce que vous avez déjà essayé.
+        Les questions de cadrage viennent ensuite.
+      </p>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-card reveal" id="td-contact-form">
+        <div class="form-success" role="status" aria-live="polite">
+          <div class="form-success__icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l6 6 12-12"/></svg>
           </div>
-          <div class="form-fields">
-            <div class="form-title">
-              Demande d'audit gratuit
-              <span>Gratuit</span>
+          <h2>Demande bien reçue.</h2>
+          <p>Merci. Nous revenons vers vous sous 24 heures ouvrées, depuis l’adresse {site.email}.</p>
+          <span class="form-success__tag">Réponse sous 24 h ouvrées</span>
+        </div>
+
+        <div class="form-fields">
+          <h2 class="form-title">Demander un audit</h2>
+          <p class="form-sub">
+            Les champs marqués d’un astérisque sont nécessaires pour vous répondre. Aucun paiement
+            n’est demandé à ce stade.
+          </p>
+
+          <form id="td-form" novalidate>
+            <div class="hp-field" aria-hidden="true">
+              <label for="td-website">Laissez ce champ vide</label>
+              <input type="text" id="td-website" name="website" tabindex="-1" autocomplete="off" />
             </div>
-            <form id="td-form" novalidate>
-              <div class="hp-field" aria-hidden="true">
-                <label for="td-website">Laissez ce champ vide</label>
-                <input type="text" id="td-website" name="website" tabindex="-1" autocomplete="off">
-              </div>
-              <div class="form-row">
-                <div class="field">
-                  <label for="td-prenom">Prénom <span class="req" aria-hidden="true">*</span></label>
-                  <input type="text" id="td-prenom" name="prenom" placeholder="Yassine" autocomplete="given-name" required>
-                </div>
-                <div class="field">
-                  <label for="td-nom">Nom <span class="req" aria-hidden="true">*</span></label>
-                  <input type="text" id="td-nom" name="nom" placeholder="Benali" autocomplete="family-name" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="field">
-                  <label for="td-email">Email <span class="req" aria-hidden="true">*</span></label>
-                  <input type="email" id="td-email" name="email" placeholder="vous@example.com" autocomplete="email" required>
-                </div>
-                <div class="field">
-                  <label for="td-tel">Téléphone / WhatsApp</label>
-                  <input type="tel" id="td-tel" name="tel" placeholder="+212 6XX XXX XXX" autocomplete="tel">
-                </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="td-prenom">Prénom <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="td-prenom" name="prenom" placeholder="Yassine" autocomplete="given-name" required />
               </div>
               <div class="field">
-                <label for="td-service">Service recherché <span class="req" aria-hidden="true">*</span></label>
+                <label for="td-nom">Nom <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="td-nom" name="nom" placeholder="Benali" autocomplete="family-name" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="td-email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="td-email" name="email" placeholder="vous@entreprise.com" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="td-tel">Téléphone / WhatsApp</label>
+                <input type="tel" id="td-tel" name="tel" placeholder="+212 6 XX XX XX XX" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="td-service">Ce qui vous amène <span class="req" aria-hidden="true">*</span></label>
                 <select id="td-service" name="service" required>
-                  <option value="" disabled selected>Choisissez un service</option>
-                  <option value="tunnel">Tunnel de vente complet</option>
-                  <option value="landing">Landing page haute conversion</option>
-                  <option value="site-web">Site web pro</option>
-                  <option value="saas">SaaS sur mesure</option>
-                  <option value="audit">Audit CRO de l'existant</option>
-                  <option value="autre">Autre / Je ne sais pas encore</option>
+                  <option value="" disabled selected>Choisissez un sujet</option>
+                  {services.map((s) => <option value={s.value}>{s.label}</option>)}
                 </select>
               </div>
-              <div class="field field--radio">
-                <label>Budget estimé</label>
-                <div class="radio-group" role="radiogroup" aria-label="Budget estimé">
-                  <label class="radio-opt">
-                    <input type="radio" name="budget" value="<500">
-                    <span>&lt; 500 €</span>
-                  </label>
-                  <label class="radio-opt">
-                    <input type="radio" name="budget" value="500-1500">
-                    <span>500 – 1 500 €</span>
-                  </label>
-                  <label class="radio-opt">
-                    <input type="radio" name="budget" value="1500-3000">
-                    <span>1 500 – 3 000 €</span>
-                  </label>
-                  <label class="radio-opt">
-                    <input type="radio" name="budget" value=">3000">
-                    <span>&gt; 3 000 €</span>
-                  </label>
-                </div>
-              </div>
               <div class="field">
-                <label for="td-message">Décrivez votre situation <span class="req" aria-hidden="true">*</span></label>
-                <textarea id="td-message" name="message" placeholder="Ex : J'ai une formation en ligne, je génère du trafic mais très peu de ventes. Je veux un tunnel qui convertit..." required></textarea>
+                <label for="td-budget">Budget envisagé</label>
+                <select id="td-budget" name="budget">
+                  {budgets.map((b) => <option value={b.value}>{b.label}</option>)}
+                </select>
               </div>
-              <div class="form-agree">
-                <input type="checkbox" id="td-agree" name="agree" required>
-                <p>J'accepte que mes données soient utilisées pour traiter ma demande et me contacter. <a href="/mentions-legales#confidentialite">Politique de confidentialité</a></p>
-              </div>
-              <button type="submit" class="btn btn--full" id="td-submit">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Demander mon audit gratuit
-              </button>
-              <p class="form-note">
-                <b>Aucune carte bancaire</b> requise · Réponse sous 24 h
+            </div>
+
+            <div class="field">
+              <label for="td-message">Votre situation <span class="req" aria-hidden="true">*</span></label>
+              <textarea
+                id="td-message"
+                name="message"
+                placeholder="Ex : PME de 12 personnes dans le BTP. Le site reçoit du trafic mais très peu de demandes. Une campagne Google Ads tourne depuis six mois sans suivi du coût par lead."
+                required
+              ></textarea>
+              <p class="field__hint">Pas besoin d’un brief complet. Ce qui bloque, et ce que vous avez déjà essayé, suffit.</p>
+            </div>
+
+            <div class="form-agree">
+              <input type="checkbox" id="td-agree" name="agree" required />
+              <p>
+                J’accepte que ces informations soient utilisées pour traiter ma demande et me recontacter.
+                <a href="/mentions-legales#confidentialite">Politique de confidentialité</a>
               </p>
-            </form>
-          </div>
+            </div>
+
+            <button type="submit" class="btn btn--full" id="td-submit">
+              <span>Envoyer la demande</span>
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="form-note">Aucune carte bancaire · Aucun engagement · Réponse sous 24 h ouvrées</p>
+          </form>
         </div>
       </div>
 
-      <div class="contact-side reveal" style="transition-delay:.15s">
-
-        <div class="side-card">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v5l3 3"/><circle cx="9" cy="9" r="7.5"/></svg>
-            Ce qui se passe ensuite
-          </h3>
-          <div class="next-steps">
-            <div class="ns-item">
-              <div class="ns-num">1</div>
-              <div>
-                <div class="ns-title">Réception &amp; analyse</div>
-                <div class="ns-desc">On lit votre message et on analyse votre situation sous 24 h.</div>
-              </div>
+      <aside class="form-aside reveal">
+        <p class="side-note__h">Ce qui se passe ensuite</p>
+        <div class="next-list">
+          <div class="next-item">
+            <span class="next-item__n">01</span>
+            <div>
+              <p class="next-item__t">Lecture du message</p>
+              <p class="next-item__d">Nous lisons votre situation et vérifions qu’un audit est la bonne réponse — pas systématiquement.</p>
             </div>
-            <div class="ns-item">
-              <div class="ns-num">2</div>
-              <div>
-                <div class="ns-title">Appel de découverte</div>
-                <div class="ns-desc">30 min ensemble pour cerner votre offre, votre cible et vos frictions.</div>
-              </div>
+          </div>
+          <div class="next-item">
+            <span class="next-item__n">02</span>
+            <div>
+              <p class="next-item__t">Échange de 30 minutes</p>
+              <p class="next-item__d">Gratuit et sans document à produire. On cherche la question à traiter en priorité.</p>
             </div>
-            <div class="ns-item">
-              <div class="ns-num">3</div>
-              <div>
-                <div class="ns-title">Plan d'action personnalisé</div>
-                <div class="ns-desc">Livraison d'un plan concret sous 48 h : structure, copy, outils.</div>
-              </div>
+          </div>
+          <div class="next-item">
+            <span class="next-item__n">03</span>
+            <div>
+              <p class="next-item__t">Périmètre et prix</p>
+              <p class="next-item__d">Si un audit a du sens, vous recevez un périmètre écrit et un forfait. Sinon, nous le disons.</p>
             </div>
-            <div class="ns-item">
-              <div class="ns-num">4</div>
-              <div>
-                <div class="ns-title">Implémentation en 7 jours</div>
-                <div class="ns-desc">Si vous choisissez de travailler avec nous, on démarre immédiatement.</div>
-              </div>
+          </div>
+          <div class="next-item">
+            <span class="next-item__n">04</span>
+            <div>
+              <p class="next-item__t">Décision</p>
+              <p class="next-item__d">Vous validez, vous ajustez, ou vous exécutez seul avec les éléments déjà échangés.</p>
             </div>
           </div>
         </div>
 
-        <div class="side-card">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M2 5l7 5.5L16 5"/></svg>
-            Contact direct
-          </h3>
-          <div class="direct-links">
-            <a href="mailto:info@talentdigital.net" class="direct-link">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 4h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M2 5l7 5.5L16 5"/></svg>
-              <div>
-                info@talentdigital.net
-                <span class="direct-link__lbl">Email professionnel</span>
-              </div>
-            </a>
-            <a href="https://wa.me/212663206266" class="direct-link" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 1.38.37 2.68 1.01 3.8L1.5 16.5l3.78-1.02A7.5 7.5 0 109 1.5z"/><path d="M6.5 6.5s.5 1 1.5 2 2 1.5 2 1.5l1-1 1.5 1.5s-.5 1.5-2 1.5C8 12 6 10 6 10S4 8 4 5.5l1.5-1L7 6l-.5.5z"/></svg>
-              <div>
-                WhatsApp
-                <span class="direct-link__lbl">Réponse rapide</span>
-              </div>
-            </a>
-          </div>
+        <div class="form-aside__foot">
+          <p>Vous préférez écrire directement ?</p>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp — {site.phoneDisplay}</a>
         </div>
-
-      </div>
+      </aside>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="faq-section" aria-labelledby="td-faq-heading">
-  <div class="wrap">
-    <div class="faq-grid">
-      <div>
-        <div class="prompt reveal"><b>FAQ</b></div>
-        <h2 id="td-faq-heading" class="reveal">Questions <em>fréquentes.</em></h2>
-        <p class="lede reveal" style="margin-top:1rem;transition-delay:.1s">Tout ce que vous voulez savoir avant de nous contacter.</p>
+  <section class="section wrap">
+    <div class="faq-split">
+      <div class="reveal">
+        <p class="section-label">Questions</p>
+        <h2>Ce qu’on nous demande avant de <em>commander</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Les réponses sont écrites ici, pas réservées à l’appel. Si une question manque, elle peut
+          être posée par email — nous répondons.
+        </p>
       </div>
-      <div class="faq-list" role="list">
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-btn" aria-expanded="false" aria-controls="td-faq-1">
-            L'audit est vraiment gratuit ?
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </span>
-          </button>
-          <div class="faq-body" id="td-faq-1" role="region">
-            <p>Oui, sans condition. L'appel de découverte de 30 minutes est entièrement gratuit. On analyse votre situation, on identifie vos points de blocage et on vous remet un plan d'action — que vous travailliez avec nous ou non.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-btn" aria-expanded="false" aria-controls="td-faq-2">
-            Quel délai pour recevoir une réponse ?
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </span>
-          </button>
-          <div class="faq-body" id="td-faq-2" role="region">
-            <p>Nous répondons à tous les messages sous 24 heures ouvrées. En général, vous recevez un premier retour dans la journée avec une proposition de créneau pour l'appel de découverte.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-btn" aria-expanded="false" aria-controls="td-faq-3">
-            Travaillez-vous avec des clients à l'étranger ?
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </span>
-          </button>
-          <div class="faq-body" id="td-faq-3" role="region">
-            <p>Absolument. Nous travaillons avec des clients au Maroc comme à l'étranger — France, Belgique, Suisse, Canada, Afrique de l'Ouest. Tout se passe à distance : appels en visio, livrables partagés en ligne, paiements internationaux acceptés.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-btn" aria-expanded="false" aria-controls="td-faq-4">
-            Je ne sais pas encore quel service me convient.
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </span>
-          </button>
-          <div class="faq-body" id="td-faq-4" role="region">
-            <p>C'est exactement pour ça que l'audit existe. Décrivez simplement votre situation dans le formulaire. Après l'appel, on vous recommande la solution la plus adaptée à vos objectifs et à votre budget.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-btn" aria-expanded="false" aria-controls="td-faq-5">
-            Comment se déroule la livraison en 7 jours ?
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </span>
-          </button>
-          <div class="faq-body" id="td-faq-5" role="region">
-            <p>Dès validation du devis et réception de vos éléments (offre, cible, ressources), on démarre immédiatement. Jour 1–2 : stratégie et wireframes. Jour 3–5 : design et développement. Jour 6–7 : tests, ajustements et mise en ligne. Vous êtes informé à chaque étape.</p>
-          </div>
-        </div>
-
-        <div class="faq-item" role="listitem">
-          <button class="faq-btn" aria-expanded="false" aria-controls="td-faq-6">
-            Quel budget prévoir pour un projet ?
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </span>
-          </button>
-          <div class="faq-body" id="td-faq-6" role="region">
-            <p>Nos projets démarrent à partir de 500 € pour une landing page simple. Un tunnel de vente complet avec séquence email se situe entre 1 500 et 3 500 €. Chaque devis est personnalisé selon vos besoins réels — pas de tarif forfaitaire opaque.</p>
-          </div>
-        </div>
-
-      </div>
+      <Faq items={faq} idPrefix="audit-faq" />
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="contact-strip">
-  <div class="wrap">
-    <div class="strip-inner">
-      <div class="strip-text reveal">
-        <h3>Vous préférez discuter <em>directement ?</em></h3>
-        <p>Envoyez-nous un email ou contactez-nous sur WhatsApp.</p>
-      </div>
-      <div class="strip-actions reveal" style="transition-delay:.1s">
-        <a href="mailto:info@talentdigital.net" class="btn btn--ghost">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2.5 3.5h10a.5.5 0 01.5.5v7a.5.5 0 01-.5.5h-10a.5.5 0 01-.5-.5V4a.5.5 0 01.5-.5z"/><path d="M2 4l5.5 4.5L13 4"/></svg>
-          info@talentdigital.net
-        </a>
-        <a href="https://wa.me/212663206266" class="btn" target="_blank" rel="noopener">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 1C3.91 1 1 3.91 1 7.5c0 1.15.31 2.23.85 3.17L1 14l3.4-.86A6.5 6.5 0 107.5 1z"/><path d="M5.5 5.5s.4.8 1.2 1.6 1.6 1.2 1.6 1.2l.8-.8 1.2 1.2s-.4 1.2-1.6 1.2C6.5 10 5 8.5 5 8.5S3.5 7 3.5 5c0 0 0 0 1.2-1.2L6 5l-.5.5z"/></svg>
-          WhatsApp
-          <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+  <Cta
+    title="Un doute sur ce qu’il faut traiter <em>d’abord</em> ?"
+    text="C’est exactement la question à laquelle un audit répond. Trente minutes suffisent pour voir si un diagnostic est utile — ou si la réponse est plus simple que prévu."
+    primaryLabel="Demander un audit"
+    primaryHref="#demande"
+    secondaryLabel="Voir la méthode"
+    secondaryHref="/methode"
+  />
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Audit gratuit — TalentDigital","url":"https://talentdigital.net/audit","description":"Demandez votre audit de conversion gratuit. Réponse sous 24h, plan d'action personnalisé sous 48h, livraison en 7 jours. Sans engagement.","publisher":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net","email":"info@talentdigital.net","telephone":"+212663206266"}}</script>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"L'audit est vraiment gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui, sans condition. L'appel de découverte de 30 minutes est entièrement gratuit. On analyse votre situation, on identifie vos points de blocage et on vous remet un plan d'action — que vous travailliez avec nous ou non."}},{"@type":"Question","name":"Quel délai pour recevoir une réponse ?","acceptedAnswer":{"@type":"Answer","text":"Nous répondons à tous les messages sous 24 heures ouvrées. En général, vous recevez un premier retour dans la journée avec une proposition de créneau pour l'appel de découverte."}},{"@type":"Question","name":"Travaillez-vous avec des clients à l'étranger ?","acceptedAnswer":{"@type":"Answer","text":"Absolument. Nous travaillons avec des clients au Maroc comme à l'étranger — France, Belgique, Suisse, Canada, Afrique de l'Ouest. Tout se passe à distance : appels en visio, livrables partagés en ligne, paiements internationaux acceptés."}},{"@type":"Question","name":"Je ne sais pas encore quel service me convient.","acceptedAnswer":{"@type":"Answer","text":"C'est exactement pour ça que l'audit existe. Décrivez simplement votre situation dans le formulaire. Après l'appel, on vous recommande la solution la plus adaptée à vos objectifs et à votre budget."}},{"@type":"Question","name":"Comment se déroule la livraison en 7 jours ?","acceptedAnswer":{"@type":"Answer","text":"Dès validation du devis et réception de vos éléments (offre, cible, ressources), on démarre immédiatement. Jour 1–2 : stratégie et wireframes. Jour 3–5 : design et développement. Jour 6–7 : tests, ajustements et mise en ligne. Vous êtes informé à chaque étape."}},{"@type":"Question","name":"Quel budget prévoir pour un projet ?","acceptedAnswer":{"@type":"Answer","text":"Nos projets démarrent à partir de 500 € pour une landing page simple. Un tunnel de vente complet avec séquence email se situe entre 1 500 et 3 500 €. Chaque devis est personnalisé selon vos besoins réels — pas de tarif forfaitaire opaque."}}]}</script>
-
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 </BaseLayout>
 
 <style>
-  .hero-contact{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:1px solid rgba(199,247,62,.1);position:relative;overflow:hidden;background:linear-gradient(rgba(14,14,16,.86),rgba(14,14,16,.86)),url('/bg-contact-hero.webp') center/cover no-repeat}
-  .hero-contact__glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(ellipse 60% 60% at 60% 40%,rgba(199,247,62,.05) 0%,transparent 65%);pointer-events:none}
-  .hero-contact>*:not(.hero-contact__glow){position:relative;z-index:1}
-  .hero-contact__inner{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:end}
-  .hero-contact h1{font-size:clamp(2rem,4vw,3.6rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-top:.7rem}
-  .hero-contact h1 em{font-style:normal;color:var(--lime)}
-  .hero-contact__meta{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
-  .meta-badge{display:inline-flex;align-items:center;gap:.75rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:.8rem 1.1rem;color:var(--txt)}
-  .meta-badge svg{color:var(--lime);flex-none}
-  @media(max-width:768px){.hero-contact__inner{grid-template-columns:1fr;gap:2rem}}
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(3rem,7vw,5rem);border-bottom:1px solid var(--line)}
+  .page-hero__grid{margin-top:1.6rem}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
 
-  .contact-section{padding-block:var(--section)}
-  .contact-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start}
-  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+  .mini-card__no{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--lime);margin-bottom:.55rem}
 
-  .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
+  .form-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+  .field__hint{font-family:var(--mono);font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.1rem}
 
-  .contact-form{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(1.8rem,4vw,2.8rem)}
-  .form-title{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1.8rem;display:flex;align-items:center;gap:.7rem}
-  .form-title span{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--void);background:var(--lime);padding:.25rem .55rem;border-radius:3px}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  @media(max-width:600px){.form-row{grid-template-columns:1fr}}
-  .field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.1rem}
-  .field label{font-family:var(--mono);font-size:.73rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
-  .field label .req{color:var(--lime);margin-left:.15rem}
-  .field input,.field select,.field textarea{
-    background:var(--panel-2);
-    border:1px solid var(--line-2);
-    border-radius:4px;
-    color:var(--txt);
-    font-family:var(--display);
-    font-size:.95rem;
-    padding:.85rem 1rem;
-    width:100%;
-    transition:border-color .2s,box-shadow .2s;
-    outline:none;
-    -webkit-appearance:none;
+  .form-aside{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem;position:sticky;top:96px}
+  .next-list{display:flex;flex-direction:column;margin-top:1.1rem}
+  .next-item{display:flex;gap:.9rem;padding:.95rem 0;border-top:1px solid var(--line)}
+  .next-item__n{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding-top:.15rem;flex:none}
+  .next-item__t{font-size:.92rem;font-weight:700;color:var(--txt);line-height:1.35}
+  .next-item__d{font-size:.82rem;color:var(--muted);line-height:1.55;margin-top:.3rem}
+  .form-aside__foot{margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:.3rem}
+  .form-aside__foot p{font-size:.8rem;color:var(--muted)}
+  .form-aside__foot a{font-family:var(--mono);font-size:.8rem;color:var(--lime);word-break:break-word}
+  .form-aside__foot a + a{margin-top:.15rem}
+
+  .faq-split{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+
+  #demande{scroll-margin-top:90px}
+
+  @media (max-width:960px){
+    .form-grid,.faq-split{grid-template-columns:1fr}
+    .form-aside{position:static}
   }
-  .field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.7}
-  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(199,247,62,.1)}
-  .field select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M3 5l4 4 4-4' stroke='%2372727A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
-  .field select option{background:var(--panel-2);color:var(--txt)}
-  .field textarea{resize:vertical;min-height:110px;line-height:1.6}
-  .field--radio{gap:.7rem}
-  .radio-group{display:flex;flex-wrap:wrap;gap:.5rem}
-  .radio-opt{display:flex;align-items:center;gap:.5rem;cursor:pointer}
-  .radio-opt input[type=radio]{display:none}
-  .radio-opt span{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--muted);padding:.42rem .85rem;border-radius:100px;cursor:pointer;transition:.2s;user-select:none}
-  .radio-opt input[type=radio]:checked+span{border-color:var(--lime);color:var(--lime);background:rgba(199,247,62,.08)}
-  .radio-opt span:hover{border-color:var(--line);color:var(--txt)}
-  .form-agree{display:flex;align-items:flex-start;gap:.75rem;margin-top:.5rem;margin-bottom:1.4rem}
-  .form-agree input[type=checkbox]{width:18px;height:18px;min-width:18px;border:1px solid var(--line-2);border-radius:3px;background:var(--panel-2);cursor:pointer;accent-color:var(--lime);margin-top:.1rem}
-  .form-agree p{font-size:.82rem;color:var(--muted);line-height:1.55}
-  .form-agree a{color:var(--txt);text-decoration:underline;text-underline-offset:3px;opacity:.7}
-  .form-agree a:hover{opacity:1;color:var(--lime)}
-  .form-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:1rem;text-align:center}
-  .form-note b{color:var(--lime)}
-  .btn--full{width:100%;justify-content:center}
-
-  .contact-side{display:flex;flex-direction:column;gap:1.6rem}
-  .side-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.6rem}
-  .side-card h3{font-size:1rem;font-weight:800;letter-spacing:-.01em;margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
-  .side-card h3 svg{color:var(--lime)}
-
-  .next-steps{display:flex;flex-direction:column;gap:0}
-  .ns-item{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px dashed var(--line)}
-  .ns-item:last-child{border-bottom:0;padding-bottom:0}
-  .ns-num{width:28px;height:28px;min-width:28px;border-radius:50%;background:rgba(199,247,62,.1);border:1px solid rgba(199,247,62,.3);color:var(--lime);font-family:var(--mono);font-size:.7rem;font-weight:700;display:grid;place-items:center}
-  .ns-title{font-weight:700;font-size:.92rem;margin-bottom:.2rem}
-  .ns-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
-
-
-  .direct-links{display:flex;flex-direction:column;gap:.6rem;margin-top:.2rem}
-  .direct-link{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border:1px solid var(--line);border-radius:4px;font-size:.9rem;transition:.2s}
-  .direct-link:hover{border-color:var(--lime);background:rgba(199,247,62,.04);color:var(--lime)}
-  .direct-link svg{color:var(--lime);flex-none}
-  .direct-link__lbl{font-size:.72rem;font-family:var(--mono);color:var(--muted);display:block;margin-top:.1rem}
-
-  .faq-section{padding-block:var(--section);border-top:1px solid var(--line)}
-  .faq-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:clamp(2rem,5vw,5rem);align-items:start}
-  @media(max-width:768px){.faq-grid{grid-template-columns:1fr}}
-  .faq-list{display:flex;flex-direction:column;gap:0;margin-top:2rem}
-  .faq-item{border-bottom:1px solid var(--line);overflow:hidden}
-  .faq-item:first-child{border-top:1px solid var(--line)}
-  .faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.15rem 0;background:none;border:none;color:var(--txt);font-family:var(--display);font-size:.97rem;font-weight:700;text-align:left;cursor:pointer;gap:1rem;transition:color .2s}
-  .faq-btn:hover{color:var(--lime)}
-  .faq-icon{width:24px;height:24px;min-width:24px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;transition:transform .3s var(--ease),border-color .2s,background .2s;flex-none}
-  .faq-item.is-open .faq-icon{transform:rotate(45deg);border-color:var(--lime);background:rgba(199,247,62,.1)}
-  .faq-btn:hover .faq-icon{border-color:var(--line)}
-  .faq-body{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
-  .faq-item.is-open .faq-body{max-height:300px}
-  .faq-body p{padding:.1rem 0 1.3rem;color:var(--muted);font-size:.92rem;line-height:1.65;max-width:58ch}
-  .faq-body a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
-
-  .contact-strip{padding-block:clamp(3rem,5vw,4.5rem);background:var(--panel);border-top:1px solid var(--line)}
-  .strip-inner{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
-  .strip-text h3{font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:800;letter-spacing:-.02em}
-  .strip-text h3 em{font-style:normal;color:var(--lime)}
-  .strip-text p{color:var(--muted);font-size:.92rem;margin-top:.4rem}
-  .strip-actions{display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
-
-  .form-success{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;gap:1.2rem;min-height:340px}
-  .form-success__icon{width:64px;height:64px;border-radius:50%;background:rgba(199,247,62,.12);border:2px solid var(--lime);display:grid;place-items:center}
-  .form-success h3{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
-  .form-success p{color:var(--muted);max-width:34ch;line-height:1.6}
-  .form-success__timer{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lime);border:1px solid rgba(199,247,62,.3);border-radius:100px;padding:.35rem .9rem}
-  .contact-form.is-sent .form-fields{display:none}
-  .contact-form.is-sent .form-success{display:flex}
 </style>
 
 <script>
-(function(){
-  "use strict";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var reveals = document.querySelectorAll(".reveal");
-  if(reduce || !("IntersectionObserver" in window)){
-    reveals.forEach(function(el){ el.classList.add("in"); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var sibs = Array.prototype.slice.call(e.target.parentNode.querySelectorAll(":scope > .reveal"));
-          var i = sibs.indexOf(e.target);
-          var delay = Math.min(i,5)*70;
-          e.target.style.transitionDelay = delay + "ms";
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-          (function(el,d){ setTimeout(function(){ el.style.transitionDelay = ""; }, d + 750); })(e.target, delay);
-        }
-      });
-    }, {threshold:.16, rootMargin:"0px 0px -8% 0px"});
-    reveals.forEach(function(el){ io.observe(el); });
-  }
-})();
+  (function () {
+    const form = document.getElementById('td-form') as HTMLFormElement | null;
+    const card = document.getElementById('td-contact-form');
+    const submit = document.getElementById('td-submit') as HTMLButtonElement | null;
+    if (!form || !card || !submit) return;
 
-(function(){
-  document.querySelectorAll('.faq-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var item=btn.closest('.faq-item');
-      var isOpen=item.classList.contains('is-open');
-      document.querySelectorAll('.faq-item.is-open').forEach(function(open){
-        open.classList.remove('is-open');
-        open.querySelector('.faq-btn').setAttribute('aria-expanded','false');
-      });
-      if(!isOpen){
-        item.classList.add('is-open');
-        btn.setAttribute('aria-expanded','true');
-      }
-    });
-  });
-})();
+    const submitLabel = submit.innerHTML;
 
-(function(){
-  var form=document.getElementById('td-form');
-  var wrap=document.getElementById('td-contact-form');
-  var submit=document.getElementById('td-submit');
-  if(!form)return;
-
-  function showError(msg){
-    var existing=document.getElementById('td-form-error');
-    if(existing) existing.remove();
-    var el=document.createElement('p');
-    el.id='td-form-error';
-    el.setAttribute('role','alert');
-    el.style.cssText='font-family:var(--mono);font-size:.78rem;color:#f87171;margin-top:1rem;text-align:center';
-    el.textContent=msg;
-    submit.insertAdjacentElement('afterend',el);
-  }
-
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var valid=true;
-
-    form.querySelectorAll('.field-error').forEach(function(el){el.remove();});
-    form.querySelectorAll('.is-invalid').forEach(function(el){el.classList.remove('is-invalid');});
-    var prevError=document.getElementById('td-form-error');
-    if(prevError) prevError.remove();
-
-    form.querySelectorAll('[required]').forEach(function(field){
-      if(!field.value.trim()||(field.type==='checkbox'&&!field.checked)){
-        valid=false;
-        field.classList.add('is-invalid');
-        var err=document.createElement('span');
-        err.className='field-error';
-        err.style.cssText='display:block;font-family:var(--mono);font-size:.68rem;color:#f87171;margin-top:.3rem';
-        err.textContent=field.type==='checkbox'?'Veuillez accepter la politique de confidentialité':'Ce champ est requis';
-        field.parentNode.appendChild(err);
-      }
-    });
-
-    if(!valid){
-      var first=form.querySelector('.is-invalid');
-      if(first)first.focus();
-      return;
+    function clearErrors() {
+      form!.querySelectorAll('.field-error').forEach((el) => el.remove());
+      form!.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+      const prev = document.getElementById('td-form-error');
+      if (prev) prev.remove();
     }
 
-    var budgetInput = form.querySelector('input[name="budget"]:checked');
+    function showError(msg: string) {
+      const el = document.createElement('p');
+      el.id = 'td-form-error';
+      el.setAttribute('role', 'alert');
+      el.className = 'field-error';
+      el.style.marginTop = '1rem';
+      el.style.textAlign = 'center';
+      el.textContent = msg;
+      submit!.insertAdjacentElement('afterend', el);
+    }
 
-    var data={
-      prenom: form.prenom.value.trim(),
-      nom: form.nom.value.trim(),
-      email: form.email.value.trim(),
-      tel: form.tel.value.trim(),
-      service: form.service.value,
-      budget: budgetInput ? budgetInput.value : '',
-      message: form.message.value.trim(),
-      website: form.website.value
-    };
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      clearErrors();
+      let valid = true;
 
-    submit.disabled=true;
-    submit.style.opacity='.6';
-    submit.textContent='Envoi en cours…';
+      form.querySelectorAll<HTMLInputElement>('[required]').forEach((field) => {
+        const empty = field.type === 'checkbox' ? !field.checked : !field.value.trim();
+        if (!empty) return;
+        valid = false;
+        field.classList.add('is-invalid');
+        const err = document.createElement('span');
+        err.className = 'field-error';
+        err.textContent =
+          field.type === 'checkbox'
+            ? 'Merci de cocher cette case pour continuer.'
+            : 'Ce champ est nécessaire pour vous répondre.';
+        (field.closest('.form-agree') || field.parentNode)!.appendChild(err);
+      });
 
-    fetch('/api/contact',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(data)
-    }).then(function(res){
-      return res.json().then(function(payload){ return {ok:res.ok, payload:payload}; });
-    }).then(function(result){
-      if(!result.ok || !result.payload.ok){
-        throw new Error((result.payload&&result.payload.error)||'Une erreur est survenue.');
+      if (!valid) {
+        (form.querySelector('.is-invalid') as HTMLElement | null)?.focus();
+        return;
       }
-      wrap.classList.add('is-sent');
-      wrap.querySelector('.form-success').scrollIntoView({behavior:'smooth',block:'center'});
-    }).catch(function(err){
-      showError(err.message||'Une erreur est survenue. Réessayez ou écrivez-nous à info@talentdigital.net.');
-      submit.disabled=false;
-      submit.style.opacity='';
-      submit.innerHTML='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Demander mon audit gratuit';
-    });
-  });
 
-  form.querySelectorAll('input,select,textarea').forEach(function(field){
-    field.addEventListener('input',function(){
-      field.classList.remove('is-invalid');
-      var err=field.parentNode.querySelector('.field-error');
-      if(err)err.remove();
+      const data = {
+        prenom: (form.querySelector('#td-prenom') as HTMLInputElement).value.trim(),
+        nom: (form.querySelector('#td-nom') as HTMLInputElement).value.trim(),
+        email: (form.querySelector('#td-email') as HTMLInputElement).value.trim(),
+        tel: (form.querySelector('#td-tel') as HTMLInputElement).value.trim(),
+        service: (form.querySelector('#td-service') as HTMLSelectElement).value,
+        budget: (form.querySelector('#td-budget') as HTMLSelectElement).value,
+        message: (form.querySelector('#td-message') as HTMLTextAreaElement).value.trim(),
+        website: (form.querySelector('#td-website') as HTMLInputElement).value,
+      };
+
+      submit!.disabled = true;
+      submit!.style.opacity = '.6';
+      submit!.textContent = 'Envoi en cours…';
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json().then((payload) => ({ ok: res.ok, payload })))
+        .then((result) => {
+          if (!result.ok || !result.payload.ok) {
+            throw new Error(result.payload?.error || 'Une erreur est survenue.');
+          }
+          card!.classList.add('is-sent');
+          card!.querySelector('.form-success')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const w = window as unknown as { tdTrack?: (n: string, p?: Record<string, unknown>) => void };
+          w.tdTrack?.('generate_lead', { form: 'audit', service: data.service });
+        })
+        .catch((err: Error) => {
+          showError(err.message || 'Une erreur est survenue. Réessayez ou écrivez-nous à info@talentdigital.net.');
+          submit!.disabled = false;
+          submit!.style.opacity = '';
+          submit!.innerHTML = submitLabel;
+        });
     });
-  });
-})();
+
+    form.querySelectorAll('input,textarea,select').forEach((field) => {
+      field.addEventListener('input', () => {
+        field.classList.remove('is-invalid');
+        field.parentNode?.querySelector('.field-error')?.remove();
+      });
+    });
+  })();
 </script>

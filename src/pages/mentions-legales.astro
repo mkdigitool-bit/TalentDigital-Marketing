@@ -1,71 +1,315 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../data/site';
+
+const updated = '15 novembre 2026';
+
+const sections = [
+  { id: 'editeur', n: '01', label: 'Éditeur du site' },
+  { id: 'hebergement', n: '02', label: 'Hébergement' },
+  { id: 'propriete', n: '03', label: 'Propriété intellectuelle' },
+  { id: 'confidentialite', n: '04', label: 'Données personnelles' },
+  { id: 'cookies', n: '05', label: 'Cookies et mesure' },
+  { id: 'securite', n: '06', label: 'Sécurité' },
+  { id: 'droit', n: '07', label: 'Droit applicable' },
+];
 ---
 
-<BaseLayout title="Mentions légales — TalentDigital" description="Mentions légales et politique de confidentialité de TalentDigital : informations sur l'éditeur du site, l'hébergement, et le traitement de vos données personnelles." ogImage="/og-mentions-legales.png">
+<BaseLayout
+  title="Mentions légales et confidentialité"
+  description="Éditeur du site, hébergement, propriété intellectuelle, traitement des données personnelles, sous-traitants, durées de conservation et gestion des cookies."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Mentions légales' }]} />
+    <span class="eyebrow">Informations légales</span>
+    <h1 class="display-1 reveal" style="margin-top:1rem">Mentions légales<br />et <em>confidentialité</em>.</h1>
+    <p class="lede reveal" style="margin-top:1.5rem;max-width:56ch">
+      Qui édite ce site, où il est hébergé, quelles données sont collectées par les formulaires,
+      combien de temps elles sont conservées et comment retirer son consentement.
+    </p>
+    <p class="article-meta reveal" style="margin-top:1.8rem">
+      <span>Dernière mise à jour : {updated}</span>
+    </p>
+  </section>
 
-<section class="page-hero wrap">
-  <span class="prompt">Informations légales — <b>TalentDigital.net</b></span>
-  <h1>Mentions légales<br>&amp; <em>confidentialité.</em></h1>
-  <p class="page-hero__sub">Les informations légales sur l'éditeur du site et la manière dont vos données sont utilisées lorsque vous nous contactez.</p>
-</section>
+  <div class="legal-wrap wrap">
+    <nav class="legal-toc" aria-label="Sommaire">
+      <p class="legal-toc__h">Sommaire</p>
+      <ol>
+        {sections.map((s) => (
+          <li><a href={`#${s.id}`}><span>{s.n}</span>{s.label}</a></li>
+        ))}
+      </ol>
+    </nav>
 
-<section id="mentions" class="section wrap legal">
-  <div class="section__head">
-    <span class="prompt">01 — <b>mentions légales</b></span>
-    <h2>Éditeur du <em>site.</em></h2>
+    <div class="legal-body">
+      <section id="editeur" class="legal-block">
+        <p class="section-label">01 — Éditeur</p>
+        <h2>Éditeur du site</h2>
+        <p>
+          Ce site est édité par <b>TalentDigital</b>, activité exercée à titre indépendant.
+          TalentDigital n’est, à ce jour, pas immatriculé en tant que société ; cette page sera mise
+          à jour dès qu’une structure juridique sera enregistrée. Cette mention est publiée
+          volontairement : vous devez savoir à qui vous parlez et dans quel cadre.
+        </p>
+        <dl class="legal-dl">
+          <div><dt>Nom commercial</dt><dd>TalentDigital</dd></div>
+          <div><dt>Site</dt><dd>talentdigital.net</dd></div>
+          <div><dt>Statut</dt><dd>Activité indépendante, non immatriculée comme société à ce jour</dd></div>
+          <div><dt>Contact</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+          <div><dt>Téléphone</dt><dd><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></dd></div>
+          <div><dt>Directeur de la publication</dt><dd>Le responsable de l’activité TalentDigital</dd></div>
+        </dl>
+      </section>
+
+      <section id="hebergement" class="legal-block">
+        <p class="section-label">02 — Hébergement</p>
+        <h2>Hébergement</h2>
+        <p>
+          Le site est hébergé par <b>Vercel Inc.</b>, 440 N Barranca Ave #4133, Covina, CA 91723,
+          États-Unis — <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>.
+        </p>
+        <p>
+          Le nom de domaine est enregistré auprès d’un registrar accrédité ICANN. Les serveurs de
+          diffusion du site sont localisés dans plusieurs régions, dont l’Union européenne, selon la
+          configuration de l’hébergeur.
+        </p>
+      </section>
+
+      <section id="propriete" class="legal-block">
+        <p class="section-label">03 — Propriété intellectuelle</p>
+        <h2>Propriété intellectuelle</h2>
+        <p>
+          Les textes, la structure des pages, la direction artistique et le code de ce site sont
+          produits par TalentDigital. Ils ne peuvent pas être reproduits intégralement sans accord
+          écrit.
+        </p>
+        <p>
+          Les visuels présentés sur la page <a href="/solutions-digitales">Solutions digitales</a>
+          sont des <b>exemples de direction artistique</b>. Ils ne représentent pas des références
+          clients et aucun résultat ne leur est associé.
+        </p>
+        <p>
+          Les marques et logos de tiers éventuellement cités appartiennent à leurs titulaires
+          respectifs et sont mentionnés à titre d’information.
+        </p>
+      </section>
+
+      <section id="confidentialite" class="legal-block">
+        <p class="section-label">04 — Données personnelles</p>
+        <h2>Données personnelles</h2>
+
+        <h3>Responsable du traitement</h3>
+        <p>
+          TalentDigital est responsable des traitements décrits ci-dessous. Toute demande relative à
+          vos données peut être adressée à <a href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+
+        <h3>Données collectées et finalités</h3>
+        <p>
+          Trois formulaires collectent des informations, uniquement lorsque vous les soumettez
+          volontairement :
+        </p>
+        <ul>
+          <li>
+            <b>Demande d’audit</b> (<a href="/audit">/audit</a>) : prénom, nom, email, téléphone
+            facultatif, sujet, ordre de grandeur du budget, message. Finalité : répondre à la
+            demande et préparer le premier échange.
+          </li>
+          <li>
+            <b>Formulaire de contact</b> (<a href="/contact">/contact</a>) : prénom, email,
+            téléphone facultatif, sujet, message. Même finalité.
+          </li>
+          <li>
+            <b>Auto-diagnostic de tunnel</b> (<a href="/audit-tunnel">/audit-tunnel</a>) : prénom,
+            email et contenu des réponses au test, transmis uniquement si vous demandez la synthèse.
+            Finalité : préparer et envoyer cette synthèse.
+          </li>
+        </ul>
+        <p>
+          Aucune donnée n’est collectée à votre insu : sans validation du formulaire, rien n’est
+          enregistré. Aucune inscription à une newsletter n’est effectuée sans un accord distinct.
+        </p>
+
+        <h3>Base légale</h3>
+        <p>
+          Les demandes de contact reposent sur votre consentement, exprimé par la case à cocher du
+          formulaire, et sur l’intérêt légitime à répondre à une sollicitation commerciale. La mesure
+          d’audience repose sur votre consentement, recueilli par le bandeau affiché à la première
+          visite.
+        </p>
+
+        <h3>Destinataires et sous-traitants</h3>
+        <p>
+          Vos données ne sont ni vendues ni cédées. Elles sont accessibles à TalentDigital et
+          traitées par les prestataires techniques suivants, pour les seuls besoins du service :
+        </p>
+        <ul>
+          <li><b>Supabase</b> — stockage des demandes dans une base de données administrée.</li>
+          <li><b>Resend</b> — envoi des emails de notification et de réponse.</li>
+          <li><b>Vercel</b> — hébergement du site et exécution des fonctions de formulaire.</li>
+          <li>
+            <b>Google Analytics 4</b> — mesure d’audience, <b>uniquement après votre acceptation</b>.
+            Sans acceptation, aucun script de mesure n’est chargé.
+          </li>
+        </ul>
+        <p>
+          Certains de ces prestataires peuvent traiter des données en dehors de l’Union européenne,
+          notamment aux États-Unis. Ces transferts s’appuient sur les garanties contractuelles
+          proposées par ces prestataires (clauses contractuelles types ou mécanisme équivalent).
+        </p>
+
+        <h3>Durées de conservation</h3>
+        <ul>
+          <li><b>Demandes de contact et d’audit</b> : 36 mois à compter du dernier échange, puis suppression.</li>
+          <li><b>Réponses à l’auto-diagnostic</b> : 36 mois à compter de l’envoi de la synthèse.</li>
+          <li><b>Données de mesure d’audience</b> : 14 mois, durée de conservation configurée dans GA4.</li>
+          <li><b>Consentement aux cookies</b> : conservé localement dans votre navigateur jusqu’à retrait.</li>
+        </ul>
+
+        <h3>Vos droits</h3>
+        <p>
+          Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation,
+          d’opposition et de portabilité sur vos données. Pour l’exercer, écrivez à
+          <a href={`mailto:${site.email}`}>{site.email}</a> en précisant votre demande. Une réponse
+          est apportée dans un délai maximal d’un mois.
+        </p>
+        <p>
+          Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir l’autorité de
+          protection compétente : la <b>CNDP</b> au Maroc, la <b>CNIL</b> en France, ou l’autorité
+          équivalente de votre pays de résidence.
+        </p>
+      </section>
+
+      <section id="cookies" class="legal-block">
+        <p class="section-label">05 — Cookies</p>
+        <h2>Cookies et mesure d’audience</h2>
+        <p>
+          Ce site ne dépose <b>aucun cookie publicitaire</b> et n’utilise aucun outil de reciblage.
+          Le seul traceur utilisé est un outil de mesure d’audience (Google Analytics 4), et il n’est
+          chargé qu’après votre acceptation explicite.
+        </p>
+        <ul>
+          <li>
+            <b>Avant consentement</b> : aucun script de mesure n’est chargé. Seul un enregistrement
+            local (<code>localStorage</code>, clé <code>td-consent</code>) conserve votre choix, afin
+            de ne pas réafficher le bandeau à chaque visite.
+          </li>
+          <li>
+            <b>Après acceptation</b> : Google Analytics 4 est chargé, avec anonymisation de l’adresse
+            IP. Les données sont agrégées et servent à comprendre quelles pages sont utiles.
+          </li>
+          <li>
+            <b>Après refus</b> : aucun cookie de mesure n’est déposé. Le site fonctionne
+            normalement, y compris les formulaires.
+          </li>
+        </ul>
+        <p>
+          Vous pouvez modifier votre choix à tout moment. Le bouton ci-dessous efface votre
+          préférence enregistrée et réaffiche le bandeau de consentement.
+        </p>
+        <button type="button" class="btn btn--ghost" id="reset-consent">Gérer mes cookies</button>
+        <p class="legal-note">
+          Vous pouvez également bloquer les cookies depuis les réglages de votre navigateur. Le
+          blocage n’empêche pas l’envoi d’un formulaire.
+        </p>
+      </section>
+
+      <section id="securite" class="legal-block">
+        <p class="section-label">06 — Sécurité</p>
+        <h2>Sécurité</h2>
+        <p>
+          Le site est servi en HTTPS. Les formulaires incluent un champ anti-robot, une validation
+          côté serveur et une limitation des envois. Les accès aux données sont restreints aux
+          personnes qui traitent les demandes.
+        </p>
+        <p>
+          Aucun système n’est infaillible. En cas d’incident affectant vos données, les personnes
+          concernées sont informées dans les délais prévus par la réglementation applicable.
+        </p>
+      </section>
+
+      <section id="droit" class="legal-block">
+        <p class="section-label">07 — Droit applicable</p>
+        <h2>Droit applicable</h2>
+        <p>
+          Les présentes mentions sont soumises au droit marocain. En cas de litige, une solution
+          amiable est recherchée en priorité ; à défaut, les tribunaux compétents du lieu
+          d’établissement de TalentDigital sont saisis.
+        </p>
+        <p>
+          Pour les clients établis dans l’Union européenne, les dispositions impératives de protection
+          des consommateurs du pays de résidence restent applicables.
+        </p>
+        <p class="legal-note">
+          Dernière mise à jour : {updated}. Cette page est modifiée dès qu’un changement de statut,
+          de prestataire ou de traitement intervient.
+        </p>
+      </section>
+    </div>
   </div>
-  <div class="legal__body">
-    <p>Ce site est édité par <b>TalentDigital</b>, activité exercée à titre indépendant. TalentDigital n'est, à ce jour, pas immatriculé en tant que société ; cette page sera mise à jour dès qu'une structure juridique sera enregistrée.</p>
-    <ul class="legal__list">
-      <li><b>Nom commercial :</b> TalentDigital.net</li>
-      <li><b>Site :</b> talentdigital.net</li>
-      <li><b>Contact :</b> <a href="mailto:info@talentdigital.net">info@talentdigital.net</a></li>
-    </ul>
-  </div>
-</section>
-
-<section id="confidentialite" class="section wrap legal">
-  <div class="section__head">
-    <span class="prompt">02 — <b>confidentialité</b></span>
-    <h2>Vos <em>données.</em></h2>
-  </div>
-  <div class="legal__body">
-    <h3>Responsable du traitement</h3>
-    <p>TalentDigital est responsable du traitement des données collectées via ce site. Pour toute question, contactez <a href="mailto:info@talentdigital.net">info@talentdigital.net</a>.</p>
-
-    <h3>Données collectées</h3>
-    <p>Deux formulaires sur ce site collectent des informations, uniquement lorsque vous les soumettez volontairement :</p>
-    <ul class="legal__list">
-      <li><b>Demande d'audit</b> (page /audit) : prénom, nom, email, téléphone (facultatif), service recherché, budget estimé, message.</li>
-      <li><b>Formulaire de contact</b> (page /contact) : prénom, email, téléphone (facultatif), message.</li>
-    </ul>
-
-    <h3>Finalité</h3>
-    <p>Ces informations servent uniquement à traiter votre demande et à vous répondre. Chaque soumission déclenche également un email de notification interne à TalentDigital.</p>
-
-    <h3>Destinataires</h3>
-    <p>Vos données ne sont ni vendues ni partagées avec des tiers. Elles sont accessibles uniquement à TalentDigital.</p>
-
-    <h3>Vos droits</h3>
-    <p>Vous pouvez demander l'accès, la rectification ou la suppression de vos données à tout moment en écrivant à <a href="mailto:info@talentdigital.net">info@talentdigital.net</a>.</p>
-
-    <h3>Mesure d'audience</h3>
-    <p>Ce site utilise Google Analytics pour mesurer la fréquentation et comprendre l'usage des pages. Ce service peut déposer des cookies dans votre navigateur. Vous pouvez bloquer ces cookies via les réglages de votre navigateur ou une extension de blocage.</p>
-  </div>
-</section>
-
 </BaseLayout>
 
 <style>
-  .legal{border-top:1px solid var(--line)}
-  .legal:first-of-type{border-top:0}
-  .legal__body{max-width:68ch}
-  .legal__body p{color:var(--muted);line-height:1.7;margin-bottom:1rem}
-  .legal__body h3{font-size:1.1rem;font-weight:800;margin:1.6rem 0 .6rem;letter-spacing:-.01em}
-  .legal__body a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
-  .legal__list{list-style:none;display:flex;flex-direction:column;gap:.5rem;color:var(--muted);margin-bottom:1rem}
-  .legal__list b{color:var(--txt)}
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(2.5rem,5vw,3.5rem);border-bottom:1px solid var(--line)}
 
-  #mentions,#confidentialite{scroll-margin-top:90px}
+  .legal-wrap{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);padding-block:clamp(2.5rem,5vw,4rem);align-items:start}
+
+  .legal-toc{position:sticky;top:96px;border-top:1px solid var(--line-2);padding-top:1rem}
+  .legal-toc__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .legal-toc ol{list-style:none;margin-top:.9rem;display:flex;flex-direction:column}
+  .legal-toc li{border-bottom:1px solid var(--line)}
+  .legal-toc a{display:flex;gap:.7rem;padding:.6rem 0;font-size:.84rem;color:var(--muted);transition:color .2s}
+  .legal-toc a span{font-family:var(--mono);font-size:.68rem;color:var(--line-2);padding-top:.1rem}
+  .legal-toc a:hover{color:var(--lime)}
+  .legal-toc a:hover span{color:var(--lime)}
+
+  .legal-body{max-width:72ch}
+  .legal-block{padding-bottom:2.4rem;margin-bottom:2.4rem;border-bottom:1px solid var(--line)}
+  .legal-block:last-child{border-bottom:0;margin-bottom:0}
+  .legal-block h2{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-top:.6rem}
+  .legal-block h3{font-size:1.02rem;font-weight:800;letter-spacing:-.01em;margin:1.8rem 0 .6rem;color:var(--txt)}
+  .legal-block p{color:var(--muted);line-height:1.75;margin-top:1rem;font-size:.96rem}
+  .legal-block p b{color:var(--txt);font-weight:600}
+  .legal-block a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+  .legal-block ul{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.65rem}
+  .legal-block li{position:relative;padding-left:1.2rem;color:var(--muted);line-height:1.7;font-size:.94rem}
+  .legal-block li::before{content:"—";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+  .legal-block li b{color:var(--txt);font-weight:600}
+  .legal-block code{font-family:var(--mono);font-size:.84em;background:var(--panel-2);border:1px solid var(--line);border-radius:3px;padding:.1rem .35rem;color:var(--txt)}
+
+  .legal-dl{margin-top:1.3rem;border-top:1px solid var(--line)}
+  .legal-dl > div{display:grid;grid-template-columns:170px 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+  .legal-dl dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:.15rem}
+  .legal-dl dd{font-size:.9rem;color:var(--txt);line-height:1.5}
+
+  .legal-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);line-height:1.6}
+
+  #reset-consent{margin-top:1.3rem}
+
+  .legal-block{scroll-margin-top:92px}
+
+  @media (max-width:960px){
+    .legal-wrap{grid-template-columns:1fr}
+    .legal-toc{position:static}
+  }
+  @media (max-width:560px){
+    .legal-dl > div{grid-template-columns:1fr;gap:.25rem}
+  }
 </style>
+
+<script>
+  (function () {
+    const btn = document.getElementById('reset-consent');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      try {
+        localStorage.removeItem('td-consent');
+      } catch (e) {
+        /* stockage indisponible : le bandeau sera réaffiché au rechargement */
+      }
+      window.location.reload();
+    });
+  })();
+</script>

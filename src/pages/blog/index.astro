@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Cta from '../../components/Cta.astro';
+import { posts } from '../../data/posts';
+import { site } from '../../data/site';
+
+const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+const [lead, ...rest] = sorted;
+
+const byCategory = sorted.reduce<Record<string, typeof sorted>>((acc, post) => {
+  acc[post.category] = acc[post.category] || [];
+  acc[post.category].push(post);
+  return acc;
+}, {});
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Ressources TalentDigital',
+  description:
+    'Analyses sur le marketing, l’acquisition et les décisions digitales, écrites pour être utilisées, pas pour remplir un catalogue.',
+  url: `${site.domain}/blog`,
+  inLanguage: 'fr',
+  blogPost: sorted.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    description: p.description,
+    datePublished: p.date,
+    url: `${site.domain}/blog/${p.slug}`,
+    author: { '@type': 'Organization', name: site.name },
+  })),
+};
+---
+
+<BaseLayout
+  title="Ressources — analyses marketing et acquisition"
+  description="Analyses sur le conseil marketing, l’acquisition, la conversion et les décisions digitales. Des textes écrits pour être utilisés, avec des critères concrets plutôt que des promesses."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Ressources' }]} />
+    <span class="eyebrow">Ressources</span>
+    <h1 class="display-1 reveal" style="margin-top:1rem">Écrit pour être <em>utilisé</em>, pas pour remplir.</h1>
+    <p class="lede reveal" style="margin-top:1.5rem;max-width:56ch">
+      Pas de listicles, pas de promesses de croissance à deux chiffres. Des analyses sur la façon
+      de décider en marketing : quoi mesurer, quoi arrêter, comment choisir un canal, à quoi sert
+      vraiment un audit.
+    </p>
+  </section>
+
+  <section class="section wrap">
+    <div class="blog-grid">
+      <article class="post-lead reveal">
+        <p class="post__cat">{lead.category}</p>
+        <h2><a href={`/blog/${lead.slug}`}>{lead.title}</a></h2>
+        <p class="post__lede">{lead.lede}</p>
+        <p class="article-meta">
+          <time datetime={lead.date}>{new Date(lead.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+          <span>{lead.readingTime} de lecture</span>
+        </p>
+        <a href={`/blog/${lead.slug}`} class="btn btn--ghost btn--sm">Lire l’article</a>
+      </article>
+
+      <aside class="blog-aside reveal">
+        <p class="blog-aside__h">Par thème</p>
+        <ul>
+          {Object.keys(byCategory).map((cat) => (
+            <li>
+              <span>{cat}</span>
+              <b>{byCategory[cat].length}</b>
+            </li>
+          ))}
+        </ul>
+        <p class="blog-aside__note">
+          Chaque article se termine par ce qu’il ne faut pas en conclure. Un texte qui ne dit pas ses limites
+          n’est pas une analyse.
+        </p>
+      </aside>
+    </div>
+
+    <div class="post-grid">
+      {rest.map((post) => (
+        <article class="article-card reveal">
+          <p class="article-card__cat">{post.category}</p>
+          <h3><a href={`/blog/${post.slug}`}>{post.title}</a></h3>
+          <p>{post.description}</p>
+          <p class="article-meta" style="margin-top:1rem">
+            <time datetime={post.date}>{new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+            <span>{post.readingTime}</span>
+          </p>
+          <p class="article-card__more">Lire →</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Ce que vous ne trouverez pas ici</p>
+        <h2>Une bibliothèque de contenu sans <em>position</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Nous ne publions pas d’articles pour occuper un calendrier éditorial. Chaque texte répond
+          à une question que nos clients posent réellement, et prend position sur la réponse.
+        </p>
+        <p class="lede" style="margin-top:1rem">
+          Aucun témoignage n’est publié sans accord écrit du client concerné, et aucun chiffre de
+          résultat n’est avancé sans source.
+        </p>
+      </div>
+      <div class="subscribe reveal">
+        <p class="subscribe__h">Le contenu ne remplace pas une conversation</p>
+        <p>
+          Si votre situation ne rentre pas dans un article générique, un échange de trente minutes
+          est plus utile qu’une lecture supplémentaire.
+        </p>
+        <a href="/contact" class="btn btn--full" style="margin-top:1.2rem">Discutons de votre projet</a>
+        <p class="note" style="margin-top:1rem">Réponse sous 24 h ouvrées · Sans engagement</p>
+      </div>
+    </div>
+  </section>
+
+  <Cta
+    title="Une question qui n’a pas encore son <em>article</em> ?"
+    text="Écrivez-nous. Si la question revient souvent, elle deviendra probablement un texte ici — et vous aurez la réponse avant."
+    primaryLabel="Poser une question"
+    primaryHref="/contact"
+    secondaryLabel="Voir la méthode"
+    secondaryHref="/methode"
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</BaseLayout>
+
+<style>
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(2.5rem,5vw,3.5rem);border-bottom:1px solid var(--line)}
+
+  .blog-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+  .post-lead{border-top:1px solid var(--line-2);padding-top:1.4rem}
+  .post__cat{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .post-lead h2{font-size:clamp(1.6rem,3.2vw,2.5rem);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-top:.8rem}
+  .post-lead h2 a{color:var(--txt);transition:color .2s}
+  .post-lead h2 a:hover{color:var(--lime)}
+  .post__lede{font-size:1.02rem;color:var(--muted);line-height:1.7;margin-top:1.1rem;max-width:60ch}
+  .post-lead .article-meta{margin-top:1.3rem}
+  .post-lead .btn{margin-top:1.5rem}
+
+  .blog-aside{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.5rem}
+  .blog-aside__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .blog-aside ul{list-style:none;margin-top:1rem;border-top:1px solid var(--line)}
+  .blog-aside li{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px solid var(--line);font-size:.88rem;color:var(--txt)}
+  .blog-aside li b{font-family:var(--mono);font-size:.76rem;color:var(--muted);font-weight:500}
+  .blog-aside__note{margin-top:1.1rem;font-size:.8rem;color:var(--muted);line-height:1.55}
+
+  .post-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:clamp(2.5rem,5vw,3.5rem)}
+  .post-grid .article-card h3 a{color:var(--txt);transition:color .2s}
+  .post-grid .article-card h3 a:hover{color:var(--lime)}
+  .post-grid .article-card{margin-bottom:0}
+
+  .subscribe{background:var(--lime);color:var(--lime-ink);border-radius:8px;padding:1.8rem}
+  .subscribe__h{font-size:1.05rem;font-weight:800;letter-spacing:-.015em;line-height:1.3;color:var(--lime-ink)}
+  .subscribe p{font-size:.9rem;line-height:1.6;margin-top:.8rem;color:rgba(14,14,16,.82)}
+  .subscribe .btn{--bg:var(--void);--fg:var(--lime);--bd:var(--void)}
+  .subscribe .note{color:rgba(14,14,16,.7) !important}
+
+  @media (max-width:960px){.blog-grid{grid-template-columns:1fr}}
+  @media (max-width:720px){.post-grid{grid-template-columns:1fr}}
+</style>

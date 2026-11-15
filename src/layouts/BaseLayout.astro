@@ -1,18 +1,49 @@
 ---
+import '../styles/fonts.css';
 import '../styles/global.css';
+import '../styles/v2.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
 
 interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description, ogImage = '/og-default.png' } = Astro.props;
+const { title, description, ogImage = '/og-default.png', noindex = false } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
+const fullTitle = title.includes('TalentDigital') ? title : `${title} — TalentDigital`;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${site.domain}/#organization`,
+  name: site.name,
+  url: site.domain,
+  slogan: site.tagline,
+  description:
+    'Cabinet de conseil marketing et de solutions digitales pour les PME, les entrepreneurs et les entreprises de services francophones.',
+  email: site.email,
+  telephone: site.phone,
+  image: `${site.domain}/og-default.png`,
+  sameAs: Object.values(site.social),
+  areaServed: site.areas,
+  knowsAbout: [
+    'Conseil marketing',
+    'Stratégie marketing',
+    'Référencement naturel',
+    'Publicité digitale',
+    'Email marketing',
+    'Création de sites web',
+    'Tunnels de vente',
+    'Automatisation marketing',
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -20,46 +51,62 @@ const ogImageURL = new URL(ogImage, Astro.site);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
+  <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0E0E10" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="canonical" href={canonicalURL} />
+  {noindex && <meta name="robots" content="noindex,follow" />}
   <meta name="p:domain_verify" content="71f3c032d00a4d8a5719b30a1c3a7bb1" />
 
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="TalentDigital" />
-  <meta property="og:title" content={title} />
+  <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:image" content={ogImageURL} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content={title} />
+  <meta property="og:image:alt" content={fullTitle} />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
+  <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageURL} />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-62J5D8NLMW"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <script type="application/ld+json" set:html={JSON.stringify(organization)} />
 
-    gtag('config', 'G-62J5D8NLMW');
-  </script>
-
-  <!-- Vercel Analytics -->
+  <!-- Consentement : GA4 n'est chargé qu'après acceptation explicite. -->
   <script is:inline>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    (function () {
+      var KEY = 'td-consent';
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      window.__tdConsent = stored;
+      window.tdTrack = function (name, params) {
+        if (window.__tdConsent !== 'granted' || typeof window.gtag !== 'function') return;
+        window.gtag('event', name, params || {});
+      };
+      window.tdLoadAnalytics = function () {
+        if (window.__tdGaLoaded) return;
+        window.__tdGaLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-62J5D8NLMW';
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-62J5D8NLMW', { anonymize_ip: true });
+      };
+      if (stored === 'granted') window.tdLoadAnalytics();
+    })();
   </script>
-  <script is:inline defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <a href="#main" class="skip">Aller au contenu</a>
@@ -68,5 +115,96 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <slot />
   </main>
   <Footer />
+
+  <div class="consent" id="td-consent" role="dialog" aria-live="polite" aria-label="Consentement aux cookies de mesure">
+    <div class="consent__in">
+      <p>
+        Nous utilisons un outil de mesure d'audience (Google Analytics) pour comprendre ce qui est utile sur ce site.
+        Aucun cookie de mesure n'est déposé sans votre accord.
+        <a href="/mentions-legales#cookies">En savoir plus</a>
+      </p>
+      <div class="consent__actions">
+        <button type="button" class="btn btn--ghost" data-consent="denied">Tout refuser</button>
+        <button type="button" class="btn" data-consent="granted">Accepter la mesure</button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var KEY = 'td-consent';
+      var banner = document.getElementById('td-consent');
+      if (!banner) return;
+      if (window.__tdConsent === null) banner.classList.add('is-open');
+
+      banner.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-consent]');
+        if (!btn) return;
+        var choice = btn.getAttribute('data-consent');
+        try { localStorage.setItem(KEY, choice); } catch (err) {}
+        window.__tdConsent = choice;
+        banner.classList.remove('is-open');
+        if (choice === 'granted') window.tdLoadAnalytics();
+      });
+    })();
+  </script>
+
+  <!-- Comportements partagés : révélation, accordéons, mesure des clics. -->
+  <script is:inline>
+    (function () {
+      "use strict";
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduce || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var sibs = Array.prototype.slice.call(e.target.parentNode.querySelectorAll(':scope > .reveal'));
+            var i = Math.max(sibs.indexOf(e.target), 0);
+            var delay = Math.min(i, 5) * 70;
+            e.target.style.transitionDelay = delay + 'ms';
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+            setTimeout(function () { e.target.style.transitionDelay = ''; }, delay + 750);
+          });
+        }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+        reveals.forEach(function (el) { io.observe(el); });
+      }
+
+      var accs = document.querySelectorAll('.acc__btn');
+      accs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var acc = btn.parentNode;
+          var panel = btn.nextElementSibling;
+          var open = acc.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if (panel) panel.style.maxHeight = open ? panel.scrollHeight + 'px' : null;
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        document.querySelectorAll('.acc.is-open .acc__panel').forEach(function (panel) {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        });
+      }, { passive: true });
+
+      // CTA suivis : tout lien interne vers /contact ou /audit.
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a');
+        if (!a || typeof window.tdTrack !== 'function') return;
+        var href = a.getAttribute('href') || '';
+        if (href === '/contact') {
+          window.tdTrack('cta_click', { cta: (a.textContent || '').trim().slice(0, 60), page: location.pathname, target: 'contact' });
+        } else if (href === '/audit') {
+          window.tdTrack('cta_click', { cta: (a.textContent || '').trim().slice(0, 60), page: location.pathname, target: 'audit' });
+        } else if (/\.pdf($|\?)/.test(href)) {
+          window.tdTrack('pdf_download', { file: href, page: location.pathname });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

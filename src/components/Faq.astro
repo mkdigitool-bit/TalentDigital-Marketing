@@ -1,0 +1,45 @@
+---
+interface Item {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items: Item[];
+  idPrefix?: string;
+  jsonLd?: boolean;
+}
+
+const { items, idPrefix = 'faq', jsonLd = true } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<div class="faq-list reveal">
+  {items.map((item, i) => (
+    <div class="acc">
+      <button
+        class="acc__btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls={`${idPrefix}-${i}`}
+      >
+        <span>{item.q}</span>
+        <span class="acc__sign" aria-hidden="true">+</span>
+      </button>
+      <div class="acc__panel" id={`${idPrefix}-${i}`}>
+        <p>{item.a}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

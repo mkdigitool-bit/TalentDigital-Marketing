@@ -1,0 +1,149 @@
+---
+import ArticleLayout from '../../components/ArticleLayout.astro';
+import { getPost } from '../../data/posts';
+
+const post = getPost('seo-ou-publicite-comment-choisir');
+---
+
+<ArticleLayout slug="seo-ou-publicite-comment-choisir" description={post.description}>
+  <p>
+    La question revient dans presque chaque premier rendez-vous : « On fait du SEO ou de la pub ? »
+    Elle suppose que les deux canaux seraient interchangeables, et qu’il faudrait choisir le meilleur.
+    En pratique, ils ne répondent pas à la même situation.
+  </p>
+  <p>
+    Un canal payant achète une présence immédiate. Un canal organique construit une présence durable.
+    L’un produit un signal en quelques jours, l’autre en plusieurs mois. Choisir, c’est d’abord
+    savoir de quel signal vous avez besoin.
+  </p>
+
+  <h2>Le critère qui compte le plus : la demande existe-t-elle déjà ?</h2>
+  <p>
+    Avant le budget, avant le délai, il y a une question de marché. Vos clients potentiels tapent-ils
+    déjà une recherche correspondant à votre offre ?
+  </p>
+  <p>
+    Si oui — « dentiste Casablanca », « expert-comptable en ligne », « formation Excel avancé » — le
+    SEO devient un actif : vous captez une demande qui existe, avec un coût marginal qui baisse
+    dans le temps. La publicité search fonctionne aussi, mais vous payez chaque clic.
+  </p>
+  <p>
+    Si non — une offre nouvelle, une catégorie que le marché ne nomme pas encore, un service très
+    spécifique — le SEO a peu de volumes à capter. Il faut créer la demande, ce qui passe par du
+    contenu, des réseaux sociaux, ou de la publicité en interruption (Meta, YouTube).
+  </p>
+
+  <h2>Comparaison honnête des deux canaux</h2>
+  <table>
+    <thead>
+      <tr><th></th><th>SEO</th><th>Publicité payante</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Délai avant signal</td><td>3 à 12 mois selon le marché</td><td>Quelques jours à quelques semaines</td></tr>
+      <tr><td>Coût dans le temps</td><td>Décroissant (actif cumulatif)</td><td>Constant, proportionnel au volume</td></tr>
+      <tr><td>Arrêt possible</td><td>Coûteux : l’actif perd sa valeur</td><td>Immédiat</td></tr>
+      <tr><td>Dépendance</td><td>Algorithme du moteur</td><td>Régie publicitaire et budget</td></tr>
+      <tr><td>Effort de production</td><td>Élevé et continu</td><td>Concentré au lancement, puis itératif</td></tr>
+      <tr><td>Mesure</td><td>Plus lente et plus bruitée</td><td>Rapide et granulaire</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Aucune colonne n’est meilleure. La bonne lecture est celle du tableau : chaque ligne est un
+    compromis, et le compromis dépend de votre situation.
+  </p>
+
+  <h2>Trois configurations typiques</h2>
+
+  <h3>1. Marché mature, budget limité, besoin de résultats rapides</h3>
+  <p>
+    Publicité search sur les requêtes les plus proches de l’achat, avec une page d’arrivée dédiée
+    et un suivi des conversions posé avant le lancement. Le SEO viendra ensuite, financé par ce que
+    la publicité aura appris sur les requêtes qui convertissent réellement.
+  </p>
+  <p>
+    Cette configuration est fréquente en services locaux et en B2B de niche, où les volumes de
+    recherche sont faibles mais l’intention très forte.
+  </p>
+
+  <h3>2. Marché mature, budget confortable, horizon de douze mois</h3>
+  <p>
+    Les deux en parallèle, avec des rôles distincts. La publicité couvre le court terme et sert de
+    laboratoire : elle teste messages, offres et pages. Le SEO capitalise sur ce qui a fonctionné,
+    avec un contenu construit sur les requêtes validées par la publicité.
+  </p>
+  <p>
+    C’est la configuration la plus efficace à moyen terme, et la plus exigeante : elle demande de la
+    discipline sur la mesure, sinon les deux canaux se cannibalisent et personne ne sait lequel
+    produit quoi.
+  </p>
+
+  <h3>3. Marché à créer, offre nouvelle</h3>
+  <p>
+    Le SEO n’est pas le point de départ. Il faut d’abord prouver que le problème est reconnu et que
+    l’offre est comprise. Contenu de conviction, démonstration, réseaux sociaux, publicité en
+    interruption sur des audiences larges. Le SEO arrive après, quand les gens commencent à chercher
+    ce que vous nommez.
+  </p>
+
+  <h2>L’erreur la plus fréquente : lancer les deux sans mesure</h2>
+  <p>
+    Beaucoup d’entreprises activent SEO et publicité en même temps, sans dispositif de mesure
+    distinct. Six mois plus tard, le chiffre d’affaires a augmenté — ou pas — et personne ne sait
+    à quoi l’attribuer.
+  </p>
+  <p>
+    Deux garde-fous simples règlent une grande partie du problème :
+  </p>
+  <ul>
+    <li><strong>Des pages d’arrivée séparées</strong> pour les campagnes payantes, avec un suivi propre.</li>
+    <li><strong>Un indicateur principal par canal</strong>, choisi avant le lancement, avec un seuil de décision.</li>
+  </ul>
+  <p>
+    Ce n’est pas de l’attribution parfaite. C’est suffisant pour décider, ce qui est l’objectif.
+  </p>
+
+  <h2>Le budget minimum, sans détour</h2>
+  <p>
+    Un budget publicitaire inférieur au coût d’acquisition d’un client ne permet pas d’apprendre
+    assez vite : vous n’obtiendrez pas assez de conversions pour distinguer une bonne campagne d’une
+    campagne chanceuse.
+  </p>
+  <p>
+    Pour le SEO, la contrainte n’est pas le budget média mais la capacité de production éditoriale.
+    Un site qui publie deux articles solides par mois pendant un an dépasse souvent un site qui en
+    publie vingt en trois semaines puis s’arrête.
+  </p>
+
+  <h2>Ce que cet article ne dit pas</h2>
+  <p>
+    Il ne dit pas que le SEO est « gratuit ». Le référencement naturel coûte en production, en
+    technique et en temps. Il est simplement moins dépendant d’un budget média récurrent.
+  </p>
+  <p>
+    Il ne promet aucune position, aucun volume de trafic, aucun délai de résultat. Ces éléments
+    dépendent du marché, de la concurrence et de la qualité d’exécution — trois variables qu’aucun
+    prestataire ne contrôle entièrement.
+  </p>
+  <p>
+    Il ne dit pas non plus qu’il faut choisir définitivement. La bonne séquence change avec la
+    maturité du marché et avec ce que la mesure révèle.
+  </p>
+
+  <Fragment slot="takeaways">
+    <ul>
+      <li>La demande existe-t-elle déjà ? C’est le premier critère, avant le budget.</li>
+      <li>Le SEO est un actif cumulatif ; la publicité est un flux contrôlable.</li>
+      <li>Les deux ensemble fonctionnent si la mesure distingue leur contribution.</li>
+      <li>Un budget publicitaire inférieur au coût d’un client n’apprend rien.</li>
+      <li>La contrainte du SEO est la capacité de production, pas le budget média.</li>
+    </ul>
+  </Fragment>
+
+  <Fragment slot="limits">
+    <ul>
+      <li>Aucune position Google ni volume de trafic n’est garanti.</li>
+      <li>Les délais varient fortement selon la concurrence du marché.</li>
+      <li>Les chiffres de coût cités sont des ordres de grandeur, pas des promesses.</li>
+    </ul>
+  </Fragment>
+</ArticleLayout>

@@ -1,0 +1,144 @@
+---
+import ArticleLayout from '../../components/ArticleLayout.astro';
+import { getPost } from '../../data/posts';
+
+const post = getPost('refaire-son-site-probleme-de-conversion');
+---
+
+<ArticleLayout slug="refaire-son-site-probleme-de-conversion" description={post.description}>
+  <p>
+    Un site reçoit du trafic, mais génère peu de demandes. La conclusion arrive vite : « le site est
+    daté, il faut le refaire ». Le projet démarre, dure trois mois, coûte le prix d’une refonte
+    complète — et le taux de conversion bouge à peine.
+  </p>
+  <p>
+    Ce n’est pas parce que la refonte était mal faite. C’est parce qu’elle traitait la forme alors
+    que la cause était ailleurs.
+  </p>
+
+  <h2>Quatre causes, une seule est visuelle</h2>
+  <p>
+    Quand un site ne convertit pas, la cause se trouve presque toujours dans l’une de ces quatre
+    catégories. Une seule concerne le design.
+  </p>
+
+  <h3>1. Le message ne correspond pas au visiteur</h3>
+  <p>
+    Le visiteur arrive avec une question précise. La page répond à une autre question, ou parle de
+    l’entreprise plutôt que de son problème. Aucun travail graphique ne corrige un décalage de
+    message : le visiteur repart avant même d’avoir vu le design.
+  </p>
+  <p>
+    Le symptôme est un taux de rebond élevé et un temps passé très court. Le remède est un travail
+    de rédaction, pas une maquette.
+  </p>
+
+  <h3>2. L’offre n’est pas assez claire, ou pas assez désirable</h3>
+  <p>
+    Le visiteur comprend ce que vous faites, mais pas pourquoi il devrait le faire maintenant, avec
+    vous plutôt qu’un autre. Prix absent, délai inconnu, périmètre flou : il ne peut pas se décider.
+  </p>
+  <p>
+    Le symptôme est un temps passé correct, une lecture des pages services, mais peu de passages au
+    formulaire. Le remède porte sur l’offre et sa présentation, pas sur l’ergonomie.
+  </p>
+
+  <h3>3. Les preuves manquent</h3>
+  <p>
+    Vous affirmez être compétent. Le visiteur n’a aucune raison de vous croire. Sans preuve —
+    méthode publiée, livrables nommés, exemples de travail, statut clair — la confiance ne se
+    construit pas.
+  </p>
+  <p>
+    Le symptôme est un abandon sur les pages qui demandent un engagement : formulaire, devis, achat.
+    Le remède est l’ajout de preuves vérifiables, pas d’un bandeau de logos.
+  </p>
+
+  <h3>4. Le parcours est cassé ou trop long</h3>
+  <p>
+    C’est la seule cause réellement liée à l’exécution du site. Formulaire à huit champs alors que
+    deux suffisent, étape de confirmation confuse, bouton illisible sur mobile, page qui met quatre
+    secondes à s’afficher.
+  </p>
+  <p>
+    Le symptôme se lit dans les entonnoirs : les gens commencent le formulaire et ne le terminent
+    pas. Le remède est souvent une correction d’une journée, pas une refonte.
+  </p>
+
+  <h2>Comment savoir laquelle vous concerne</h2>
+  <p>
+    Trois lectures suffisent généralement, et elles ne demandent aucun outil sophistiqué.
+  </p>
+  <ul>
+    <li><strong>Le temps passé sur la page d’arrivée</strong> — quelques secondes : problème de message. Plusieurs minutes sans conversion : problème d’offre ou de preuve.</li>
+    <li><strong>Le point d’abandon dans le parcours</strong> — avant le formulaire : message, offre, preuve. Dans le formulaire : parcours.</li>
+    <li><strong>Les questions reçues par email ou téléphone</strong> — si les prospects demandent des informations déjà présentes sur le site, c’est que le site ne les met pas au bon endroit.</li>
+  </ul>
+  <p>
+    Une quatrième lecture, plus coûteuse mais très instructive : demander à cinq clients récents
+    ce qu’ils ont regardé avant de vous contacter. Leurs réponses contredisent souvent l’hypothèse
+    interne.
+  </p>
+
+  <h2>Quand une refonte se justifie vraiment</h2>
+  <p>
+    Une refonte complète est légitime dans trois cas précis :
+  </p>
+  <ul>
+    <li><strong>La structure ne peut pas porter le contenu nécessaire.</strong> Ajouter une page est impossible sans casser le menu, ou le CMS ne permet pas de créer le type de page dont vous avez besoin.</li>
+    <li><strong>Les performances techniques plafonnent.</strong> Le site est lent pour des raisons structurelles et chaque correction en crée une nouvelle.</li>
+    <li><strong>L’identité a changé.</strong> Nouveau positionnement, nouveau nom, nouvelle offre : le site raconte une histoire qui n’est plus la vôtre.</li>
+  </ul>
+  <p>
+    Dans les autres cas, une refonte partielle — réécriture de la page d’accueil, correction du
+    parcours, ajout de preuves — donne souvent plus de résultat pour un coût inférieur.
+  </p>
+
+  <h2>L’ordre qui fonctionne</h2>
+  <p>
+    La séquence qui produit le moins de dépenses inutiles est presque toujours la même :
+  </p>
+  <ol>
+    <li>Corriger le parcours cassé — coût faible, effet immédiat.</li>
+    <li>Réécrire le message de la page d’arrivée principale — coût moyen, effet rapide.</li>
+    <li>Ajouter les preuves manquantes — coût variable, effet progressif.</li>
+    <li>Refondre le site — seulement si les trois précédents ne suffisent pas.</li>
+  </ol>
+  <p>
+    Cette séquence a un autre avantage : chaque étape apprend quelque chose. Si le taux de conversion
+    bouge après la réécriture du message, vous savez que le problème était là. L’information est
+    utile même si vous refondez ensuite.
+  </p>
+
+  <h2>Ce que cet article ne dit pas</h2>
+  <p>
+    Il ne dit pas que le design n’a aucune importance. Un site illisible ou peu crédible visuellement
+    fait perdre des conversions. Il dit que le design n’est presque jamais la cause première.
+  </p>
+  <p>
+    Il ne dit pas qu’une refonte est une erreur. Il dit qu’une refonte décidée sans diagnostic traite
+    souvent un problème qui n’était pas celui-là.
+  </p>
+  <p>
+    Il ne donne aucun chiffre d’amélioration. Le gain dépend entièrement de l’écart entre ce que le
+    site dit et ce que le visiteur cherche — un écart qui se mesure, mais qui ne se devine pas.
+  </p>
+
+  <Fragment slot="takeaways">
+    <ul>
+      <li>Sur quatre causes de non-conversion, une seule est visuelle.</li>
+      <li>Le temps passé distingue un problème de message d’un problème d’offre.</li>
+      <li>Le point d’abandon indique quelle cause traiter.</li>
+      <li>Corriger le parcours et le message précède presque toujours la refonte.</li>
+      <li>Une refonte se justifie quand la structure, la technique ou l’identité ne suivent plus.</li>
+    </ul>
+  </Fragment>
+
+  <Fragment slot="limits">
+    <ul>
+      <li>Les causes se cumulent souvent : traiter une seule ne suffit pas.</li>
+      <li>Un faible trafic rend la lecture statistique peu fiable.</li>
+      <li>Un site peut convertir correctement et mal qualifier les demandes.</li>
+    </ul>
+  </Fragment>
+</ArticleLayout>

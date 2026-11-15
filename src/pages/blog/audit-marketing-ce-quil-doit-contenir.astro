@@ -1,0 +1,154 @@
+---
+import ArticleLayout from '../../components/ArticleLayout.astro';
+import { getPost } from '../../data/posts';
+
+const post = getPost('audit-marketing-ce-quil-doit-contenir');
+---
+
+<ArticleLayout slug="audit-marketing-ce-quil-doit-contenir" description={post.description}>
+  <p>
+    Un audit marketing arrive souvent sous la forme d’un PDF de soixante pages, rempli de captures
+    d’écran et de recommandations générales. Il est lu une fois, puis rangé. Six mois plus tard,
+    rien n’a changé — non pas parce que les recommandations étaient fausses, mais parce qu’elles
+    ne permettaient pas de décider quoi faire lundi matin.
+  </p>
+  <p>
+    Un audit utile n’est pas un inventaire. C’est un outil de décision. Voici ce qu’il doit contenir
+    pour mériter son coût, section par section.
+  </p>
+
+  <h2>1. Le périmètre, écrit avant de commencer</h2>
+  <p>
+    La première page d’un bon audit dit ce que l’audit ne couvre pas. C’est contre-intuitif, mais
+    c’est ce qui protège les deux parties.
+  </p>
+  <p>
+    Un audit de conversion ne regarde pas la stratégie de contenu. Un audit de positionnement ne
+    mesure pas la vitesse du site. Sans cette limite écrite, le document s’étale, les conclusions
+    se diluent, et la réunion de restitution dérive sur des sujets qui n’étaient pas prévus.
+  </p>
+  <p>
+    Le périmètre doit aussi nommer la décision que l’audit doit permettre de prendre. « Faut-il
+    refondre le site ou travailler la page d’offre ? » est une décision. « Améliorer la présence
+    digitale » n’en est pas une.
+  </p>
+
+  <h2>2. Des constats reliés à une preuve</h2>
+  <p>
+    Chaque constat doit pouvoir être vérifié. Une donnée analytics, une capture d’écran, une citation
+    d’entretien, un document interne : la preuve n’a pas besoin d’être sophistiquée, elle doit exister.
+  </p>
+  <p>
+    Les formulations à surveiller sont celles qui ne peuvent pas être contredites :
+  </p>
+  <ul>
+    <li>« Le site manque de modernité » — vrai de presque tous les sites, donc inutile.</li>
+    <li>« L’expérience mobile pourrait être améliorée » — sans mesure, c’est une opinion.</li>
+    <li>« La page d’accueil reçoit 62 % du trafic et concentre 11 % des demandes » — vérifiable, et donc actionnable.</li>
+  </ul>
+  <p>
+    Un audit qui ne contient que des constats invérifiables n’est pas un audit. C’est un avis
+    habillé en document.
+  </p>
+
+  <h2>3. Des causes, pas seulement des symptômes</h2>
+  <p>
+    Le symptôme est visible : le trafic ne convertit pas, le coût par lead augmente, le taux de
+    rebond progresse. La cause est ailleurs, et c’est elle qui détermine l’action.
+  </p>
+  <p>
+    Un exemple concret. Un site e-commerce constate une baisse de conversion. Trois causes possibles,
+    trois actions différentes :
+  </p>
+  <ul>
+    <li><strong>Le trafic a changé de nature</strong> — une nouvelle campagne amène des visiteurs moins qualifiés. L’action porte sur le ciblage ou le message publicitaire, pas sur le site.</li>
+    <li><strong>L’offre a changé</strong> — un prix, un délai de livraison, une garantie. L’action porte sur l’offre, pas sur le design.</li>
+    <li><strong>Le parcours s’est cassé</strong> — un formulaire plus long, une étape ajoutée, un bug sur mobile. L’action porte sur le tunnel, et elle est souvent rapide.</li>
+  </ul>
+  <p>
+    Un audit qui s’arrête au symptôme propose une refonte. Un audit qui remonte à la cause propose
+    parfois une correction d’une journée.
+  </p>
+
+  <h2>4. Une priorisation explicite</h2>
+  <p>
+    Un audit sans priorisation produit exactement l’effet inverse de celui recherché : il paralyse.
+    Vingt recommandations de même poids, c’est vingt décisions à prendre sans critère.
+  </p>
+  <p>
+    La priorisation doit être lisible et assumée. Deux axes suffisent : l’impact attendu et l’effort
+    nécessaire. Quatre cases en découlent.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Impact</th><th>Effort faible</th><th>Effort élevé</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Élevé</strong></td><td>À faire maintenant</td><td>À planifier et chiffrer</td></tr>
+      <tr><td><strong>Faible</strong></td><td>À faire si le temps le permet</td><td>À ne pas faire</td></tr>
+    </tbody>
+  </table>
+  <p>
+    La case « impact faible / effort élevé » est la plus importante d’un audit. C’est celle qui
+    évite les projets coûteux qui ne changeront rien. Un audit qui n’ose pas la remplir n’a pas
+    fait son travail.
+  </p>
+
+  <h2>5. Un plan d’action avec un critère d’arrêt</h2>
+  <p>
+    Chaque chantier doit tenir en une ligne de tableau, avec six informations : objectif, action,
+    responsable, budget indicatif, délai, indicateur de succès. Et une septième, souvent absente :
+    le critère d’arrêt.
+  </p>
+  <p>
+    Le critère d’arrêt répond à la question « à partir de quand considère-t-on que ça ne marche
+    pas ? ». Sans lui, un dispositif se prolonge par inertie, ou s’arrête sur une impression.
+    Avec lui, la décision est prise d’avance, sur des chiffres.
+  </p>
+  <p>
+    Un exemple : « Si le coût par demande dépasse 45 € sur trois semaines consécutives, la campagne
+    est arrêtée ou retravaillée. » C’est une phrase qui vaut plus que dix pages d’analyse.
+  </p>
+
+  <h2>6. Une restitution, pas un envoi</h2>
+  <p>
+    Un document envoyé par email est un document non lu. La restitution est le moment où le document
+    devient une décision : on le parcourt ensemble, on discute les points contestés, on corrige ce
+    qui doit l’être, on valide ce qui est retenu.
+  </p>
+  <p>
+    C’est aussi le moment où se pose la question de la suite. Deux issues honorables : vous exécutez
+    en interne avec le plan, ou vous confiez une partie de l’exécution. La seconde n’est pas un
+    aboutissement, c’est une option parmi deux.
+  </p>
+
+  <h2>Ce que cet article ne dit pas</h2>
+  <p>
+    Il ne dit pas qu’un audit est toujours nécessaire. Sur un projet déjà cadré — offre claire,
+    cible connue, contenu prêt, objectif unique — une exécution directe peut se justifier. L’audit
+    existe pour les situations où la décision n’est pas encore prise.
+  </p>
+  <p>
+    Il ne dit pas non plus qu’un audit doit être long. Un audit de conversion bien cadré peut tenir
+    en quinze pages. Ce qui compte n’est pas le volume, c’est le nombre de décisions qu’il permet
+    de prendre.
+  </p>
+
+  <Fragment slot="takeaways">
+    <ul>
+      <li>Le périmètre nomme ce qui est exclu et la décision à prendre.</li>
+      <li>Un constat sans preuve vérifiable est un avis, pas une analyse.</li>
+      <li>La cause détermine l’action ; le symptôme ne fait que la suggérer.</li>
+      <li>La case « impact faible / effort élevé » est la plus utile d’un audit.</li>
+      <li>Un chantier sans critère d’arrêt ne se pilote pas.</li>
+    </ul>
+  </Fragment>
+
+  <Fragment slot="limits">
+    <ul>
+      <li>Un audit ne remplace pas une décision de direction : il l’éclaire.</li>
+      <li>Sans accès aux données, les conclusions restent qualitatives.</li>
+      <li>La qualité d’un audit dépend de la franchise des entretiens.</li>
+    </ul>
+  </Fragment>
+</ArticleLayout>

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-talentdigital.png';
+import { site, nav } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
@@ -10,71 +11,90 @@ const year = new Date().getFullYear();
     <div class="foot__top">
       <div class="foot__brand">
         <a href="/" class="brand" aria-label="TalentDigital — Accueil">
-          <Image src={logo} alt="TalentDigital" height={38} />
+          <Image src={logo} alt="TalentDigital" height={36} />
         </a>
-        <p class="foot__tag">Infrastructure de conversion pour le web mondial. On construit les systèmes qui transforment votre trafic en chiffre d'affaires.</p>
+        <p class="foot__desc">{site.descriptor}</p>
+        <p class="foot__tag">{site.reason}</p>
         <div class="foot__social" aria-label="Réseaux sociaux">
-          <a href="https://web.facebook.com/profile.php?id=61591458964277" target="_blank" rel="noopener" aria-label="Facebook">
+          <a href={site.social.facebook} target="_blank" rel="noopener" aria-label="Facebook">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2a5 5 0 0 0-5 5v3H5v4h3v8h4v-8h3.5l1-4H12V8a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="https://www.instagram.com/talentdigital_marketing/" target="_blank" rel="noopener" aria-label="Instagram">
+          <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a href="https://www.youtube.com/channel/UC6Go6dqDfIq-xLnOyx5goTA" target="_blank" rel="noopener" aria-label="YouTube">
+          <a href={site.social.youtube} target="_blank" rel="noopener" aria-label="YouTube">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a href="https://fr.pinterest.com/TalentDigitalMarketing/" target="_blank" rel="noopener" aria-label="Pinterest">
+          <a href={site.social.pinterest} target="_blank" rel="noopener" aria-label="Pinterest">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 16.5c.5-2 1.2-5.4 1.6-7.3M12 8.2c2.2 0 3.8 1.3 3.8 3.4 0 2.4-1.3 4.4-3.4 4.4-.8 0-1.4-.4-1.6-.9"/></svg>
           </a>
         </div>
       </div>
+
       <div class="foot">
-        <p class="foot__h">Navigation</p>
+        <p class="foot__h">Pôles</p>
         <ul>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/a-propos">À propos</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/consulting-marketing">Consulting marketing</a></li>
+          <li><a href="/marketing-digital">Marketing digital</a></li>
+          <li><a href="/solutions-digitales">Solutions digitales</a></li>
+          <li><a href="/methode">La méthode</a></li>
         </ul>
       </div>
+
       <div class="foot">
-        <p class="foot__h">Créations</p>
+        <p class="foot__h">Solutions</p>
         <ul>
+          <li><a href="/site-web">Site web</a></li>
           <li><a href="/landing-page">Landing page</a></li>
           <li><a href="/tunnel">Tunnel de vente</a></li>
-          <li><a href="/site-web">Site web</a></li>
-          <li><a href="/saas">SaaS</a></li>
+          <li><a href="/saas">SaaS sur mesure</a></li>
         </ul>
       </div>
+
+      <div class="foot">
+        <p class="foot__h">Ressources</p>
+        <ul>
+          <li><a href="/blog">Articles</a></li>
+          <li><a href="/audit">Audit marketing</a></li>
+          <li><a href="/audit-tunnel">Diagnostic tunnel</a></li>
+          <li><a href="/a-propos">À propos</a></li>
+        </ul>
+      </div>
+
       <div class="foot">
         <p class="foot__h">Contact</p>
         <ul>
-          <li><a href="mailto:info@talentdigital.net">info@talentdigital.net</a></li>
-          <li><a href="/contact">Formulaire de contact</a></li>
-          <li><a href="/audit">Audit gratuit</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={site.whatsapp} target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="/contact">Formulaire</a></li>
           <li><a href="/mentions-legales">Mentions légales</a></li>
         </ul>
       </div>
     </div>
+
     <div class="foot__bottom">
       <span>© {year} TalentDigital — Tous droits réservés</span>
+      <span>{site.signature}</span>
     </div>
   </div>
 </footer>
 
 <style>
   .site-footer{border-top:1px solid var(--line);padding-block:clamp(3rem,6vw,4.5rem) 2rem;background:var(--panel)}
-  .foot__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:2rem}
+  .foot__top{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:2rem}
   .foot__brand .brand{font-size:1.7rem}
-  .foot__tag{color:var(--muted);max-width:30ch;margin-top:1rem;font-size:.92rem}
-  .foot .foot__h{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
-  .foot ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-  .foot a{font-size:.92rem;color:var(--txt);opacity:.8;transition:.2s;width:fit-content}
+  .foot__desc{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-top:.9rem}
+  .foot__tag{color:var(--muted);max-width:32ch;margin-top:.7rem;font-size:.9rem;line-height:1.55}
+  .foot .foot__h{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+  .foot a{font-size:.88rem;color:var(--txt);opacity:.82;transition:color .2s,opacity .2s;width:fit-content}
   .foot a:hover{opacity:1;color:var(--lime)}
-  .foot__bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:3rem;padding-top:1.5rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.02em}
-  .foot__social{display:flex;gap:.7rem;margin-top:1.2rem}
-  .foot__social a{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;width:34px;height:34px;border:1px solid var(--line-2);border-radius:4px;display:grid;place-items:center;color:var(--muted);transition:.2s;opacity:1}
+  .foot__social{display:flex;gap:.6rem;margin-top:1.2rem}
+  .foot__social a{width:34px;height:34px;border:1px solid var(--line-2);border-radius:4px;display:grid;place-items:center;color:var(--muted);transition:.2s;opacity:1}
   .foot__social a:hover{border-color:var(--lime);color:var(--lime)}
+  .foot__bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:3rem;padding-top:1.5rem;font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.04em}
 
-  @media (max-width:880px){.foot__top{grid-template-columns:1fr 1fr}.foot__brand{grid-column:1/-1}}
-  @media (max-width:520px){.foot__top{grid-template-columns:1fr}}
+  @media (max-width:1080px){.foot__top{grid-template-columns:1fr 1fr 1fr}.foot__brand{grid-column:1/-1}}
+  @media (max-width:640px){.foot__top{grid-template-columns:1fr 1fr}.foot__brand{grid-column:1/-1}}
+  @media (max-width:420px){.foot__top{grid-template-columns:1fr}}
 </style>

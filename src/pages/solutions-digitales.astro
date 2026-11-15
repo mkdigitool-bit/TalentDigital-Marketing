@@ -1,0 +1,377 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../data/site';
+
+import pfAvocats from '../assets/portfolio/avocats.jpg';
+import pfDentaire from '../assets/portfolio/dentaire.jpg';
+import pfClinique from '../assets/portfolio/clinique.jpg';
+import pfEntreprise from '../assets/portfolio/entreprise.jpg';
+import pfBtp from '../assets/portfolio/btp.jpg';
+import pfArtisan from '../assets/portfolio/artisan.jpg';
+import pfImmobilier from '../assets/portfolio/immobilier.jpg';
+import pfRestaurant from '../assets/portfolio/restaurant.jpg';
+import pfFleuriste from '../assets/portfolio/fleuriste.jpg';
+import pfBeaute from '../assets/portfolio/beaute.jpg';
+import pfPaysagiste from '../assets/portfolio/paysagiste.jpg';
+import pfDecoration from '../assets/portfolio/decoration.jpg';
+import pfEvenementiel from '../assets/portfolio/evenementiel.jpg';
+
+const gallery = [
+  { img: pfAvocats, label: "Cabinets d'avocats" },
+  { img: pfDentaire, label: 'Cabinets dentaires' },
+  { img: pfClinique, label: 'Cliniques et santé' },
+  { img: pfEntreprise, label: 'Entreprises de services' },
+  { img: pfBtp, label: 'BTP et construction' },
+  { img: pfArtisan, label: 'Artisans' },
+  { img: pfImmobilier, label: 'Immobilier' },
+  { img: pfRestaurant, label: 'Restauration' },
+  { img: pfFleuriste, label: 'Fleuristes' },
+  { img: pfBeaute, label: 'Beauté et bien-être' },
+  { img: pfPaysagiste, label: 'Paysagistes' },
+  { img: pfDecoration, label: 'Décoration' },
+  { img: pfEvenementiel, label: 'Événementiel' },
+];
+
+const services = [
+  {
+    no: '01',
+    name: 'Sites web et e-commerce',
+    href: '/site-web',
+    promise: 'Un site qui explique et qui convertit.',
+    desc: 'Vitrine, catalogue ou boutique en ligne. Structure de l’information, performance, SEO technique et prise en main documentée.',
+    items: ['Architecture des pages', 'Design et intégration', 'SEO technique et données structurées', 'Formation et documentation'],
+    profile: 'Entreprise qui a besoin d’une présence sérieuse et d’un premier point de contact crédible.',
+  },
+  {
+    no: '02',
+    name: 'Landing pages et pages de vente',
+    href: '/landing-page',
+    promise: 'Une page, un objectif, un seul appel à l’action.',
+    desc: 'Une page conçue pour une offre précise : argumentaire, preuves, objections traitées, formulaire ou achat.',
+    items: ['Structure argumentative', 'Rédaction et hiérarchie visuelle', 'Formulaire et suivi des conversions', 'Variantes à tester'],
+    profile: 'Offre ciblée, campagne imminente, ou page actuelle qui ne convertit pas.',
+  },
+  {
+    no: '03',
+    name: 'Tunnels de vente',
+    href: '/tunnel',
+    promise: 'Un parcours qui accompagne au lieu de laisser partir.',
+    desc: 'Capture, présentation de l’offre, commande, relance par email. Chaque étape a un objectif et une mesure.',
+    items: ['Cartographie du parcours', 'Pages et séquence email', 'Order bump et suivi des étapes', 'Tableau de bord de conversion'],
+    profile: 'Produit ou service vendu en ligne, ou lancement qui doit être mesuré dès la première semaine.',
+  },
+  {
+    no: '04',
+    name: 'SaaS et outils sur mesure',
+    href: '/saas',
+    promise: 'Construire l’outil qui manque, sans construire trop.',
+    desc: 'Un périmètre fonctionnel réduit, une première version utilisable, puis des itérations décidées sur l’usage réel.',
+    items: ['Cadrage fonctionnel', 'Architecture et choix techniques', 'Développement de la première version', 'Documentation et transfert du code'],
+    profile: 'Besoin interne qu’aucun outil du marché ne couvre, ou produit numérique à lancer.',
+  },
+];
+
+const principles = [
+  {
+    t: 'Le support sert la décision, pas l’inverse',
+    d: 'Un site n’a de sens qu’après avoir défini à qui il parle et ce qu’il doit faire faire. Nous ne commençons pas par la maquette.',
+  },
+  {
+    t: 'Vous gardez la propriété',
+    d: 'Nom de domaine, hébergement, comptes, code, contenus : tout reste à votre nom. Nous remettons les accès à la livraison.',
+  },
+  {
+    t: 'Ce qui est construit est documenté',
+    d: 'Chaque livraison comprend une prise en main : où modifier quoi, comment publier, ce qu’il ne faut pas casser.',
+  },
+  {
+    t: 'La mesure est posée dès le départ',
+    d: 'Un support sans mesure ne se pilote pas. Le suivi des conversions est prévu dans le périmètre, pas vendu après.',
+  },
+];
+
+const faq = [
+  {
+    q: 'Pourquoi ne pas commander directement un site, sans audit ?',
+    a: 'Parce que la plupart des sites qui ne fonctionnent pas n’ont pas un problème de design, mais un problème de message, d’offre ou de parcours. Sur un projet déjà cadré — offre claire, cible connue, contenu prêt — nous pouvons travailler directement. Sinon, le cadrage fait partie du projet.',
+  },
+  {
+    q: 'Qui rédige les contenus ?',
+    a: 'La structure et la rédaction font partie du périmètre quand c’est nécessaire. Si vous fournissez les textes, nous les relisons pour vérifier la cohérence avec l’objectif de la page. Un site rempli de textes génériques ne convertit pas.',
+  },
+  {
+    q: 'Sur quelle technologie travaillez-vous ?',
+    a: 'Nous choisissons selon le besoin : site statique rapide, CMS si vous publiez souvent, framework applicatif pour un outil sur mesure. Le choix est justifié dans le devis, avec les conséquences en termes de coût et de maintenance.',
+  },
+  {
+    q: 'Y a-t-il une maintenance obligatoire ?',
+    a: 'Non. La maintenance est une option, pas une condition de livraison. Elle est utile si vous publiez régulièrement ou si le site traite des paiements. Sinon, un site statique bien construit demande très peu d’entretien.',
+  },
+  {
+    q: 'Combien de temps pour livrer ?',
+    a: 'Le délai dépend du périmètre, du nombre de pages et de la disponibilité des contenus. Il est inscrit au devis, et il court à partir du moment où les éléments nécessaires sont réunis — pas avant.',
+  },
+  {
+    q: 'Les visuels présentés plus bas sont-ils des sites clients ?',
+    a: 'Non. Ce sont des exemples de direction artistique réalisés par TalentDigital, à titre de démonstration de style. Ils ne représentent pas des références clients et aucun résultat ne leur est associé.',
+  },
+];
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Solutions digitales',
+  serviceType: 'Création de supports digitaux',
+  description:
+    'Sites web et e-commerce, landing pages, tunnels de vente, SaaS et outils sur mesure : des supports conçus pour convertir, mesurables et documentés.',
+  url: `${site.domain}/solutions-digitales`,
+  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  areaServed: site.areas,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Supports digitaux',
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.name, description: s.desc, url: new URL(s.href, site.domain).toString() },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Solutions digitales — sites, landing pages, tunnels, SaaS"
+  description="Sites web, e-commerce, landing pages, tunnels de vente et outils sur mesure. Des supports construits dans un périmètre écrit, mesurables, documentés et dont vous gardez la propriété."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Solutions digitales' }]} />
+    <div class="split page-hero__grid">
+      <div>
+        <span class="eyebrow">Pôle 03 — Solutions digitales</span>
+        <h1 class="display-1 reveal" style="margin-top:1rem">Construire des supports qui <em>travaillent</em>.</h1>
+        <p class="lede reveal" style="margin-top:1.5rem;max-width:52ch">
+          Sites, pages de vente, tunnels, outils sur mesure : chaque support est construit dans un
+          périmètre écrit, avec une mesure posée dès le départ. Ce qui est livré vous appartient et
+          est documenté.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="/contact" class="btn">Discutons de votre projet
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/methode" class="btn btn--ghost">Voir la méthode</a>
+        </div>
+        <p class="note" style="margin-top:1.2rem">Périmètre écrit avant devis · Accès et propriété transférés · Prise en main incluse</p>
+      </div>
+
+      <aside class="side-note reveal">
+        <p class="side-note__h">Ce qui est toujours inclus</p>
+        <ul class="side-note__list">
+          <li>Périmètre et livrables écrits</li>
+          <li>Ajustements prévus au contrat</li>
+          <li>Mesure des conversions</li>
+          <li>Prise en main documentée</li>
+          <li>Transfert des accès et du code</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap" id="services">
+    <div class="section__head reveal">
+      <p class="section-label">Les supports</p>
+      <h2>Quatre familles, une même <em>logique</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Le support vient après la stratégie. Chaque page ci-dessous détaille le périmètre, les livrables
+        et ce que le support n’inclut pas.
+      </p>
+    </div>
+    <div class="svc-grid">
+      {services.map((s) => (
+        <article class="svc-card reveal">
+          <div class="svc-card__head">
+            <span class="svc-card__no">{s.no}</span>
+            <h3>{s.name}</h3>
+          </div>
+          <p class="svc-card__promise">{s.promise}</p>
+          <p class="svc-card__desc">{s.desc}</p>
+          <ul>
+            {s.items.map((item) => <li>{item}</li>)}
+          </ul>
+          <p class="svc-card__profile"><b>Pour :</b> {s.profile}</p>
+          <a class="svc-card__link" href={s.href}>Voir le détail
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Principes</p>
+      <h2>Quatre règles qui tiennent sur tous les <em>projets</em>.</h2>
+    </div>
+    <div class="princ-grid">
+      {principles.map((p, i) => (
+        <article class="princ reveal">
+          <span class="princ__no">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{p.t}</h3>
+          <p>{p.d}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap" id="direction-artistique">
+    <div class="section__head reveal">
+      <p class="section-label">Direction artistique</p>
+      <h2>Exemples de <em>style</em>, pas références clients.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Les visuels ci-dessous sont des exemples de direction artistique réalisés par TalentDigital,
+        présentés pour montrer une approche graphique par secteur. Ils ne constituent pas des
+        références clients et aucun résultat ne leur est associé.
+      </p>
+    </div>
+    <div class="gallery reveal">
+      {gallery.map((item) => (
+        <figure class="gallery__item">
+          <Image
+            src={item.img}
+            alt={`Exemple de direction artistique — ${item.label}`}
+            widths={[220, 440]}
+            sizes="(max-width: 720px) 45vw, 220px"
+            loading="lazy"
+            format="webp"
+          />
+          <figcaption>{item.label}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="note reveal" style="margin-top:1.4rem">
+      <b>Mention :</b> maquettes de démonstration. Aucun témoignage, chiffre de trafic ou résultat commercial
+      n’y est rattaché.
+    </p>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Périmètre</p>
+        <h2>Ce qu’un projet inclut, et ce qu’il <em>n’inclut pas</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Un devis d’exécution couvre un périmètre. Dire ce qui reste dehors évite les déceptions
+          et les rallonges facturées en cours de route.
+        </p>
+      </div>
+      <div class="scope-mini">
+        <div class="scope-mini__col">
+          <p class="scope-mini__h scope-mini__h--in">Inclus</p>
+          <ul>
+            <li>Cadrage, arborescence et objectif de chaque page</li>
+            <li>Design, intégration, tests multi-écrans</li>
+            <li>Suivi des conversions et données structurées</li>
+            <li>Formation et documentation de prise en main</li>
+            <li>Transfert des accès, du code et des contenus</li>
+          </ul>
+        </div>
+        <div class="scope-mini__col">
+          <p class="scope-mini__h scope-mini__h--out">Non inclus par défaut</p>
+          <ul>
+            <li>Budget publicitaire et frais de régie</li>
+            <li>Abonnements hébergement, CMS, outils, licences</li>
+            <li>Production photo, vidéo ou illustration originale</li>
+            <li>Rédaction de contenus au-delà du périmètre écrit</li>
+            <li>Maintenance et évolutions après la livraison</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="faq-split">
+      <div class="reveal">
+        <p class="section-label">Questions</p>
+        <h2>Les questions techniques qu’on nous pose <em>souvent</em>.</h2>
+      </div>
+      <Faq items={faq} idPrefix="sd-faq" />
+    </div>
+  </section>
+
+  <Cta
+    title="Un support à construire ? Commençons par le <em>cadrer</em>."
+    text="Décrivez votre projet en quelques lignes. Nous revenons vers vous avec les questions à trancher avant de chiffrer — pas un devis au hasard."
+    primaryLabel="Discutons de votre projet"
+    primaryHref="/contact"
+    secondaryLabel="Voir la méthode"
+    secondaryHref="/methode"
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</BaseLayout>
+
+<style>
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(3rem,7vw,5rem);border-bottom:1px solid var(--line)}
+  .page-hero__grid{margin-top:1.6rem}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+
+  .side-note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
+  .side-note__h{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .side-note__list{list-style:none;margin-top:1.1rem;display:flex;flex-direction:column;gap:.65rem}
+  .side-note__list li{font-size:.9rem;color:var(--txt);line-height:1.5;padding-left:1.2rem;position:relative}
+  .side-note__list li::before{content:"+";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+  .svc-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(1.4rem,2.4vw,1.9rem);display:flex;flex-direction:column;transition:border-color .3s,transform .3s var(--ease)}
+  .svc-card:hover{border-color:var(--lime);transform:translateY(-3px)}
+  .svc-card__head{display:flex;align-items:baseline;gap:.7rem}
+  .svc-card__no{font-family:var(--mono);font-size:.68rem;color:var(--lime)}
+  .svc-card h3{font-size:1.25rem;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+  .svc-card__promise{color:var(--lime);font-size:.93rem;font-weight:600;margin-top:.5rem;line-height:1.4}
+  .svc-card__desc{font-size:.9rem;color:var(--muted);line-height:1.6;margin-top:.85rem}
+  .svc-card ul{list-style:none;margin-top:1.1rem;border-top:1px solid var(--line)}
+  .svc-card li{font-size:.85rem;color:var(--txt);padding:.5rem 0 .5rem 1.1rem;border-bottom:1px solid var(--line);position:relative}
+  .svc-card li::before{content:"—";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+  .svc-card__profile{margin-top:1rem;font-size:.82rem;color:var(--muted);line-height:1.5}
+  .svc-card__profile b{color:var(--txt);font-weight:600}
+  .svc-card__link{margin-top:1.2rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--txt);display:inline-flex;align-items:center;gap:.5rem}
+  .svc-card:hover .svc-card__link{color:var(--lime)}
+
+  .princ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .princ{border-top:1px solid var(--line-2);padding-top:1.1rem}
+  .princ__no{font-family:var(--mono);font-size:.7rem;color:var(--lime);letter-spacing:.1em}
+  .princ h3{font-size:1rem;font-weight:800;letter-spacing:-.01em;margin-top:.6rem;line-height:1.35}
+  .princ p{font-size:.86rem;color:var(--muted);line-height:1.6;margin-top:.5rem}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-top:2rem}
+  .gallery__item{margin:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel)}
+  .gallery__item img{width:100%;height:auto;display:block;transition:transform .45s var(--ease)}
+  .gallery__item:hover img{transform:scale(1.04)}
+  .gallery__item figcaption{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:var(--muted);padding:.6rem .7rem;border-top:1px solid var(--line)}
+
+  .scope-mini{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .scope-mini__col{border:1px solid var(--line);border-radius:8px;padding:1.3rem;background:var(--panel)}
+  .scope-mini__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem}
+  .scope-mini__h--in{color:var(--lime)}
+  .scope-mini__h--out{color:var(--danger)}
+  .scope-mini ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+  .scope-mini li{font-size:.84rem;color:var(--muted);line-height:1.5;padding-left:1.1rem;position:relative}
+  .scope-mini li::before{position:absolute;left:0;font-family:var(--mono);font-weight:700}
+  .scope-mini__col:first-child li::before{content:"+";color:var(--lime)}
+  .scope-mini__col:last-child li::before{content:"×";color:var(--danger)}
+
+  .faq-split{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+
+  @media (max-width:980px){
+    .svc-grid{grid-template-columns:1fr}
+    .princ-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:960px){.faq-split{grid-template-columns:1fr}}
+  @media (max-width:560px){
+    .princ-grid{grid-template-columns:1fr}
+    .scope-mini{grid-template-columns:1fr}
+  }
+</style>

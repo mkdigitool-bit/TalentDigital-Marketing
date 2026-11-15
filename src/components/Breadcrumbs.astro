@@ -1,0 +1,39 @@
+---
+import { site } from '../data/site';
+
+interface Item {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+
+const trail: Item[] = [{ label: 'Accueil', href: '/' }, ...items];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: trail.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, site.domain).toString() } : {}),
+  })),
+};
+---
+
+<nav class="breadcrumbs" aria-label="Fil d'Ariane">
+  {trail.map((item, i) => (
+    <>
+      {i > 0 && <span class="breadcrumbs__sep" aria-hidden="true">/</span>}
+      {item.href && i < trail.length - 1
+        ? <a href={item.href}>{item.label}</a>
+        : <span aria-current="page">{item.label}</span>}
+    </>
+  ))}
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

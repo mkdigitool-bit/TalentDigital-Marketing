@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { site, method, deliverables, scopes } from '../data/site';
+
+const phases = [
+  {
+    no: '01',
+    name: 'Diagnostiquer',
+    title: 'Comprendre avant d’agir',
+    lead:
+      'On commence par regarder ce qui existe réellement : les canaux actifs, les chiffres disponibles, le parcours d’un visiteur jusqu’à la demande, et ce que fait la concurrence.',
+    steps: [
+      'Entretien de cadrage : objectif, contraintes, historique des tentatives',
+      'Accès en lecture aux données existantes (analytics, publicité, CRM si disponible)',
+      'Revue du parcours client de bout en bout, sur mobile et sur ordinateur',
+      'Lecture concurrentielle : offres, discours, preuves mises en avant',
+    ],
+    output: ['Audit écrit', 'Constats sourcés', 'Liste des causes probables'],
+    limit:
+      'Nous ne concluons pas sur ce que les données ne permettent pas d’affirmer. Quand une donnée manque, c’est écrit dans le document.',
+  },
+  {
+    no: '02',
+    name: 'Décider',
+    title: 'Choisir avant de dépenser',
+    lead:
+      'Un diagnostic sans décision ne sert à rien. Cette étape transforme les constats en plan : quel chantier d’abord, pour quel budget, avec quel indicateur de succès.',
+    steps: [
+      'Classement des chantiers par impact attendu et effort nécessaire',
+      'Choix des canaux, avec justification et rôle de chacun',
+      'Chiffrage indicatif et calendrier réaliste',
+      'Définition de l’indicateur de succès et du critère d’arrêt',
+    ],
+    output: ['Plan d’action priorisé', 'Budget par chantier', 'Indicateurs de décision'],
+    limit:
+      'Nous ne promettons pas de chiffre de résultat. Nous nous engageons sur le périmètre, le calendrier de production et la qualité du livrable.',
+  },
+  {
+    no: '03',
+    name: 'Déployer',
+    title: 'Exécuter sans zone grise',
+    lead:
+      'Ce qui doit être construit l’est dans un périmètre écrit. Pas de rallonge décidée en cours de route sans accord, pas de livrable flou.',
+    steps: [
+      'Périmètre détaillé : pages, fonctionnalités, contenus, exclusions',
+      'Production par étapes, avec points de validation',
+      'Tests multi-écrans, vérification des conversions et des données structurées',
+      'Formation et documentation de prise en main',
+    ],
+    output: ['Supports livrés', 'Documentation', 'Accès et propriété transférés'],
+    limit:
+      'Le budget publicitaire, les abonnements et les productions photo ou vidéo originales ne sont pas inclus dans un devis d’exécution sauf mention explicite.',
+  },
+  {
+    no: '04',
+    name: 'Mesurer',
+    title: 'Décider sur des données, pas des impressions',
+    lead:
+      'Un dispositif sans mesure ne se pilote pas. On choisit peu d’indicateurs, on les lit régulièrement, et on décide quoi arrêter, quoi renforcer.',
+    steps: [
+      'Mise en place du suivi : GA4, Search Console, objectifs de conversion',
+      'Tableau de bord de quatre à six indicateurs utiles',
+      'Revue mensuelle ou trimestrielle selon le canal',
+      'Décisions consignées : continuer, ajuster, arrêter',
+    ],
+    output: ['Tableau de bord', 'Revue de performance', 'Décisions consignées'],
+    limit:
+      'La mesure dépend de la qualité des données disponibles. Un suivi mal configuré au départ se corrige, mais l’historique manquant ne se reconstitue pas.',
+  },
+];
+
+const timeline = [
+  { d: 'Semaine 1', t: 'Cadrage et accès', p: 'Entretien, collecte des accès, périmètre confirmé.' },
+  { d: 'Semaines 1-3', t: 'Diagnostic', p: 'Analyse des canaux, du parcours et de la concurrence. Rédaction du document.' },
+  { d: 'Semaine 3-4', t: 'Restitution', p: 'Présentation du document, discussion, ajustements, décision.' },
+  { d: 'Ensuite', t: 'Exécution ou autonomie', p: 'Devis séparé si exécution, ou transfert du plan pour une réalisation interne.' },
+];
+
+const faq = [
+  {
+    q: 'La méthode est-elle la même pour un audit seul et pour un projet complet ?',
+    a: 'Le cadre est le même, la profondeur change. Un audit seul s’arrête à l’étape 2 avec un document et un plan. Un projet d’exécution va jusqu’aux étapes 3 et 4. Une mission de conseil continu peut couvrir les quatre étapes dans la durée.',
+  },
+  {
+    q: 'Que se passe-t-il si je ne suis pas d’accord avec vos conclusions ?',
+    a: 'Elles sont discutées en restitution. Chaque constat est relié à une preuve : une donnée, une capture, un entretien, un document. Si une conclusion ne tient pas, elle est corrigée ou retirée. Le document final vous appartient.',
+  },
+  {
+    q: 'Puis-je arrêter après l’audit ?',
+    a: 'Oui, sans justification et sans frais. L’audit est une mission complète en soi. Le plan d’action est écrit pour être exécuté en interne si vous le souhaitez.',
+  },
+  {
+    q: 'Comment se passe le suivi pendant un projet ?',
+    a: 'Un point de suivi à fréquence fixée dès le cadrage, un canal écrit pour les décisions, et un compte rendu à chaque étape. Pas de réunion sans ordre du jour, pas de décision prise à l’oral sans trace.',
+  },
+  {
+    q: 'Qui travaille sur le dossier ?',
+    a: 'La personne qui vous conseille est celle qui exécute. Sur certains projets techniques, un partenaire ponctuel peut intervenir, toujours sous notre responsabilité et avec votre accord écrit.',
+  },
+  {
+    q: 'Combien de temps faut-il prévoir ?',
+    a: 'Un audit standard prend généralement deux à trois semaines à partir du moment où les accès et les documents sont disponibles. Un projet d’exécution dépend du périmètre et est chiffré au devis. Aucun délai n’est annoncé avant d’avoir vu le périmètre.',
+  },
+];
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'La méthode TalentDigital en quatre étapes',
+  description:
+    'Diagnostiquer, décider, déployer, mesurer : la méthode de conseil marketing et d’exécution utilisée par TalentDigital.',
+  url: `${site.domain}/methode`,
+  step: phases.map((p, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: p.name,
+    text: p.lead,
+  })),
+};
+---
+
+<BaseLayout
+  title="La méthode — diagnostiquer, décider, déployer, mesurer"
+  description="Quatre étapes, quatre livrables nommés. La méthode TalentDigital pour décider où investir en marketing, exécuter dans un périmètre écrit et mesurer ce qui fonctionne."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Méthode' }]} />
+    <div class="split page-hero__grid">
+      <div>
+        <span class="eyebrow">La méthode</span>
+        <h1 class="display-1 reveal" style="margin-top:1rem">Quatre étapes, aucune <em>zone d’ombre</em>.</h1>
+        <p class="lede reveal" style="margin-top:1.5rem;max-width:52ch">
+          La même méthode s’applique à un audit seul, à une mission de conseil ou à un projet
+          d’exécution. Chaque étape produit un livrable nommé, que vous gardez — même si nous
+          ne travaillons plus ensemble ensuite.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="/contact" class="btn">Discutons de votre projet
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/consulting-marketing" class="btn btn--ghost">Voir le pôle conseil</a>
+        </div>
+      </div>
+
+      <aside class="side-note reveal">
+        <p class="side-note__h">Le principe</p>
+        <p>
+          Un diagnostic coûte toujours moins cher qu’un projet lancé dans la mauvaise direction.
+          C’est pourquoi l’étape 1 précède systématiquement une proposition d’exécution.
+        </p>
+        <p class="side-note__quote">« Pas de devis sur une intuition. »</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Les quatre étapes</p>
+      <h2>Ce qui se passe, à quel moment, et ce que vous <em>recevez</em>.</h2>
+    </div>
+
+    <div class="phases">
+      {phases.map((p) => (
+        <article class="phase reveal">
+          <div class="phase__left">
+            <span class="phase__no">{p.no}</span>
+            <span class="phase__name">{p.name}</span>
+          </div>
+          <div class="phase__body">
+            <h3>{p.title}</h3>
+            <p class="phase__lead">{p.lead}</p>
+            <div class="phase__cols">
+              <div>
+                <p class="phase__h">Ce qu’on fait</p>
+                <ul class="phase__list">
+                  {p.steps.map((s) => <li>{s}</li>)}
+                </ul>
+              </div>
+              <div>
+                <p class="phase__h">Ce que vous recevez</p>
+                <ul class="phase__out">
+                  {p.output.map((o) => <li>{o}</li>)}
+                </ul>
+                <p class="phase__limit"><b>Limite assumée</b>{p.limit}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Calendrier</p>
+      <h2>Un déroulé type pour un <em>audit</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Le calendrier réel dépend du périmètre et de la disponibilité des informations.
+        Celui-ci correspond à un audit standard : un site, deux à trois canaux actifs, données accessibles.
+      </p>
+    </div>
+    <div class="timeline reveal">
+      {timeline.map((t) => (
+        <div class="timeline__row">
+          <span class="timeline__d">{t.d}</span>
+          <span class="timeline__t">{t.t}</span>
+          <span class="timeline__p">{t.p}</span>
+        </div>
+      ))}
+    </div>
+    <p class="note reveal" style="margin-top:1.2rem">
+      Un projet d’exécution suit un calendrier distinct, inscrit au devis et décompté à partir de la
+      réunion des éléments nécessaires.
+    </p>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Livrables</p>
+      <h2>Ce que vous gardez, quel que soit le <em>format</em>.</h2>
+    </div>
+    <div class="deliver-grid reveal">
+      {deliverables.map((item, i) => (
+        <article class="deliver-item">
+          <p class="deliver-item__no">{String(i + 1).padStart(2, '0')} — {item.format}</p>
+          <h4>{item.name}</h4>
+          <p>{item.contains}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Périmètre</p>
+      <h2>Les engagements, et les <em>refus</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Une méthode ne vaut que si elle dit aussi ce qu’elle ne fait pas. Voici la limite, écrite noir sur blanc.
+      </p>
+    </div>
+    <div class="scope-grid">
+      <div class="scope-col scope-col--yes reveal">
+        <h3>Nos engagements</h3>
+        <ul class="scope-list">
+          {scopes.yes.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="scope-col scope-col--no reveal">
+        <h3>Ce que nous refusons</h3>
+        <ul class="scope-list">
+          {scopes.no.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="faq-split">
+      <div class="reveal">
+        <p class="section-label">Questions</p>
+        <h2>Comment ça se passe, <em>concrètement</em>.</h2>
+      </div>
+      <Faq items={faq} idPrefix="methode-faq" />
+    </div>
+  </section>
+
+  <Cta
+    title="La méthode s’applique dès le premier <em>échange</em>."
+    text="Trente minutes suffisent pour identifier la question à traiter en priorité. Vous repartez avec une première lecture, même sans travailler avec nous."
+    primaryLabel="Discutons de votre projet"
+    primaryHref="/contact"
+    secondaryLabel="Demander un audit"
+    secondaryHref="/audit"
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</BaseLayout>
+
+<style>
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(3rem,7vw,5rem);border-bottom:1px solid var(--line)}
+  .page-hero__grid{margin-top:1.6rem}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+
+  .side-note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
+  .side-note__h{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .side-note p{font-size:.92rem;color:var(--muted);line-height:1.6;margin-top:.9rem}
+  .side-note__quote{margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line);color:var(--txt) !important;font-size:.95rem;font-style:italic}
+
+  .phases{border-top:1px solid var(--line-2)}
+  .phase{display:grid;grid-template-columns:150px 1fr;gap:clamp(1.5rem,4vw,3rem);padding:clamp(1.8rem,3.5vw,2.6rem) 0;border-bottom:1px solid var(--line)}
+  .phase__left{display:flex;flex-direction:column;gap:.3rem}
+  .phase__no{font-family:var(--mono);font-size:.74rem;color:var(--lime);letter-spacing:.1em}
+  .phase__name{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+  .phase h3{font-size:clamp(1.2rem,2vw,1.5rem);font-weight:800;letter-spacing:-.02em}
+  .phase__lead{font-size:.98rem;color:var(--muted);line-height:1.65;margin-top:.7rem;max-width:62ch}
+  .phase__cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.2rem,3vw,2.4rem);margin-top:1.5rem}
+  .phase__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+  .phase__list,.phase__out{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+  .phase__list li,.phase__out li{font-size:.88rem;line-height:1.55;color:var(--txt);padding-left:1.2rem;position:relative}
+  .phase__list li::before{content:"—";position:absolute;left:0;color:var(--line-2);font-family:var(--mono)}
+  .phase__out li::before{content:"+";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+  .phase__limit{margin-top:1.1rem;padding-top:.9rem;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted);line-height:1.55}
+  .phase__limit b{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--danger);margin-bottom:.35rem;font-weight:500}
+
+  .timeline{display:flex;flex-direction:column;border-top:1px solid var(--line-2)}
+  .timeline__row{display:grid;grid-template-columns:130px 180px 1fr;gap:1.2rem;padding:1rem 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .timeline__d{font-family:var(--mono);font-size:.72rem;color:var(--lime);letter-spacing:.04em}
+  .timeline__t{font-size:.95rem;font-weight:700;color:var(--txt)}
+  .timeline__p{font-size:.86rem;color:var(--muted);line-height:1.55}
+
+  .faq-split{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+
+  @media (max-width:960px){
+    .faq-split{grid-template-columns:1fr}
+    .phase{grid-template-columns:1fr}
+    .phase__left{flex-direction:row;align-items:baseline;gap:.8rem}
+  }
+  @media (max-width:700px){
+    .phase__cols{grid-template-columns:1fr}
+    .timeline__row{grid-template-columns:1fr;gap:.3rem}
+  }
+</style>

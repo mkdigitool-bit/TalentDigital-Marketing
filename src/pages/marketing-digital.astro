@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { site, method } from '../data/site';
+
+const channels = [
+  {
+    no: '01',
+    name: 'Référencement naturel (SEO)',
+    for: 'Capter une demande qui existe déjà',
+    desc: 'Travail technique, éditorial et sémantique pour apparaître sur les recherches de vos clients, pas sur celles de vos concurrents.',
+    items: [
+      'Audit technique et corrections prioritaires',
+      'Recherche de mots-clés par intention',
+      'Architecture de contenu et maillage interne',
+      'Suivi des positions et des requêtes qui convertissent',
+    ],
+    note: 'Délai de résultat : plusieurs mois. Aucune position Google n’est garantie.',
+  },
+  {
+    no: '02',
+    name: 'Publicité digitale (Meta, Google)',
+    for: 'Obtenir des résultats rapidement, à budget maîtrisé',
+    desc: 'Des campagnes structurées autour d’une offre claire, avec un suivi du coût par lead ou par vente, pas seulement des impressions.',
+    items: [
+      'Structure de compte et de campagnes',
+      'Ciblage et audiences (froid, retargeting)',
+      'Créations publicitaires et tests',
+      'Suivi du coût par acquisition et arbitrages',
+    ],
+    note: 'Le budget média est versé directement à la régie. Nous ne prenons pas de pourcentage dessus.',
+  },
+  {
+    no: '03',
+    name: 'Stratégie de contenu',
+    for: 'Construire une autorité vérifiable',
+    desc: 'Un plan éditorial relié aux questions réelles de vos clients, avec un format de production que vous pouvez tenir dans le temps.',
+    items: [
+      'Piliers de contenu et angles',
+      'Calendrier de production réaliste',
+      'Formats : articles, pages, vidéo, réseaux',
+      'Réutilisation et distribution',
+    ],
+  },
+  {
+    no: '04',
+    name: 'Email marketing et génération de leads',
+    for: 'Arrêter de dépendre uniquement du trafic',
+    desc: 'Capturer, qualifier et relancer : une liste de contacts qui vous appartient reste le canal le plus rentable à long terme.',
+    items: [
+      'Offre de capture et formulaire',
+      'Séquences de bienvenue et de relance',
+      'Segmentation et personnalisation simple',
+      'Conformité et gestion des désinscriptions',
+    ],
+  },
+  {
+    no: '05',
+    name: 'Optimisation des conversions (CRO)',
+    for: 'Faire mieux avec le trafic existant',
+    desc: 'Avant d’acheter plus de trafic, vérifier que le trafic actuel est accueilli par une page qui sait quoi faire de lui.',
+    items: [
+      'Analyse du parcours et des points de fuite',
+      'Réécriture des messages et des appels à l’action',
+      'Tests sur les éléments à fort impact',
+      'Mesure des variations et décision',
+    ],
+  },
+  {
+    no: '06',
+    name: 'Pilotage et tableau de bord',
+    for: 'Savoir ce qui rapporte',
+    desc: 'Quatre à six indicateurs utiles, un tableau de bord lisible, une revue régulière pour décider quoi arrêter et quoi renforcer.',
+    items: [
+      'Choix des indicateurs de décision',
+      'Mise en place du suivi (GA4, Search Console)',
+      'Tableau de bord Looker Studio ou équivalent',
+      'Revue mensuelle ou trimestrielle',
+    ],
+  },
+];
+
+const framework = [
+  {
+    q: 'Quel canal d’abord ?',
+    a: 'Celui qui correspond à la maturité de votre marché et à votre capacité de production. Un marché où la demande existe déjà se travaille en SEO et en publicité search. Un marché à créer se travaille en contenu et en réseaux.',
+  },
+  {
+    q: 'Quel budget minimum ?',
+    a: 'Un budget publicitaire inférieur à ce que coûte l’acquisition d’un client ne permet pas d’apprendre assez vite. Nous le disons avant de lancer une campagne, pas après trois mois.',
+  },
+  {
+    q: 'Quel indicateur ?',
+    a: 'Un seul indicateur principal par canal, choisi avant le lancement, avec un seuil à partir duquel on continue ou on arrête.',
+  },
+  {
+    q: 'Quel rythme de décision ?',
+    a: 'Une revue mensuelle pour les campagnes, trimestrielle pour le SEO et le contenu. Décider trop souvent coûte aussi cher que ne pas décider.',
+  },
+];
+
+const faq = [
+  {
+    q: 'Faut-il passer par un audit avant de lancer une campagne ?',
+    a: 'Oui pour un premier investissement significatif. Une campagne lancée sans savoir si l’offre, la page et le suivi sont prêts consomme du budget pour produire une information que l’audit aurait donnée moins cher.',
+  },
+  {
+    q: 'Gérez-vous les comptes publicitaires à notre place ?',
+    a: 'Nous pouvons les gérer, mais les comptes restent à votre nom et vous gardez les accès administrateur. À la fin de la mission, tout est transféré : comptes, audiences, historiques, documents.',
+  },
+  {
+    q: 'Prenez-vous un pourcentage du budget média ?',
+    a: 'Non. Les honoraires sont un forfait lié au périmètre de travail, pas un pourcentage de votre dépense. Ce montage évite de vous pousser à dépenser plus pour augmenter nos honoraires.',
+  },
+  {
+    q: 'Combien de temps avant de voir des résultats ?',
+    a: 'La publicité produit des signaux en quelques semaines, le SEO en plusieurs mois, l’email en plusieurs cycles. Nous donnons un ordre de grandeur par canal dans le plan d’action, et nous ne promettons pas de délai qui ne dépend pas de nous.',
+  },
+  {
+    q: 'Travaillez-vous avec des budgets modestes ?',
+    a: 'Oui, à condition que le budget permette d’apprendre quelque chose. Si ce n’est pas le cas, nous préférons le dire et proposer une étape préalable moins coûteuse plutôt que de lancer un dispositif qui ne pourra pas être mesuré.',
+  },
+  {
+    q: 'Que se passe-t-il si un canal ne fonctionne pas ?',
+    a: 'Le plan d’action prévoit un critère d’arrêt pour chaque chantier. Si le seuil n’est pas atteint, le canal est arrêté ou revu — ce n’est pas un échec, c’est une décision prise sur des données.',
+  },
+];
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Marketing digital',
+  serviceType: 'Acquisition et marketing digital',
+  description:
+    'Référencement naturel, publicité digitale, stratégie de contenu, email marketing, génération de leads, optimisation des conversions et pilotage de la performance.',
+  url: `${site.domain}/marketing-digital`,
+  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  areaServed: site.areas,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Canaux et prestations',
+    itemListElement: channels.map((c) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: c.name, description: c.desc },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Marketing digital — SEO, publicité, contenu, email, conversion"
+  description="Choisir les bons canaux puis les piloter : référencement naturel, publicité Meta et Google, contenu, email marketing, CRO et tableau de bord. TalentDigital mesure ce qui rapporte."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Marketing digital' }]} />
+    <div class="split page-hero__grid">
+      <div>
+        <span class="eyebrow">Pôle 02 — Marketing digital</span>
+        <h1 class="display-1 reveal" style="margin-top:1rem">Choisir les bons canaux, puis les <em>piloter</em>.</h1>
+        <p class="lede reveal" style="margin-top:1.5rem;max-width:52ch">
+          Tous les canaux ne se valent pas pour votre marché. Nous sélectionnons ceux qui correspondent
+          à votre demande réelle et à votre capacité de production — puis nous les suivons sur des
+          indicateurs de résultat.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="/audit" class="btn">Demander un audit
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/contact" class="btn btn--ghost">Discutons de votre projet</a>
+        </div>
+        <p class="note" style="margin-top:1.2rem">Aucune position Google garantie · Aucun pourcentage sur votre budget média</p>
+      </div>
+
+      <aside class="side-note reveal">
+        <p class="side-note__h">La règle de base</p>
+        <p>Avant d’acheter plus de trafic, il faut savoir si le trafic actuel est converti. Un problème de conversion se règle rarement en augmentant le budget.</p>
+        <p>Chaque canal a un rôle : capter une demande existante, créer une demande, ou récupérer un visiteur déjà venu.</p>
+        <a href="/consulting-marketing" class="side-note__link">Voir le pôle conseil →</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Les canaux</p>
+      <h2>Six leviers, chacun avec un <em>rôle</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        On ne lance pas tous les canaux à la fois. On choisit ceux qui servent l’objectif du trimestre,
+        et on les arrête quand ils ne le servent plus.
+      </p>
+    </div>
+    <div class="chan-grid">
+      {channels.map((c) => (
+        <article class="chan-card reveal">
+          <div class="chan-card__head">
+            <span class="chan-card__no">{c.no}</span>
+            <h3>{c.name}</h3>
+          </div>
+          <p class="chan-card__for">{c.for}</p>
+          <p class="chan-card__desc">{c.desc}</p>
+          <ul>
+            {c.items.map((item) => <li>{item}</li>)}
+          </ul>
+          {c.note && <p class="chan-card__note">{c.note}</p>}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Cadre de décision</p>
+        <h2>Quatre questions avant de lancer <em>quoi que ce soit</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Ce cadre s’applique à chaque canal. Il évite les deux erreurs les plus fréquentes :
+          lancer trop de choses à la fois, et ne rien mesurer.
+        </p>
+      </div>
+      <div class="qstack">
+        {framework.map((f, i) => (
+          <div class="qstack__item reveal">
+            <span class="qstack__no">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{f.q}</h3>
+              <p>{f.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Déroulé</p>
+      <h2>Le même cadre, appliqué à un <em>canal</em>.</h2>
+    </div>
+    <div class="method-grid reveal">
+      {method.map((step) => (
+        <article class="mstep">
+          <span class="mstep__no">{step.no}</span>
+          <span class="mstep__name">{step.name}</span>
+          <h3>{step.title}</h3>
+          <p>{step.desc}</p>
+          <p class="mstep__out"><b>Livrable</b>{step.deliverable}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Mesure</p>
+        <h2>Un tableau de bord qui sert à <em>décider</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Un rapport de trente pages ne se lit pas. Quatre à six indicateurs, une lecture mensuelle,
+          et une décision par réunion : c’est ce qui fait avancer un dispositif.
+        </p>
+        <p class="note" style="margin-top:1.4rem">
+          Mise en place possible avec <b>GA4</b>, <b>Search Console</b>, <b>Looker Studio</b> ou l’outil que vous utilisez déjà.
+        </p>
+      </div>
+      <div class="kpi-card reveal">
+        <p class="kpi-card__h">Ce qui est suivi, au minimum</p>
+        <ul>
+          <li><b>Demandes qualifiées</b> — pas les clics, pas les impressions.</li>
+          <li><b>Coût par demande</b>, par canal, quand la donnée existe.</li>
+          <li><b>Taux de conversion</b> de la page d’arrivée principale.</li>
+          <li><b>Requêtes et pages</b> qui amènent du trafic utile.</li>
+          <li><b>Ce qui a été arrêté</b> et pourquoi.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="faq-split">
+      <div class="reveal">
+        <p class="section-label">Questions</p>
+        <h2>Les limites, dites <em>à l’avance</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Vous ne trouverez ici ni promesse de position Google, ni chiffre de résultat garanti.
+          Vous trouverez un cadre, des livrables et des critères d’arrêt.
+        </p>
+      </div>
+      <Faq items={faq} idPrefix="md-faq" />
+    </div>
+  </section>
+
+  <Cta
+    title="Avant de dépenser plus, vérifions ce qui <em>fonctionne</em> déjà."
+    text="Un audit des canaux actuels permet de savoir ce qui produit des demandes, ce qui coûte sans servir, et où se trouve le prochain gain."
+    primaryLabel="Demander un audit"
+    primaryHref="/audit"
+    secondaryLabel="Voir le pôle conseil"
+    secondaryHref="/consulting-marketing"
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</BaseLayout>
+
+<style>
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(3rem,7vw,5rem);border-bottom:1px solid var(--line)}
+  .page-hero__grid{margin-top:1.6rem}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+
+  .side-note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
+  .side-note__h{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .side-note p{font-size:.92rem;color:var(--muted);line-height:1.6;margin-top:.9rem}
+  .side-note__link{display:inline-block;margin-top:1.2rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--txt)}
+  .side-note__link:hover{color:var(--lime)}
+
+  .chan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .chan-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem;display:flex;flex-direction:column;transition:border-color .3s}
+  .chan-card:hover{border-color:var(--line-2)}
+  .chan-card__head{display:flex;align-items:baseline;gap:.7rem}
+  .chan-card__no{font-family:var(--mono);font-size:.68rem;color:var(--lime)}
+  .chan-card h3{font-size:1.1rem;font-weight:800;letter-spacing:-.015em;line-height:1.3}
+  .chan-card__for{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:.6rem}
+  .chan-card__desc{font-size:.9rem;color:var(--muted);line-height:1.6;margin-top:.8rem}
+  .chan-card ul{list-style:none;margin-top:1.1rem;border-top:1px solid var(--line)}
+  .chan-card li{font-size:.85rem;color:var(--txt);padding:.5rem 0 .5rem 1.1rem;border-bottom:1px solid var(--line);position:relative}
+  .chan-card li::before{content:"+";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+  .chan-card__note{margin-top:1rem;padding-top:.9rem;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.7rem;line-height:1.5;color:var(--muted)}
+
+  .qstack{display:flex;flex-direction:column;border-top:1px solid var(--line-2)}
+  .qstack__item{display:flex;gap:1.1rem;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+  .qstack__no{font-family:var(--mono);font-size:.72rem;color:var(--lime);padding-top:.15rem}
+  .qstack__item h3{font-size:1rem;font-weight:800;letter-spacing:-.01em}
+  .qstack__item p{font-size:.88rem;color:var(--muted);line-height:1.6;margin-top:.35rem}
+
+  .kpi-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
+  .kpi-card__h{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .kpi-card ul{list-style:none;margin-top:1.1rem;display:flex;flex-direction:column;gap:.75rem}
+  .kpi-card li{font-size:.9rem;color:var(--muted);line-height:1.55;padding-left:1.2rem;position:relative}
+  .kpi-card li::before{content:"—";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+  .kpi-card li b{color:var(--txt);font-weight:600}
+
+  .faq-split{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+
+  @media (max-width:980px){.chan-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:960px){.faq-split{grid-template-columns:1fr}}
+  @media (max-width:640px){.chan-grid{grid-template-columns:1fr}}
+</style>

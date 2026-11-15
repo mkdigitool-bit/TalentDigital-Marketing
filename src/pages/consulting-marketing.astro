@@ -1,0 +1,328 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { site, method } from '../data/site';
+
+const offers = [
+  {
+    no: '01',
+    name: 'Audit marketing et digital',
+    for: 'Faire le point avant d’investir',
+    desc: 'Un état des lieux écrit de ce que vous faites, de ce que ça produit et de ce qui bloque — canaux, site, parcours, concurrence, mesure.',
+    items: ['Entretiens de cadrage', 'Analyse des canaux actifs', 'Revue du parcours client', 'Priorités classées par impact et effort'],
+  },
+  {
+    no: '02',
+    name: 'Stratégie marketing et plan d’action',
+    for: 'Savoir quoi faire, dans quel ordre',
+    desc: 'Une feuille de route opérationnelle : objectif, cible, canaux retenus, budget indicatif, calendrier et indicateurs de décision.',
+    items: ['Objectifs mesurables', 'Choix des canaux justifié', 'Budget par chantier', 'Indicateur de succès et critère d’arrêt'],
+  },
+  {
+    no: '03',
+    name: 'Positionnement de marque',
+    for: 'Être compris en une phrase',
+    desc: 'Clarifier ce que vous vendez, à qui, et pourquoi vous plutôt qu’un autre — sans slogan creux ni promesse invérifiable.',
+    items: ['Raison d’être', 'Promesse et preuves', 'Messages par segment', 'Vocabulaire à employer et à éviter'],
+  },
+  {
+    no: '04',
+    name: 'Analyse de marché et concurrence',
+    for: 'Voir les angles libres',
+    desc: 'Cartographie des acteurs, de leurs offres et de leur discours, pour identifier les espaces où votre différence est lisible.',
+    items: ['Panorama concurrentiel', 'Comparaison d’offres et de prix', 'Angles de différenciation', 'Risques et opportunités'],
+  },
+  {
+    no: '05',
+    name: 'Stratégie d’acquisition clients',
+    for: 'Construire un flux régulier',
+    desc: 'Une architecture de canaux cohérente avec votre marché, votre budget et votre capacité de production réelle.',
+    items: ['Canaux et rôle de chacun', 'Coût d’acquisition cible', 'Dispositif de mesure', 'Plan de montée en charge'],
+  },
+  {
+    no: '06',
+    name: 'Conseil en développement commercial',
+    for: 'Aligner offre, prix et discours',
+    desc: 'Travailler l’offre, la tarification et le discours de vente pour que le marketing ne promette pas autre chose que ce que le commercial vend.',
+    items: ['Revue de l’offre', 'Logique de tarification', 'Discours et objections', 'Parcours de vente'],
+  },
+];
+
+const faq = [
+  {
+    q: 'Combien de temps dure un audit marketing ?',
+    a: 'La durée est annoncée dans le devis, avant le démarrage. Pour un périmètre standard — un site, deux à trois canaux actifs, données accessibles — comptez généralement deux à trois semaines. Le calendrier est fixé avec vous dès le cadrage.',
+  },
+  {
+    q: 'Que se passe-t-il à la fin de l’audit ?',
+    a: 'Vous recevez le document écrit et nous le présentons ensemble. Ensuite, deux options : vous exécutez en interne avec le plan d’action, ou vous nous confiez tout ou partie de l’exécution, sur devis séparé. Aucune obligation de continuité.',
+  },
+  {
+    q: 'Puis-je exécuter le plan moi-même ?',
+    a: 'Oui, et c’est prévu pour. Le plan d’action est écrit pour être lu par un dirigeant ou un responsable marketing, pas pour nécessiter notre présence. Chaque chantier précise l’objectif, le livrable attendu et l’indicateur de succès.',
+  },
+  {
+    q: 'Travaillez-vous avec une agence déjà en place ?',
+    a: 'Oui. L’audit peut porter sur le travail d’une agence existante ou d’un freelance. Nous ne demandons pas de les remplacer : nous regardons ce qui produit des résultats et ce qui coûte sans servir.',
+  },
+  {
+    q: 'Quels accès demandez-vous ?',
+    a: 'Uniquement ce qui est nécessaire : site, analytics, comptes publicitaires, CRM si disponible. Les accès sont donnés en lecture quand c’est suffisant, et retirés à la fin de la mission. Ils restent votre propriété.',
+  },
+  {
+    q: 'Que se passe-t-il si l’audit conclut qu’il n’y a rien à changer ?',
+    a: 'C’est un résultat valable. Si l’existant est cohérent et que les priorités sont déjà traitées, nous le disons : le document liste alors ce qu’il faut surveiller et les seuils à partir desquels agir.',
+  },
+];
+
+const offersLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Consulting marketing',
+  serviceType: 'Conseil marketing et stratégie digitale',
+  description:
+    'Audit marketing et digital, stratégie et plan d’action, positionnement de marque, analyse de marché, stratégie d’acquisition et conseil en développement commercial pour PME et entrepreneurs.',
+  url: `${site.domain}/consulting-marketing`,
+  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  areaServed: site.areas,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Prestations de conseil',
+    itemListElement: offers.map((o) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: o.name, description: o.desc },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Consulting marketing pour PME — audit, stratégie, plan d’action"
+  description="Audit marketing et digital, stratégie et plan d’action priorisé, positionnement de marque et analyse concurrentielle. TalentDigital décide avec vous où investir avant de dépenser."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Consulting marketing' }]} />
+    <div class="split page-hero__grid">
+      <div>
+        <span class="eyebrow">Pôle 01 — Consulting marketing</span>
+        <h1 class="display-1 reveal" style="margin-top:1rem">Décider où investir, avant de <em>dépenser</em>.</h1>
+        <p class="lede reveal" style="margin-top:1.5rem;max-width:50ch">
+          Un diagnostic complet de votre marketing, une stratégie priorisée et un plan d’action
+          que vous pouvez exécuter seul — ou avec nous.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="/audit" class="btn">Demander un audit
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/methode" class="btn btn--ghost">Voir la méthode</a>
+        </div>
+        <p class="note" style="margin-top:1.2rem">Prix annoncé avant le démarrage · Périmètre écrit · Livrables nommés</p>
+      </div>
+
+      <aside class="side-note reveal">
+        <p class="side-note__h">Pourquoi commencer par là</p>
+        <p>Refaire un site, lancer une campagne ou publier du contenu sont des décisions coûteuses. Sans diagnostic, elles reposent sur une intuition.</p>
+        <p>Un audit coûte moins cher qu’un projet lancé dans la mauvaise direction.</p>
+        <a href="/audit" class="side-note__link">Demander un audit →</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Symptômes</p>
+      <h2>Six situations où le conseil fait gagner plus qu’une <em>prestation</em>.</h2>
+    </div>
+    <ul class="signals reveal">
+      <li>Vous investissez en publicité sans savoir quel canal rentabilise.</li>
+      <li>Votre site reçoit du trafic mais génère peu de demandes.</li>
+      <li>Chaque prestataire travaille sur son périmètre, sans vision d’ensemble.</li>
+      <li>Votre offre est difficile à expliquer en une phrase, même à vos clients.</li>
+      <li>Vous hésitez entre refondre le site, lancer une campagne ou produire du contenu.</li>
+      <li>Vous engagez un investissement important et voulez un avis extérieur argumenté.</li>
+    </ul>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Prestations</p>
+      <h2>Ce que comprend le pôle <em>conseil</em>.</h2>
+      <p class="lede" style="margin-top:1rem">Chaque mission est cadrée séparément. On ne vend jamais un lot de prestations indifférenciées.</p>
+    </div>
+    <div class="offer-grid">
+      {offers.map((offer) => (
+        <article class="offer-card reveal">
+          <span class="offer-card__no">{offer.no}</span>
+          <h3>{offer.name}</h3>
+          <p class="offer-card__for">{offer.for}</p>
+          <p class="offer-card__desc">{offer.desc}</p>
+          <ul class="offer-card__list">
+            {offer.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Déroulé</p>
+        <h2>Une mission de conseil, en quatre <em>temps</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Le déroulé ne dépend pas du budget : il dépend de la question posée. Un audit de conversion
+          ne mobilise pas les mêmes analyses qu’un positionnement de marque.
+        </p>
+      </div>
+      <div class="stack">
+        {method.map((step) => (
+          <div class="stack-row reveal">
+            <span class="stack-row__no">{step.no}</span>
+            <div>
+              <h3>{step.name} — {step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Livrables</p>
+      <h2>Un audit n’est pas un <em>PDF</em>.</h2>
+      <p class="lede" style="margin-top:1rem">
+        Un audit sert à décider. Il contient donc des constats sourcés, des priorités et des critères de décision — pas une liste d’observations générales.
+      </p>
+    </div>
+    <div class="deliver-grid reveal">
+      <div class="deliver-item">
+        <p class="deliver-item__no">01 — Cadrage</p>
+        <h4>Périmètre et questions</h4>
+        <p>Ce que nous regardons, ce que nous ne regardons pas, et la décision que le document doit permettre de prendre.</p>
+      </div>
+      <div class="deliver-item">
+        <p class="deliver-item__no">02 — Analyse</p>
+        <h4>Canaux, parcours, concurrence</h4>
+        <p>Ce qui fonctionne, ce qui coûte sans produire, ce que fait la concurrence et ce que les données disponibles permettent d’affirmer.</p>
+      </div>
+      <div class="deliver-item">
+        <p class="deliver-item__no">03 — Constats</p>
+        <h4>Causes, pas symptômes</h4>
+        <p>Chaque constat est relié à une cause identifiée et à une preuve : donnée, capture, entretien, document.</p>
+      </div>
+      <div class="deliver-item">
+        <p class="deliver-item__no">04 — Priorisation</p>
+        <h4>Impact, effort, délai</h4>
+        <p>Un classement explicite : ce qu’il faut faire d’abord, ce qui peut attendre, ce qu’il vaut mieux arrêter.</p>
+      </div>
+      <div class="deliver-item">
+        <p class="deliver-item__no">05 — Plan d’action</p>
+        <h4>Une ligne par chantier</h4>
+        <p>Objectif, action, budget indicatif, responsable, indicateur de succès et critère d’arrêt.</p>
+      </div>
+      <div class="deliver-item">
+        <p class="deliver-item__no">06 — Restitution</p>
+        <h4>Une séance, pas un envoi</h4>
+        <p>Le document est présenté et discuté. Vous repartez avec les décisions prêtes à être exécutées, en interne ou avec nous.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Prix</p>
+        <h2>Annoncé avant, pas <em>après</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Le prix d’un audit dépend du périmètre : nombre de canaux, taille du site, disponibilité des données.
+          Il est chiffré avant le démarrage, après un premier échange gratuit.
+        </p>
+      </div>
+      <div class="price-note-card reveal">
+        <p class="price-note-card__h">Trois règles de facturation</p>
+        <ul>
+          <li>Un forfait pour un périmètre défini, jamais un prix « à partir de » sans limite.</li>
+          <li>Aucun pourcentage sur votre budget publicitaire.</li>
+          <li>L’exécution est un devis séparé, jamais inclus par défaut.</li>
+        </ul>
+        <a href="/contact" class="btn btn--ghost" style="margin-top:1.4rem">Demander une estimation</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="faq-split">
+      <div class="reveal">
+        <p class="section-label">Questions</p>
+        <h2>Ce qu’on nous demande <em>avant</em> de signer.</h2>
+      </div>
+      <Faq items={faq} idPrefix="consulting-faq" />
+    </div>
+  </section>
+
+  <Cta
+    title="Commençons par comprendre ce qui <em>bloque</em>."
+    text="Un audit marketing et digital est le point d’entrée. Il aboutit à un document écrit et à un plan d’action que vous pouvez exécuter seul."
+    primaryLabel="Demander un audit"
+    primaryHref="/audit"
+    secondaryLabel="Voir un exemple de déroulé"
+    secondaryHref="/methode"
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(offersLd)} />
+</BaseLayout>
+
+<style>
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(3rem,7vw,5rem);border-bottom:1px solid var(--line)}
+  .page-hero__grid{margin-top:1.6rem}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+
+  .side-note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
+  .side-note__h{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .side-note p{font-size:.92rem;color:var(--muted);line-height:1.6;margin-top:.9rem}
+  .side-note__link{display:inline-block;margin-top:1.2rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--txt)}
+  .side-note__link:hover{color:var(--lime)}
+
+  .signals{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .signals li{padding:1.15rem 0;border-bottom:1px solid var(--line);font-size:.95rem;color:var(--txt);display:flex;gap:.8rem;align-items:flex-start;padding-right:2rem}
+  .signals li::before{content:"→";font-family:var(--mono);color:var(--lime);flex:none}
+
+  .offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .offer-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem;transition:border-color .3s}
+  .offer-card:hover{border-color:var(--line-2)}
+  .offer-card__no{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--lime)}
+  .offer-card h3{font-size:1.15rem;font-weight:800;letter-spacing:-.015em;margin-top:.7rem;line-height:1.3}
+  .offer-card__for{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:.45rem}
+  .offer-card__desc{font-size:.9rem;color:var(--muted);line-height:1.6;margin-top:.9rem}
+  .offer-card__list{list-style:none;margin-top:1.1rem;border-top:1px solid var(--line)}
+  .offer-card__list li{font-size:.85rem;color:var(--txt);padding:.5rem 0 .5rem 1.1rem;border-bottom:1px solid var(--line);position:relative}
+  .offer-card__list li::before{content:"+";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+
+  .stack{display:flex;flex-direction:column;border-top:1px solid var(--line-2)}
+  .stack-row{display:flex;gap:1.2rem;padding:1.3rem 0;border-bottom:1px solid var(--line)}
+  .stack-row__no{font-family:var(--mono);font-size:.72rem;color:var(--lime);padding-top:.2rem}
+  .stack-row h3{font-size:1.02rem;font-weight:800;letter-spacing:-.01em}
+  .stack-row p{font-size:.88rem;color:var(--muted);line-height:1.6;margin-top:.35rem}
+
+  .price-note-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem}
+  .price-note-card__h{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .price-note-card ul{list-style:none;margin-top:1.1rem;display:flex;flex-direction:column;gap:.8rem}
+  .price-note-card li{font-size:.9rem;color:var(--txt);line-height:1.55;padding-left:1.3rem;position:relative}
+  .price-note-card li::before{content:"—";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+
+  .faq-split{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+
+  @media (max-width:960px){
+    .offer-grid{grid-template-columns:1fr 1fr}
+    .faq-split{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .offer-grid{grid-template-columns:1fr}
+    .signals{grid-template-columns:1fr}
+    .signals li{padding-right:0}
+  }
+</style>

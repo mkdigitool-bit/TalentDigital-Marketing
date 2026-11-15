@@ -1,195 +1,200 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../data/site';
+
+const whenYes = [
+  { t: 'Un besoin interne qu’aucun outil ne couvre', d: 'Un processus spécifique à votre métier : devis, suivi de dossiers, calculs, tableaux de bord. Les outils génériques demandent plus d’adaptation que de développement.' },
+  { t: 'Un produit numérique à lancer', d: 'Une plateforme, un espace client, un outil en ligne. Il faut une première version utilisable, pas une architecture complète dès le premier jour.' },
+  { t: 'Un script ou un calcul répétitif', d: 'Une tâche manuelle qui prend deux heures par semaine et qui peut être automatisée. Le gain se mesure en heures, pas en fonctionnalités.' },
+  { t: 'Une intégration entre deux outils', d: 'Deux logiciels qui ne se parlent pas, et une saisie manuelle entre les deux. Une passerelle bien faite supprime l’erreur humaine.' },
+];
+
+const included = [
+  { n: '01', t: 'Cadrage fonctionnel', d: 'Un document qui liste les fonctions retenues, celles écartées et pourquoi. Le périmètre de la première version est volontairement réduit.' },
+  { n: '02', t: 'Architecture et choix techniques', d: 'Langage, base de données, hébergement, dépendances. Chaque choix est justifié, avec ses conséquences en coût et en maintenance.' },
+  { n: '03', t: 'Développement de la première version', d: 'Les fonctions indispensables, testées sur des cas réels. Pas de fonctionnalité « au cas où » qui alourdit la livraison.' },
+  { n: '04', t: 'Tests et mise en production', d: 'Scénarios d’usage, gestion des erreurs, sauvegardes, environnement de test séparé avant la mise en ligne.' },
+  { n: '05', t: 'Documentation technique', d: 'Schéma de la base, description des modules, procédure de déploiement, points de vigilance. Lisible par un autre développeur.' },
+  { n: '06', t: 'Transfert du code et des accès', d: 'Dépôt de code, serveurs, comptes : tout est remis à votre nom. Aucune dépendance technique ne vous retient.' },
+];
+
+const notIncluded = [
+  'Design d’interface avancé au-delà des écrans du périmètre',
+  'Applications mobiles natives (iOS / Android)',
+  'Hébergement, base de données et services tiers (facturés à votre nom)',
+  'Maintenance et évolutions après la période de garantie',
+  'Audit de sécurité approfondi ou certification',
+  'Reprise d’un code existant sans phase d’audit préalable',
+];
+
+const rules = [
+  { t: 'Une version utilisable d’abord', d: 'On livre un périmètre réduit qui fonctionne, puis on itère sur l’usage réel. Une première version trop large arrive tard et ne correspond jamais à l’usage.' },
+  { t: 'Le périmètre est écrit', d: 'Chaque fonctionnalité est listée. Une demande hors périmètre devient un avenant chiffré, jamais une rallonge silencieuse.' },
+  { t: 'Vos données restent vos données', d: 'Base de données à votre nom, export possible à tout moment, aucune donnée exploitée par nous à d’autres fins.' },
+  { t: 'La maintenance est une option', d: 'Elle n’est pas une condition de livraison. Si vous avez une équipe technique, elle reprend le code avec la documentation.' },
+];
+
+const faq = [
+  {
+    q: 'Combien coûte un outil sur mesure ?',
+    a: 'Cela dépend entièrement du périmètre fonctionnel. Un script d’automatisation et une plateforme multi-utilisateurs n’ont pas le même ordre de grandeur. Le devis est établi après le cadrage fonctionnel, avec un découpage en lots si le projet est important.',
+  },
+  {
+    q: 'Pourquoi ne pas utiliser un outil existant ?',
+    a: 'C’est la première question que nous posons. Si un outil du marché couvre 80 % du besoin à un coût raisonnable, nous le recommandons. Développer sur mesure se justifie quand l’écart avec l’existant est structurel, pas cosmétique.',
+  },
+  {
+    q: 'Qui maintient l’outil ensuite ?',
+    a: 'Trois options : vous reprenez avec votre équipe, vous nous confiez la maintenance par un contrat séparé, ou vous confiez le code à un autre prestataire. La documentation est écrite pour rendre cette troisième option possible sans friction.',
+  },
+  {
+    q: 'Livrez-vous le code source ?',
+    a: 'Oui, systématiquement, à la livraison, avec les accès au dépôt. Ce n’est pas une option payante. Un outil dont vous ne pouvez pas récupérer le code n’est pas un actif qui vous appartient.',
+  },
+  {
+    q: 'Combien de temps pour une première version ?',
+    a: 'Le délai est inscrit au devis et dépend du périmètre. Un outil interne simple et une plateforme multi-utilisateurs n’ont pas le même calendrier. Nous ne promettons pas de délai avant d’avoir écrit le périmètre.',
+  },
+  {
+    q: 'Que se passe-t-il si le projet dérive ?',
+    a: 'Le découpage en lots limite le risque : chaque lot est validé avant le suivant, et le budget du lot suivant n’est engagé qu’à ce moment. Si le besoin change, le périmètre est réécrit, pas subi.',
+  },
+];
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'SaaS et outils sur mesure',
+  serviceType: 'Développement d’application sur mesure',
+  description:
+    'Développement d’outils sur mesure et de SaaS : cadrage fonctionnel, architecture, première version utilisable, tests, documentation et transfert du code.',
+  url: `${site.domain}/saas`,
+  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  areaServed: site.areas,
+};
 ---
 
-<BaseLayout title="SaaS sur mesure — TalentDigital" description="Développement de logiciel sur mesure : cahier des charges, architecture, développement, tests et formation. Devis sous 48 h." ogImage="/og-saas.png">
+<BaseLayout
+  title="SaaS et outils sur mesure — première version, puis itérations"
+  description="Développement d’outils sur mesure et de SaaS : cadrage fonctionnel, architecture, première version utilisable, tests, documentation et transfert du code source."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'SaaS sur mesure' }]} />
+    <div class="split page-hero__grid">
+      <div>
+        <span class="eyebrow">Solution 04 — SaaS et outils</span>
+        <h1 class="display-1 reveal" style="margin-top:1rem">Construire l’outil qui manque, sans construire <em>trop</em>.</h1>
+        <p class="lede reveal" style="margin-top:1.5rem;max-width:50ch">
+          Une première version réduite, qui fonctionne sur des cas réels, puis des itérations
+          décidées sur l’usage. Pas l’inverse : une plateforme complète livrée tard et mal utilisée.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="/contact" class="btn">Discutons de votre projet
+            <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/methode" class="btn btn--ghost">Voir la méthode</a>
+        </div>
+        <p class="note" style="margin-top:1.2rem">Périmètre découpé en lots · Code source transféré · Documentation lisible par un tiers</p>
+      </div>
 
-<section class="svc-hero wrap">
-  <a href="/" class="svc-hero__back">Retour à l'accueil</a>
-  <span class="prompt">04 / prestation — <b>SaaS sur mesure</b></span>
-  <div class="svc-hero__grid">
-    <div>
-      <div class="svc-hero__icon" aria-hidden="true">▣</div>
-      <h1 class="reveal">SaaS sur <em>mesure</em></h1>
-      <p class="svc-hero__sub reveal">Un logiciel métier n'est pas un site vitrine. On conçoit et développons l'outil qui automatise votre activité — pensé pour votre process, pas pour un template générique.</p>
-      <div class="svc-hero__cta reveal">
-        <a href="/audit" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <span class="svc-hero__micro"><b>Devis sous 48 h</b> · Cahier des charges gratuit</span>
+      <aside class="side-note reveal">
+        <p class="side-note__h">La première question</p>
+        <p>
+          Existe-t-il déjà un outil qui couvre 80 % du besoin ? Si oui, nous le recommandons.
+          Développer sur mesure se justifie quand l’écart est structurel, pas cosmétique.
+        </p>
+        <a href="/consulting-marketing" class="side-note__link">Voir le pôle conseil →</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Pour qui</p>
+      <h2>Quatre cas où le sur-mesure se <em>justifie</em>.</h2>
+    </div>
+    <div class="two-grid">
+      {whenYes.map((w) => (
+        <article class="mini-card reveal">
+          <h3>{w.t}</h3>
+          <p>{w.d}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Ce qui est inclus</p>
+      <h2>Six livrables, du cadrage au <em>transfert</em>.</h2>
+    </div>
+    <div class="deliver-grid reveal">
+      {included.map((item) => (
+        <article class="deliver-item">
+          <p class="deliver-item__no">{item.n} — inclus</p>
+          <h4>{item.t}</h4>
+          <p>{item.d}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Règles du jeu</p>
+        <h2>Quatre principes qui évitent les projets <em>interminables</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Un projet technique dérape rarement à cause du code. Il dérape à cause d’un périmètre
+          qui grandit sans décision explicite.
+        </p>
+      </div>
+      <div class="steps-list">
+        {rules.map((r, i) => (
+          <div class="step-row reveal">
+            <span class="step-row__n">{String(i + 1).padStart(2, '0')}</span>
+            <div><h3>{r.t}</h3><p>{r.d}</p></div>
+          </div>
+        ))}
       </div>
     </div>
-    <div class="stats-panel reveal" aria-label="Indicateurs clés">
-      <div class="stat-row">
-        <span class="stat-row__lbl">devis_sous</span>
-        <span class="stat-row__val">48<span class="u">h</span></span>
+  </section>
+
+  <section class="section wrap">
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Transparence</p>
+        <h2>Ce qui n’est pas dans le <em>devis</em>.</h2>
       </div>
-      <div class="stat-row">
-        <span class="stat-row__lbl">code_source_livré</span>
-        <span class="stat-row__val">100<span class="u">%</span></span>
-      </div>
-      <div class="stat-row">
-        <span class="stat-row__lbl">garantie_post-livraison</span>
-        <span class="stat-row__val">30<span class="u">j</span></span>
+      <div class="not-list reveal">
+        <ul>
+          {notIncluded.map((item) => <li>{item}</li>)}
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section wrap">
-  <div class="section__head reveal">
-    <span class="prompt">01 — <b>livrables</b></span>
-    <h2>Ce que vous <em>recevez</em></h2>
-    <p class="lede" style="margin-top:1rem">Un logiciel scopé pour un objectif précis, livré avec le code source et la documentation pour que vous en soyez pleinement propriétaire.</p>
-  </div>
-  <div class="deliver-grid">
-    <div class="deliver-item reveal">
-      <div class="deliver-item__no">01 / livrable</div>
-      <h4>Cahier des charges &amp; architecture</h4>
-      <p>On formalise précisément ce que le logiciel doit faire, pour qui, et comment les données circulent. Cette étape évite les malentendus et les développements inutiles.</p>
+  <section class="section wrap">
+    <div class="faq-split">
+      <div class="reveal">
+        <p class="section-label">Questions</p>
+        <h2>Ce qu’on nous demande sur le <em>sur-mesure</em>.</h2>
+      </div>
+      <Faq items={faq} idPrefix="saas-faq" />
     </div>
-    <div class="deliver-item reveal">
-      <div class="deliver-item__no">02 / livrable</div>
-      <h4>Design d'interface (UI/UX)</h4>
-      <p>Maquettes des écrans clés, pensées pour la personne qui va réellement utiliser l'outil au quotidien — pas pour impressionner un jury.</p>
-    </div>
-    <div class="deliver-item reveal">
-      <div class="deliver-item__no">03 / livrable</div>
-      <h4>Développement backend &amp; base de données</h4>
-      <p>Logique métier, authentification, base de données structurée pour vos volumes réels. Architecture pensée pour évoluer sans tout reconstruire.</p>
-    </div>
-    <div class="deliver-item reveal">
-      <div class="deliver-item__no">04 / livrable</div>
-      <h4>Interface utilisateur responsive</h4>
-      <p>Utilisable sur ordinateur comme sur mobile, avec les mêmes fonctionnalités essentielles disponibles partout où votre équipe en a besoin.</p>
-    </div>
-    <div class="deliver-item reveal">
-      <div class="deliver-item__no">05 / livrable</div>
-      <h4>Tests &amp; assurance qualité</h4>
-      <p>Chaque fonctionnalité est testée avant livraison — scénarios normaux et cas limites — pour éviter les mauvaises surprises une fois l'outil en production.</p>
-    </div>
-    <div class="deliver-item reveal">
-      <div class="deliver-item__no">06 / livrable</div>
-      <h4>Documentation &amp; formation</h4>
-      <p>Documentation technique du code et session de prise en main pour votre équipe. Vous n'êtes jamais bloqué par l'absence de la personne qui a développé l'outil.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="section wrap">
-  <div class="section__head reveal">
-    <span class="prompt">02 — <b>pour qui</b></span>
-    <h2>Pour ceux qui ont besoin d'un <em>outil, pas d'un site</em></h2>
-  </div>
-  <div class="who-grid">
-    <div class="who-card reveal">
-      <div class="who-card__tag">entrepreneurs &amp; startups</div>
-      <h3>Vous avez besoin d'un MVP pour valider une idée</h3>
-      <p>Avant d'investir massivement, on construit la version minimale qui vous permet de tester votre marché avec de vrais utilisateurs, sans surinvestir dans des fonctionnalités inutiles.</p>
-    </div>
-    <div class="who-card reveal">
-      <div class="who-card__tag">PME</div>
-      <h3>Votre process tourne encore sur Excel ou un outil no-code limité</h3>
-      <p>Quand un tableur ou un outil générique devient un goulot d'étranglement, un logiciel sur mesure élimine les manipulations manuelles et les erreurs de saisie.</p>
-    </div>
-    <div class="who-card reveal">
-      <div class="who-card__tag">agences &amp; studios</div>
-      <h3>Vous voulez déléguer le développement d'un outil client ou interne</h3>
-      <p>Vous gardez la relation client, on prend en charge la partie technique — cahier des charges, développement, tests — avec un point d'avancement régulier.</p>
-    </div>
-  </div>
-</section>
+  <Cta
+    title="Un outil à construire ? Commençons par le <em>cadrer</em>."
+    text="Décrivez le besoin en quelques lignes : ce que vous faites aujourd’hui à la main, et ce que l’outil devrait remplacer. Nous dirons si un outil existant suffit."
+    primaryLabel="Discutons de votre projet"
+    primaryHref="/contact"
+    secondaryLabel="Voir la méthode"
+    secondaryHref="/methode"
+  />
 
-<section class="section wrap">
-  <div class="section__head reveal">
-    <span class="prompt">03 — <b>processus</b></span>
-    <h2>Du cahier des charges à la <em>mise en production</em></h2>
-  </div>
-  <div class="process-grid">
-    <div class="ps reveal">
-      <span class="ps__no">01</span>
-      <h4>Cadrage &amp; cahier des charges</h4>
-      <p>On clarifie l'objectif, les utilisateurs et les fonctionnalités indispensables. On sort de cet échange avec un périmètre écrit, pas une idée vague.</p>
-      <span class="ps__tag ps__tag--free">Gratuit · 45 min</span>
-    </div>
-    <div class="ps reveal">
-      <span class="ps__no">02</span>
-      <h4>Architecture &amp; maquettes</h4>
-      <p>On conçoit la structure technique et les écrans principaux. Vous validez la maquette avant que le développement ne démarre.</p>
-      <span class="ps__tag">Sous 5 jours</span>
-    </div>
-    <div class="ps reveal">
-      <span class="ps__no">03</span>
-      <h4>Développement</h4>
-      <p>Construction par lots livrables, avec des points d'étape réguliers pour ajuster si besoin plutôt que découvrir le résultat final à la toute fin.</p>
-      <span class="ps__tag">Selon le périmètre</span>
-    </div>
-    <div class="ps reveal">
-      <span class="ps__no">04</span>
-      <h4>Tests, livraison &amp; formation</h4>
-      <p>Tests complets, mise en production, transfert du code source et session de formation pour votre équipe.</p>
-      <span class="ps__tag">Inclus</span>
-    </div>
-  </div>
-</section>
-
-<section class="section wrap">
-  <div class="section__head reveal">
-    <span class="prompt">04 — <b>notre engagement</b></span>
-    <h2>Un périmètre <em>clair</em>, pas des heures floues</h2>
-  </div>
-  <div class="result-box reveal">
-    <div>
-      <blockquote class="result-box__quote">« On ne vend pas des heures de développement, on vend un problème résolu. Le cahier des charges validé en amont est notre garantie qu'on construit exactement ce dont vous avez besoin — pas plus, pas moins. »</blockquote>
-      <p class="result-box__by">— <b>L'équipe TalentDigital</b></p>
-    </div>
-    <div>
-      <div class="result-box__delta">100%</div>
-      <div class="result-box__lbl">du code source vous appartient, à la livraison</div>
-    </div>
-  </div>
-</section>
-
-<section class="final wrap">
-  <div class="final__box reveal">
-    <span class="eyebrow">// prochaine étape</span>
-    <h2>Votre outil sur mesure démarre par un <em>cahier des charges</em>.</h2>
-    <div class="final__proof">
-      <span><b>Cahier des charges gratuit</b> · devis sous 48 h</span>
-      <span>Code source livré · vous êtes propriétaire</span>
-      <span>Architecture pensée pour évoluer</span>
-    </div>
-    <div class="final__cta">
-      <a href="/audit" class="btn">Démarrer ce projet <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="/" class="btn btn--ghost">Retour à l'accueil</a>
-    </div>
-  </div>
-</section>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"SaaS sur mesure","serviceType":"Développement logiciel sur mesure","description":"Développement de logiciel sur mesure : cahier des charges, architecture, développement, tests et formation. Devis sous 48 h.","url":"https://talentdigital.net/saas","provider":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net"},"areaServed":["MA","FR","BE","CH","CA"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://talentdigital.net/"},{"@type":"ListItem","position":2,"name":"SaaS","item":"https://talentdigital.net/saas"}]}]}</script>
-
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 </BaseLayout>
-
-<script>
-(function(){
-  "use strict";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var reveals = document.querySelectorAll(".reveal");
-  if(reduce || !("IntersectionObserver" in window)){
-    reveals.forEach(function(el){ el.classList.add("in"); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var sibs = Array.prototype.slice.call(e.target.parentNode.querySelectorAll(":scope > .reveal"));
-          var i = sibs.indexOf(e.target);
-          var delay = Math.min(i,5)*70;
-          e.target.style.transitionDelay = delay + "ms";
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-          (function(el,d){ setTimeout(function(){ el.style.transitionDelay = ""; }, d + 750); })(e.target, delay);
-        }
-      });
-    }, {threshold:.16, rootMargin:"0px 0px -8% 0px"});
-    reveals.forEach(function(el){ io.observe(el); });
-  }
-})();
-</script>

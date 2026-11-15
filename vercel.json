@@ -4,6 +4,26 @@
     { "source": "/creations/tunnel", "destination": "/tunnel", "permanent": true },
     { "source": "/creations/site-web", "destination": "/site-web", "permanent": true },
     { "source": "/creations/saas", "destination": "/saas", "permanent": true },
-    { "source": "/creations", "destination": "/", "permanent": true }
+    { "source": "/creations", "destination": "/", "permanent": true },
+    { "source": "/services", "destination": "/solutions-digitales", "permanent": true },
+    { "source": "/services/:path*", "destination": "/solutions-digitales", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://vitals.vercel-insights.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
   ]
 }

@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
-
 :root{
   --void:#0E0E10;
   --panel:#151518;
   --panel-2:#1B1B1F;
   --line:#27272D;
   --line-2:#3A3A42;
-  --txt:#B8B8B2;
-  --muted:#72727A;
+  --txt:#C6C6C0;
+  --muted:#909099;
   --lime:#C7F73E;
   --lime-dim:#9ec22f;
+  --lime-ink:#0E0E10;
+  --danger:#FF6B6B;
 
   --display:"Archivo",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,monospace;

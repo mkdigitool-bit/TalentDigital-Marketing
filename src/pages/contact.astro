@@ -1,277 +1,324 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../data/site';
+
+const subjects = [
+  'Audit marketing et digital',
+  'Stratégie marketing ou positionnement',
+  'Site web ou e-commerce',
+  'Landing page ou tunnel de vente',
+  'Publicité, SEO ou contenu',
+  'Autre demande',
+];
+
+const expectations = [
+  { n: '01', t: 'Vous écrivez', d: 'Deux lignes suffisent : votre activité, ce qui bloque, ce que vous avez déjà tenté.' },
+  { n: '02', t: 'Nous répondons sous 24 h ouvrées', d: 'Avec une première lecture et, si c’est pertinent, deux ou trois questions à trancher avant un rendez-vous.' },
+  { n: '03', t: 'Un échange de 30 minutes', d: 'Sans engagement et sans présentation commerciale : on cherche la question à traiter en priorité.' },
+  { n: '04', t: 'Une proposition écrite, ou rien', d: 'Si un travail a du sens, vous recevez un périmètre et un prix. Si ce n’est pas le cas, nous le disons.' },
+];
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact — TalentDigital',
+  url: `${site.domain}/contact`,
+  description:
+    'Contacter TalentDigital : conseil marketing, marketing digital et solutions digitales. Réponse sous 24 heures ouvrées.',
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.domain,
+    email: site.email,
+    telephone: site.phone,
+  },
+};
 ---
 
-<BaseLayout title="Contact — TalentDigital" description="Une question, un projet, une simple prise de contact ? Écrivez-nous à TalentDigital, réponse sous 24 h." ogImage="/og-contact.png">
+<BaseLayout
+  title="Contact — parlons de votre projet"
+  description="Écrivez à TalentDigital : décrivez votre activité et ce qui bloque. Réponse sous 24 heures ouvrées, premier échange sans engagement."
+>
+  <section class="page-hero wrap">
+    <Breadcrumbs items={[{ label: 'Contact' }]} />
+    <div class="split page-hero__grid">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h1 class="display-1 reveal" style="margin-top:1rem">Parlons de ce qui <em>bloque</em>.</h1>
+        <p class="lede reveal" style="margin-top:1.5rem;max-width:48ch">
+          Décrivez votre activité, votre situation et ce que vous cherchez à régler.
+          Deux lignes suffisent pour commencer — nous poserons les bonnes questions ensuite.
+        </p>
+        <p class="note reveal" style="margin-top:1.6rem">
+          <b>Réponse sous 24 h ouvrées</b> · Aucune relance automatisée · Aucune inscription à une newsletter sans votre accord
+        </p>
+      </div>
 
-<section class="hero-contact" aria-labelledby="td-contact-heading">
-  <div class="hero-contact__glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="prompt"><b>Contact</b></div>
-    <h1 id="td-contact-heading">Contactez-<em>nous.</em></h1>
-    <p class="lede" style="margin-top:1.2rem;max-width:56ch">
-      Une question, un projet, une simple prise de contact ? Écrivez-nous, on vous répond sous 24 heures.
-    </p>
-  </div>
-</section>
+      <div class="direct reveal">
+        <a href={`mailto:${site.email}`} class="direct__row">
+          <span class="direct__lbl">Email</span>
+          <span class="direct__val">{site.email}</span>
+        </a>
+        <a href={site.whatsapp} class="direct__row" target="_blank" rel="noopener">
+          <span class="direct__lbl">WhatsApp</span>
+          <span class="direct__val">{site.phoneDisplay}</span>
+        </a>
+        <div class="direct__row direct__row--static">
+          <span class="direct__lbl">Zones</span>
+          <span class="direct__val">Maroc · France · Belgique · Suisse · Canada</span>
+        </div>
+        <div class="direct__row direct__row--static">
+          <span class="direct__lbl">Langues</span>
+          <span class="direct__val">Français · Arabe · Anglais</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="contact-section" aria-label="Formulaire de contact">
-  <div class="wrap">
+  <section class="section wrap" aria-label="Formulaire de contact">
     <div class="contact-grid">
-
-      <div class="reveal">
-        <div class="contact-form" id="td-contact-form">
-          <div class="form-success" role="status" aria-live="polite">
-            <div class="form-success__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--lime)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l6 6 12-12"/></svg>
-            </div>
-            <h3>Message bien reçu !</h3>
-            <p>Merci, votre message est bien arrivé. On vous répond sous 24 heures.</p>
-            <span class="form-success__timer">Réponse sous 24 h</span>
+      <div class="form-card reveal" id="td-contact-form">
+        <div class="form-success" role="status" aria-live="polite">
+          <div class="form-success__icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l6 6 12-12"/></svg>
           </div>
-          <div class="form-fields">
-            <div class="form-title">Envoyer un message</div>
-            <form id="td-form" novalidate>
-              <div class="hp-field" aria-hidden="true">
-                <label for="td-website">Laissez ce champ vide</label>
-                <input type="text" id="td-website" name="website" tabindex="-1" autocomplete="off">
-              </div>
+          <h2>Message bien reçu.</h2>
+          <p>Merci. Nous revenons vers vous sous 24 heures ouvrées, depuis l’adresse {site.email}.</p>
+          <span class="form-success__tag">Réponse sous 24 h ouvrées</span>
+        </div>
+
+        <div class="form-fields">
+          <h2 class="form-title">Décrivez votre situation</h2>
+          <p class="form-sub">Les champs marqués d’un astérisque sont nécessaires pour vous répondre.</p>
+
+          <form id="td-form" novalidate>
+            <div class="hp-field" aria-hidden="true">
+              <label for="td-website">Laissez ce champ vide</label>
+              <input type="text" id="td-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-row">
               <div class="field">
                 <label for="td-prenom">Prénom <span class="req" aria-hidden="true">*</span></label>
                 <input type="text" id="td-prenom" name="prenom" placeholder="Yassine" autocomplete="given-name" required>
               </div>
-              <div class="form-row">
-                <div class="field">
-                  <label for="td-email">Email <span class="req" aria-hidden="true">*</span></label>
-                  <input type="email" id="td-email" name="email" placeholder="vous@example.com" autocomplete="email" required>
-                </div>
-                <div class="field">
-                  <label for="td-tel">Téléphone / WhatsApp</label>
-                  <input type="tel" id="td-tel" name="tel" placeholder="+212 6XX XXX XXX" autocomplete="tel">
-                </div>
+              <div class="field">
+                <label for="td-email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="td-email" name="email" placeholder="vous@entreprise.com" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="td-tel">Téléphone / WhatsApp</label>
+                <input type="tel" id="td-tel" name="tel" placeholder="+212 6 XX XX XX XX" autocomplete="tel">
               </div>
               <div class="field">
-                <label for="td-message">Votre message <span class="req" aria-hidden="true">*</span></label>
-                <textarea id="td-message" name="message" placeholder="Ex : Bonjour, j'ai une question sur..." required></textarea>
+                <label for="td-sujet">Sujet</label>
+                <select id="td-sujet" name="sujet">
+                  {subjects.map((s) => <option value={s}>{s}</option>)}
+                </select>
               </div>
-              <div class="form-agree">
-                <input type="checkbox" id="td-agree" name="agree" required>
-                <p>J'accepte que mes données soient utilisées pour traiter ma demande et me contacter. <a href="/mentions-legales#confidentialite">Politique de confidentialité</a></p>
-              </div>
-              <button type="submit" class="btn btn--full" id="td-submit">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Envoyer le message
-              </button>
-              <p class="form-note">Réponse sous 24 h</p>
-            </form>
-          </div>
+            </div>
+
+            <div class="field">
+              <label for="td-message">Votre situation <span class="req" aria-hidden="true">*</span></label>
+              <textarea
+                id="td-message"
+                name="message"
+                placeholder="Ex : nous sommes une PME de 12 personnes, notre site reçoit du trafic mais génère très peu de demandes. Nous avons lancé des campagnes Meta sans vraiment de suivi."
+                required
+              ></textarea>
+              <p class="field__hint">Pas besoin d’un brief complet. Ce qui bloque, et ce que vous avez déjà essayé, suffit.</p>
+            </div>
+
+            <div class="form-agree">
+              <input type="checkbox" id="td-agree" name="agree" required>
+              <label for="td-agree">
+                J’accepte que ces informations soient utilisées pour traiter ma demande et me recontacter.
+                <a href="/mentions-legales#confidentialite">Politique de confidentialité</a>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn--full" id="td-submit">
+              <span>Envoyer le message</span>
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="form-note">Aucun paiement, aucun engagement à ce stade.</p>
+          </form>
         </div>
       </div>
 
-      <div class="contact-side reveal" style="transition-delay:.15s">
-        <div class="side-card">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M2 5l7 5.5L16 5"/></svg>
-            Contact direct
-          </h3>
-          <div class="direct-links">
-            <a href="mailto:info@talentdigital.net" class="direct-link">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 4h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z"/><path d="M2 5l7 5.5L16 5"/></svg>
+      <aside class="steps reveal" aria-label="Ce qui se passe après votre message">
+        <p class="steps__h">Ce qui se passe ensuite</p>
+        <ol class="steps__list">
+          {expectations.map((e) => (
+            <li>
+              <span class="steps__no">{e.n}</span>
               <div>
-                info@talentdigital.net
-                <span class="direct-link__lbl">Email professionnel</span>
+                <p class="steps__t">{e.t}</p>
+                <p class="steps__d">{e.d}</p>
               </div>
-            </a>
-            <a href="https://wa.me/212663206266" class="direct-link" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 1.38.37 2.68 1.01 3.8L1.5 16.5l3.78-1.02A7.5 7.5 0 109 1.5z"/><path d="M6.5 6.5s.5 1 1.5 2 2 1.5 2 1.5l1-1 1.5 1.5s-.5 1.5-2 1.5C8 12 6 10 6 10S4 8 4 5.5l1.5-1L7 6l-.5.5z"/></svg>
-              <div>
-                WhatsApp
-                <span class="direct-link__lbl">Réponse rapide</span>
-              </div>
-            </a>
-          </div>
+            </li>
+          ))}
+        </ol>
+        <div class="steps__foot">
+          <p>Vous préférez écrire directement ?</p>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
         </div>
-      </div>
-
+      </aside>
     </div>
-  </div>
-</section>
+  </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contactez TalentDigital","url":"https://talentdigital.net/contact","description":"Une question, un projet ? Écrivez-nous à TalentDigital, réponse sous 24 h.","publisher":{"@type":"Organization","name":"TalentDigital","url":"https://talentdigital.net","email":"info@talentdigital.net","telephone":"+212663206266"}}</script>
-
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 </BaseLayout>
 
 <style>
-  .hero-contact{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:1px solid rgba(199,247,62,.1);position:relative;overflow:hidden;background:linear-gradient(rgba(14,14,16,.86),rgba(14,14,16,.86)),url('/bg-contact-hero.webp') center/cover no-repeat}
-  .hero-contact__glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(ellipse 60% 60% at 60% 40%,rgba(199,247,62,.05) 0%,transparent 65%);pointer-events:none}
-  .hero-contact>*:not(.hero-contact__glow){position:relative;z-index:1}
-  .hero-contact h1{font-size:clamp(2rem,4vw,3.6rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-top:.7rem}
-  .hero-contact h1 em{font-style:normal;color:var(--lime)}
+  .page-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(2.5rem,5vw,3.5rem);border-bottom:1px solid var(--line)}
+  .page-hero__grid{margin-top:1.6rem}
 
-  .contact-section{padding-block:var(--section)}
-  .contact-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start}
-  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+  .direct{display:flex;flex-direction:column;border-top:1px solid var(--line-2)}
+  .direct__row{display:flex;flex-direction:column;gap:.2rem;padding:.95rem 0;border-bottom:1px solid var(--line);transition:padding-left .2s}
+  .direct__row:not(.direct__row--static):hover{padding-left:.4rem}
+  .direct__row:not(.direct__row--static):hover .direct__val{color:var(--lime)}
+  .direct__lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .direct__val{font-size:.95rem;color:var(--txt);transition:color .2s;line-height:1.4}
 
-  .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
+  .contact-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
 
-  .contact-form{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(1.8rem,4vw,2.8rem)}
-  .form-title{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1.8rem}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  @media(max-width:600px){.form-row{grid-template-columns:1fr}}
-  .field{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.1rem}
-  .field label{font-family:var(--mono);font-size:.73rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
-  .field label .req{color:var(--lime);margin-left:.15rem}
-  .field input,.field textarea{
-    background:var(--panel-2);
-    border:1px solid var(--line-2);
-    border-radius:4px;
-    color:var(--txt);
-    font-family:var(--display);
-    font-size:.95rem;
-    padding:.85rem 1rem;
-    width:100%;
-    transition:border-color .2s,box-shadow .2s;
-    outline:none;
-    -webkit-appearance:none;
+  .form-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(1.6rem,3.4vw,2.6rem)}
+  .form-title{font-size:clamp(1.25rem,2vw,1.5rem);font-weight:800;letter-spacing:-.02em}
+  .form-sub{font-size:.88rem;color:var(--muted);margin-top:.5rem;margin-bottom:1.8rem;line-height:1.55}
+  .field__hint{font-family:var(--mono);font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.1rem}
+  .form-agree label{font-size:.82rem;color:var(--muted);line-height:1.55;cursor:pointer}
+  .form-agree label a{color:var(--txt);text-decoration:underline;text-underline-offset:3px;opacity:.85}
+  .form-agree label a:hover{opacity:1;color:var(--lime)}
+  .form-agree input:invalid + label{color:inherit}
+
+  .steps{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem;position:sticky;top:96px}
+  .steps__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .steps__list{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column}
+  .steps__list li{display:flex;gap:.9rem;padding:1rem 0;border-top:1px solid var(--line)}
+  .steps__no{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding-top:.15rem}
+  .steps__t{font-size:.92rem;font-weight:700;color:var(--txt);line-height:1.35}
+  .steps__d{font-size:.82rem;color:var(--muted);line-height:1.55;margin-top:.3rem}
+  .steps__foot{margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line)}
+  .steps__foot p{font-size:.8rem;color:var(--muted)}
+  .steps__foot a{font-family:var(--mono);font-size:.82rem;color:var(--lime);display:inline-block;margin-top:.35rem;word-break:break-word}
+
+  .form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:2.5rem 1rem;gap:1rem}
+  .form-success__icon{width:56px;height:56px;border-radius:50%;background:rgba(199,247,62,.1);border:1.5px solid var(--lime);display:grid;place-items:center;color:var(--lime)}
+  .form-success h2{font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
+  .form-success p{color:var(--muted);max-width:36ch;line-height:1.6;font-size:.93rem}
+  .form-success__tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);border:1px solid rgba(199,247,62,.3);border-radius:100px;padding:.35rem .9rem}
+  .form-card.is-sent .form-fields{display:none}
+  .form-card.is-sent .form-success{display:flex}
+
+  .is-invalid{border-color:var(--danger) !important;box-shadow:0 0 0 3px rgba(255,107,107,.1) !important}
+  .field-error{display:block;font-family:var(--mono);font-size:.66rem;color:var(--danger);margin-top:.3rem}
+
+  @media (max-width:960px){
+    .contact-grid{grid-template-columns:1fr}
+    .steps{position:static}
   }
-  .field input::placeholder,.field textarea::placeholder{color:var(--muted);opacity:.7}
-  .field input:focus,.field textarea:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(199,247,62,.1)}
-  .field textarea{resize:vertical;min-height:110px;line-height:1.6}
-  .form-agree{display:flex;align-items:flex-start;gap:.75rem;margin-top:.5rem;margin-bottom:1.4rem}
-  .form-agree input[type=checkbox]{width:18px;height:18px;min-width:18px;border:1px solid var(--line-2);border-radius:3px;background:var(--panel-2);cursor:pointer;accent-color:var(--lime);margin-top:.1rem}
-  .form-agree p{font-size:.82rem;color:var(--muted);line-height:1.55}
-  .form-agree a{color:var(--txt);text-decoration:underline;text-underline-offset:3px;opacity:.7}
-  .form-agree a:hover{opacity:1;color:var(--lime)}
-  .form-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:1rem;text-align:center}
-  .btn--full{width:100%;justify-content:center}
-
-  .contact-side{display:flex;flex-direction:column;gap:1.6rem}
-  .side-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.6rem}
-  .side-card h3{font-size:1rem;font-weight:800;letter-spacing:-.01em;margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
-  .side-card h3 svg{color:var(--lime)}
-
-  .direct-links{display:flex;flex-direction:column;gap:.6rem;margin-top:.2rem}
-  .direct-link{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border:1px solid var(--line);border-radius:4px;font-size:.9rem;transition:.2s}
-  .direct-link:hover{border-color:var(--lime);background:rgba(199,247,62,.04);color:var(--lime)}
-  .direct-link svg{color:var(--lime);flex-none}
-  .direct-link__lbl{font-size:.72rem;font-family:var(--mono);color:var(--muted);display:block;margin-top:.1rem}
-
-  .form-success{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;gap:1.2rem;min-height:340px}
-  .form-success__icon{width:64px;height:64px;border-radius:50%;background:rgba(199,247,62,.12);border:2px solid var(--lime);display:grid;place-items:center}
-  .form-success h3{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
-  .form-success p{color:var(--muted);max-width:34ch;line-height:1.6}
-  .form-success__timer{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lime);border:1px solid rgba(199,247,62,.3);border-radius:100px;padding:.35rem .9rem}
-  .contact-form.is-sent .form-fields{display:none}
-  .contact-form.is-sent .form-success{display:flex}
 </style>
 
 <script>
-(function(){
-  "use strict";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var reveals = document.querySelectorAll(".reveal");
-  if(reduce || !("IntersectionObserver" in window)){
-    reveals.forEach(function(el){ el.classList.add("in"); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var sibs = Array.prototype.slice.call(e.target.parentNode.querySelectorAll(":scope > .reveal"));
-          var i = sibs.indexOf(e.target);
-          var delay = Math.min(i,5)*70;
-          e.target.style.transitionDelay = delay + "ms";
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-          (function(el,d){ setTimeout(function(){ el.style.transitionDelay = ""; }, d + 750); })(e.target, delay);
-        }
-      });
-    }, {threshold:.16, rootMargin:"0px 0px -8% 0px"});
-    reveals.forEach(function(el){ io.observe(el); });
-  }
-})();
+  (function () {
+    const form = document.getElementById('td-form') as HTMLFormElement | null;
+    const card = document.getElementById('td-contact-form');
+    const submit = document.getElementById('td-submit') as HTMLButtonElement | null;
+    if (!form || !card || !submit) return;
 
-(function(){
-  var form=document.getElementById('td-form');
-  var wrap=document.getElementById('td-contact-form');
-  var submit=document.getElementById('td-submit');
-  if(!form)return;
+    const submitLabel = submit.innerHTML;
 
-  function showError(msg){
-    var existing=document.getElementById('td-form-error');
-    if(existing) existing.remove();
-    var el=document.createElement('p');
-    el.id='td-form-error';
-    el.setAttribute('role','alert');
-    el.style.cssText='font-family:var(--mono);font-size:.78rem;color:#f87171;margin-top:1rem;text-align:center';
-    el.textContent=msg;
-    submit.insertAdjacentElement('afterend',el);
-  }
-
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var valid=true;
-
-    form.querySelectorAll('.field-error').forEach(function(el){el.remove();});
-    form.querySelectorAll('.is-invalid').forEach(function(el){el.classList.remove('is-invalid');});
-    var prevError=document.getElementById('td-form-error');
-    if(prevError) prevError.remove();
-
-    form.querySelectorAll('[required]').forEach(function(field){
-      if(!field.value.trim()||(field.type==='checkbox'&&!field.checked)){
-        valid=false;
-        field.classList.add('is-invalid');
-        var err=document.createElement('span');
-        err.className='field-error';
-        err.style.cssText='display:block;font-family:var(--mono);font-size:.68rem;color:#f87171;margin-top:.3rem';
-        err.textContent=field.type==='checkbox'?'Veuillez accepter la politique de confidentialité':'Ce champ est requis';
-        field.parentNode.appendChild(err);
-      }
-    });
-
-    if(!valid){
-      var first=form.querySelector('.is-invalid');
-      if(first)first.focus();
-      return;
+    function clearErrors() {
+      form!.querySelectorAll('.field-error').forEach((el) => el.remove());
+      form!.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+      const prev = document.getElementById('td-form-error');
+      if (prev) prev.remove();
     }
 
-    var data={
-      prenom: form.prenom.value.trim(),
-      email: form.email.value.trim(),
-      tel: form.tel.value.trim(),
-      message: form.message.value.trim(),
-      website: form.website.value
-    };
+    function showError(msg: string) {
+      const el = document.createElement('p');
+      el.id = 'td-form-error';
+      el.setAttribute('role', 'alert');
+      el.className = 'field-error';
+      el.style.marginTop = '1rem';
+      el.style.textAlign = 'center';
+      el.textContent = msg;
+      submit!.insertAdjacentElement('afterend', el);
+    }
 
-    submit.disabled=true;
-    submit.style.opacity='.6';
-    submit.textContent='Envoi en cours…';
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      clearErrors();
+      let valid = true;
 
-    fetch('/api/contact-general',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(data)
-    }).then(function(res){
-      return res.json().then(function(payload){ return {ok:res.ok, payload:payload}; });
-    }).then(function(result){
-      if(!result.ok || !result.payload.ok){
-        throw new Error((result.payload&&result.payload.error)||'Une erreur est survenue.');
+      form.querySelectorAll<HTMLInputElement>('[required]').forEach((field) => {
+        const empty = field.type === 'checkbox' ? !field.checked : !field.value.trim();
+        if (!empty) return;
+        valid = false;
+        field.classList.add('is-invalid');
+        const err = document.createElement('span');
+        err.className = 'field-error';
+        err.textContent =
+          field.type === 'checkbox'
+            ? 'Merci de cocher cette case pour continuer.'
+            : 'Ce champ est nécessaire pour vous répondre.';
+        (field.closest('.form-agree') || field.parentNode)!.appendChild(err);
+      });
+
+      if (!valid) {
+        (form.querySelector('.is-invalid') as HTMLElement | null)?.focus();
+        return;
       }
-      wrap.classList.add('is-sent');
-      wrap.querySelector('.form-success').scrollIntoView({behavior:'smooth',block:'center'});
-    }).catch(function(err){
-      showError(err.message||'Une erreur est survenue. Réessayez ou écrivez-nous à info@talentdigital.net.');
-      submit.disabled=false;
-      submit.style.opacity='';
-      submit.innerHTML='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 8h14M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Envoyer le message';
-    });
-  });
 
-  form.querySelectorAll('input,textarea').forEach(function(field){
-    field.addEventListener('input',function(){
-      field.classList.remove('is-invalid');
-      var err=field.parentNode.querySelector('.field-error');
-      if(err)err.remove();
+      const sujet = (form.querySelector('#td-sujet') as HTMLSelectElement).value;
+      const message = (form.querySelector('#td-message') as HTMLTextAreaElement).value.trim();
+
+      const data = {
+        prenom: (form.querySelector('#td-prenom') as HTMLInputElement).value.trim(),
+        email: (form.querySelector('#td-email') as HTMLInputElement).value.trim(),
+        tel: (form.querySelector('#td-tel') as HTMLInputElement).value.trim(),
+        message: `Sujet : ${sujet}\n\n${message}`,
+        website: (form.querySelector('#td-website') as HTMLInputElement).value,
+      };
+
+      submit!.disabled = true;
+      submit!.style.opacity = '.6';
+      submit!.textContent = 'Envoi en cours…';
+
+      fetch('/api/contact-general', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json().then((payload) => ({ ok: res.ok, payload })))
+        .then((result) => {
+          if (!result.ok || !result.payload.ok) {
+            throw new Error(result.payload?.error || 'Une erreur est survenue.');
+          }
+          card!.classList.add('is-sent');
+          card!.querySelector('.form-success')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const w = window as unknown as { tdTrack?: (n: string, p?: Record<string, unknown>) => void };
+          w.tdTrack?.('generate_lead', { form: 'contact', subject: sujet });
+        })
+        .catch((err: Error) => {
+          showError(err.message || 'Une erreur est survenue. Réessayez ou écrivez-nous à info@talentdigital.net.');
+          submit!.disabled = false;
+          submit!.style.opacity = '';
+          submit!.innerHTML = submitLabel;
+        });
     });
-  });
-})();
+
+    form.querySelectorAll('input,textarea,select').forEach((field) => {
+      field.addEventListener('input', () => {
+        field.classList.remove('is-invalid');
+        const err = field.parentNode?.querySelector('.field-error');
+        if (err) err.remove();
+      });
+    });
+  })();
 </script>

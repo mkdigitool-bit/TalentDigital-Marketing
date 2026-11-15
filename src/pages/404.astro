@@ -1,40 +1,63 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const links = [
+  { label: 'Consulting marketing', href: '/consulting-marketing', d: 'Décider où investir, avec méthode.' },
+  { label: 'Marketing digital', href: '/marketing-digital', d: 'Choisir les canaux, puis les piloter.' },
+  { label: 'Solutions digitales', href: '/solutions-digitales', d: 'Sites, pages, tunnels, outils sur mesure.' },
+  { label: 'La méthode', href: '/methode', d: 'Quatre étapes, quatre livrables.' },
+  { label: 'Ressources', href: '/blog', d: 'Analyses sur les décisions marketing.' },
+  { label: 'Contact', href: '/contact', d: 'Décrire une situation, poser une question.' },
+];
 ---
 
-<BaseLayout title="Page introuvable — TalentDigital" description="Cette page n'existe pas ou a été déplacée. Retrouvez nos services : landing pages, tunnels de vente, sites web et SaaS sur mesure.">
-
-<section class="svc-hero wrap">
-  <span class="prompt">erreur — <b>404</b></span>
-  <div class="svc-hero__grid">
-    <div>
-      <div class="svc-hero__icon" aria-hidden="true">?</div>
-      <h1>Page <em>introuvable</em></h1>
-      <p class="svc-hero__sub">Cette page n'existe pas ou a été déplacée. Le reste du site fonctionne parfaitement — reprenez depuis l'accueil ou profitez-en pour demander votre audit gratuit.</p>
-      <div class="svc-hero__cta">
-        <a href="/" class="btn">Retour à l'accueil <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="/audit" class="btn btn--ghost">Audit gratuit</a>
-      </div>
+<BaseLayout
+  title="Page introuvable — 404"
+  description="Cette adresse n’existe pas ou a été déplacée. Voici les pages principales du site TalentDigital."
+>
+  <section class="page-hero wrap">
+    <span class="eyebrow">Erreur 404</span>
+    <h1 class="display-1 reveal" style="margin-top:1rem">Cette page n’existe pas, ou plus.</h1>
+    <p class="lede reveal" style="margin-top:1.5rem;max-width:52ch">
+      Le lien est peut-être ancien, ou l’adresse contient une faute de frappe.
+      Voici les pages principales — ou reprenez depuis l’accueil.
+    </p>
+    <div class="hero-actions reveal">
+      <a href="/" class="btn">Retour à l’accueil
+        <svg class="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/contact" class="btn btn--ghost">Nous écrire</a>
     </div>
-    <div class="stats-panel" aria-label="Pages principales">
-      <div class="stat-row">
-        <span class="stat-row__lbl">landing_page</span>
-        <a href="/landing-page" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
-      </div>
-      <div class="stat-row">
-        <span class="stat-row__lbl">tunnel_de_vente</span>
-        <a href="/tunnel" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
-      </div>
-      <div class="stat-row">
-        <span class="stat-row__lbl">site_web</span>
-        <a href="/site-web" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
-      </div>
-      <div class="stat-row">
-        <span class="stat-row__lbl">saas</span>
-        <a href="/saas" class="stat-row__val" style="font-size:1rem;color:var(--lime)">→ voir</a>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
+  <section class="section wrap">
+    <div class="section__head reveal">
+      <p class="section-label">Pages principales</p>
+      <h2>Reprendre la <em>navigation</em>.</h2>
+    </div>
+    <div class="not-links">
+      {links.map((l) => (
+        <a class="not-link reveal" href={l.href}>
+          <span class="not-link__label">{l.label}</span>
+          <span class="not-link__d">{l.d}</span>
+          <span class="not-link__arr" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .page-hero{padding-top:clamp(2.5rem,5vw,4rem);padding-bottom:clamp(3rem,6vw,4.5rem);border-bottom:1px solid var(--line)}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+
+  .not-links{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .not-link{background:var(--panel);padding:1.4rem 1.5rem;display:grid;grid-template-columns:1fr auto;gap:.4rem 1rem;transition:background .3s}
+  .not-link:hover{background:var(--panel-2)}
+  .not-link__label{font-size:1rem;font-weight:800;letter-spacing:-.01em;color:var(--txt)}
+  .not-link__arr{grid-row:1 / span 2;align-self:center;font-family:var(--mono);color:var(--muted);transition:color .2s,transform .2s}
+  .not-link:hover .not-link__arr{color:var(--lime);transform:translateX(3px)}
+  .not-link__d{font-size:.85rem;color:var(--muted);line-height:1.5}
+
+  @media (max-width:700px){.not-links{grid-template-columns:1fr}}
+</style>
