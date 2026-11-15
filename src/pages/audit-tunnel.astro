@@ -80,8 +80,8 @@ const ld = {
 ---
 
 <BaseLayout
-  title="Auto-diagnostic de tunnel — 15 points de contrôle"
-  description="Quinze points de contrôle pour situer votre tunnel de vente : offre, capture, page de vente, commande, relance et mesure. Score immédiat, sans inscription obligatoire."
+  title="Auto-diagnostic de tunnel en 15 points"
+  description="Quinze points de contrôle pour situer votre tunnel : offre, capture, page de vente, commande, relance et mesure. Score immédiat, sans inscription."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Tunnel de vente', href: '/tunnel' }, { label: 'Auto-diagnostic' }]} />
@@ -320,6 +320,19 @@ const ld = {
     type Tracker = { tdTrack?: (n: string, p?: Record<string, unknown>) => void };
     const track = (name: string, props?: Record<string, unknown>) =>
       (window as unknown as Tracker).tdTrack?.(name, props);
+
+    // Premier clic sur une réponse : distingue l'abandon avant toute saisie
+    // d'un abandon en cours de questionnaire.
+    let started = false;
+    form.addEventListener(
+      'change',
+      () => {
+        if (started) return;
+        started = true;
+        track('form_start', { form: 'audit-tunnel' });
+      },
+      { once: true }
+    );
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();

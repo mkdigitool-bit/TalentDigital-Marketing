@@ -136,7 +136,7 @@ const ld = {
   description:
     'Référencement naturel, publicité digitale, stratégie de contenu, email marketing, génération de leads, optimisation des conversions et pilotage de la performance.',
   url: `${site.domain}/marketing-digital`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -150,8 +150,8 @@ const ld = {
 ---
 
 <BaseLayout
-  title="Marketing digital — SEO, publicité, contenu, email, conversion"
-  description="Choisir les bons canaux puis les piloter : référencement naturel, publicité Meta et Google, contenu, email marketing, CRO et tableau de bord. TalentDigital mesure ce qui rapporte."
+  title="Marketing digital : SEO, publicité, email"
+  description="Choisir les bons canaux puis les piloter : SEO, publicité Meta et Google, contenu, email, CRO et tableau de bord. On mesure ce qui rapporte."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Marketing digital' }]} />
@@ -244,8 +244,7 @@ const ld = {
           <span class="mstep__no">{step.no}</span>
           <span class="mstep__name">{step.name}</span>
           <h3>{step.title}</h3>
-          <p>{step.desc}</p>
-          <p class="mstep__out"><b>Livrable</b>{step.deliverable}</p>
+          <p>{step.channel}</p>
         </article>
       ))}
     </div>

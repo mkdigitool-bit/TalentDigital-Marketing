@@ -91,14 +91,14 @@ const ld = {
   description:
     'Conception de tunnels de vente : pages de capture, présentation d’offre, commande, séquence email, suivi par étape et documentation.',
   url: `${site.domain}/tunnel`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
 };
 ---
 
 <BaseLayout
-  title="Tunnel de vente — un parcours mesuré étape par étape"
-  description="Tunnels de vente conçus comme un parcours mesuré : capture, présentation de l’offre, commande, séquence email et suivi par étape. Chaque étape a un objectif et un indicateur."
+  title="Tunnel de vente : un parcours mesuré"
+  description="Tunnels de vente conçus comme un parcours mesuré : capture, offre, commande, séquence email et suivi par étape. Chaque étape a un objectif et un indicateur."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Tunnel de vente' }]} />

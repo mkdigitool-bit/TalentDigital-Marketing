@@ -164,7 +164,7 @@ const ld = {
   description:
     'Audit marketing et digital : diagnostic écrit des canaux, du parcours, de la mesure et de la concurrence, suivi d’un plan d’action priorisé et d’une restitution commentée.',
   url: `${site.domain}/audit`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
   offers: {
     '@type': 'Offer',
@@ -176,8 +176,8 @@ const ld = {
 ---
 
 <BaseLayout
-  title="Audit marketing et digital — savoir ce qui produit, ce qui coûte"
-  description="Un audit marketing qui sert à décider : constats sourcés, causes identifiées, canaux classés, plan d’action priorisé et restitution commentée. Le document vous appartient."
+  title="Audit marketing : ce qui produit, ce qui coûte"
+  description="Un audit marketing qui sert à décider : constats sourcés, causes identifiées, canaux classés, plan d’action priorisé. Le document vous appartient."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Audit marketing' }]} />
@@ -321,7 +321,7 @@ const ld = {
             <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l6 6 12-12"/></svg>
           </div>
           <h2>Demande bien reçue.</h2>
-          <p>Merci. Nous revenons vers vous sous 24 heures ouvrées, depuis l’adresse {site.email}.</p>
+          <p>Merci. Votre demande d’audit est enregistrée. Nous revenons vers vous sous 24 heures ouvrées, depuis l’adresse {site.email}.</p>
           <span class="form-success__tag">Réponse sous 24 h ouvrées</span>
         </div>
 
@@ -384,13 +384,13 @@ const ld = {
                 placeholder="Ex : PME de 12 personnes dans le BTP. Le site reçoit du trafic mais très peu de demandes. Une campagne Google Ads tourne depuis six mois sans suivi du coût par lead."
                 required
               ></textarea>
-              <p class="field__hint">Pas besoin d’un brief complet. Ce qui bloque, et ce que vous avez déjà essayé, suffit.</p>
+              <p class="field__hint">Décrivez la situation en quelques lignes : ce qui bloque, ce que vous avez déjà essayé, et ce que vous attendez d’un audit.</p>
             </div>
 
             <div class="form-agree">
               <input type="checkbox" id="td-agree" name="agree" required />
               <p>
-                J’accepte que ces informations soient utilisées pour traiter ma demande et me recontacter.
+                J’accepte que ces informations soient utilisées pour préparer cet audit et me recontacter.
                 <a href="/mentions-legales#confidentialite">Politique de confidentialité</a>
               </p>
             </div>
@@ -511,6 +511,19 @@ const ld = {
     if (!form || !card || !submit) return;
 
     const submitLabel = submit.innerHTML;
+
+    // Premier contact avec le formulaire : sert à mesurer l'abandon en cours de saisie.
+    let started = false;
+    form.addEventListener(
+      'focusin',
+      () => {
+        if (started) return;
+        started = true;
+        const w = window as unknown as { tdTrack?: (n: string, p?: Record<string, unknown>) => void };
+        w.tdTrack?.('form_start', { form: 'audit' });
+      },
+      { once: true }
+    );
 
     function clearErrors() {
       form!.querySelectorAll('.field-error').forEach((el) => el.remove());

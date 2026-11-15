@@ -32,6 +32,13 @@ L’audit marketing et digital est le point d’entrée : un diagnostic écrit, 
 
 Les fourchettes sont annoncées avant le début de la mission et confirmées par devis après diagnostic. Aucun tarif ferme n’est publié sans périmètre défini.
 
+## Solutions digitales, page par page
+
+- [Site web](https://talentdigital.net/site-web) : cadrage, design, intégration, SEO technique et mesure. Les accès et le code restent au client.
+- [Landing page](https://talentdigital.net/landing-page) : une page, une offre, un appel à l’action, une mesure.
+- [Tunnel de vente](https://talentdigital.net/tunnel) : capture, offre, commande, relance et suivi par étape.
+- [SaaS sur mesure](https://talentdigital.net/saas) : cadrage, première version, itérations, transfert.
+
 ## Pages
 
 - [Accueil](https://talentdigital.net/) : positionnement, constat, trois pôles, méthode, livrables, périmètre, segments, FAQ.
@@ -42,6 +49,12 @@ Les fourchettes sont annoncées avant le début de la mission et confirmées par
 - [À propos](https://talentdigital.net/a-propos) : raison d’être, façon de travailler, statut assumé.
 - [Contact](https://talentdigital.net/contact) : formulaire de contact. Réponse sous 24 h ouvrées.
 - [Mentions légales](https://talentdigital.net/mentions-legales) : informations légales, sous-traitants et politique de confidentialité.
+
+## Articles
+
+- [Audit marketing : ce qu’il doit contenir](https://talentdigital.net/blog/audit-marketing-ce-quil-doit-contenir) : les sections d’un audit qui permet de décider, pas seulement d’inventorier.
+- [SEO ou publicité : comment choisir](https://talentdigital.net/blog/seo-ou-publicite-comment-choisir) : les critères qui tranchent entre demande existante et demande à créer.
+- [Refaire son site ne règle pas la conversion](https://talentdigital.net/blog/refaire-son-site-probleme-de-conversion) : les quatre causes réelles d’un site qui reçoit du trafic sans générer de demandes.
 
 ## Contact
 

@@ -129,7 +129,7 @@ const ld = {
   description:
     'Sites web et e-commerce, landing pages, tunnels de vente, SaaS et outils sur mesure : des supports conçus pour convertir, mesurables et documentés.',
   url: `${site.domain}/solutions-digitales`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -143,8 +143,8 @@ const ld = {
 ---
 
 <BaseLayout
-  title="Solutions digitales — sites, landing pages, tunnels, SaaS"
-  description="Sites web, e-commerce, landing pages, tunnels de vente et outils sur mesure. Des supports construits dans un périmètre écrit, mesurables, documentés et dont vous gardez la propriété."
+  title="Sites, landing pages, tunnels et SaaS"
+  description="Sites web, e-commerce, landing pages, tunnels et outils sur mesure : des supports construits dans un périmètre écrit, mesurables, et dont vous gardez la propriété."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales' }]} />

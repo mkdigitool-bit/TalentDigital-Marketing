@@ -24,16 +24,15 @@ const offersLd = {
       name: pole.name,
       description: pole.desc,
       url: new URL(pole.href, site.domain).toString(),
-      provider: { '@type': 'Organization', name: site.name, url: site.domain },
+      provider: { '@id': `${site.domain}/#organization` },
     },
   })),
 };
 ---
 
 <BaseLayout
-  title="TalentDigital — Conseil marketing et solutions digitales pour PME"
-  description="TalentDigital diagnostique votre marketing, définit une stratégie priorisée puis déploie les moyens adaptés : site, tunnel, SEO, publicité, email, automatisation. Maroc et international francophone."
-  ogImage="/og-default.png"
+  title="Conseil marketing et exécution digitale"
+  description="TalentDigital diagnostique votre marketing, définit une stratégie priorisée puis déploie les moyens adaptés : site, tunnel, SEO, publicité et mesure."
 >
   <section class="hero wrap">
     <div class="hero__grid">
@@ -53,7 +52,7 @@ const offersLd = {
           </a>
           <a href="/methode" class="btn btn--ghost">Découvrir la méthode</a>
         </div>
-        <p class="hero__micro">Premier échange sans engagement · Réponse sous 24 h ouvrées</p>
+        <p class="hero__micro">Réponse sous 24 h ouvrées · Aucun engagement avant le devis</p>
       </div>
 
       <aside class="hero__panel reveal" aria-label="Ce que vous obtenez avant de dépenser">
@@ -141,30 +140,39 @@ const offersLd = {
           <span class="mstep__no">{step.no}</span>
           <span class="mstep__name">{step.name}</span>
           <h3>{step.title}</h3>
-          <p>{step.desc}</p>
-          <p class="mstep__out"><b>Livrable</b>{step.deliverable}</p>
+          <p>{step.short}</p>
         </article>
       ))}
     </div>
   </section>
 
   <section class="section wrap" id="livrables">
-    <div class="section__head reveal">
-      <p class="section-label">Preuves</p>
-      <h2>Ce que vous recevez, <em>noir sur blanc</em>.</h2>
-      <p class="lede" style="margin-top:1rem">
-        Nous ne publions pas de témoignages inventés ni de chiffres de résultats garantis.
-        La crédibilité vient de ce que nous produisons : des livrables nommés, un format, un contenu défini.
-      </p>
-    </div>
-    <div class="deliver-grid reveal">
-      {deliverables.map((item, i) => (
-        <article class="deliver-item">
-          <p class="deliver-item__no">{String(i + 1).padStart(2, '0')} — {item.format}</p>
-          <h4>{item.name}</h4>
-          <p>{item.contains}</p>
-        </article>
-      ))}
+    <div class="split">
+      <div class="reveal">
+        <p class="section-label">Preuves</p>
+        <h2>Ce que vous recevez, <em>noir sur blanc</em>.</h2>
+        <p class="lede" style="margin-top:1rem">
+          Nous ne publions pas de témoignages inventés ni de résultats garantis.
+          La crédibilité vient de ce qui est produit : des livrables nommés, un format, un contenu défini.
+        </p>
+        <p class="deliver-note">
+          Le contenu détaillé de chacun se lit sur la page méthode, pas dans une plaquette commerciale.
+        </p>
+        <p class="deliver-more">
+          <a class="btn btn--ghost" href="/methode">Voir le détail des livrables</a>
+        </p>
+      </div>
+      <ol class="deliver-index reveal">
+        {deliverables.map((item, i) => (
+          <li>
+            <span class="deliver-index__no">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{item.name}</h3>
+              <p>{item.format}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -261,6 +269,14 @@ const offersLd = {
   .card p{font-size:.9rem;color:var(--muted);line-height:1.6}
   .card{padding:1.5rem}
   .card:hover{transform:none;border-color:var(--line-2);box-shadow:none}
+
+  .deliver-note{margin-top:1.3rem;font-size:.92rem;line-height:1.6;color:var(--muted);max-width:46ch}
+  .deliver-more{margin-top:1.6rem}
+  .deliver-index{list-style:none;border-top:1px solid var(--line-2)}
+  .deliver-index li{display:flex;gap:1.1rem;padding:1.1rem 0;border-bottom:1px solid var(--line-2)}
+  .deliver-index__no{font-family:var(--mono);font-size:.72rem;color:var(--lime);padding-top:.28rem;flex:none}
+  .deliver-index h3{font-size:1rem;font-weight:800;letter-spacing:-.01em;color:var(--txt)}
+  .deliver-index p{font-size:.84rem;color:var(--muted);line-height:1.5;margin-top:.25rem}
 
   .faq__grid{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
   .faq__grid > :last-child{border-top:1px solid var(--line-2)}

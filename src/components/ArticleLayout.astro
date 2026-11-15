@@ -74,15 +74,6 @@ const ld = {
           <p class="aside-box__h">Limites de cet article</p>
           <slot name="limits" />
         </div>
-        <div class="aside-box aside-box--author">
-          <p class="aside-box__h">À propos</p>
-          <p>
-            TalentDigital est un cabinet de conseil marketing et de solutions digitales.
-            Nous publions ce que nous constatons sur le terrain, sans témoignage inventé
-            ni chiffre de résultat garanti.
-          </p>
-          <a href="/a-propos" class="aside-box__link">En savoir plus →</a>
-        </div>
       </aside>
     </div>
   </article>
@@ -98,7 +89,7 @@ const ld = {
           <article class="article-card reveal">
             <p class="article-card__cat">{r.category}</p>
             <h3><a href={`/blog/${r.slug}`}>{r.title}</a></h3>
-            <p>{r.description}</p>
+            <p>{r.why}</p>
             <p class="article-card__more">Lire →</p>
           </article>
         ))}
@@ -108,7 +99,7 @@ const ld = {
 
   <Cta
     title="Ce texte pose un cadre. Votre situation mérite mieux qu’un <em>cadre</em>."
-    text="Un échange de trente minutes permet de voir ce qui s’applique réellement chez vous — et ce qui ne s’applique pas."
+    text={post.ctaText}
     primaryLabel="Discutons de votre projet"
     primaryHref="/contact"
     secondaryLabel="Voir la méthode"
@@ -133,7 +124,6 @@ const ld = {
   .aside-box :global(li){font-size:.83rem;color:var(--muted);line-height:1.5;padding-left:1rem;position:relative}
   .aside-box :global(li)::before{content:"—";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
   .aside-box p{font-size:.83rem;color:var(--muted);line-height:1.55}
-  .aside-box--author p{margin-bottom:.8rem}
   .aside-box__link{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--txt)}
   .aside-box__link:hover{color:var(--lime)}
 

@@ -74,14 +74,14 @@ const ld = {
   description:
     'Conception de landing pages et pages de vente : structure argumentative, rédaction, design responsive, formulaire, suivi des conversions et documentation.',
   url: `${site.domain}/landing-page`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
 };
 ---
 
 <BaseLayout
-  title="Landing page et page de vente — une page, un objectif"
-  description="Landing pages conçues pour une offre précise : structure argumentative, rédaction, objections traitées, formulaire et suivi des conversions. Une page, un objectif, un seul appel à l’action."
+  title="Landing page : une page, un objectif"
+  description="Landing pages conçues pour une offre précise : structure argumentative, rédaction, objections traitées, formulaire et suivi. Une page, un objectif, un CTA."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Landing page' }]} />

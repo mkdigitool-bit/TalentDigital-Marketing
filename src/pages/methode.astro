@@ -108,23 +108,29 @@ const faq = [
 
 const ld = {
   '@context': 'https://schema.org',
-  '@type': 'HowTo',
+  '@type': 'WebPage',
   name: 'La méthode TalentDigital en quatre étapes',
   description:
     'Diagnostiquer, décider, déployer, mesurer : la méthode de conseil marketing et d’exécution utilisée par TalentDigital.',
   url: `${site.domain}/methode`,
-  step: phases.map((p, i) => ({
-    '@type': 'HowToStep',
-    position: i + 1,
-    name: p.name,
-    text: p.lead,
-  })),
+  inLanguage: 'fr',
+  about: { '@id': `${site.domain}/#organization` },
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'Les quatre étapes de la méthode',
+    itemListElement: phases.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: p.name,
+      description: p.lead,
+    })),
+  },
 };
 ---
 
 <BaseLayout
-  title="La méthode — diagnostiquer, décider, déployer, mesurer"
-  description="Quatre étapes, quatre livrables nommés. La méthode TalentDigital pour décider où investir en marketing, exécuter dans un périmètre écrit et mesurer ce qui fonctionne."
+  title="Méthode : diagnostiquer, décider, déployer"
+  description="Quatre étapes, quatre livrables nommés : diagnostiquer, décider, déployer, mesurer. De quoi investir au bon endroit et vérifier ce qui fonctionne."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Méthode' }]} />

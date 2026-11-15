@@ -705,11 +705,12 @@ structure est enregistrée.
 - [ ] Aucun témoignage, aucun logo client, aucun chiffre non sourcé
 - [ ] Galerie légendée « exemples de direction artistique » sur `/solutions-digitales`
 - [ ] Aucun prix numérique affiché hors champ `budget` du formulaire
-- [ ] Toutes les pages internes ont un fil d'Ariane (sauf exceptions §5.3)
-- [ ] Aucun lien interne mort (vérification automatisée + clic manuel) — **automatique OK**
-- [ ] `og:image` spécifique par page — **actuellement `og-default.png` partout**
-- [ ] Titres ≤ 62 caractères, descriptions 140-165 — **15 titres et 13 descriptions hors cible**
-- [ ] `llms.txt` à jour avec les 18 URL
+- [x] Toutes les pages internes ont un fil d'Ariane (sauf exceptions §5.3)
+- [x] Aucun lien interne mort (vérification automatisée + clic manuel) — **0 lien mort sur 20 pages**
+- [x] `og:image` spécifique par page — **17 images dédiées, `og-default` seulement sur `/` et `/404`**
+- [x] Titres ≤ 62 caractères, descriptions 140-165 — **19/19 dans les bornes**
+- [x] Aucune répétition de bloc entre deux pages (`tools/audit-repetition.mjs` : 0)
+- [x] `llms.txt` à jour avec les 18 URL
 
 ### 14.3 Mesure
 

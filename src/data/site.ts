@@ -33,6 +33,32 @@ export const cta = {
   method: { label: 'Découvrir la méthode', href: '/methode' },
 } as const;
 
+/**
+ * Image de partage social par route. Une seule table : si une page n'y figure
+ * pas, `BaseLayout` retombe sur `og-default.png` plutôt que sur une image
+ * inexistante. Les fichiers sont produits par `node tools/gen-og.mjs`.
+ */
+export const ogImages: Record<string, string> = {
+  '/': '/og-default.png',
+  '/consulting-marketing': '/og-consulting-marketing.png',
+  '/marketing-digital': '/og-marketing-digital.png',
+  '/solutions-digitales': '/og-solutions-digitales.png',
+  '/methode': '/og-methode.png',
+  '/audit': '/og-audit.png',
+  '/audit-tunnel': '/og-audit-tunnel.png',
+  '/a-propos': '/og-a-propos.png',
+  '/site-web': '/og-site-web.png',
+  '/landing-page': '/og-landing-page.png',
+  '/tunnel': '/og-tunnel.png',
+  '/saas': '/og-saas.png',
+  '/contact': '/og-contact.png',
+  '/blog': '/og-blog.png',
+  '/blog/audit-marketing-ce-quil-doit-contenir': '/og-blog-audit-marketing-ce-quil-doit-contenir.png',
+  '/blog/seo-ou-publicite-comment-choisir': '/og-blog-seo-ou-publicite-comment-choisir.png',
+  '/blog/refaire-son-site-probleme-de-conversion': '/og-blog-refaire-son-site-probleme-de-conversion.png',
+  '/mentions-legales': '/og-mentions-legales.png',
+};
+
 export const nav = [
   { label: 'Consulting', href: '/consulting-marketing' },
   { label: 'Marketing digital', href: '/marketing-digital' },
@@ -90,12 +116,23 @@ export const poles = [
   },
 ] as const;
 
+/**
+ * Une même méthode, quatre formulations. Chaque page en affiche une seule :
+ * `desc` sur /methode (la référence), `short` sur l’accueil, `consulting`
+ * sur /consulting-marketing, `channel` sur /marketing-digital. Aucun texte
+ * de méthode n’est donc répété d’une page à l’autre.
+ */
 export const method = [
   {
     no: '01',
     name: 'Diagnostiquer',
     title: 'Comprendre avant d’agir',
     desc: 'Entretiens, analyse des canaux, lecture des données disponibles, revue du parcours client. On cherche ce qui bloque vraiment, pas ce qui se voit.',
+    short: 'Ce qui bloque vraiment, pas ce qui se voit.',
+    consulting:
+      'Nous commençons par les entretiens et par les données qui existent déjà. La question à laquelle la mission doit répondre est écrite avant la première recommandation.',
+    channel:
+      'Avant d’ouvrir un canal : ce qu’il peut atteindre, ce qu’il coûte, et ce qu’il ne réglera pas.',
     deliverable: 'Audit écrit : constats, causes, priorités',
   },
   {
@@ -103,6 +140,11 @@ export const method = [
     name: 'Décider',
     title: 'Choisir avant de dépenser',
     desc: 'Une stratégie priorisée : quel objectif d’abord, quel canal ensuite, quel budget pour quel délai. Chaque choix est justifié et chiffré.',
+    short: 'Un ordre de priorité, un budget par chantier.',
+    consulting:
+      'Chaque recommandation est classée par impact et par effort, avec le budget qu’elle suppose. Ce qui n’est pas prioritaire est dit explicitement.',
+    channel:
+      'Un canal à la fois, avec un objectif mesurable et un seuil d’arrêt défini avant le lancement.',
     deliverable: 'Plan d’action : priorité, effort, budget, indicateur',
   },
   {
@@ -110,6 +152,11 @@ export const method = [
     name: 'Déployer',
     title: 'Exécuter sans zone grise',
     desc: 'Site, tunnel, campagne, contenu, automatisation : ce qui doit être construit l’est dans un périmètre écrit, avec des livrables nommés.',
+    short: 'Ce qui est construit l’est dans un périmètre écrit.',
+    consulting:
+      'La mission peut s’arrêter à la décision. Si l’exécution suit, elle est cadrée séparément, avec ses livrables et son calendrier.',
+    channel:
+      'Créations, intégration, tracking : la production reste dans le périmètre validé, sans ajout silencieux.',
     deliverable: 'Supports livrés, documentés, transférés',
   },
   {
@@ -117,6 +164,11 @@ export const method = [
     name: 'Mesurer',
     title: 'Mesurer avant de recommencer',
     desc: 'Un tableau de bord lisible, des indicateurs choisis à l’avance, et une revue régulière pour décider quoi arrêter, quoi renforcer.',
+    short: 'Quatre à six indicateurs, relus à date fixe.',
+    consulting:
+      'La revue de performance fait partie de la mission : ce qui a bougé, ce qui n’a pas bougé, et ce qu’on arrête.',
+    channel:
+      'Les indicateurs sont choisis avant le lancement. Un canal qui n’atteint pas son seuil est coupé, pas prolongé.',
     deliverable: 'Tableau de bord et revue de performance',
   },
 ] as const;

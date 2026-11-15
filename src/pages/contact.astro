@@ -233,6 +233,19 @@ const ld = {
 
     const submitLabel = submit.innerHTML;
 
+    // Premier contact avec le formulaire : sert à mesurer l'abandon en cours de saisie.
+    let started = false;
+    form.addEventListener(
+      'focusin',
+      () => {
+        if (started) return;
+        started = true;
+        const w = window as unknown as { tdTrack?: (n: string, p?: Record<string, unknown>) => void };
+        w.tdTrack?.('form_start', { form: 'contact' });
+      },
+      { once: true }
+    );
+
     function clearErrors() {
       form!.querySelectorAll('.field-error').forEach((el) => el.remove());
       form!.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));

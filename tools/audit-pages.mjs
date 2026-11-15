@@ -93,3 +93,14 @@ for (const r of rows) if (r.title > 62) console.log(' ', r.url, r.title);
 
 console.log('\nDescriptions hors 120-165 :');
 for (const r of rows) if (r.desc < 120 || r.desc > 165) console.log(' ', r.url, r.desc);
+
+// Chaque page doit avoir une image de partage qui existe réellement dans dist/.
+const missingOg = rows.filter((r) => r.og !== 'MANQUANT' && !fs.existsSync(path.join(root, r.og)));
+console.log('\nImages de partage absentes du build :');
+console.log(missingOg.length ? missingOg.map((r) => `  ${r.url} → ${r.og}`).join('\n') : '  aucune');
+
+const ogCount = new Map();
+for (const r of rows) ogCount.set(r.og, (ogCount.get(r.og) || 0) + 1);
+const shared = [...ogCount.entries()].filter(([, n]) => n > 1);
+console.log('\nImages de partage utilisées par plusieurs pages :');
+console.log(shared.length ? shared.map(([f, n]) => `  ${f} (${n} pages)`).join('\n') : '  aucune');

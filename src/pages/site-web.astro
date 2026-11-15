@@ -98,14 +98,14 @@ const ld = {
   description:
     'Conception de sites web professionnels : cadrage, design, intégration, rédaction, SEO technique, mesure des conversions et prise en main documentée.',
   url: `${site.domain}/site-web`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
 };
 ---
 
 <BaseLayout
-  title="Création de site web professionnel — cadrage, design, intégration"
-  description="Sites web professionnels construits dans un périmètre écrit : cadrage, design, intégration, SEO technique, mesure des conversions et prise en main. Vous gardez les accès et le code."
+  title="Création de site web : cadrage et design"
+  description="Sites web professionnels construits dans un périmètre écrit : cadrage, design, intégration, SEO technique et mesure. Vous gardez les accès et le code."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Site web' }]} />

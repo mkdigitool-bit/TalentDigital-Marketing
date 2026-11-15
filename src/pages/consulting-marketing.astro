@@ -85,7 +85,7 @@ const offersLd = {
   description:
     'Audit marketing et digital, stratégie et plan d’action, positionnement de marque, analyse de marché, stratégie d’acquisition et conseil en développement commercial pour PME et entrepreneurs.',
   url: `${site.domain}/consulting-marketing`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -99,8 +99,8 @@ const offersLd = {
 ---
 
 <BaseLayout
-  title="Consulting marketing pour PME — audit, stratégie, plan d’action"
-  description="Audit marketing et digital, stratégie et plan d’action priorisé, positionnement de marque et analyse concurrentielle. TalentDigital décide avec vous où investir avant de dépenser."
+  title="Consulting marketing : audit et stratégie"
+  description="Audit marketing, stratégie, plan d’action priorisé, positionnement de marque et analyse concurrentielle : décider où investir avant de dépenser."
 >
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Consulting marketing' }]} />
@@ -182,7 +182,7 @@ const offersLd = {
             <span class="stack-row__no">{step.no}</span>
             <div>
               <h3>{step.name} — {step.title}</h3>
-              <p>{step.desc}</p>
+              <p>{step.consulting}</p>
             </div>
           </div>
         ))}

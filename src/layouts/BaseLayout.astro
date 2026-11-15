@@ -4,7 +4,7 @@ import '../styles/global.css';
 import '../styles/v2.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site } from '../data/site';
+import { site, ogImages } from '../data/site';
 
 interface Props {
   title: string;
@@ -13,10 +13,12 @@ interface Props {
   noindex?: boolean;
 }
 
-const { title, description, ogImage = '/og-default.png', noindex = false } = Astro.props;
+const { title, description, ogImage, noindex = false } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = new URL(ogImage, Astro.site);
+const route = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const ogImagePath = ogImage ?? ogImages[route] ?? '/og-default.png';
+const ogImageURL = new URL(ogImagePath, Astro.site);
 const fullTitle = title.includes('TalentDigital') ? title : `${title} — TalentDigital`;
 
 const organization = {

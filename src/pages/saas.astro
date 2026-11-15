@@ -72,13 +72,13 @@ const ld = {
   description:
     'Développement d’outils sur mesure et de SaaS : cadrage fonctionnel, architecture, première version utilisable, tests, documentation et transfert du code.',
   url: `${site.domain}/saas`,
-  provider: { '@type': 'Organization', name: site.name, url: site.domain },
+  provider: { '@id': `${site.domain}/#organization` },
   areaServed: site.areas,
 };
 ---
 
 <BaseLayout
-  title="SaaS et outils sur mesure — première version, puis itérations"
+  title="SaaS et outils sur mesure"
   description="Développement d’outils sur mesure et de SaaS : cadrage fonctionnel, architecture, première version utilisable, tests, documentation et transfert du code source."
 >
   <section class="page-hero wrap">
