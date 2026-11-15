@@ -529,22 +529,29 @@ zone) est délivrée avant la demande d'email — c'est ce qui rend la capture d
 
 | Portée | Type | Où | Statut |
 |---|---|---|---|
-| Site | `ProfessionalService` avec `@id`, `sameAs`, `areaServed`, `knowsAbout` | `BaseLayout` (toutes les pages) | en place |
-| Page d'offre | `Service` (`name`, `serviceType`, `provider`, `areaServed`, `offers`) | `/audit` | en place |
-| Page outil | `WebPage` | `/audit-tunnel` | en place |
-| Article | `Article` (`headline`, `datePublished`, `author`, `publisher`) | `ArticleLayout` | en place |
-| Fil d'Ariane | `BreadcrumbList` | pages internes | en place |
-| FAQ | `FAQPage` | — | **non implémenté, volontairement** |
+| Site | `ProfessionalService` avec `@id`, `sameAs`, `areaServed`, `knowsAbout` | `BaseLayout` — toutes les pages | en place |
+| Fil d'Ariane | `BreadcrumbList` | toutes les pages sauf `/` et `/404` | en place |
+| FAQ | `FAQPage` (émis par `Faq.astro`, `jsonLd` par défaut à `true`) | 11 pages : `/`, `/a-propos`, `/audit`, `/consulting-marketing`, `/landing-page`, `/marketing-digital`, `/methode`, `/saas`, `/site-web`, `/solutions-digitales`, `/tunnel` | en place |
+| Offre | `Service` | 9 pages d'offre | en place |
+| Catalogue | `Offer` / `OfferCatalog` | `/audit`, `/consulting-marketing`, `/marketing-digital`, `/solutions-digitales` | en place |
+| Article | `BlogPosting` | 3 articles + `/blog` | en place |
+| Processus | `HowTo` + `HowToStep` | `/methode` | en place — **type obsolète, à retirer** |
+| Page | `AboutPage`, `ContactPage`, `WebPage`, `Blog` | selon la page | en place |
 
-**Pourquoi pas de `FAQPage`** : depuis les mises à jour Google de 2023-2024, les résultats enrichis
-FAQ ne s'affichent plus pour la majorité des sites commerciaux. Le balisage n'apporte pas de
-rich result et ajoute un risque de divergence entre le texte visible et le JSON-LD. Les FAQ
-restent du contenu, pas du balisage.
+**Sur `FAQPage`** : le balisage est présent, mais depuis les mises à jour Google de 2023-2024 les
+résultats enrichis FAQ ne s'affichent plus pour la majorité des sites commerciaux. Il ne produit
+donc aucun bénéfice visible et crée un risque de divergence entre le texte de la page et le JSON-LD.
+Deux options : le retirer (passer `jsonLd={false}`), ou le garder pour les moteurs génératifs qui
+lisent encore ce balisage. **Recommandation** : le garder, mais vérifier qu'aucune réponse du
+JSON-LD ne contredit le texte affiché — c'est le seul vrai risque.
+
+**Sur `HowTo`** : Google a supprimé les résultats enrichis HowTo en 2023. Le balisage sur `/methode`
+n'apporte rien et décrit un processus interne, pas une procédure que l'internaute peut suivre seul.
+**À retirer.**
 
 **Cohérence obligatoire** : le `@id` de l'organisation (`https://talentdigital.net/#organization`)
 doit rester identique partout, sinon Google traite plusieurs entités distinctes. `Service.provider`
-référence l'organisation par `@id`, pas par un objet dupliqué — à corriger si l'on retouche
-`/audit`.
+duplique aujourd'hui l'organisation au lieu de la référencer par `@id` — à corriger.
 
 ---
 
@@ -700,6 +707,8 @@ structure est enregistrée.
 - [ ] Aucun prix numérique affiché hors champ `budget` du formulaire
 - [ ] Toutes les pages internes ont un fil d'Ariane (sauf exceptions §5.3)
 - [ ] Aucun lien interne mort (vérification automatisée + clic manuel) — **automatique OK**
+- [ ] `og:image` spécifique par page — **actuellement `og-default.png` partout**
+- [ ] Titres ≤ 62 caractères, descriptions 140-165 — **15 titres et 13 descriptions hors cible**
 - [ ] `llms.txt` à jour avec les 18 URL
 
 ### 14.3 Mesure
@@ -773,10 +782,22 @@ positionnement de conseil.
 
 ### 15.6 Dette technique mineure
 
-- `contact.astro` duplique localement les styles de formulaire désormais présents dans `v2.css`.
-  Sans effet visuel, à dédupliquer lors d'une prochaine passe.
-- `Service.provider` sur `/audit` duplique l'organisation au lieu de référencer son `@id`.
-- Pas de `form_start` (voir §11.3).
+Mesurée sur le build du 15/11/2026 (`node tools/audit-pages.mjs`) :
+
+| Constat | Portée | Effet |
+|---|---|---|
+| `og:image` = `og-default.png` sur **toutes** les pages | 19 pages | 9 images OG dédiées (`og-audit`, `og-site-web`, `og-tunnel`…) existent dans `public/` mais ne sont jamais câblées : aucun partage social n'a d'aperçu spécifique |
+| `<title>` > 62 caractères | 15 pages | troncature probable dans les résultats Google ; le suffixe `— TalentDigital` consomme 15 caractères |
+| `meta description` > 165 caractères | 13 pages | troncature en SERP |
+| `HowTo` sur `/methode` | 1 page | type obsolète, aucun rich result |
+| `FAQPage` sur 11 pages | 11 pages | sans rich result depuis 2023 ; garder seulement si le texte reste aligné |
+| `404` sans `meta robots noindex` | 1 page | dépend du statut HTTP servi par Vercel |
+| `contact.astro` duplique localement les styles de formulaire présents dans `v2.css` | — | sans effet visuel |
+| `Service.provider` duplique l'organisation au lieu de référencer son `@id` | 9 pages | risque de duplication d'entité |
+| Pas de `form_start` | 3 formulaires | taux de complétion non calculable |
+
+Aucun de ces points ne bloque la mise en ligne ; les deux premiers sont ceux qui coûtent le plus en
+visibilité, parce qu'ils touchent chaque page.
 
 ---
 
