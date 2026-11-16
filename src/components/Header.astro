@@ -71,7 +71,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
   .nav__links{display:flex;align-items:center;gap:1.35rem;margin-left:auto}
   .nav__links > a:not(.btn){font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);position:relative;padding:.2rem 0;transition:color .2s;white-space:nowrap}
   .nav__links > a:not(.btn):hover{color:var(--txt)}
-  .nav__links > a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+  .nav__links > a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
   .nav__links > a:not(.btn):hover::after,.nav__links > a:not(.btn).is-active::after{transform:scaleX(1)}
   .nav__links > a.is-active{color:var(--txt)}
   .nav__cta{white-space:nowrap}

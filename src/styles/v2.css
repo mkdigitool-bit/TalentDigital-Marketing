@@ -17,7 +17,7 @@
   display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.72rem;
   letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;
 }
-.section-label::before{content:"";width:26px;height:1px;background:var(--lime)}
+.section-label::before{content:"";width:26px;height:1px;background:var(--accent)}
 
 .display-1{
   font-size:clamp(2rem,4.6vw,3.9rem);font-weight:900;line-height:1.04;
@@ -96,7 +96,7 @@
 .breadcrumbs a{color:var(--muted);transition:color .2s}
 .breadcrumbs a:hover{color:var(--accent)}
 .breadcrumbs [aria-current="page"]{color:var(--txt)}
-.breadcrumbs__sep{color:var(--line-2)}
+.breadcrumbs__sep{color:var(--muted)}
 
 /* accordéon (FAQ) partagé */
 .acc{border-bottom:1px solid var(--line)}
