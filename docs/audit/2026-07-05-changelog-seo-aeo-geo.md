@@ -1,6 +1,6 @@
 # Changelog — Optimisation SEO/AEO/GEO du 2026-07-05
 
-Référence : `audit-report.md` (identifiants C/I/M). Charte graphique inchangée sur toutes les corrections.
+Référence : `2026-07-08-audit-report.md` (identifiants C/I/M). Charte graphique inchangée sur toutes les corrections.
 
 ## Critiques
 - **C1** — Ajout de `@astrojs/sitemap` (sitemap-index.xml généré au build) et de `public/robots.txt` le référençant. *Pourquoi : sans sitemap ni robots, l'indexation Google est lente et la Search Console ne peut pas recevoir le plan du site.*
