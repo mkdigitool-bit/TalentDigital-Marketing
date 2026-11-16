@@ -49,14 +49,25 @@ const organization = {
 ---
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#0E0E10" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0E0E10" id="td-theme-color" />
+  <script is:inline>
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('td-theme'); } catch (e) {}
+      if (stored === 'light' || stored === 'dark') {
+        document.documentElement.setAttribute('data-theme', stored);
+        var meta = document.getElementById('td-theme-color');
+        if (meta) meta.setAttribute('content', stored === 'light' ? '#F5F6F1' : '#0E0E10');
+      }
+    })();
+  </script>
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />

@@ -257,13 +257,13 @@ const sections = [
   .legal-wrap{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);padding-block:clamp(2.5rem,5vw,4rem);align-items:start}
 
   .legal-toc{position:sticky;top:96px;border-top:1px solid var(--line-2);padding-top:1rem}
-  .legal-toc__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .legal-toc__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
   .legal-toc ol{list-style:none;margin-top:.9rem;display:flex;flex-direction:column}
   .legal-toc li{border-bottom:1px solid var(--line)}
   .legal-toc a{display:flex;gap:.7rem;padding:.6rem 0;font-size:.84rem;color:var(--muted);transition:color .2s}
   .legal-toc a span{font-family:var(--mono);font-size:.68rem;color:var(--line-2);padding-top:.1rem}
-  .legal-toc a:hover{color:var(--lime)}
-  .legal-toc a:hover span{color:var(--lime)}
+  .legal-toc a:hover{color:var(--accent)}
+  .legal-toc a:hover span{color:var(--accent)}
 
   .legal-body{max-width:72ch}
   .legal-block{padding-bottom:2.4rem;margin-bottom:2.4rem;border-bottom:1px solid var(--line)}
@@ -272,10 +272,10 @@ const sections = [
   .legal-block h3{font-size:1.02rem;font-weight:800;letter-spacing:-.01em;margin:1.8rem 0 .6rem;color:var(--txt)}
   .legal-block p{color:var(--muted);line-height:1.75;margin-top:1rem;font-size:.96rem}
   .legal-block p b{color:var(--txt);font-weight:600}
-  .legal-block a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+  .legal-block a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
   .legal-block ul{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.65rem}
   .legal-block li{position:relative;padding-left:1.2rem;color:var(--muted);line-height:1.7;font-size:.94rem}
-  .legal-block li::before{content:"—";position:absolute;left:0;color:var(--lime);font-family:var(--mono)}
+  .legal-block li::before{content:"—";position:absolute;left:0;color:var(--accent);font-family:var(--mono)}
   .legal-block li b{color:var(--txt);font-weight:600}
   .legal-block code{font-family:var(--mono);font-size:.84em;background:var(--panel-2);border:1px solid var(--line);border-radius:3px;padding:.1rem .35rem;color:var(--txt)}
 

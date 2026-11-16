@@ -181,7 +181,7 @@ const ld = {
   .direct{display:flex;flex-direction:column;border-top:1px solid var(--line-2)}
   .direct__row{display:flex;flex-direction:column;gap:.2rem;padding:.95rem 0;border-bottom:1px solid var(--line);transition:padding-left .2s}
   .direct__row:not(.direct__row--static):hover{padding-left:.4rem}
-  .direct__row:not(.direct__row--static):hover .direct__val{color:var(--lime)}
+  .direct__row:not(.direct__row--static):hover .direct__val{color:var(--accent)}
   .direct__lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
   .direct__val{font-size:.95rem;color:var(--txt);transition:color .2s;line-height:1.4}
 
@@ -193,11 +193,11 @@ const ld = {
   .field__hint{font-family:var(--mono);font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.1rem}
   .form-agree label{font-size:.82rem;color:var(--muted);line-height:1.55;cursor:pointer}
   .form-agree label a{color:var(--txt);text-decoration:underline;text-underline-offset:3px;opacity:.85}
-  .form-agree label a:hover{opacity:1;color:var(--lime)}
+  .form-agree label a:hover{opacity:1;color:var(--accent)}
   .form-agree input:invalid + label{color:inherit}
 
   .steps{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.6rem;position:sticky;top:96px}
-  .steps__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+  .steps__h{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
   .steps__list{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column}
   .steps__list li{display:flex;gap:.9rem;padding:1rem 0;border-top:1px solid var(--line)}
   .steps__no{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding-top:.15rem}
@@ -205,13 +205,13 @@ const ld = {
   .steps__d{font-size:.82rem;color:var(--muted);line-height:1.55;margin-top:.3rem}
   .steps__foot{margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line)}
   .steps__foot p{font-size:.8rem;color:var(--muted)}
-  .steps__foot a{font-family:var(--mono);font-size:.82rem;color:var(--lime);display:inline-block;margin-top:.35rem;word-break:break-word}
+  .steps__foot a{font-family:var(--mono);font-size:.82rem;color:var(--accent);display:inline-block;margin-top:.35rem;word-break:break-word}
 
   .form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:2.5rem 1rem;gap:1rem}
-  .form-success__icon{width:56px;height:56px;border-radius:50%;background:rgba(199,247,62,.1);border:1.5px solid var(--lime);display:grid;place-items:center;color:var(--lime)}
+  .form-success__icon{width:56px;height:56px;border-radius:50%;background:rgba(199,247,62,.1);border:1.5px solid var(--accent);display:grid;place-items:center;color:var(--accent)}
   .form-success h2{font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
   .form-success p{color:var(--muted);max-width:36ch;line-height:1.6;font-size:.93rem}
-  .form-success__tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);border:1px solid rgba(199,247,62,.3);border-radius:100px;padding:.35rem .9rem}
+  .form-success__tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(199,247,62,.3);border-radius:100px;padding:.35rem .9rem}
   .form-card.is-sent .form-fields{display:none}
   .form-card.is-sent .form-success{display:flex}
 

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-talentdigital.png';
+import logoLight from '../assets/logo-talentdigital-light.png';
 import { site, nav } from '../data/site';
 
 const year = new Date().getFullYear();
@@ -11,7 +12,8 @@ const year = new Date().getFullYear();
     <div class="foot__top">
       <div class="foot__brand">
         <a href="/" class="brand" aria-label="TalentDigital — Accueil">
-          <Image src={logo} alt="TalentDigital" height={36} />
+          <Image src={logo} alt="TalentDigital" height={36} class="brand__logo brand__logo--dark" />
+          <Image src={logoLight} alt="TalentDigital" height={36} class="brand__logo brand__logo--light" />
         </a>
         <p class="foot__desc">{site.descriptor}</p>
         <p class="foot__tag">{site.reason}</p>
@@ -81,17 +83,20 @@ const year = new Date().getFullYear();
 
 <style>
   .site-footer{border-top:1px solid var(--line);padding-block:clamp(3rem,6vw,4.5rem) 2rem;background:var(--panel)}
+  .brand__logo--light{display:none}
+  :global([data-theme="light"]) .brand__logo--dark{display:none}
+  :global([data-theme="light"]) .brand__logo--light{display:block}
   .foot__top{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:2rem}
   .foot__brand .brand{font-size:1.7rem}
-  .foot__desc{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-top:.9rem}
+  .foot__desc{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-top:.9rem}
   .foot__tag{color:var(--muted);max-width:32ch;margin-top:.7rem;font-size:.9rem;line-height:1.55}
   .foot .foot__h{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
   .foot ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
   .foot a{font-size:.88rem;color:var(--txt);opacity:.82;transition:color .2s,opacity .2s;width:fit-content}
-  .foot a:hover{opacity:1;color:var(--lime)}
+  .foot a:hover{opacity:1;color:var(--accent)}
   .foot__social{display:flex;gap:.6rem;margin-top:1.2rem}
   .foot__social a{width:34px;height:34px;border:1px solid var(--line-2);border-radius:4px;display:grid;place-items:center;color:var(--muted);transition:.2s;opacity:1}
-  .foot__social a:hover{border-color:var(--lime);color:var(--lime)}
+  .foot__social a:hover{border-color:var(--accent);color:var(--accent)}
   .foot__bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:3rem;padding-top:1.5rem;font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.04em}
 
   @media (max-width:1080px){.foot__top{grid-template-columns:1fr 1fr 1fr}.foot__brand{grid-column:1/-1}}
