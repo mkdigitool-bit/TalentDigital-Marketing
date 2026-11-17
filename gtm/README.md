@@ -1,14 +1,14 @@
-# GTM — conteneur GTM-K2SDWZMF
+﻿# GTM â€” conteneur GTM-K2SDWZMF
 
 Le site charge la balise Google **statiquement dans le `<head>`** (snippet officiel
-`gtm.js?id=GTM-K2SDWZMF`), pour que Google la détecte. La mesure est bridée par
-**Consent Mode v2** : `analytics_storage` et `ad_storage` sont à `denied` par défaut,
-et passent à `granted` uniquement après acceptation du bandeau.
+`gtm.js?id=GTM-K2SDWZMF`), pour que Google la dÃ©tecte. La mesure est bridÃ©e par
+**Consent Mode v2** : `analytics_storage` et `ad_storage` sont Ã  `denied` par dÃ©faut,
+et passent Ã  `granted` uniquement aprÃ¨s acceptation du bandeau.
 
-Le site pousse déjà deux événements dans `window.dataLayer` via `window.tdTrack`
-(seulement si le consentement est accordé) :
+Le site pousse dÃ©jÃ  deux Ã©vÃ©nements dans `window.dataLayer` via `window.tdTrack`
+(seulement si le consentement est accordÃ©) :
 
-| Événement | Paramètres | Déclencheur côté site |
+| Ã‰vÃ©nement | ParamÃ¨tres | DÃ©clencheur cÃ´tÃ© site |
 | --- | --- | --- |
 | `cta_click` | `cta`, `page`, `target` (`contact` ou `audit`) | clic sur un lien interne vers `/contact` ou `/audit` |
 | `pdf_download` | `file`, `page` | clic sur un lien `.pdf` |
@@ -17,54 +17,54 @@ Le site pousse déjà deux événements dans `window.dataLayer` via `window.tdTr
 
 Fichier : `gtm/GTM-K2SDWZMF-container.json`
 
-1. Ouvrir <https://tagmanager.google.com> → conteneur **GTM-K2SDWZMF**.
-2. **Admin → Import Container**.
-3. Choisir le fichier JSON, workspace « Default », option **Merge → Overwrite conflicting tags, triggers and variables**.
-4. Confirmer, puis **Submit** → version « GA4 + événements site ».
+1. Ouvrir <https://tagmanager.google.com> â†’ conteneur **GTM-K2SDWZMF**.
+2. **Admin â†’ Import Container**.
+3. Choisir le fichier JSON, workspace Â« Default Â», option **Merge â†’ Overwrite conflicting tags, triggers and variables**.
+4. Confirmer, puis **Submit** â†’ version Â« GA4 + Ã©vÃ©nements site Â».
 
-Contenu importé :
+Contenu importÃ© :
 
-- **Balise** `GA4 — Configuration` (type Google Tag, `G-62J5D8NLMW`, page vue activée).
-- **Balise** `GA4 — Événement cta_click`.
-- **Balise** `GA4 — Événement pdf_download`.
-- **Déclencheurs** `CE — cta_click` et `CE — pdf_download` (événements personnalisés).
+- **Balise** `GA4 â€” Configuration` (type Google Tag, `G-57HZ8RC104`, page vue activÃ©e).
+- **Balise** `GA4 â€” Ã‰vÃ©nement cta_click`.
+- **Balise** `GA4 â€” Ã‰vÃ©nement pdf_download`.
+- **DÃ©clencheurs** `CE â€” cta_click` et `CE â€” pdf_download` (Ã©vÃ©nements personnalisÃ©s).
 - **Variables** `DLV - cta`, `DLV - page`, `DLV - target`, `DLV - file`.
 
-> L'ID de mesure `G-62J5D8NLMW` est repris dans la balise GA4, à modifier si tu utilises
-> un nouveau flux de données.
+> L'ID de mesure `G-57HZ8RC104` est repris dans la balise GA4, Ã  modifier si tu utilises
+> un nouveau flux de donnÃ©es.
 
-## 2. Import manuel (si l'import JSON est refusé)
+## 2. Import manuel (si l'import JSON est refusÃ©)
 
-**Balise GA4 Configuration** — type « Google Tag », ID `G-62J5D8NLMW`, déclencheur « All Pages ».
+**Balise GA4 Configuration** â€” type Â« Google Tag Â», ID `G-57HZ8RC104`, dÃ©clencheur Â« All Pages Â».
 
-**Déclencheur `CE — cta_click`** — type « Événement personnalisé », nom d'événement
-correspondant à `cta_click`. Idem pour `CE — pdf_download` avec `pdf_download`.
+**DÃ©clencheur `CE â€” cta_click`** â€” type Â« Ã‰vÃ©nement personnalisÃ© Â», nom d'Ã©vÃ©nement
+correspondant Ã  `cta_click`. Idem pour `CE â€” pdf_download` avec `pdf_download`.
 
-**Balise `GA4 — Événement cta_click`** — type « Événement Google Analytics : GA4 »,
-nom d'événement `cta_click`, paramètres `cta` → `{{DLV - cta}}`, `page` → `{{DLV - page}}`,
-`target` → `{{DLV - target}}`, déclencheur `CE — cta_click`.
+**Balise `GA4 â€” Ã‰vÃ©nement cta_click`** â€” type Â« Ã‰vÃ©nement Google Analytics : GA4 Â»,
+nom d'Ã©vÃ©nement `cta_click`, paramÃ¨tres `cta` â†’ `{{DLV - cta}}`, `page` â†’ `{{DLV - page}}`,
+`target` â†’ `{{DLV - target}}`, dÃ©clencheur `CE â€” cta_click`.
 
-**Balise `GA4 — Événement pdf_download`** — nom d'événement `pdf_download`,
-paramètres `file` → `{{DLV - file}}`, `page` → `{{DLV - page}}`, déclencheur `CE — pdf_download`.
+**Balise `GA4 â€” Ã‰vÃ©nement pdf_download`** â€” nom d'Ã©vÃ©nement `pdf_download`,
+paramÃ¨tres `file` â†’ `{{DLV - file}}`, `page` â†’ `{{DLV - page}}`, dÃ©clencheur `CE â€” pdf_download`.
 
-**Variables** — 4 variables « Data Layer Variable » nommées `DLV - cta`, `DLV - page`,
+**Variables** â€” 4 variables Â« Data Layer Variable Â» nommÃ©es `DLV - cta`, `DLV - page`,
 `DLV - target`, `DLV - file`.
 
-## 3. Vérification
+## 3. VÃ©rification
 
-1. Aperçu GTM sur `https://talentdigital.net`, accepter le bandeau.
-2. Vérifier que `GA4 — Configuration` se déclenche sur chaque page.
-3. Cliquer un CTA vers `/contact` et un lien PDF : les deux balises d'événement doivent apparaître
-   avec leurs paramètres.
-4. Publier, puis contrôler dans GA4 → Rapports → Temps réel (événements `cta_click`, `pdf_download`).
+1. AperÃ§u GTM sur `https://talentdigital.net`, accepter le bandeau.
+2. VÃ©rifier que `GA4 â€” Configuration` se dÃ©clenche sur chaque page.
+3. Cliquer un CTA vers `/contact` et un lien PDF : les deux balises d'Ã©vÃ©nement doivent apparaÃ®tre
+   avec leurs paramÃ¨tres.
+4. Publier, puis contrÃ´ler dans GA4 â†’ Rapports â†’ Temps rÃ©el (Ã©vÃ©nements `cta_click`, `pdf_download`).
 
 ## Rappel technique
 
 - Snippet statique dans `src/layouts/BaseLayout.astro`, dans le `<head>`, sur les 19 pages.
-- `gtag('consent','default',{...denied})` est exécuté **avant** le chargement de `gtm.js`.
-  À l'acceptation, `window.tdGrantConsent()` envoie `consent update` en `granted`.
+- `gtag('consent','default',{...denied})` est exÃ©cutÃ© **avant** le chargement de `gtm.js`.
+  Ã€ l'acceptation, `window.tdGrantConsent()` envoie `consent update` en `granted`.
   Au refus, `window.tdDenyConsent()` renvoie `denied`.
-- `window.tdTrack` ne pousse un événement que si `window.__tdConsent === 'granted'`.
-- Pas de `<noscript>` : les balises ne se déclenchent que côté JS.
+- `window.tdTrack` ne pousse un Ã©vÃ©nement que si `window.__tdConsent === 'granted'`.
+- Pas de `<noscript>` : les balises ne se dÃ©clenchent que cÃ´tÃ© JS.
 - La CSP (`vercel.json`) autorise `googletagmanager.com`, `google-analytics.com`,
   `*.analytics.google.com`, `doubleclick.net` en script/connect/frame.
