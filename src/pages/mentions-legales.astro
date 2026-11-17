@@ -150,8 +150,9 @@ const sections = [
           <li><b>Resend</b> — envoi des emails de notification et de réponse.</li>
           <li><b>Vercel</b> — hébergement du site et exécution des fonctions de formulaire.</li>
           <li>
-            <b>Google Analytics 4</b> — mesure d’audience, <b>uniquement après votre acceptation</b>.
-            Sans acceptation, aucun script de mesure n’est chargé.
+            <b>Google Tag Manager</b> — conteneur de balises (mesure d’audience, notamment Google
+            Analytics 4), <b>uniquement après votre acceptation</b>. Sans acceptation, aucun script
+            de mesure n’est chargé.
           </li>
         </ul>
         <p>
@@ -187,22 +188,27 @@ const sections = [
         <h2>Cookies et mesure d’audience</h2>
         <p>
           Ce site ne dépose <b>aucun cookie publicitaire</b> et n’utilise aucun outil de reciblage.
-          Le seul traceur utilisé est un outil de mesure d’audience (Google Analytics 4), et il n’est
-          chargé qu’après votre acceptation explicite.
+          Le seul traceur utilisé est un outil de mesure d’audience (Google Tag Manager et Google
+          Analytics 4). Il est chargé en <b>mode consentement restreint</b> : aucun cookie de mesure
+          n’est déposé avant votre acceptation explicite.
         </p>
         <ul>
           <li>
-            <b>Avant consentement</b> : aucun script de mesure n’est chargé. Seul un enregistrement
-            local (<code>localStorage</code>, clé <code>td-consent</code>) conserve votre choix, afin
-            de ne pas réafficher le bandeau à chaque visite.
+            <b>Avant consentement</b> : le conteneur Google Tag Manager est chargé, mais le mode
+            consentement de Google maintient le stockage désactivé (<code>analytics_storage</code>
+            et <code>ad_storage</code> à <code>denied</code>) : aucun cookie de mesure n’est créé.
+            Seul un enregistrement local (<code>localStorage</code>, clé <code>td-consent</code>)
+            conserve votre choix, afin de ne pas réafficher le bandeau à chaque visite.
           </li>
           <li>
-            <b>Après acceptation</b> : Google Analytics 4 est chargé, avec anonymisation de l’adresse
-            IP. Les données sont agrégées et servent à comprendre quelles pages sont utiles.
+            <b>Après acceptation</b> : le consentement est transmis aux balises, les cookies de
+            mesure Google Analytics 4 sont déposés (avec anonymisation de l’adresse IP). Les données
+            sont agrégées et servent à comprendre quelles pages sont utiles.
           </li>
           <li>
-            <b>Après refus</b> : aucun cookie de mesure n’est déposé. Le site fonctionne
-            normalement, y compris les formulaires.
+            <b>Après refus</b> : le stockage reste désactivé, aucun cookie de mesure n’est déposé et
+            aucun événement personnalisé n’est envoyé. Le site fonctionne normalement, y compris les
+            formulaires.
           </li>
         </ul>
         <p>

@@ -1,0 +1,219 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-11-17 23:40:00",
+  "containerVersion": {
+    "path": "accounts/6000000000/containers/6000000001/versions/0",
+    "accountId": "6000000000",
+    "containerId": "6000000001",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/6000000000/containers/6000000001",
+      "accountId": "6000000000",
+      "containerId": "6000000001",
+      "name": "TalentDigital",
+      "publicId": "GTM-K2SDWZMF",
+      "usageContext": ["WEB"],
+      "fingerprint": "2026111701",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6000000000/containers/6000000001/workspaces/6000000002"
+    },
+    "tag": [
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "tagId": "1",
+        "name": "GA4 — Configuration",
+        "type": "gaawc",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "measurementId", "value": "G-62J5D8NLMW" },
+          { "type": "BOOLEAN", "key": "sendPageView", "value": "true" },
+          { "type": "LIST", "key": "userProperties", "list": [] }
+        ],
+        "fingerprint": "1",
+        "firingTriggerId": ["2147479553"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": { "type": "MAP" },
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "tagId": "2",
+        "name": "GA4 — Événement cta_click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "G-62J5D8NLMW" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "cta_click" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "parameterName", "value": "cta" },
+                  { "type": "TEMPLATE", "key": "parameterValue", "value": "{{DLV - cta}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "parameterName", "value": "page" },
+                  { "type": "TEMPLATE", "key": "parameterValue", "value": "{{DLV - page}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "parameterName", "value": "target" },
+                  { "type": "TEMPLATE", "key": "parameterValue", "value": "{{DLV - target}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "fingerprint": "2",
+        "firingTriggerId": ["5"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": { "type": "MAP" },
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "tagId": "3",
+        "name": "GA4 — Événement pdf_download",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "G-62J5D8NLMW" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "pdf_download" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "parameterName", "value": "file" },
+                  { "type": "TEMPLATE", "key": "parameterValue", "value": "{{DLV - file}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "parameterName", "value": "page" },
+                  { "type": "TEMPLATE", "key": "parameterValue", "value": "{{DLV - page}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "fingerprint": "3",
+        "firingTriggerId": ["6"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": { "type": "MAP" },
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "triggerId": "5",
+        "name": "CE — cta_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "cta_click" }
+            ]
+          }
+        ],
+        "fingerprint": "5"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "triggerId": "6",
+        "name": "CE — pdf_download",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "pdf_download" }
+            ]
+          }
+        ],
+        "fingerprint": "6"
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "variableId": "10",
+        "name": "DLV - cta",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "false" },
+          { "type": "TEMPLATE", "key": "name", "value": "cta" }
+        ],
+        "fingerprint": "10"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "variableId": "11",
+        "name": "DLV - page",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "false" },
+          { "type": "TEMPLATE", "key": "name", "value": "page" }
+        ],
+        "fingerprint": "11"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "variableId": "12",
+        "name": "DLV - target",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "false" },
+          { "type": "TEMPLATE", "key": "name", "value": "target" }
+        ],
+        "fingerprint": "12"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "6000000001",
+        "variableId": "13",
+        "name": "DLV - file",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "BOOLEAN", "key": "setDefaultValue", "value": "false" },
+          { "type": "TEMPLATE", "key": "name", "value": "file" }
+        ],
+        "fingerprint": "13"
+      }
+    ],
+    "builtInVariable": [
+      { "type": "EVENT" },
+      { "type": "PAGE_URL" },
+      { "type": "PAGE_HOSTNAME" },
+      { "type": "PAGE_PATH" },
+      { "type": "REFERRER" },
+      { "type": "CLICK_ELEMENT" }
+    ],
+    "folder": [],
+    "client": [],
+    "transformation": []
+  }
+}
