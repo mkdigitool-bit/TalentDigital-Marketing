@@ -120,7 +120,7 @@ const { variant } = Astro.props;
     transform-origin: 50% 100%;
     opacity: 0.42;
     mask-image: radial-gradient(ellipse at 50% 100%, #000 10%, transparent 70%);
-    animation: gridDrift 26s linear infinite;
+    animation: gridDrift 10s linear infinite;
   }
 
   .stage__glow {
@@ -154,7 +154,7 @@ const { variant } = Astro.props;
     perspective: 1100px;
     translate: 0 -50%;
     transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
-    transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
   /* ---- Scène 1 : anneaux orbitaux ---- */
@@ -182,19 +182,19 @@ const { variant } = Astro.props;
   }
 
   .orb__ring--a {
-    animation: spinA 18s linear infinite;
+    animation: spinA 7s linear infinite;
   }
 
   .orb__ring--b {
     inset: 12%;
     border-color: color-mix(in srgb, var(--txt) 22%, transparent);
-    animation: spinB 24s linear infinite;
+    animation: spinB 9s linear infinite;
   }
 
   .orb__ring--c {
     inset: 24%;
     border-color: color-mix(in srgb, var(--accent) 18%, transparent);
-    animation: spinC 30s linear infinite;
+    animation: spinC 12s linear infinite;
   }
 
   .orb__sat {
@@ -209,13 +209,13 @@ const { variant } = Astro.props;
   .orb__sat--a {
     top: 4%;
     left: 47%;
-    animation: satA 11s linear infinite;
+    animation: satA 4.5s linear infinite;
   }
 
   .orb__sat--b {
     bottom: 16%;
     right: 12%;
-    animation: satB 15s linear infinite;
+    animation: satB 6s linear infinite;
   }
 
   /* ---- Scène 2 : tunnel de cadres ---- */
@@ -231,8 +231,8 @@ const { variant } = Astro.props;
     border: 1px solid color-mix(in srgb, var(--accent) calc(42% - var(--i) * 6%), transparent);
     border-radius: 6px;
     transform: translateZ(calc(var(--i) * -46px));
-    animation: tunnelBreath 7s ease-in-out infinite;
-    animation-delay: calc(var(--i) * -0.55s);
+    animation: tunnelBreath 3s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -0.24s);
   }
 
   .tunnel__core {
@@ -241,7 +241,7 @@ const { variant } = Astro.props;
     border-radius: 8px;
     background: color-mix(in srgb, var(--accent) 55%, transparent);
     filter: blur(14px);
-    animation: tunnelPulse 4.4s ease-in-out infinite;
+    animation: tunnelPulse 1.8s ease-in-out infinite;
   }
 
   /* ---- Scène 3 : panneaux flottants ---- */
@@ -270,7 +270,7 @@ const { variant } = Astro.props;
     top: 4%;
     left: 10%;
     transform: rotateY(-16deg) rotateX(8deg);
-    animation: floatA 13s ease-in-out infinite;
+    animation: floatA 5.5s ease-in-out infinite;
   }
 
   .panels__card--b {
@@ -278,14 +278,14 @@ const { variant } = Astro.props;
     left: 30%;
     transform: rotateY(-10deg) rotateX(4deg);
     border-color: color-mix(in srgb, var(--accent) 58%, transparent);
-    animation: floatB 16s ease-in-out infinite;
+    animation: floatB 6.5s ease-in-out infinite;
   }
 
   .panels__card--c {
     top: 56%;
     left: 16%;
     transform: rotateY(-20deg) rotateX(10deg);
-    animation: floatC 19s ease-in-out infinite;
+    animation: floatC 8s ease-in-out infinite;
   }
 
   .panels__rail {
@@ -313,7 +313,7 @@ const { variant } = Astro.props;
     height: var(--cube);
     margin: calc(var(--half) * -1) 0 0 calc(var(--half) * -1);
     transform-style: preserve-3d;
-    animation: cubeSpin 22s linear infinite;
+    animation: cubeSpin 9s linear infinite;
   }
 
   .stage[data-variant='cube'] {
@@ -358,11 +358,11 @@ const { variant } = Astro.props;
   }
 
   .cube__node--a {
-    animation: nodeA 9s ease-in-out infinite;
+    animation: nodeA 3.6s ease-in-out infinite;
   }
 
   .cube__node--b {
-    animation: nodeB 12s ease-in-out infinite;
+    animation: nodeB 5s ease-in-out infinite;
   }
 
   @keyframes gridDrift {
