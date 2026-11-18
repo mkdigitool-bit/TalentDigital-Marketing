@@ -108,12 +108,10 @@ const ld = {
   title="Création de site web : cadrage et design"
   description="Sites web professionnels construits dans un périmètre écrit : cadrage, design, intégration, SEO technique et mesure. Vous gardez les accès et le code."
 >
-  <div class="hero-stage">
-    <Hero3D variant="orbital" index="01" label="Site web" />
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Site web' }]} />
     <div class="split page-hero__grid">
-      <div>
+      <div class="hero-copy">
         <span class="eyebrow">Solution 01 — Site web</span>
         <h1 class="display-1 reveal" style="margin-top:1rem">Un site qui explique, et qui <em>convertit</em>.</h1>
         <p class="lede reveal" style="margin-top:1.5rem;max-width:50ch">
@@ -129,6 +127,10 @@ const ld = {
         <p class="note" style="margin-top:1.2rem">Périmètre écrit avant devis · Accès et code remis · Prise en main incluse</p>
       </div>
 
+      <div class="hero-visual reveal">
+        <Hero3D variant="orbital" />
+      </div>
+
       <aside class="side-note reveal">
         <p class="side-note__h">La question à trancher d’abord</p>
         <p>
@@ -139,7 +141,6 @@ const ld = {
       </aside>
     </div>
   </section>
-  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">

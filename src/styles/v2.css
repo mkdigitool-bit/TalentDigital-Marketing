@@ -262,6 +262,30 @@
   .two-grid,.three-grid{grid-template-columns:1fr}
 }
 
-/* Hero avec decor genere (composant Hero3D) */
-.hero-stage{position:relative;isolation:isolate;overflow:hidden}
-.hero-stage>.page-hero{position:relative;z-index:1;margin-inline:auto}
+/* ══════════════════════════════════════════════════════════════
+   Hero des pages création : copie à gauche, visuel 3D + note à droite
+   Le décor ne passe jamais derrière le texte : il a son propre cadre.
+   ══════════════════════════════════════════════════════════════ */
+.page-hero__grid{
+  grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
+  grid-template-areas:"copy visual" "copy note";
+  align-items:start;
+  row-gap:clamp(1.1rem,2vw,1.5rem);
+}
+.hero-copy{grid-area:copy;min-width:0}
+.hero-visual{
+  grid-area:visual;
+  position:relative;
+  aspect-ratio:4/3;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
+  overflow:hidden;
+  isolation:isolate;
+}
+.page-hero__grid>.side-note{grid-area:note}
+
+@media (max-width:880px){
+  .page-hero__grid{grid-template-columns:1fr;grid-template-areas:"copy" "visual" "note"}
+  .hero-visual{aspect-ratio:16/10;max-height:320px}
+}

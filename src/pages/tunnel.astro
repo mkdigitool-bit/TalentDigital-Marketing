@@ -101,12 +101,10 @@ const ld = {
   title="Tunnel de vente : un parcours mesuré"
   description="Tunnels de vente conçus comme un parcours mesuré : capture, offre, commande, séquence email et suivi par étape. Chaque étape a un objectif et un indicateur."
 >
-  <div class="hero-stage">
-    <Hero3D variant="tunnel" index="02" label="Tunnel de vente" />
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Tunnel de vente' }]} />
     <div class="split page-hero__grid">
-      <div>
+      <div class="hero-copy">
         <span class="eyebrow">Solution 03 — Tunnel de vente</span>
         <h1 class="display-1 reveal" style="margin-top:1rem">Un parcours qui accompagne au lieu de laisser <em>partir</em>.</h1>
         <p class="lede reveal" style="margin-top:1.5rem;max-width:50ch">
@@ -122,6 +120,10 @@ const ld = {
         <p class="note" style="margin-top:1.2rem">Mesure par étape · Un point d’abandon identifié · Comptes et données à votre nom</p>
       </div>
 
+      <div class="hero-visual reveal">
+        <Hero3D variant="tunnel" />
+      </div>
+
       <aside class="side-note reveal">
         <p class="side-note__h">Avant de construire</p>
         <p>
@@ -132,7 +134,6 @@ const ld = {
       </aside>
     </div>
   </section>
-  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">
