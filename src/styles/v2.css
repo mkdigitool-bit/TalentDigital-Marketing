@@ -263,29 +263,69 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   Hero des pages création : copie à gauche, visuel 3D + note à droite
-   Le décor ne passe jamais derrière le texte : il a son propre cadre.
+   Hero des pages création : la scène 3D occupe toute la section,
+   la copie est posée dessus et protégée par un dégradé de lisibilité.
+   `.page-hero--scene` est réservé aux 4 pages création.
    ══════════════════════════════════════════════════════════════ */
-.page-hero__grid{
-  grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
-  grid-template-areas:"copy visual" "copy note";
-  align-items:start;
-  row-gap:clamp(1.1rem,2vw,1.5rem);
-}
-.hero-copy{grid-area:copy;min-width:0}
-.hero-visual{
-  grid-area:visual;
+.page-hero--scene{
   position:relative;
-  aspect-ratio:4/3;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:var(--panel);
-  overflow:hidden;
   isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  min-height:clamp(520px,64vh,700px);
+  padding-block:clamp(2.5rem,5vw,4rem) clamp(3rem,6vw,4.5rem);
 }
-.page-hero__grid>.side-note{grid-area:note}
+/* voile : le texte reste net, la scène s'efface sous lui */
+.page-hero--scene::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(
+    90deg,
+    var(--void) 0%,
+    var(--void) 26%,
+    color-mix(in srgb,var(--void) 88%,transparent) 42%,
+    color-mix(in srgb,var(--void) 40%,transparent) 62%,
+    transparent 80%
+  );
+}
+.page-hero--scene .page-hero__inner{position:relative;z-index:2;width:100%}
+.page-hero--scene .hero-copy{max-width:min(600px,50%)}
 
-@media (max-width:880px){
-  .page-hero__grid{grid-template-columns:1fr;grid-template-areas:"copy" "visual" "note"}
-  .hero-visual{aspect-ratio:16/10;max-height:320px}
+/* bande « point de vigilance », sous le hero */
+.hero-note{margin-top:clamp(1.6rem,3vw,2.4rem)}
+.side-note--strip{
+  display:grid;
+  grid-template-columns:minmax(0,230px) minmax(0,1fr) auto;
+  align-items:center;
+  gap:clamp(1rem,3vw,2.4rem);
+  padding:1.15rem 1.5rem;
+  border-left:2px solid var(--accent);
+  border-radius:0 8px 8px 0;
+}
+.side-note--strip .side-note__h{margin:0}
+.side-note--strip p{margin:0}
+.side-note--strip .side-note__link{margin:0;white-space:nowrap}
+
+@media (max-width:900px){
+  .page-hero--scene{min-height:0}
+  .page-hero--scene::after{
+    background:linear-gradient(
+      180deg,
+      var(--void) 0%,
+      color-mix(in srgb,var(--void) 96%,transparent) 46%,
+      color-mix(in srgb,var(--void) 68%,transparent) 70%,
+      transparent 100%
+    );
+  }
+  .page-hero--scene .hero-copy{max-width:100%}
+  .side-note--strip{
+    grid-template-columns:1fr;
+    gap:.7rem;
+    padding:1.2rem 1.3rem;
+  }
+  .side-note--strip .side-note__link{white-space:normal}
 }

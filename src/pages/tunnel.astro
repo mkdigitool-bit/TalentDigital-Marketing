@@ -101,9 +101,10 @@ const ld = {
   title="Tunnel de vente : un parcours mesuré"
   description="Tunnels de vente conçus comme un parcours mesuré : capture, offre, commande, séquence email et suivi par étape. Chaque étape a un objectif et un indicateur."
 >
-  <section class="page-hero wrap">
-    <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Tunnel de vente' }]} />
-    <div class="split page-hero__grid">
+  <section class="page-hero page-hero--scene">
+    <Hero3D variant="tunnel" />
+    <div class="wrap page-hero__inner">
+      <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Tunnel de vente' }]} />
       <div class="hero-copy">
         <span class="eyebrow">Solution 03 — Tunnel de vente</span>
         <h1 class="display-1 reveal" style="margin-top:1rem">Un parcours qui accompagne au lieu de laisser <em>partir</em>.</h1>
@@ -119,21 +120,19 @@ const ld = {
         </div>
         <p class="note" style="margin-top:1.2rem">Mesure par étape · Un point d’abandon identifié · Comptes et données à votre nom</p>
       </div>
-
-      <div class="hero-visual reveal">
-        <Hero3D variant="tunnel" />
-      </div>
-
-      <aside class="side-note reveal">
-        <p class="side-note__h">Avant de construire</p>
-        <p>
-          La question n’est pas « quel tunnel construire » mais « où les gens s’arrêtent aujourd’hui ».
-          Si vous avez déjà un parcours, le diagnostic passe avant la refonte.
-        </p>
-        <a href="/audit-tunnel" class="side-note__link">Auto-diagnostic en 15 points →</a>
-      </aside>
     </div>
   </section>
+
+  <div class="wrap hero-note">
+    <aside class="side-note side-note--strip reveal">
+      <p class="side-note__h">Avant de construire</p>
+      <p>
+        La question n’est pas « quel tunnel construire » mais « où les gens s’arrêtent aujourd’hui ».
+        Si vous avez déjà un parcours, le diagnostic passe avant la refonte.
+      </p>
+      <a href="/audit-tunnel" class="side-note__link">Auto-diagnostic en 15 points →</a>
+    </aside>
+  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">

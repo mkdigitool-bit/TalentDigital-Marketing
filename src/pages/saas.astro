@@ -82,9 +82,10 @@ const ld = {
   title="SaaS et outils sur mesure"
   description="Développement d’outils sur mesure et de SaaS : cadrage fonctionnel, architecture, première version utilisable, tests, documentation et transfert du code source."
 >
-  <section class="page-hero wrap">
-    <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'SaaS sur mesure' }]} />
-    <div class="split page-hero__grid">
+  <section class="page-hero page-hero--scene">
+    <Hero3D variant="cube" />
+    <div class="wrap page-hero__inner">
+      <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'SaaS sur mesure' }]} />
       <div class="hero-copy">
         <span class="eyebrow">Solution 04 — SaaS et outils</span>
         <h1 class="display-1 reveal" style="margin-top:1rem">Construire l’outil qui manque, sans construire <em>trop</em>.</h1>
@@ -100,21 +101,19 @@ const ld = {
         </div>
         <p class="note" style="margin-top:1.2rem">Périmètre découpé en lots · Code source transféré · Documentation lisible par un tiers</p>
       </div>
-
-      <div class="hero-visual reveal">
-        <Hero3D variant="cube" />
-      </div>
-
-      <aside class="side-note reveal">
-        <p class="side-note__h">La première question</p>
-        <p>
-          Existe-t-il déjà un outil qui couvre 80 % du besoin ? Si oui, nous le recommandons.
-          Développer sur mesure se justifie quand l’écart est structurel, pas cosmétique.
-        </p>
-        <a href="/consulting-marketing" class="side-note__link">Voir le pôle conseil →</a>
-      </aside>
     </div>
   </section>
+
+  <div class="wrap hero-note">
+    <aside class="side-note side-note--strip reveal">
+      <p class="side-note__h">La première question</p>
+      <p>
+        Existe-t-il déjà un outil qui couvre 80 % du besoin ? Si oui, nous le recommandons.
+        Développer sur mesure se justifie quand l’écart est structurel, pas cosmétique.
+      </p>
+      <a href="/consulting-marketing" class="side-note__link">Voir le pôle conseil →</a>
+    </aside>
+  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">

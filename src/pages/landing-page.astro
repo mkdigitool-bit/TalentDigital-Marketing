@@ -84,9 +84,10 @@ const ld = {
   title="Landing page : une page, un objectif"
   description="Landing pages conçues pour une offre précise : structure argumentative, rédaction, objections traitées, formulaire et suivi. Une page, un objectif, un CTA."
 >
-  <section class="page-hero wrap">
-    <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Landing page' }]} />
-    <div class="split page-hero__grid">
+  <section class="page-hero page-hero--scene">
+    <Hero3D variant="panels" />
+    <div class="wrap page-hero__inner">
+      <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Landing page' }]} />
       <div class="hero-copy">
         <span class="eyebrow">Solution 02 — Landing page</span>
         <h1 class="display-1 reveal" style="margin-top:1rem">Une page, un objectif, un seul <em>appel à l’action</em>.</h1>
@@ -102,21 +103,19 @@ const ld = {
         </div>
         <p class="note" style="margin-top:1.2rem">Une seule action par page · Mesure des conversions incluse · Variante de test livrée</p>
       </div>
-
-      <div class="hero-visual reveal">
-        <Hero3D variant="panels" />
-      </div>
-
-      <aside class="side-note reveal">
-        <p class="side-note__h">Le test le plus simple</p>
-        <p>
-          Cachez le nom de votre entreprise sur votre page actuelle. Si elle pourrait appartenir
-          à n’importe quel concurrent, le problème n’est pas le design : c’est le message.
-        </p>
-        <a href="/audit-tunnel" class="side-note__link">Faire le diagnostic →</a>
-      </aside>
     </div>
   </section>
+
+  <div class="wrap hero-note">
+    <aside class="side-note side-note--strip reveal">
+      <p class="side-note__h">Le test le plus simple</p>
+      <p>
+        Cachez le nom de votre entreprise sur votre page actuelle. Si elle pourrait appartenir
+        à n’importe quel concurrent, le problème n’est pas le design : c’est le message.
+      </p>
+      <a href="/audit-tunnel" class="side-note__link">Faire le diagnostic →</a>
+    </aside>
+  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">
