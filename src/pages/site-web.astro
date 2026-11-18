@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero3D from '../components/Hero3D.astro';
 import Cta from '../components/Cta.astro';
 import Faq from '../components/Faq.astro';
 import { site } from '../data/site';
@@ -107,6 +108,8 @@ const ld = {
   title="Création de site web : cadrage et design"
   description="Sites web professionnels construits dans un périmètre écrit : cadrage, design, intégration, SEO technique et mesure. Vous gardez les accès et le code."
 >
+  <div class="hero-stage">
+    <Hero3D variant="orbital" index="01" label="Site web" />
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Site web' }]} />
     <div class="split page-hero__grid">
@@ -136,6 +139,7 @@ const ld = {
       </aside>
     </div>
   </section>
+  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">

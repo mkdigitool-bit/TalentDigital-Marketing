@@ -6,6 +6,9 @@ import { nav, cta } from '../data/site';
 
 const { pathname } = Astro.url;
 const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+const isItemActive = (item: (typeof nav)[number]) =>
+  isActive(item.href) || ('children' in item && item.children.some((child) => isActive(child.href)));
+const subId = (href: string) => `nav-sub-${href.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')}`;
 ---
 
 <header>
@@ -17,13 +20,55 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
       </a>
 
       <div class="nav__links" id="td-nav-links">
-        {nav.map((item) => (
-          <a
-            href={item.href}
-            class:list={[{ 'is-active': isActive(item.href) }]}
-            aria-current={isActive(item.href) ? 'page' : undefined}
-          >{item.label}</a>
-        ))}
+        {nav.map((item) =>
+          'children' in item ? (
+            <div class="nav__item" data-sub>
+              <div class="nav__row">
+                <a
+                  href={item.href}
+                  class:list={['nav__link', { 'is-active': isActive(item.href) }]}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                >{item.label}</a>
+                <button
+                  class="nav__sub-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls={subId(item.href)}
+                  aria-label={`Afficher le sous-menu ${item.label}`}
+                >
+                  <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+                    <path
+                      d="M2.5 4.5 6 8l3.5-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="nav__sub" id={subId(item.href)}>
+                {item.children.map((child) => (
+                  <a
+                    href={child.href}
+                    class:list={['nav__sub-link', { 'is-active': isActive(child.href) }]}
+                    aria-current={isActive(child.href) ? 'page' : undefined}
+                  >
+                    <span class="nav__sub-label">{child.label}</span>
+                    <span class="nav__sub-desc">{child.desc}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class:list={['nav__link', { 'is-active': isItemActive(item) }]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >{item.label}</a>
+          )
+        )}
         <a href={cta.primary.href} class="btn btn--sm nav__cta">{cta.primary.label}</a>
       </div>
 
@@ -69,32 +114,65 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
   .nav__in{display:flex;align-items:center;gap:2rem;justify-content:space-between;height:74px}
   .brand{display:inline-flex;align-items:center;flex:none}
   .nav__links{display:flex;align-items:center;gap:1.35rem;margin-left:auto}
-  .nav__links > a:not(.btn){font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);position:relative;padding:.2rem 0;transition:color .2s;white-space:nowrap}
-  .nav__links > a:not(.btn):hover{color:var(--txt)}
-  .nav__links > a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
-  .nav__links > a:not(.btn):hover::after,.nav__links > a:not(.btn).is-active::after{transform:scaleX(1)}
-  .nav__links > a.is-active{color:var(--txt)}
+  .nav__link{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);position:relative;padding:.2rem 0;transition:color .2s;white-space:nowrap}
+  .nav__link:hover{color:var(--txt)}
+  .nav__link::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+  .nav__link:hover::after,.nav__link.is-active::after{transform:scaleX(1)}
+  .nav__link.is-active{color:var(--txt)}
   .nav__cta{white-space:nowrap}
   .nav__links .nav__cta{display:none}
   .nav__end{display:flex;align-items:center;gap:.75rem;flex:none}
   .nav__toggle{display:none;background:none;border:1px solid var(--line-2);border-radius:3px;width:46px;height:40px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center}
   .nav__toggle span{width:20px;height:2px;background:var(--txt);transition:.3s}
 
+  /* ── sous-menus (desktop) ── */
+  .nav__item{position:relative;display:flex;align-items:center}
+  .nav__row{display:flex;align-items:center;gap:.28rem}
+  .nav__sub-toggle{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;padding:0;background:none;border:0;color:var(--muted);cursor:pointer;transition:color .2s,transform .25s var(--ease)}
+  .nav__sub-toggle svg{display:block}
+  .nav__sub-toggle:hover{color:var(--txt)}
+  .nav__sub-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+  .nav__item.is-open .nav__sub-toggle{color:var(--accent);transform:rotate(180deg)}
+  .nav__sub{position:absolute;top:calc(100% + 13px);left:-14px;min-width:248px;padding:.5rem;display:flex;flex-direction:column;gap:.1rem;background:var(--panel);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow-card);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-6px);transition:opacity .2s,transform .22s var(--ease),visibility .2s;z-index:5}
+  .nav__sub::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+  .nav__item.is-open .nav__sub{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+  @media (hover:hover) and (min-width:961px){
+    .nav__item:hover .nav__sub{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+    .nav__item:hover .nav__sub-toggle{color:var(--accent);transform:rotate(180deg)}
+  }
+  .nav__sub-link{display:flex;flex-direction:column;gap:.15rem;padding:.62rem .7rem;border-radius:4px;border-left:1px solid transparent;transition:background .2s,border-color .2s}
+  .nav__sub-link:hover,.nav__sub-link:focus-visible{background:var(--panel-2);outline:none}
+  .nav__sub-link:focus-visible{border-left-color:var(--accent)}
+  .nav__sub-label{font-family:var(--mono);font-size:.76rem;letter-spacing:.03em;color:var(--txt);transition:color .2s}
+  .nav__sub-link:hover .nav__sub-label,.nav__sub-link.is-active .nav__sub-label{color:var(--accent)}
+  .nav__sub-desc{font-size:.76rem;line-height:1.4;color:var(--muted)}
+
   @media (max-width:1080px){
     .nav__in{gap:1rem}
     .nav__links{gap:.9rem}
-    .nav__links > a:not(.btn){font-size:.66rem}
+    .nav__link{font-size:.66rem}
     .nav__cta{display:none}
   }
 
   @media (max-width:960px){
     .nav__toggle{display:flex}
     .nav__end .nav__cta{display:none}
-    .nav__links{position:fixed;inset:74px 0 auto 0;background:var(--panel);flex-direction:column;align-items:flex-start;gap:.2rem;padding:1rem var(--pad) 2rem;border-bottom:1px solid var(--line);transform:translateY(-140%);transition:transform .4s var(--ease);max-height:calc(100vh - 74px);overflow-y:auto;visibility:hidden}
+    .nav__links{position:fixed;inset:74px 0 auto 0;background:var(--panel);flex-direction:column;align-items:stretch;gap:.2rem;padding:1rem var(--pad) 2rem;border-bottom:1px solid var(--line);transform:translateY(-140%);transition:transform .4s var(--ease);max-height:calc(100vh - 74px);overflow-y:auto;visibility:hidden}
     .nav__links.is-open{transform:translateY(0);visibility:visible}
-    .nav__links > a:not(.btn){font-size:.95rem;letter-spacing:.04em;padding:.85rem 0;width:100%;border-bottom:1px solid var(--line)}
-    .nav__links > a:not(.btn)::after{display:none}
+    .nav__link{font-size:.95rem;letter-spacing:.04em;padding:.85rem 0;width:100%}
+    .nav__links > .nav__link{border-bottom:1px solid var(--line)}
+    .nav__link::after{display:none}
     .nav__links .nav__cta{display:inline-flex;margin-top:1.2rem;width:100%;justify-content:center}
+    .nav__item{flex-direction:column;align-items:stretch;width:100%}
+    .nav__row{border-bottom:1px solid var(--line);justify-content:space-between;gap:.5rem}
+    .nav__row .nav__link{width:auto;flex:1 1 auto;border-bottom:0}
+    .nav__sub-toggle{width:44px;height:44px;flex:none}
+    .nav__sub{position:static;min-width:0;width:100%;padding:.1rem 0 .8rem .9rem;margin-bottom:.35rem;background:none;border:0;border-left:1px solid var(--line);border-radius:0;box-shadow:none;display:none;opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:none}
+    .nav__sub::before{display:none}
+    .nav__item.is-open .nav__sub{display:flex}
+    .nav__sub-link{padding:.6rem .5rem}
+    .nav__sub-label{font-size:.82rem}
+    .nav__sub-desc{font-size:.78rem}
     .nav.is-open .nav__toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .nav.is-open .nav__toggle span:nth-child(2){opacity:0}
     .nav.is-open .nav__toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -115,11 +193,63 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
     }).observe(sentinel);
   }
 
+  /* ── sous-menus ── */
+  const subItems = Array.from(menu.querySelectorAll<HTMLElement>('.nav__item[data-sub]'));
+
+  const setSubState = (item: HTMLElement, open: boolean) => {
+    item.classList.toggle('is-open', open);
+    item.querySelector<HTMLButtonElement>('.nav__sub-toggle')?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  const closeSubs = (except?: HTMLElement) => {
+    subItems.forEach((item) => {
+      if (item !== except) setSubState(item, false);
+    });
+  };
+
+  subItems.forEach((item) => {
+    const btn = item.querySelector<HTMLButtonElement>('.nav__sub-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const willOpen = !item.classList.contains('is-open');
+      closeSubs(item);
+      setSubState(item, willOpen);
+    });
+    /* au survol d'un autre onglet, on referme celui ouvert au clic */
+    item.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(min-width: 961px)').matches) closeSubs(item);
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node;
+    if (menu.contains(target) || toggle.contains(target)) return;
+    closeSubs();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const openItem = subItems.find((item) => item.classList.contains('is-open'));
+    if (openItem) {
+      closeSubs();
+      openItem.querySelector<HTMLButtonElement>('.nav__sub-toggle')?.focus();
+      return;
+    }
+    if (menu.classList.contains('is-open')) {
+      menu.classList.remove('is-open');
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Ouvrir le menu');
+      toggle.focus();
+    }
+  });
+
   toggle.addEventListener('click', () => {
     const open = menu.classList.toggle('is-open');
     nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    if (!open) closeSubs();
   });
 
   menu.querySelectorAll('a').forEach((a) => {
@@ -127,6 +257,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
       menu.classList.remove('is-open');
       nav.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
+      closeSubs();
     });
   });
 

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero3D from '../components/Hero3D.astro';
 import Cta from '../components/Cta.astro';
 import Faq from '../components/Faq.astro';
 import { site } from '../data/site';
@@ -100,6 +101,8 @@ const ld = {
   title="Tunnel de vente : un parcours mesuré"
   description="Tunnels de vente conçus comme un parcours mesuré : capture, offre, commande, séquence email et suivi par étape. Chaque étape a un objectif et un indicateur."
 >
+  <div class="hero-stage">
+    <Hero3D variant="tunnel" index="02" label="Tunnel de vente" />
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Tunnel de vente' }]} />
     <div class="split page-hero__grid">
@@ -129,6 +132,7 @@ const ld = {
       </aside>
     </div>
   </section>
+  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">

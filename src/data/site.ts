@@ -62,9 +62,27 @@ export const ogImages: Record<string, string> = {
 export const nav = [
   { label: 'Consulting', href: '/consulting-marketing' },
   { label: 'Marketing digital', href: '/marketing-digital' },
-  { label: 'Solutions digitales', href: '/solutions-digitales' },
+  {
+    label: 'Solutions digitales',
+    href: '/solutions-digitales',
+    children: [
+      { label: 'Site web', href: '/site-web', desc: 'Cadrage, design, intégration' },
+      { label: 'Landing page', href: '/landing-page', desc: 'Une page, un objectif' },
+      { label: 'Tunnel de vente', href: '/tunnel', desc: 'Un parcours mesuré étape par étape' },
+      { label: 'SaaS sur mesure', href: '/saas', desc: 'Construire l’outil qui manque' },
+    ],
+  },
   { label: 'Méthode', href: '/methode' },
-  { label: 'Ressources', href: '/blog' },
+  {
+    label: 'Ressources',
+    href: '/blog',
+    children: [
+      { label: 'Articles', href: '/blog', desc: 'Analyses et repères pratiques' },
+      { label: 'Auto-diagnostic tunnel', href: '/audit-tunnel', desc: '15 points, 15 minutes' },
+      { label: 'Audit marketing', href: '/audit', desc: 'Le diagnostic avant décision' },
+      { label: 'Checklist tunnel', href: '/checklist-tunnel.pdf', desc: 'PDF à télécharger' },
+    ],
+  },
   { label: 'À propos', href: '/a-propos' },
 ] as const;
 

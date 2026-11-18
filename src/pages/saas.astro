@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero3D from '../components/Hero3D.astro';
 import Cta from '../components/Cta.astro';
 import Faq from '../components/Faq.astro';
 import { site } from '../data/site';
@@ -81,6 +82,8 @@ const ld = {
   title="SaaS et outils sur mesure"
   description="Développement d’outils sur mesure et de SaaS : cadrage fonctionnel, architecture, première version utilisable, tests, documentation et transfert du code source."
 >
+  <div class="hero-stage">
+    <Hero3D variant="cube" index="05" label="SaaS sur mesure" />
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'SaaS sur mesure' }]} />
     <div class="split page-hero__grid">
@@ -110,6 +113,7 @@ const ld = {
       </aside>
     </div>
   </section>
+  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">

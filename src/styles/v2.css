@@ -261,3 +261,7 @@
 @media (max-width:880px){
   .two-grid,.three-grid{grid-template-columns:1fr}
 }
+
+/* Hero avec decor genere (composant Hero3D) */
+.hero-stage{position:relative;isolation:isolate;overflow:hidden}
+.hero-stage>.page-hero{position:relative;z-index:1;margin-inline:auto}

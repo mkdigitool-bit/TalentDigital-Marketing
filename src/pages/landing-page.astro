@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Hero3D from '../components/Hero3D.astro';
 import Cta from '../components/Cta.astro';
 import Faq from '../components/Faq.astro';
 import { site } from '../data/site';
@@ -83,6 +84,8 @@ const ld = {
   title="Landing page : une page, un objectif"
   description="Landing pages conçues pour une offre précise : structure argumentative, rédaction, objections traitées, formulaire et suivi. Une page, un objectif, un CTA."
 >
+  <div class="hero-stage">
+    <Hero3D variant="panels" index="04" label="Landing page" />
   <section class="page-hero wrap">
     <Breadcrumbs items={[{ label: 'Solutions digitales', href: '/solutions-digitales' }, { label: 'Landing page' }]} />
     <div class="split page-hero__grid">
@@ -112,6 +115,7 @@ const ld = {
       </aside>
     </div>
   </section>
+  </div>
 
   <section class="section wrap">
     <div class="section__head reveal">
